@@ -1,6 +1,6 @@
 ## Hurricane Sandy Geo-Coded Tweets Project
 ### Project Lead: Jennings Anderson
-#### Members: TBD
+#### Members: Andrew Hardin, 
 [Project EPIC](epic.cs.colorado.edu), Geography 5303
 
 _This project will look at all of the Geo-Coded tweets from Hurricane Sandy_
