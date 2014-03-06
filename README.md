@@ -1,7 +1,7 @@
 ## Hurricane Sandy Geo-Coded Tweets Project
 ### Project Lead: Jennings Anderson
-#### Members: Andrew Hardin, 
-[Project EPIC](epic.cs.colorado.edu), Geography 5303
+#### Members: Andrew Hardin,
+[Project EPIC](http://epic.cs.colorado.edu), Geography 5303
 
 _This project will look at all of the Geo-Coded tweets from Hurricane Sandy_
 
@@ -15,7 +15,7 @@ What can be learned from using a person's Twitter activity over the course of Su
 
 ##Datasets
 1. ~300,000 geo-coded tweets
-2. Storm data from USGS? 
+2. Storm data from USGS?
 3. Build-Environment Information from OpenStreetMap
 
 
