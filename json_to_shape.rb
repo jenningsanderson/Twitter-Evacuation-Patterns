@@ -24,7 +24,7 @@ class Tweet_JSON_Reader
 		tweets_file.each do |line|
 			tweet = JSON.parse(line.chomp)
 			user_id = tweet["user"]["id_str"]
-				@tweets[user_id] ||= {:name=>[],:coords=>[], :urls=>[], :hashtags=>[]}
+				@tweets[user_id] ||= {:name=>[],:coords=>[], :urls=>[], :hashtags=>[], :text=''}
 
 				@tweets[user_id][:coords] 	<< tweet["geo"]["coordinates"]
 
@@ -77,8 +77,8 @@ end
 
 if __FILE__ == $0
 	sandy = '/Users/Shared/Sandy/geo_extract.json'
-	tweets = Tweet_JSON_Reader.new('test_out.json')
-  tweets.read_lines(max=100)
+	tweets = Tweet_JSON_Reader.new(sandy)
+  tweets.read_lines(max=10)
 
 	pp tweets.tweets
 	#tweet = Tweet_Shapefile.new('sandy_tweets_sample')
