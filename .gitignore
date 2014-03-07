@@ -3,3 +3,9 @@
 *.gitignore
 *.pdf
 *.json
+
+#We need to ignore shapefiles
+*.shp
+*.shx
+*.prj
+*.dbf
