@@ -12,7 +12,7 @@ class JSON_Parser
     @in_stream.each do |line|
       tweet = JSON.parse(line.chomp)
       if tweet['coordinates']
-        @out_stream.write(tweet)
+        @out_stream.write(tweet.to_json)
         @out_stream.write("\n")
         geo_count += 1
         if geo_count.modulo(100).zero?
@@ -31,6 +31,6 @@ if __FILE__ == $0
   file_in  = ARGV[0]
   file_out = ARGV[1]
 
-  #parser = JSON_Parser.new(file_in, file_out)
+  parser = JSON_Parser.new(file_in, file_out)
   parser.write_geo_tweets
 end
