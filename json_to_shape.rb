@@ -2,6 +2,7 @@ require 'rgeo-shapefile'
 require 'geo_ruby'
 require 'geo_ruby/shp'
 require 'json'
+require 'mongo'
 require 'pp'
 
 '''
@@ -55,6 +56,21 @@ class Tweet_JSON_Reader
 			this_tweet[k] = instance_eval "#{tweet}#{v}"
 		end
 		return this_tweet
+	end
+
+	def import_to_mongo
+		client = Mongo::MongoClient.new # defaults to localhost:27017
+		db = client['sandy']
+		coll = db['tweets']
+		counter = 0
+		@tweets_file.each do |line|
+			tweet = JSON.parse(line.chomp)
+			coll.insert(tweet)
+			counter += 1
+			if counter % 10000 == 0
+				puts counter
+			end
+		end
 	end
 end
 
@@ -123,20 +139,22 @@ if __FILE__ == $0
 	# define the file reader
 	t = Tweet_JSON_Reader.new(sandy, max)
 
+	t.import_to_mongo
+
 	# make the shapefile
-	tweet_shp = Tweet_Shapefile.new('sandy_tweets_sample')
-	tweet_shp.create_point_shapefile
+	# tweet_shp = Tweet_Shapefile.new('sandy_tweets_sample')
+	# tweet_shp.create_point_shapefile
 
 	#Add points to the file
-	counter=0
-	t.tweets.each do |tweet|
-		tweet_shp.add_point(tweet)
-		counter+=1
-		if counter % 500 == 0
-			puts counter
-		end
-	end
-	tweet_shp.close
+	# counter=0
+	# t.tweets.each do |tweet|
+	# 	tweet_shp.add_point(tweet)
+	# 	counter+=1
+	# 	if counter % 500 == 0
+	# 		puts counter
+	# 	end
+	# end
+	# tweet_shp.close
 end
 
 #
