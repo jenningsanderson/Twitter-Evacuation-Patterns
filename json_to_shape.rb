@@ -5,12 +5,13 @@ require 'json'
 require 'pp'
 
 '''
-Class for handling the giant file.
+Class for handling the a big tweet file from EPIC.
 '''
 class Tweet_JSON_Reader
 	attr_reader :json_filename, :tweets
 
-	def initialize( in_file, max=nil)
+	# Pass in the file (json tweet per line), and a potential max line arg
+	def initialize( in_file, max=nil, fields=nil)
 		@json_filename = in_file
 
 		unless max.nil?
@@ -18,43 +19,43 @@ class Tweet_JSON_Reader
 		else
 			@tweets_file = File.open(@json_filename).each
 		end
+
+		set_fields(fields)
+
+		#Define an enumerator
+		@tweets = Enumerator.new do |g|
+			@tweets_file.each do |line|
+				tweet = JSON.parse(line.chomp)
+				g.yield extract_tweet(tweet)
+			end
+		end
 	end
 
-	def get_tweet()
+	def set_fields(interested_fields)
+		unless interested_fields
+			@fields = {
+				:coords => '["geo"]["coordinates"]',
+				:text   => '["text"]',
+				:user_name => '["user"]["screen_name"]'
+			}
+		end
+	end
+
+	def extract_tweet(tweet_json)
+		tweet = Hash.new
+		@fields.each do |k,v|
+			tweet[k] = instance_eval "#{tweet_json}#{v}"
+		end
+		return tweet
+	end
+
+	def get_tweet
 		tweet = JSON.parse(@tweets_file.next.chomp)
-
-		return {	:coords => tweet["geo"]["coordinates"],
-							:screen_name => tweet["user"]["screen_name"],
-							:text => tweet["text"]}
+		@fields.each do |k,v|
+			this_tweet[k] = instance_eval "#{tweet}#{v}"
+		end
+		return this_tweet
 	end
-
-	def tweet_gen()
-		@tweets_file.each do |tweet|
-
-	# 	@tweets_file.each do |line|
-	# 		tweet = JSON.parse(line.chomp)
-	# 		this_tweet = []
-	# 		this_tweet << tweet["user"]["id_str"] << tweet["text"] << tweet["geo"]["coordinates"]
-	 	end
-	end
-
-	# 			@tweets[user_id] ||= {:name=>[],:coords=>[], :urls=>[], :hashtags=>[], :text=''}
-	#
-	# 			@tweets[user_id][:coords] 	<< tweet["geo"]["coordinates"]
-	#
-	# 			unless tweet["entities"]["urls"].nil?
-	# 				tweet["entities"]["urls"].each do |url|
-	# 					@tweets[user_id][:urls] << url["expanded_url"]
-	# 				end
-	# 			end
-	# 			unless tweet["entities"]["hashtags"].nil?
-	# 				tweet["entities"]["hashtags"].each do |hashtag|
-	# 					@tweets[user_id][:hashtags] << hashtag["text"]
-	# 				end
-	# 			end
-	# 			@tweets[user_id][:name] 		<< tweet["user"]["screen_name"]
-	# 	end
-	# end.lazy
 end
 
 
@@ -73,10 +74,10 @@ class Tweet_Shapefile
 		@fields = {:user_id_str=>11, :screen_name=>20, :text=>140, :hashtags=>100, :urls=>100}
 	end
 
-	def create_points_shapefile
+	def create_point_shapefile
 		fields = []
 		@fields.each do |k,v|
-			fields << GeoRuby::Shp4r::Dbf::Field.new(k.to_s,"C",v)
+			fields << GeoRuby::Shp4r::Dbf::Field.new(k.to_s,"F",v)
 		end
 		@shapefile = GeoRuby::Shp4r::ShpFile.create(@file_name, GeoRuby::Shp4r::ShpType::POINT,fields)
 
@@ -84,56 +85,56 @@ class Tweet_Shapefile
 
 	def add_point(p)
 		@shapefile.transaction do |tr|
-			pp p
 			tr.add(GeoRuby::Shp4r::ShpRecord.new(
 				GeoRuby::SimpleFeatures::Point.from_x_y(p[:coords][1],p[:coords][0]),
+				:screen_name.to_s=>p[:screen_name],
+				:text.to_s => p[:text]))
+		end
+	end
+
+	def add_line(line)
+		@shapefile.transaction do |tr|
+			pp p
+			tr.add(GeoRuby::Shp4r::ShpRecord.new(
+			GeoRuby::SimpleFeatures::Point.from_x_y(p[:coords][1],p[:coords][0]),
 				:screen_name.to_s=>p[:screen_name],
 				:text.to_s => p[:text]))
 		end
 		@shapefile.close
 	end
 
+
+	def method_missing(method_name)
+		@shapefile.instance_eval "#{method_name}"
+	end
 end
+
+
+#Global variables
+sandy = '/Users/Shared/Sandy/geo_extract.json'
 
 if __FILE__ == $0
-	sandy = '/Users/Shared/Sandy/geo_extract.json'
-	tweets = Tweet_JSON_Reader.new(sandy, max=10)
-  #tweets.read_lines(max=10)
 
-	#pp tweets.get_tweet
+	# define the file reader
+	t = Tweet_JSON_Reader.new(sandy, max=1000)
+
+	# make the shapefile
 	tweet_shp = Tweet_Shapefile.new('sandy_tweets_sample')
-	tweet_shp.create_points_shapefile
+	tweet_shp.create_point_shapefile
 
-	tweet_shp.add_point(tweets.get_tweet)
+	#Add points to the file
+	counter=0
+	t.tweets.each do |tweet|
+		tweet_shp.add_point(tweet)
+	end
+	tweet_shp.close
+
+
+
 
 end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-# puts "This is a test of reading a shapefile"
-# shape = RGeo::Shapefile::Reader.open('../lab3/data/interestAreas.shp')
-# shape.each do |record|
-# 	puts record.geometry.area
-#   end
-# puts shape.open?
-# shape.close
-# puts shape.open?
-
-
-
-
-## This one can read and write... but none of it is very straightforward.:
 
 #
 # GeoRuby::Shp4r::ShpFile.open('../lab3/data/interestAreas.shp') do |shp|
