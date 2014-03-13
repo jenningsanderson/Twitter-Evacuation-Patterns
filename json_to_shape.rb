@@ -12,7 +12,7 @@ class Tweet_JSON_Reader
 
 	# Pass in the file (json tweet per line), and a potential max line arg
 	def initialize( in_file, max=nil, fields=nil)
-		@json_filename = in_file
+			@json_filename = in_file
 
 		unless max.nil?
 			@tweets_file = File.open(@json_filename).first(max).each
@@ -71,13 +71,13 @@ class Tweet_Shapefile
 			file_name << '.shp'
 		end
 		@file_name = file_name
-		@fields = {:user_id_str=>11, :screen_name=>20, :text=>140, :hashtags=>100, :urls=>100}
+		@fields = {:usr_id_str=>['C',11], :handle=>['C',20], :text=>['C',140], :hashtags=>['C',100], :urls=>['C',100]}
 	end
 
 	def create_point_shapefile
 		fields = []
 		@fields.each do |k,v|
-			fields << GeoRuby::Shp4r::Dbf::Field.new(k.to_s,"F",v)
+			fields << GeoRuby::Shp4r::Dbf::Field.new(k.to_s,v[0],v[1])
 		end
 		@shapefile = GeoRuby::Shp4r::ShpFile.create(@file_name, GeoRuby::Shp4r::ShpType::POINT,fields)
 
@@ -87,7 +87,7 @@ class Tweet_Shapefile
 		@shapefile.transaction do |tr|
 			tr.add(GeoRuby::Shp4r::ShpRecord.new(
 				GeoRuby::SimpleFeatures::Point.from_x_y(p[:coords][1],p[:coords][0]),
-				:screen_name.to_s=>p[:screen_name],
+				:handle.to_s => p[:user_name],
 				:text.to_s => p[:text]))
 		end
 	end
@@ -112,11 +112,16 @@ end
 
 #Global variables
 sandy = '/Users/Shared/Sandy/geo_extract.json'
+max   = 750
 
 if __FILE__ == $0
+	if ARGV[0]
+		max = ARGV[0].to_i
+	end
+	puts "Running Tweet JSON to Shapefile, Parsing limit: #{max or 'none'}."
 
 	# define the file reader
-	t = Tweet_JSON_Reader.new(sandy, max=1000)
+	t = Tweet_JSON_Reader.new(sandy, max)
 
 	# make the shapefile
 	tweet_shp = Tweet_Shapefile.new('sandy_tweets_sample')
@@ -126,15 +131,13 @@ if __FILE__ == $0
 	counter=0
 	t.tweets.each do |tweet|
 		tweet_shp.add_point(tweet)
+		counter+=1
+		if counter % 500 == 0
+			puts counter
+		end
 	end
 	tweet_shp.close
-
-
-
-
 end
-
-
 
 #
 # GeoRuby::Shp4r::ShpFile.open('../lab3/data/interestAreas.shp') do |shp|
