@@ -74,23 +74,28 @@ class Tweet_JSON_Reader
 	end
 end
 
-
+'''
+Class for connecting to a local MongoDB
+'''
 class SandyMongoClient
-	attr_reader @tweets
+	attr_reader :collection, :tweets
 
-	def initilialize
+	def initialize
 		client = Mongo::MongoClient.new # defaults to localhost:27017
 		db = client['sandy']
-		@tweets = db['tweets']
+		@collection = db['tweets']
+		@tweets = @collection.find({},{:limit=>10})
+	end
+end
+
+
+
+#Actual Runtime here
+if __FILE__ == $0
+	mc = SandyMongoClient.new
+
+	mc.tweets.each do |tweet|
+		pp tweet["text"]
 	end
 
-	def
-		@tweets = Enumerator.new do |g|
-			@tweets_file.each do |line|
-				tweet = JSON.parse(line.chomp)
-				g.yield extract_tweet(tweet)
-			end
-		end
-
-	end
 end
