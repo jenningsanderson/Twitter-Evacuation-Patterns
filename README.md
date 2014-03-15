@@ -25,7 +25,7 @@ This project aims to be finished by the end of April, 2014
 
 ###Dependencies
 ````
-gem install GeoRuby
+gem install georuby
 gem install rgeo-shapefile
 gem install bson
 gem install mongo

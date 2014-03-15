@@ -1,6 +1,6 @@
 require 'rgeo-shapefile'
 require 'geo_ruby'
-#require 'geo_ruby/shp'
+require 'geo_ruby/shp'
 require 'json'
 require 'mongo'
 require 'pp'
