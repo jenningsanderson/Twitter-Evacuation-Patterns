@@ -1,6 +1,6 @@
 ## Hurricane Sandy Geo-Coded Tweets Project
 #### Project Lead: Jennings Anderson
-##### Members: Andrew Hardin, Ellie Falleta
+##### Members: Andrew Hardin, Ellie Falletta
 
 [Project EPIC](http://epic.cs.colorado.edu), Geography 5303
 
@@ -22,3 +22,11 @@ What can be learned from using a person's Twitter activity over the course of Su
 
 ##Timeline
 This project aims to be finished by the end of April, 2014
+
+###Dependencies
+````
+gem install GeoRuby
+gem install rgeo-shapefile
+gem install bson
+gem install mongo
+````
