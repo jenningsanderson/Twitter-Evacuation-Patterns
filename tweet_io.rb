@@ -111,7 +111,7 @@ end
 
 def read_file_to_mongo(infile, mongo_db, max=nil, fields=nil)
 	reader = Tweet_JSON_Reader.new(infile, max, fields)
-	#reader.import_to_mongo
+	reader.import_to_mongo(mongo_db)
 end
 
 #Actual Runtime here
@@ -122,23 +122,24 @@ if __FILE__ == $0
 		puts "File: #{ARGV[1]}, DB Name: #{ARGV[2]}"
 		read_file_to_mongo(ARGV[1], ARGV[2])
 	end
-	#Open the client
-	#mc = SandyMongoClient.new(limit=200000)
 
-	#Create the shapefile
-	#tweet_shape = Tweet_Shapefile.new('two_hundred_k_sandy_tweets')
-	#tweet_shape.create_point_shapefile
+	elsif ARGV[0] == '-local'
+		#Open the client
+		#mc = SandyMongoClient.new(limit=200000)
 
-	#Iterate through the tweets
-	#mc.get_tweets_for_plot
+		#Create the shapefile
+		#tweet_shape = Tweet_Shapefile.new('two_hundred_k_sandy_tweets')
+		#tweet_shape.create_point_shapefile
 
-	#counter = 0
-	#mc.tweets_for_plot.each do |tweet|
-	#	tweet_shape.add_point(tweet)
-#		counter += 1
-	#	if counter %10000==0
-	#		puts counter
-#		end
-#	end
+		#Iterate through the tweets
+		#mc.get_tweets_for_plot
 
+		#counter = 0
+		#mc.tweets_for_plot.each do |tweet|
+		#	tweet_shape.add_point(tweet)
+		#		counter += 1
+		#	if counter %10000==0
+		#		puts counter
+		#	end
+		#end
 end

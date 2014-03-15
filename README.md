@@ -29,4 +29,5 @@ gem install GeoRuby
 gem install rgeo-shapefile
 gem install bson
 gem install mongo
+gem install bson_ext
 ````
