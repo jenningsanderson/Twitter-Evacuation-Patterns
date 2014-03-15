@@ -126,19 +126,19 @@ if __FILE__ == $0
 	#mc = SandyMongoClient.new(limit=200000)
 
 	#Create the shapefile
-	tweet_shape = Tweet_Shapefile.new('two_hundred_k_sandy_tweets')
-	tweet_shape.create_point_shapefile
+	#tweet_shape = Tweet_Shapefile.new('two_hundred_k_sandy_tweets')
+	#tweet_shape.create_point_shapefile
 
 	#Iterate through the tweets
-	mc.get_tweets_for_plot
+	#mc.get_tweets_for_plot
 
-	counter = 0
-	mc.tweets_for_plot.each do |tweet|
-		tweet_shape.add_point(tweet)
-		counter += 1
-		if counter %10000==0
-			puts counter
-		end
-	end
+	#counter = 0
+	#mc.tweets_for_plot.each do |tweet|
+	#	tweet_shape.add_point(tweet)
+#		counter += 1
+	#	if counter %10000==0
+	#		puts counter
+#		end
+#	end
 
 end
