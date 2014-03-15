@@ -1,6 +1,6 @@
 require 'rgeo-shapefile'
 require 'geo_ruby'
-require 'geo_ruby/shp'
+#require 'geo_ruby/shp'
 require 'json'
 require 'mongo'
 require 'pp'
@@ -110,14 +110,14 @@ end
 
 
 def read_file_to_mongo(infile, mongo_db, max=nil, fields=nil)
-	reader = Tweet_Json_Reader.new(infile, max, fields)
+	reader = Tweet_JSON_Reader.new(infile, max, fields)
 	#reader.import_to_mongo
 end
 
 #Actual Runtime here
 if __FILE__ == $0
 
-	if ARGV[1] == '-mongo'
+	if ARGV[0] == '-mongo'
 		puts "Running import to MongoDB"
 		puts "File: #{ARGV[1]}, DB Name: #{ARGV[2]}"
 		read_file_to_mongo(ARGV[1], ARGV[2])
