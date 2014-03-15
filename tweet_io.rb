@@ -5,8 +5,6 @@ require 'json'
 require 'mongo'
 require 'pp'
 
-require './tweet_shape'
-
 '''
 Class for handling the a big tweet file from EPIC.
 '''
@@ -81,13 +79,14 @@ Class for connecting to a local MongoDB
 '''
 class SandyMongoClient
 	attr_reader :collection, :tweets, :tweets_for_plot
-	attr_accessor :limit
+	attr_accessor :limit, :query
 
 	def initialize(limit=nil)
 		client = Mongo::MongoClient.new # defaults to localhost:27017
 		db = client['sandy']
 		@collection = db['tweets']
 		@limit = limit
+		@query = {}
 	end
 
 	def get_all()
@@ -99,7 +98,7 @@ class SandyMongoClient
 			fields = ["geo.coordinates","text", "user.screen_name"]
 		end
 		@tweets_for_plot = Enumerator.new do |g|
-			@collection.find({},{:limit=>@limit, :fields=>fields}).each do |tweet|
+			@collection.find(query,{:limit=>@limit, :fields=>fields}).each do |tweet|
 				tweet_hash = {:text => tweet["text"], :coords => tweet["geo"]["coordinates"], :user_name => tweet["user"]["screen_name"]}
 				g.yield tweet_hash
 			end
