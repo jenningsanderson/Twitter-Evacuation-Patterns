@@ -3,9 +3,14 @@
 *.gitignore
 *.pdf
 *.json
+*data/*/*/*
+data
 
 #We need to ignore shapefiles
 *.shp
 *.shx
 *.prj
 *.dbf
+
+#Also, Ignore anythign from QGS
+*.qgs
