@@ -61,7 +61,7 @@ class Tweet_JSON_Reader
 	def import_to_mongo(db_name)
 		client = Mongo::MongoClient.new # defaults to localhost:27017
 		db = client[db_name]
-		coll = db['tweets']
+		coll = db['geo_tweets']
 		counter = 0
 		@tweets_file.each do |line|
 			tweet = JSON.parse(line.chomp)
@@ -83,7 +83,7 @@ class SandyMongoClient
 
 	def initialize(limit=nil)
 		client = Mongo::MongoClient.new # defaults to localhost:27017
-		db = client['sandy']
+		db = client['sandygeo']
 		@collection = db['tweets']
 		@limit = limit
 		@query = {}
