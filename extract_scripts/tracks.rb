@@ -30,18 +30,19 @@ if __FILE__ == $0
     tweets.each do |tweet|
       user = tweet["user"]["id_str"] # individual users for this test
 
-      #TODO: Add a linestring to the shapefile
+      #TODO: Add a linestring to the shapefile with good info...
       #tweet_shape.add_line(user)
 
       points = []
 
       conn.get_user_tweets(user).each do |user_tweet|
-        #TODO: Make point from tweet and add to array
-        points << user_tweet['text']
+        # Make point from tweet and add to array
+        points << tweet_shape.make_point_from_tweet(user_tweet)
 
-        #TODO: Create linestring from array of points
+        # Create linestring from array of points
+        tweet_shape.add_line(points)
       end
-      puts points
+      puts points.inspect
       puts "--------------"
     end #end user iterator
   end # end tracks

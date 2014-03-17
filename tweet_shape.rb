@@ -30,9 +30,9 @@ class Tweet_Shapefile
 
   def create_line_shapefile
     fields = []
-    @fields.each do |k,v|
-      fields << GeoRuby::Shp4r::Dbf::Field.new(k.to_s,v[0],v[1])
-    end
+    #@fields.each do |k,v|
+    fields << GeoRuby::Shp4r::Dbf::Field.new("User ID",'C',11)
+    #fields << GeoRuby::Shp4r::Dbf::Field.new()
     #TODO: Can we add a z-value to the line?
     @shapefile = GeoRuby::Shp4r::ShpFile.create(@file_name, GeoRuby::Shp4r::ShpType::POLYLINE,fields)
   end
@@ -49,12 +49,16 @@ class Tweet_Shapefile
   def add_line(points)
     @shapefile.transaction do |tr|
       tr.add(GeoRuby::Shp4r::ShpRecord.new(
-      GeoRuby::SimpleFeatures::LineString.from_points(points)
+        GeoRuby::SimpleFeatures::LineString.from_points(points),
+        "User ID"=>'1'))
+      #tr.add(GeoRuby::SimpleFeatures::LineString.from_points(points))
     end
   end
 
-  def make_point_from_hash(detail_hash)
-    return GeoRuby::SipmleFeatures::Point.from_x_y
+  def make_point_from_tweet(tweet)
+    return GeoRuby::SimpleFeatures::Point.from_x_y(
+      tweet["geo"]["coordinates"][0],
+      tweet["geo"]["coordinates"][1])
   end
 
   def method_missing(method_name)
