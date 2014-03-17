@@ -17,35 +17,54 @@ if __FILE__ == $0
     end
     puts "Calling Mongo, limit: #{lim}"
 
-    #Make a new shapefile for writing, make line
-    tweet_shape = Tweet_Shapefile.new('line_test')
-    tweet_shape.create_line_shapefile
+    #Make 2 new shapefiles: 1 for lines, 1 for tweets
+    line_shape = Tweet_Shapefile.new("lines_user_count#{lim}")
+    line_shape.create_line_shapefile
 
-    #Get the tweets I want:
+    tweet_shape = Tweet_Shapefile.new("tweets_user_count#{lim}")
+    tweet_shape.create_point_shapefile
+
+    #Get the tweets I want, pass the limit
     conn = SandyMongoClient.new(limit=lim)
     tweets = conn.get_all()
 
-    # Iterate through the tweets, go back and call each user found in the above
-    # set of tweets
-    tweets.each do |tweet|
-      user = tweet["user"]["id_str"] # individual users for this test
-
-      #TODO: Add a linestring to the shapefile with good info...
-      #tweet_shape.add_line(user)
-
+    # Iterate through the users, getting their streams
+    tweets.to_a.uniq.each_with_index do |tweet, i|
+      user = tweet["user"]["id_str"]
       points = []
+      tweet_data = {:handle=>[] }
 
-      conn.get_user_tweets(user).each do |user_tweet|
+      conn.get_user_tweets(user).each do |tweet|
+
         # Make point from tweet and add to array
-        points << tweet_shape.make_point_from_tweet(user_tweet)
+        points << line_shape.make_point_from_tweet(tweet)
 
-        # Create linestring from array of points
-        tweet_shape.add_line(points)
+        unless tweet_data[:handle].include? tweet["user"]["screen_name"]
+          tweet_data[:handle] << tweet["user"]["screen_name"]
+        end
+
+        #Add the tweet to the tweet file
+        tweet_shape.add_point({
+          :coords=>tweet["geo"]["coordinates"],
+          :text  =>tweet["text"],
+          :user_name => tweet["user"]["screen_name"],
+          :time => tweet["created_at"]})
+
+        if i%10 ==0
+          puts "Completed #{i} Twitter users."
+        end
       end
-      puts points.inspect
-      puts "--------------"
+      unless points.length == 1
+        line_shape.add_line(points, tweet_data)
+      end
     end #end user iterator
-  end # end tracks
+
+  #  tweet_shape.close()
+  #  line_shape.close()
+  else # end tracks
+    puts "Please specify an argument, such as -tracks"
+  end
+
 end #end runtime
 
 
