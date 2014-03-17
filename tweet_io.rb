@@ -74,6 +74,7 @@ class Tweet_JSON_Reader
 	end
 end
 
+
 '''
 Class for connecting to a local MongoDB
 '''
@@ -81,16 +82,21 @@ class SandyMongoClient
 	attr_reader :collection, :tweets, :tweets_for_plot
 	attr_accessor :limit, :query
 
-	def initialize(limit=nil)
+	def initialize(limit=nil, db_name='sandygeo', coll='geo_tweets')
 		client = Mongo::MongoClient.new # defaults to localhost:27017
-		db = client['sandygeo']
-		@collection = db['tweets']
+		db = client[db_name]
+		@collection = db[coll]
 		@limit = limit
 		@query = {}
 	end
 
 	def get_all()
-		@collection.find({},{:limit=>@limit})
+		return @collection.find({},{:limit=>@limit})
+	end
+
+	def get_user_tweets(user_id_str, limit=nil)
+		@limit ||= limit
+		return @collection.find({"user.id_str"=>user_id_str}, {:limit=>@limit, :fields=>["user.screen_name", "text", "entities", "geo", "created_at"]})
 	end
 
 	def get_tweets_for_plot(fields=nil)

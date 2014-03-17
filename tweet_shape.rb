@@ -1,6 +1,6 @@
 require 'rgeo-shapefile'
 require 'geo_ruby'
-require 'geo_ruby/shp'
+require 'geo_ruby/shp4r/shp'
 require 'mongo'
 require 'pp'
 
@@ -26,7 +26,15 @@ class Tweet_Shapefile
       fields << GeoRuby::Shp4r::Dbf::Field.new(k.to_s,v[0],v[1])
     end
     @shapefile = GeoRuby::Shp4r::ShpFile.create(@file_name, GeoRuby::Shp4r::ShpType::POINT,fields)
+  end
 
+  def create_line_shapefile
+    fields = []
+    @fields.each do |k,v|
+      fields << GeoRuby::Shp4r::Dbf::Field.new(k.to_s,v[0],v[1])
+    end
+    #TODO: Can we add a z-value to the line?
+    @shapefile = GeoRuby::Shp4r::ShpFile.create(@file_name, GeoRuby::Shp4r::ShpType::POLYLINE,fields)
   end
 
   def add_point(p)
@@ -38,17 +46,16 @@ class Tweet_Shapefile
     end
   end
 
-  def add_line(line)
+  def add_line(points)
     @shapefile.transaction do |tr|
-      pp p
       tr.add(GeoRuby::Shp4r::ShpRecord.new(
-      GeoRuby::SimpleFeatures::Point.from_x_y(p[:coords][1],p[:coords][0]),
-        :screen_name.to_s=>p[:screen_name],
-        :text.to_s => p[:text]))
+      GeoRuby::SimpleFeatures::LineString.from_points(points)
     end
-    @shapefile.close
   end
 
+  def make_point_from_hash(detail_hash)
+    return GeoRuby::SipmleFeatures::Point.from_x_y
+  end
 
   def method_missing(method_name)
     @shapefile.instance_eval "#{method_name}"
