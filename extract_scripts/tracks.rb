@@ -18,10 +18,10 @@ if __FILE__ == $0
     puts "Calling Mongo, limit: #{lim}"
 
     #Make 2 new shapefiles: 1 for lines, 1 for tweets
-    line_shape = Tweet_Shapefile.new("lines_user_count#{lim}")
+    line_shape = Tweet_Shapefile.new("~/sandy/lines_user_count#{lim}")
     line_shape.create_line_shapefile
 
-    tweet_shape = Tweet_Shapefile.new("tweets_user_count#{lim}")
+    tweet_shape = Tweet_Shapefile.new("~/sandy/tweets_user_count#{lim}")
     tweet_shape.create_point_shapefile
 
     #Get the tweets I want, pass the limit
