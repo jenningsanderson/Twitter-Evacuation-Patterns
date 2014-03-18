@@ -83,7 +83,7 @@ if __FILE__ == $0
           puts "Completed #{i} Twitter users."
         elsif i%51==0
           rate = i/(Time.now - start_time)
-          puts "Completed #{i} users at #{rate} Users/second, est #{( lim/rate ) / 3600} hours remaining"
+          puts "Completed #{i} users at #{rate} Users/second, est #{( (lim-i)/rate ) / 3600} hours remaining"
         end
       end #end user iterator
 
