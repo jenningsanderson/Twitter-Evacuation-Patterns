@@ -86,8 +86,8 @@ if __FILE__ == $0
           if i%100==0
             puts "Completed #{i} Twitter users."
           elsif i%501==0
-            rate = i/(Time.now() - start_time)
-            mins = (lim-i) / rate * 60
+            rate = i/(Time.now() - start_time) #Tweets processed / seconds elapsed
+            mins = (lim-i) / rate / 60         #minutes left = tweets left * seconds/tweet / 60
             hours = mins / 60
             puts "Status: #{'%.2f' % rate} Tweets/Second. #{'%.2f' % mins} minutes left or #{'%.2f' % hours} hours."
           end
