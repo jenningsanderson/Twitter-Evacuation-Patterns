@@ -17,7 +17,15 @@ class Tweet_Shapefile
       file_name << '.shp'
     end
     @file_name = file_name
-    @fields = {:usr_id_str=>['C',11], :handle=>['C',20], :text=>['C',140], :hashtags=>['C',100], :urls=>['C',100]}
+    @fields = {
+      :usr_id_str=>['C',11],
+      :handle=>['C',20],
+      :text=>['C',140],
+      :time=>['C',30],
+      :loc =>['C',50],
+      :hashtags=>['C',140],
+      :urls=>['C',140],
+      :time=>['C',30]}
   end
 
   def create_point_shapefile
@@ -39,7 +47,11 @@ class Tweet_Shapefile
       tr.add(GeoRuby::Shp4r::ShpRecord.new(
         GeoRuby::SimpleFeatures::Point.from_x_y(p[:coords][1],p[:coords][0]),
         :handle.to_s => p[:user_name],
-        :text.to_s => p[:text]))
+        :text.to_s => p[:text],
+        :time.to_s => p[:time],
+        :hashtags.to_s => p[:hashtags],
+        :loc.to_s => p[:location],
+        :urls.to_s => p[:urls]))
     end
   end
 

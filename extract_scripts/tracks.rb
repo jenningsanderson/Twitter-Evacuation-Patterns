@@ -18,10 +18,10 @@ if __FILE__ == $0
     puts "Calling Mongo, limit: #{lim}"
 
     #Make 2 new shapefiles: 1 for lines, 1 for tweets
-    line_shape = Tweet_Shapefile.new("lines_user_count#{lim}")
+    line_shape = Tweet_Shapefile.new("user_tracks_lines_#{lim}")
     line_shape.create_line_shapefile
 
-    tweet_shape = Tweet_Shapefile.new("tweets_user_count#{lim}")
+    tweet_shape = Tweet_Shapefile.new("user_tracks_tweets_#{lim}")
     tweet_shape.create_point_shapefile
 
     #Get the tweets I want, pass the limit
@@ -43,24 +43,38 @@ if __FILE__ == $0
           tweet_data[:handle] << tweet["user"]["screen_name"]
         end
 
+        if tweet["entities"]["hashtags"].count > 0
+          hashtags = tweet["entities"]["hashtags"].collect{ |x| x["text"]}.join(', ')
+        else
+          hashtags = "None"
+        end
+
+        if tweet["entities"]["urls"].count > 0
+          urls = tweet["entities"]["urls"].collect{ |x| x["expanded_url"]}.join(', ')
+        else
+          urls = "None"
+        end
+
         #Add the tweet to the tweet file
         tweet_shape.add_point({
           :coords=>tweet["geo"]["coordinates"],
           :text  =>tweet["text"],
           :user_name => tweet["user"]["screen_name"],
-          :time => tweet["created_at"]})
-
-        if i%10 ==0
-          puts "Completed #{i} Twitter users."
-        end
+          :time => tweet["created_at"],
+          :hashtags => hashtags,
+          :location => tweet["place"]["full_name"],
+          :urls => urls})
+      end
+      if i%10==0
+        puts "Completed #{i} Twitter users."
       end
       unless points.length == 1
         line_shape.add_line(points, tweet_data)
       end
     end #end user iterator
 
-  #  tweet_shape.close()
-  #  line_shape.close()
+    tweet_shape.close()
+    line_shape.close()
   else # end tracks
     puts "Please specify an argument, such as -tracks"
   end
