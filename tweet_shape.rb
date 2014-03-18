@@ -21,7 +21,7 @@ class Tweet_Shapefile
       :usr_id_str=>['C',11],
       :handle=>['C',20],
       :text=>['C',140],
-      :time=>['C',30],
+      :time=>['D',30],
       :loc =>['C',50],
       :hashtags=>['C',140],
       :urls=>['C',140],
@@ -38,7 +38,8 @@ class Tweet_Shapefile
 
   def create_line_shapefile
     fields = []
-    fields << GeoRuby::Shp4r::Dbf::Field.new("handle",'C',20)
+    fields << GeoRuby::Shp4r::Dbf::Field.new("Handle",'C',20)
+    fields << GeoRuby::Shp4r::Dbf::Field.new("Tweets",'N',10)
     @shapefile = GeoRuby::Shp4r::ShpFile.create(@file_name, GeoRuby::Shp4r::ShpType::POLYLINE,fields)
   end
 
@@ -59,14 +60,9 @@ class Tweet_Shapefile
     @shapefile.transaction do |tr|
       tr.add(GeoRuby::Shp4r::ShpRecord.new(
         GeoRuby::SimpleFeatures::LineString.from_points(points),
-        "handle"=>tweet_data[:handle][0]))
+        "Handle"=>tweet_data[:handle].join(','),
+        "Tweets"=>tweet_data[:tweets]))
     end
-  end
-
-  def make_point_from_tweet(tweet)
-    return GeoRuby::SimpleFeatures::Point.from_x_y(
-      tweet["geo"]["coordinates"][1],
-      tweet["geo"]["coordinates"][0])
   end
 
   def method_missing(method_name)

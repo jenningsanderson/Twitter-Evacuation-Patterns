@@ -97,7 +97,13 @@ class SandyMongoClient
 	def get_user_tweets(user_id_str, limit=nil)
 		@limit ||= limit
 		return @collection.find({"user.id_str"=>user_id_str}, {:limit=>@limit,
-			:fields=>["user.screen_name", "text", "entities", "geo", "created_at", "place"]})
+			:fields=>["user.screen_name",
+								"user.id_str",
+								"text",
+								"entities",
+								"geo",
+								"created_at",
+								"place"]})
 	end
 
 	def get_tweets_for_plot(fields=nil)
@@ -106,7 +112,9 @@ class SandyMongoClient
 		end
 		@tweets_for_plot = Enumerator.new do |g|
 			@collection.find(query,{:limit=>@limit, :fields=>fields}).each do |tweet|
-				tweet_hash = {:text => tweet["text"], :coords => tweet["geo"]["coordinates"], :user_name => tweet["user"]["screen_name"]}
+				tweet_hash = {:text => tweet["text"],
+											:coords => tweet["geo"]["coordinates"],
+											:user_name => tweet["user"]["screen_name"]}
 				g.yield tweet_hash
 			end
 		end
@@ -116,8 +124,6 @@ class SandyMongoClient
 		@collection.distinct("user.id_str")
 	end
 end
-
-
 
 def read_file_to_mongo(infile, mongo_db, max=nil, fields=nil)
 	reader = Tweet_JSON_Reader.new(infile, max, fields)
