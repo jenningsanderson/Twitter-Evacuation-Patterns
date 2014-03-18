@@ -55,6 +55,12 @@ if __FILE__ == $0
           urls = "None"
         end
 
+        if tweet.has_key? ["place"]
+          loc = tweet["place"]["full_name"]
+        else
+          loc = "None"
+        end
+
         #Add the tweet to the tweet file
         tweet_shape.add_point({
           :coords=>tweet["geo"]["coordinates"],
@@ -62,7 +68,7 @@ if __FILE__ == $0
           :user_name => tweet["user"]["screen_name"],
           :time => tweet["created_at"],
           :hashtags => hashtags,
-          :location => tweet["place"]["full_name"],
+          :location => loc,
           :urls => urls})
       end
       if i%10==0
