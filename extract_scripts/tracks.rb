@@ -79,11 +79,11 @@ if __FILE__ == $0
           end
           line_shape.add_line(points, tweet_data)
         end
-        if i%10==0
+        if i%100==0
           puts "Completed #{i} Twitter users."
-        elsif i%51==0
+        elsif i%501==0
           rate = i/(Time.now - start_time)
-          puts "Completed #{i} users at #{rate} Users/second, est #{( (lim-i)/rate ) / 3600} hours remaining"
+          puts "Completed #{i} users at #{'%.02f' % rate} Users/second, est #{'%.02f' % ( (lim-i)/rate ) / 60} minutes remaining"
         end
       end #end user iterator
 
