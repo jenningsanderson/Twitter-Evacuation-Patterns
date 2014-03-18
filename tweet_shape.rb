@@ -10,7 +10,7 @@ This class makes a shapefile from tweets
 '''
 class Tweet_Shapefile
   attr_reader :file_name
-  attr_accessor :fields
+  attr_accessor :fields, :shapefile
 
   def initialize(file_name)
     unless file_name =~ /\.shp$/
