@@ -111,6 +111,10 @@ class SandyMongoClient
 			end
 		end
 	end
+
+	def get_distinct_users
+		@collection.distinct("user.id_str")
+	end
 end
 
 

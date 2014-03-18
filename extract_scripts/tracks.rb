@@ -25,12 +25,9 @@ if __FILE__ == $0
     tweet_shape.create_point_shapefile
 
     #Get the tweets I want, pass the limit
-    conn = SandyMongoClient.new(limit=lim)
-    tweets = conn.get_all()
+    conn = SandyMongoClient.new
 
-    # Iterate through the users, getting their streams
-    tweets.to_a.uniq.each_with_index do |tweet, i|
-      user = tweet["user"]["id_str"]
+    conn.get_distinct_users.first(lim).each_with_index do |user, i|
       points = []
       tweet_data = {:handle=>[] }
 
