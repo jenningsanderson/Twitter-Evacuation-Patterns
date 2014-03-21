@@ -21,11 +21,11 @@ if __FILE__ == $0
     puts "Started: #{start_time}"
 
     #Make 2 new shapefiles and open them both for writing...
-    line_shape = Tweet_Shapefile.new("user_tracks_lines_#{lim}")
+    line_shape = Tweet_Shapefile.new("user_tracksEdited_lines_#{lim}")
     line_shape.create_line_shapefile
     line_shape.shapefile.transaction do |tracks_tr|
 
-      tweet_shape = Tweet_Shapefile.new("user_tracks_tweets_#{lim}")
+      tweet_shape = Tweet_Shapefile.new("user_tracksEdited_tweets_#{lim}")
       tweet_shape.create_point_shapefile
       tweet_shape.shapefile.transaction do |tweets_tr|
 
