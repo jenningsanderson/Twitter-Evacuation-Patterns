@@ -23,15 +23,13 @@ if __FILE__ == $0
     #Make 2 new shapefiles and open them both for writing...
     line_shape = Tweet_Shapefile.new("user_geobounded_tracks_lines_#{lim}")
     line_shape.create_line_shapefile
-    tracks_tr = line_shape.open_transaction
-
-
-    #line_shape.shapefile.transaction do |tracks_tr|
+    #tracks_tr = line_shape.transaction
+    line_shape.shapefile.transaction do |tracks_tr|
 
     tweet_shape = Tweet_Shapefile.new("user_geo_bounded_tracks_tweets_#{lim}")
     tweet_shape.create_point_shapefile
-    tweets_tr = tweet_shape.open_transaction
-    #tweet_shape.shapefile.transaction do |tweets_tr|
+    #tweets_tr = tweet_shape.transaction
+    tweet_shape.shapefile.transaction do |tweets_tr|
 
     #Open connection to Mongo, iterate over distinct #lim users
     conn = SandyMongoClient.new
@@ -85,7 +83,7 @@ if __FILE__ == $0
              :loc.to_s => loc,
              :urls.to_s => urls))
           tweet_data[:count] += 1
-        end
+        end #End unless
       end #End user's tweets iteration
       tweets.close()
 
@@ -102,20 +100,9 @@ if __FILE__ == $0
         mins = (lim-i) / rate / 60         #minutes left = tweets left * seconds/tweet / 60
         hours = mins / 60
         puts "Status: #{'%.2f' % rate} Tweets/Second. #{'%.2f' % mins} minutes left or #{'%.2f' % hours} hours."
-      end
+      end #End status update
     end #end distinct user iteration
-
-
-
-  elsif ARGV[0] == 'help'
-    puts "Try -tracks 100"
-
-
-  else
-    puts "Please enter an argument such as -tracks"
-
-
-
-
+    end #end tweet shapefile
+    end #end lineshapefile
   end #end runtime options
 end #end runtime
