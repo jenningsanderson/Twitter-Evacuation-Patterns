@@ -20,19 +20,15 @@ if __FILE__ == $0
     start_time = Time.now
     puts "Started: #{start_time}"
 
-    #Make the bounding box
-    bbox =
-
     #Make 2 new shapefiles and open them both for writing...
     line_shape = Tweet_Shapefile.new("user_geobounded_tracks_lines_#{lim}")
     line_shape.create_line_shapefile
-    #tracks_tr = line_shape.transaction
-    line_shape.shapefile.transaction do |tracks_tr|
+    line_shape.transaction do |tracks_tr|
 
     tweet_shape = Tweet_Shapefile.new("user_geo_bounded_tracks_tweets_#{lim}")
     tweet_shape.create_point_shapefile
-    #tweets_tr = tweet_shape.transaction
-    tweet_shape.shapefile.transaction do |tweets_tr|
+    tweet_shape.transaction do |tweets_tr|
+
 
     #Open connection to Mongo, iterate over distinct #lim users
     conn = SandyMongoClient.new

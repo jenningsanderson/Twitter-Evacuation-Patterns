@@ -5,9 +5,7 @@ require 'mongo'
 require 'pp'
 
 
-'''
-This class makes a shapefile from tweets
-'''
+'''This class makes a shapefile from tweets'''
 class Tweet_Shapefile
   attr_reader :file_name
   attr_accessor :fields, :shapefile
@@ -43,10 +41,6 @@ class Tweet_Shapefile
     fields << GeoRuby::Shp4r::Dbf::Field.new("ID_STR",'C',20)
     @shapefile = GeoRuby::Shp4r::ShpFile.create(@file_name, GeoRuby::Shp4r::ShpType::POLYLINE,fields)
   end
-
-  # def open_transaction
-  #   @shapefile.transaction { |tr| yield tr }
-  # end
 
   def add_point(p)
     @shapefile.transaction do |tr|
@@ -106,17 +100,3 @@ if __FILE__ == $0
   # end
   # tweet_shp.close
 end
-
-#
-# GeoRuby::Shp4r::ShpFile.open('../lab3/data/interestAreas.shp') do |shp|
-# 	shp.each do |shape|
-# 		geom = shape.geometry #a GeoRuby SimpleFeature
-# 			puts "BOUNDING BOX: #{geom.bounding_box.inspect }\n"#I can get bounding box, but I can't calculate area?
-# 		att_data = shape.data #a Hash
-# 		puts "Attribute data: #{att_data.inspect}"
-# 		shp.fields.each do |field|
-# 			puts "Field: #{field.inspect}"
-# 			puts att_data[field.name]
-# 		end
-# 	end
-# end
