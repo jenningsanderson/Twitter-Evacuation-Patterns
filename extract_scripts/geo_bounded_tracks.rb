@@ -37,12 +37,12 @@ if __FILE__ == $0
     #Open connection to Mongo, iterate over distinct #lim users
     conn = SandyMongoClient.new
     conn.get_distinct_users.first(lim).each_with_index do |user, i|
-      tweet_data = {:handle=>[], :id_str=user, :count=>0, :points=>[]}
+      tweet_data = {:handle=>[], :id_str=>user, :count=>0, :points=>[]}
 
       #Get user's tweets
       tweets = conn.get_user_tweets(user)
       #tweets = conn.get_user_tweets_geo_bounded(user)
-      
+
       unless tweets.count < 2 #Only get users that had more than one tweet.
         tweets.each do |tweet|
 
