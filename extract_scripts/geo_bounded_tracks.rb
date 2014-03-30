@@ -94,7 +94,7 @@ if __FILE__ == $0
 
       #Add the points as a linestring to the line shapefile, if it intersects with the bounding box
       line_string = GeoRuby::SimpleFeatures::LineString.from_points(tweet_data[:points])
-      if line_string.intersects()
+      #if line_string.intersects()
 
       tracks_tr.add(GeoRuby::Shp4r::ShpRecord.new(line_string,
         "Handle"=>tweet_data[:handle].join(','),
