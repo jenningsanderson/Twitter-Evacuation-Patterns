@@ -106,6 +106,10 @@ class SandyMongoClient
 								"place"]})
 	end
 
+	def get_user_tweets_geo_bounded(usr_id_str, limit=nil)
+		@limit ||= limit
+	end
+
 	def get_tweets_for_plot(fields=nil)
 		unless fields
 			fields = ["geo.coordinates","text", "user.screen_name"]

@@ -40,6 +40,7 @@ class Tweet_Shapefile
     fields = []
     fields << GeoRuby::Shp4r::Dbf::Field.new("Handle",'C',20)
     fields << GeoRuby::Shp4r::Dbf::Field.new("Tweets",'N',10)
+    fields << GeoRuby::Shp4r::Dbf::Field.new("ID_STR",'C',20)
     @shapefile = GeoRuby::Shp4r::ShpFile.create(@file_name, GeoRuby::Shp4r::ShpType::POLYLINE,fields)
   end
 

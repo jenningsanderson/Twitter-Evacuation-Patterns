@@ -20,6 +20,9 @@ if __FILE__ == $0
     start_time = Time.now
     puts "Started: #{start_time}"
 
+    #Make the bounding box
+    bbox =
+
     #Make 2 new shapefiles and open them both for writing...
     line_shape = Tweet_Shapefile.new("user_geobounded_tracks_lines_#{lim}")
     line_shape.create_line_shapefile
@@ -34,10 +37,12 @@ if __FILE__ == $0
     #Open connection to Mongo, iterate over distinct #lim users
     conn = SandyMongoClient.new
     conn.get_distinct_users.first(lim).each_with_index do |user, i|
-      tweet_data = {:handle=>[], :count=>0, :points=>[]}
+      tweet_data = {:handle=>[], :id_str=user, :count=>0, :points=>[]}
 
       #Get user's tweets
       tweets = conn.get_user_tweets(user)
+      #tweets = conn.get_user_tweets_geo_bounded(user)
+      
       unless tweets.count < 2 #Only get users that had more than one tweet.
         tweets.each do |tweet|
 
@@ -87,11 +92,14 @@ if __FILE__ == $0
       end #End user's tweets iteration
       tweets.close()
 
-      #Add the points as a linestring to the line shapefile
-      tracks_tr.add(GeoRuby::Shp4r::ShpRecord.new(
-        GeoRuby::SimpleFeatures::LineString.from_points(tweet_data[:points]),
+      #Add the points as a linestring to the line shapefile, if it intersects with the bounding box
+      line_string = GeoRuby::SimpleFeatures::LineString.from_points(tweet_data[:points])
+      if line_string.intersects()
+
+      tracks_tr.add(GeoRuby::Shp4r::ShpRecord.new(line_string,
         "Handle"=>tweet_data[:handle].join(','),
-        "Tweets"=>tweet_data[:count]))
+        "Tweets"=>tweet_data[:count]),
+        "ID_STR"=>tweet_data[:id_str])
       tweet_data = nil #Save memory?
       if i%100==0
         puts "Completed #{i} Twitter users."
