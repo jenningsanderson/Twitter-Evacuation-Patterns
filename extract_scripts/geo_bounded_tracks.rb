@@ -38,7 +38,7 @@ if __FILE__ == $0
 
       #Get user's tweets
       tweets = conn.get_user_tweets(user)
-      unless tweets.count < 1 #Only get users that had more than one tweet.
+      unless tweets.count < 2 #Only get users that had more than one tweet.
         tweets.each do |tweet|
 
           point = GeoRuby::SimpleFeatures::Point.from_x_y(
