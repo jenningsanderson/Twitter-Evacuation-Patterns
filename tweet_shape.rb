@@ -43,6 +43,12 @@ class Tweet_Shapefile
     @shapefile = GeoRuby::Shp4r::ShpFile.create(@file_name, GeoRuby::Shp4r::ShpType::POLYLINE,fields)
   end
 
+  def open_transaction
+    @shapefile.transaction do |tr|
+      yield tr
+    end
+  end
+
   def add_point(p)
     @shapefile.transaction do |tr|
       tr.add(GeoRuby::Shp4r::ShpRecord.new(
