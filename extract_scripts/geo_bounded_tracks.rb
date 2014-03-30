@@ -23,11 +23,11 @@ if __FILE__ == $0
     #Make 2 new shapefiles and open them both for writing...
     line_shape = Tweet_Shapefile.new("user_geobounded_tracks_lines_#{lim}")
     line_shape.create_line_shapefile
-    line_shape.transaction do |tracks_tr|
+    line_shape.shapefile.transaction do |tracks_tr|
 
     tweet_shape = Tweet_Shapefile.new("user_geo_bounded_tracks_tweets_#{lim}")
     tweet_shape.create_point_shapefile
-    tweet_shape.transaction do |tweets_tr|
+    tweet_shape.shapefile.transaction do |tweets_tr|
 
 
     #Open connection to Mongo, iterate over distinct #lim users
@@ -88,14 +88,14 @@ if __FILE__ == $0
       end #End user's tweets iteration
       tweets.close()
 
-      #Add the points as a linestring to the line shapefile, if it intersects with the bounding box
+      #Add the points as a linestring to the line shapefile.
       line_string = GeoRuby::SimpleFeatures::LineString.from_points(tweet_data[:points])
-      #if line_string.intersects()
 
       tracks_tr.add(GeoRuby::Shp4r::ShpRecord.new(line_string,
         "Handle"=>tweet_data[:handle].join(','),
-        "Tweets"=>tweet_data[:count]),
-        "ID_STR"=>tweet_data[:id_str])
+        "Tweets"=>tweet_data[:count],
+        "ID_STR"=>tweet_data[:id_str]))
+
       tweet_data = nil #Save memory?
       if i%100==0
         puts "Completed #{i} Twitter users."
