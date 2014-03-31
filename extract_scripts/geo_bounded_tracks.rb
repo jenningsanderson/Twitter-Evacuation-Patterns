@@ -43,8 +43,8 @@ if __FILE__ == $0
         tweets.each do |tweet|
 
           point = GeoRuby::SimpleFeatures::Point.from_x_y(
-            tweet["geo"]["coordinates"][1],
-            tweet["geo"]["coordinates"][0])
+            tweet["coordinates"]["coordinates"][1],
+            tweet["coordinates"]["coordinates"][0])
 
           tweet_data[:points] << point
 
@@ -76,7 +76,7 @@ if __FILE__ == $0
 
           #Add the tweet to the tweet file
           tweets_tr.add(GeoRuby::Shp4r::ShpRecord.new(point,
-             :coords.to_s=>tweet["geo"]["coordinates"],
+             :coords.to_s=>tweet["coordinates"]["coordinates"],
              :text.to_s  =>tweet["text"],
              :handle.to_s => tweet["user"]["screen_name"],
              :time.to_s => tweet["created_at"],
