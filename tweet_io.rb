@@ -5,9 +5,8 @@ require 'json'
 require 'mongo'
 require 'pp'
 
-'''
-Class for handling the a big tweet file from EPIC.
-'''
+
+#Class for handling the a big tweet file from EPIC.
 class Tweet_JSON_Reader
 	attr_reader :json_filename, :tweets
 
@@ -75,9 +74,8 @@ class Tweet_JSON_Reader
 end
 
 
-'''
-Class for connecting to a local MongoDB
-'''
+
+#Class for connecting to a local MongoDB
 class SandyMongoClient
 	attr_reader :collection, :tweets, :tweets_for_plot
 	attr_accessor :limit, :query
@@ -106,10 +104,6 @@ class SandyMongoClient
 								"place"]})
 	end
 
-	def get_user_tweets_geo_bounded(usr_id_str, limit=nil)
-		@limit ||= limit
-	end
-
 	def get_tweets_for_plot(fields=nil)
 		unless fields
 			fields = ["coordinates.coordinates","text", "user.screen_name"]
@@ -124,9 +118,15 @@ class SandyMongoClient
 		end
 	end
 
+	#Returns an array of distinct user ids
 	def get_distinct_users
 		@collection.distinct("user.id_str")
 	end
+
+	def get_user_tweets_geo_bounded(usr_id_str, limit=nil)
+		@limit ||= limit
+	end
+
 end
 
 def read_file_to_mongo(infile, mongo_db, max=nil, fields=nil)

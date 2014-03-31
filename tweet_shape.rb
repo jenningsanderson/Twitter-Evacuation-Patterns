@@ -4,8 +4,14 @@ require 'geo_ruby/shp4r/shp'
 require 'mongo'
 require 'pp'
 
+'''
+This class makes a shapefile from tweets
 
-'''This class makes a shapefile from tweets'''
+It is important to remember that longitude is x and latitude is y, so lat,long is really y,x;
+
+THIS is why GeoJSON encodes everything as longitude, latitude.  Important to know!
+'''
+
 class Tweet_Shapefile
   attr_reader :file_name
   attr_accessor :fields, :shapefile
@@ -16,14 +22,15 @@ class Tweet_Shapefile
     end
     @file_name = file_name
     @fields = {
-      :usr_id_str=>['C',11],
-      :handle=>['C',20],
-      :text=>['C',140],
-      :time=>['D',30],
-      :loc =>['C',50],
-      :hashtags=>['C',140],
-      :urls=>['C',140],
-      :time=>['C',30]}
+        :usr_id_str=>  ['C',11],
+        :handle=>      ['C',20],
+        :text=>        ['C',140],
+        :time=>        ['D',30],
+        :loc =>        ['C',50],
+        :hashtags=>    ['C',140],
+        :urls=>        ['C',140],
+        :time=>        ['C',30]
+      }
   end
 
   def create_point_shapefile
@@ -42,10 +49,13 @@ class Tweet_Shapefile
     @shapefile = GeoRuby::Shp4r::ShpFile.create(@file_name, GeoRuby::Shp4r::ShpType::POLYLINE,fields)
   end
 
+
+
+  #This is a deprecated function, it takes too long to open/close the transaction
   def add_point(p)
     @shapefile.transaction do |tr|
       tr.add(GeoRuby::Shp4r::ShpRecord.new(
-        GeoRuby::SimpleFeatures::Point.from_x_y(p[:coords][1],p[:coords][0]),
+        GeoRuby::SimpleFeatures::Point.from_x_y(p[:coords][0],p[:coords][1]),
         :handle.to_s => p[:user_name],
         :text.to_s => p[:text],
         :time.to_s => p[:time],
@@ -55,6 +65,11 @@ class Tweet_Shapefile
     end
   end
 
+
+
+
+
+  #This is also a deprecated function, it takes way too long.
   def add_line(points, tweet_data)
     @shapefile.transaction do |tr|
       tr.add(GeoRuby::Shp4r::ShpRecord.new(
