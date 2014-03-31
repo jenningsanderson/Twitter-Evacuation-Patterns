@@ -1,4 +1,4 @@
-db.usertracks.drop();
+//db.usertracks.drop();
 
 var mapFunc = function () {
 	//Groups users with their coordinates
@@ -28,6 +28,6 @@ var finalizeFunc = function (key, reducedVal) {
 	return reducedVal;
 };
 
-t.mapReduce(mapFunc, reduceFunc, { out : "usertracks", finalize: finalizeFunc});
+//t.mapReduce(mapFunc, reduceFunc, { out : "usertracks", finalize: finalizeFunc, query : {"user.id_str":"100062671"}});
 
-db.usertracks.find().pretty();
+//db.usertracks.find().pretty();
