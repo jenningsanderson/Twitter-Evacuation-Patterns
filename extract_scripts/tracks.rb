@@ -39,7 +39,7 @@ if __FILE__ == $0
 
             point = GeoRuby::SimpleFeatures::Point.from_x_y(
               tweet["geo"]["coordinates"][1],
-              tweet["geo"]["coordinates"][0])
+              tweet["geo"]["coordinates"][0]) #This should be working ... why isn't it?
 
             tweet_data[:points] << point
 

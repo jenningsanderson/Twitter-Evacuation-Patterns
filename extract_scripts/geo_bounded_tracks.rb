@@ -43,8 +43,9 @@ if __FILE__ == $0
         tweets.each do |tweet|
 
           point = GeoRuby::SimpleFeatures::Point.from_x_y(
-            tweet["coordinates"]["coordinates"][1],
-            tweet["coordinates"]["coordinates"][0])
+            tweet["coordinates"]["coordinates"][0],
+            tweet["coordinates"]["coordinates"][1])
+          puts point.inspect
 
           tweet_data[:points] << point
 
