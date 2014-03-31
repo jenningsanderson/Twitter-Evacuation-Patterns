@@ -16,9 +16,7 @@ class JSON_Parser
         @out_stream.write("\n")
         geo_count += 1
         if geo_count.modulo(100).zero?
-          puts "Found #{geo_count},
-#{tweet['user']['screen_name']}:
-#{tweet['text']}"
+          puts "Found #{geo_count}, #{tweet['user']['screen_name']}: #{tweet['text']}"
         end
       end
     end

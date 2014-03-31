@@ -35,7 +35,7 @@ class Tweet_JSON_Reader
 	def set_fields(interested_fields)
 		unless interested_fields
 			@fields = {
-				:coords => '["geo"]["coordinates"]',
+				:coords => '["coordinates"]["coordinates"]',
 				:text   => '["text"]',
 				:user_name => '["user"]["screen_name"]'
 			}
@@ -101,7 +101,7 @@ class SandyMongoClient
 								"user.id_str",
 								"text",
 								"entities",
-								"geo",
+								"coordinates",
 								"created_at",
 								"place"]})
 	end
@@ -112,12 +112,12 @@ class SandyMongoClient
 
 	def get_tweets_for_plot(fields=nil)
 		unless fields
-			fields = ["geo.coordinates","text", "user.screen_name"]
+			fields = ["coordinates.coordinates","text", "user.screen_name"]
 		end
 		@tweets_for_plot = Enumerator.new do |g|
 			@collection.find(query,{:limit=>@limit, :fields=>fields}).each do |tweet|
 				tweet_hash = {:text => tweet["text"],
-											:coords => tweet["geo"]["coordinates"],
+											:coords => tweet["coordinates"]["coordinates"],
 											:user_name => tweet["user"]["screen_name"]}
 				g.yield tweet_hash
 			end

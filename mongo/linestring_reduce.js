@@ -1,21 +1,17 @@
-//db.usertracks.drop();
+db.usertracks.drop();
 
-var mapFunc = function () {
-	//Groups users with their coordinates
-	emit(this.user.id_str, this.geo.coordinates);
+var mapFunc = function(){
+	emit(this.user.id_str, this.coordinates.coordinates);
 };
 
-var reduceFunc = function(keyUserId, valuesGeoCoordinates) {
+var reduceFunc = function(keyUserId, valuesGeoCoordinates){
 	reducedVal = {coords : [], numPoints : 0, geo : {}}
-	
-	if (valuesGeoCoordinates[1].length==2){
-		for (var idx = 0; idx < valuesGeoCoordinates.length; idx++) {
-    		reducedVal.coords.push(valuesGeoCoordinates[idx]);
-        	reducedVal.numPoints += 1;
-        }
-    }else{
-    	reducedVal.numPoints = 1;
-    }
+
+	valuesGeoCoordinates.forEach( function(item) {
+		reducedVal.coords.push(item);
+		reducedVal.numPoints += 1;
+	});
+
 	return reducedVal
 };
 
@@ -28,6 +24,5 @@ var finalizeFunc = function (key, reducedVal) {
 	return reducedVal;
 };
 
-//t.mapReduce(mapFunc, reduceFunc, { out : "usertracks", finalize: finalizeFunc, query : {"user.id_str":"100062671"}});
-
-//db.usertracks.find().pretty();
+t.mapReduce(mapFunc, reduceFunc, { out : "usertracks", finalize: finalizeFunc, jsMode : true, sort: {"user.id_str" : 1}});
+db.usertracks.ensureIndex({"value.geo" : "2dsphere"});
