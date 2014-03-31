@@ -123,8 +123,20 @@ class SandyMongoClient
 		@collection.distinct("user.id_str")
 	end
 
-	def get_user_tweets_geo_bounded(usr_id_str, limit=nil)
-		@limit ||= limit
+	def get_users_intersecting_bbox_from_tracks(bbox)
+
+		query  = {"value.geo" :
+								{ "$geoIntersects" :
+									{ "$geometry" :
+										{ "type" : "Polygon",
+															 "coordinates" : bbox
+										}
+									}
+								}
+							}
+
+		fields = {"user.id_str"}
+		@collection.distinct(query, fields).to_a
 	end
 
 end

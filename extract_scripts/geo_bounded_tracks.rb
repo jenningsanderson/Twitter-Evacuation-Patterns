@@ -29,16 +29,17 @@ if __FILE__ == $0
     tweet_shape.create_point_shapefile
     tweet_shape.shapefile.transaction do |tweets_tr|
 
+    #Open connection to map reduced db in Mongo:
+    tracks = SandyMongoClient.new(db_name='sandygeo', coll='usertracks')
+    bounding_box = [[[-81,36], [-81,45], [-68,45], [-68,36], [-81,36]]] #This is a Polygon
 
     #Open connection to Mongo, iterate over distinct #lim users
     conn = SandyMongoClient.new
-    conn.get_distinct_users.first(lim).each_with_index do |user, i|
+    tracks.get_users_intersecting_bbox_from_tracks(bounding_box).first(lim).each_with_index do |user, i|
       tweet_data = {:handle=>[], :id_str=>user, :count=>0, :points=>[]}
 
       #Get user's tweets
       tweets = conn.get_user_tweets(user)
-      #tweets = conn.get_user_tweets_geo_bounded(user)
-
       unless tweets.count < 2 #Only get users that had more than one tweet.
         tweets.each do |tweet|
 
