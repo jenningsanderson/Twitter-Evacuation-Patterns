@@ -7,6 +7,7 @@ require 'time'
 
 require '../tweet_shape' #=> Get the shape file writer
 require '../tweet_io'    #=> Interface with Mongo
+require_relative '../config'
 
 
 if __FILE__ == $0
@@ -33,9 +34,15 @@ if __FILE__ == $0
     conn = SandyMongoClient.new
     bounding_box = [[[-81,36], [-81,45], [-68,45], [-68,36], [-81,36]]] #This is a Polygon
 
-    #Open connection to Mongo, iterate over distinct #lim users
+    #Get ignored strings
+    ignore_strings = users_to_ignore.collect{|user| user["ID_STR"]}
+    puts ignore_strings
 
+    #Open connection to Mongo, iterate over distinct #lim users
     conn.get_users_intersecting_bbox_from_tracks(bounding_box).first(lim).each_with_index do |user, i|
+
+
+
       tweet_data = {:handle=>[], :id_str=>user, :count=>0, :points=>[]}
 
       #Get user's tweets
