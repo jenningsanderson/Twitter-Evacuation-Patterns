@@ -21,21 +21,21 @@ if __FILE__ == $0
     puts "Started: #{start_time}"
 
     #Make 2 new shapefiles and open them both for writing...
-    line_shape = Tweet_Shapefile.new("user_geobounded_tracks_lines_#{lim}")
+    line_shape = Tweet_Shapefile.new("usr_geobounded_tracks#{lim}")
     line_shape.create_line_shapefile
     line_shape.shapefile.transaction do |tracks_tr|
 
-    tweet_shape = Tweet_Shapefile.new("user_geo_bounded_tracks_tweets_#{lim}")
+    tweet_shape = Tweet_Shapefile.new("usr_geobounded_tweets#{lim}")
     tweet_shape.create_point_shapefile
     tweet_shape.shapefile.transaction do |tweets_tr|
 
-    #Open connection to map reduced db in Mongo:
-    tracks = SandyMongoClient.new(db_name='sandygeo', coll='usertracks')
+    #Open connection to Mongo
+    conn = SandyMongoClient.new
     bounding_box = [[[-81,36], [-81,45], [-68,45], [-68,36], [-81,36]]] #This is a Polygon
 
     #Open connection to Mongo, iterate over distinct #lim users
-    conn = SandyMongoClient.new
-    tracks.get_users_intersecting_bbox_from_tracks(bounding_box).first(lim).each_with_index do |user, i|
+
+    conn.get_users_intersecting_bbox_from_tracks(bounding_box).first(lim).each_with_index do |user, i|
       tweet_data = {:handle=>[], :id_str=>user, :count=>0, :points=>[]}
 
       #Get user's tweets
@@ -83,7 +83,8 @@ if __FILE__ == $0
              :time.to_s => tweet["created_at"],
              :hashtags.to_s => hashtags,
              :loc.to_s => loc,
-             :urls.to_s => urls))
+             :urls.to_s => urls,
+             :ID_STR.to_s =>tweet["user"]["id_str"]))
           tweet_data[:count] += 1
         end #End unless
       end #End user's tweets iteration

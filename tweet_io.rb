@@ -82,8 +82,8 @@ class SandyMongoClient
 
 	def initialize(limit=nil, db_name='sandygeo', coll='edited_tweets')
 		client = Mongo::MongoClient.new # defaults to localhost:27017
-		db = client[db_name]
-		@collection = db[coll]
+		@db = client[db_name]
+		@collection = @db[coll]
 		@limit = limit
 		@query = {}
 	end
@@ -124,19 +124,19 @@ class SandyMongoClient
 	end
 
 	def get_users_intersecting_bbox_from_tracks(bbox)
-
-		query  = {"value.geo" :
-								{ "$geoIntersects" :
-									{ "$geometry" :
-										{ "type" : "Polygon",
-															 "coordinates" : bbox
+		tracks = @db['usertracks']
+		query  = {"value.geo" =>
+								{ "$geoIntersects" =>
+									{ "$geometry" =>
+										{ "type" => "Polygon",
+															 "coordinates" => bbox
 										}
 									}
 								}
 							}
 
-		fields = {"user.id_str"}
-		@collection.distinct(query, fields).to_a
+		fields = ["_id"]
+		results = tracks.find(query,{:fields=>fields}).to_a.collect{ |obj| obj["_id"]}
 	end
 
 end

@@ -22,7 +22,7 @@ class Tweet_Shapefile
     end
     @file_name = file_name
     @fields = {
-        :usr_id_str=>  ['C',11],
+        :ID_STR=>      ['C',20],
         :handle=>      ['C',20],
         :text=>        ['C',140],
         :time=>        ['D',30],
@@ -31,6 +31,10 @@ class Tweet_Shapefile
         :urls=>        ['C',140],
         :time=>        ['C',30]
       }
+
+    #Create the projection
+    projection_string = 'GEOGCS["GCS_WGS_1984",DATUM["D_WGS_1984",SPHEROID["WGS_1984",6378137,298.257223563]],PRIMEM["Greenwich",0],UNIT["Degree",0.017453292519943295]]'
+    File.open(file_name[0..-5]+'.prj', 'w') { |file| file.write(projection_string) }
   end
 
   def create_point_shapefile
