@@ -81,7 +81,7 @@ class SandyMongoClient
 	attr_accessor :limit, :query
 
 	def initialize(limit=nil, db_name='sandygeo', coll='edited_tweets')
-		client = Mongo::MongoClient.new # defaults to localhost:27017
+		client = Mongo::MongoClient.new('epic-analytics.cs.colorado.edu') # defaults to localhost:27017
 		@db = client[db_name]
 		@collection = @db[coll]
 		@limit = limit
