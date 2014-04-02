@@ -13,20 +13,24 @@ require_relative '../config'
 if __FILE__ == $0
   if ARGV[0] == '-tracks'
     #Get limit if one is set
-    lim = 10
+    lim = 25000
     if ARGV[1]
-      lim = ARGV[1].to_i
+      file_name = ARGV[1].to_s
+    end
+    file_name ||= "usr_geobounded"
+    if ARGV[2]
+      lim = ARGV[2].to_i
     end
     puts "Calling Mongo, limit: #{lim}"
     start_time = Time.now
     puts "Started: #{start_time}"
 
     #Make 2 new shapefiles and open them both for writing...
-    line_shape = Tweet_Shapefile.new("usr_geobounded_tracks#{lim}")
+    line_shape = Tweet_Shapefile.new("#{file_name}_tracks")
     line_shape.create_line_shapefile
     line_shape.shapefile.transaction do |tracks_tr|
 
-    tweet_shape = Tweet_Shapefile.new("usr_geobounded_tweets#{lim}")
+    tweet_shape = Tweet_Shapefile.new("#{file_name}_tweets")
     tweet_shape.create_point_shapefile
     tweet_shape.shapefile.transaction do |tweets_tr|
 
