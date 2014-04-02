@@ -35,13 +35,13 @@ if __FILE__ == $0
     bounding_box = [[[-81,36], [-81,45], [-68,45], [-68,36], [-81,36]]] #This is a Polygon
 
     #Get ignored strings
-    ignore_strings = users_to_ignore.collect{|user| user["ID_STR"]}
-    puts ignore_strings
+    ignore_strings = USERS_TO_IGNORE.collect{|user| user[:ID_STR]}
 
     #Open connection to Mongo, iterate over distinct #lim users
     conn.get_users_intersecting_bbox_from_tracks(bounding_box).first(lim).each_with_index do |user, i|
 
-
+      #Skip users that we don't want.
+      next if ignore_strings.includes? user
 
       tweet_data = {:handle=>[], :id_str=>user, :count=>0, :points=>[]}
 
