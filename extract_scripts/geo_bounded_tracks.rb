@@ -41,7 +41,7 @@ if __FILE__ == $0
     conn.get_users_intersecting_bbox_from_tracks(bounding_box).first(lim).each_with_index do |user, i|
 
       #Skip users that we don't want.
-      next if ignore_strings.includes? user
+      next if ignore_strings.include? user
 
       tweet_data = {:handle=>[], :id_str=>user, :count=>0, :points=>[]}
 
