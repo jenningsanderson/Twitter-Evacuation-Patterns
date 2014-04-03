@@ -38,14 +38,8 @@ if __FILE__ == $0
     conn = SandyMongoClient.new
     bounding_box = [[[-81,36], [-81,45], [-68,45], [-68,36], [-81,36]]] #This is a Polygon
 
-    #Get ignored strings
-    ignore_strings = USERS_TO_IGNORE.collect{|user| user[:ID_STR]}
-
     #Open connection to Mongo, iterate over distinct #lim users
     conn.get_users_intersecting_bbox_from_tracks(bounding_box).first(lim).each_with_index do |user, i|
-
-      #Skip users that we don't want.
-      next if ignore_strings.include? user
 
       tweet_data = {:handle=>[], :id_str=>user, :count=>0, :points=>[]}
 
@@ -80,7 +74,7 @@ if __FILE__ == $0
           end
 
           #See if Twitter already found a place
-          if tweet.has_key? ["place"]
+          if tweet.has_key? "place"
             loc = tweet["place"]["full_name"]
           else
             loc = "None"

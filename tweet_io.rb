@@ -94,14 +94,18 @@ class SandyMongoClient
 
 	def get_user_tweets(user_id_str, limit=nil)
 		@limit ||= limit
-		return @collection.find({"user.id_str"=>user_id_str}, {:limit=>@limit,
-			:fields=>["user.screen_name",
-								"user.id_str",
-								"text",
-								"entities",
-								"coordinates",
-								"created_at",
-								"place"]})
+		return @collection.find(
+		  selector = {"user.id_str"=>user_id_str},
+
+			opts = {:sort    =>["created_at",Mongo::ASCENDING],
+			 			 :limit	 =>@limit,
+							:fields	=>["user.screen_name",
+													"user.id_str",
+													"text",
+													"entities",
+													"coordinates",
+													"created_at",
+													"place"]})
 	end
 
 	def get_tweets_for_plot(fields=nil)
