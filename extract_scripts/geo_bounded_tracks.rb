@@ -74,7 +74,7 @@ if __FILE__ == $0
           end
 
           #See if Twitter already found a place
-          if tweet.has_key? "place"
+          unless tweet["place"].nil?
             loc = tweet["place"]["full_name"]
           else
             loc = "None"
