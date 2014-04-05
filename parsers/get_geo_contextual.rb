@@ -23,7 +23,7 @@ class UserContextualCollection
   def initialize(user)
     #Get the subcategory
     if user[0] =~ /[[:alpha:]]/
-      alph = user[0]
+      alph = user[0].downcase
     else
       alph = 'non'
     end
@@ -41,9 +41,7 @@ class UserContextualCollection
     @in_stream.first(lim).each do |line|
       tweet = JSON.parse(line.chomp)
       if tweet['coordinates']
-
-        puts tweet['coordinates']
-
+        #puts tweet['coordinates']
         geo_count += 1
         if geo_count.modulo(100).zero?
           puts "Found #{geo_count}, #{tweet['user']['screen_name']}: #{tweet['text']}"
@@ -71,8 +69,8 @@ if __FILE__ == $0
 
   user_screen_names.each do |user|
     puts "User: #{user}"
-    UserContextualCollection.new(user)
-
+    stream = UserContextualCollection.new(user)
+    stream.read_stream
   end
 
 end
