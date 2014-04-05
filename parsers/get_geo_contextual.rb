@@ -45,14 +45,19 @@ class UserContextualCollection
       @in_stream.each do |line|
         tweet = JSON.parse(line.chomp)
         if tweet['coordinates']
+
+          #This is where we need to put the format here...
           #puts tweet['coordinates']
+
+
           geo_count += 1
           if geo_count.modulo(200).zero?
-            puts "Found #{geo_count}, #{tweet['user']['screen_name']}: #{tweet['text']}"
+            puts tweet["created_at"].class
+            #puts "Found #{geo_count}, #{tweet['user']['screen_name']}: #{tweet['text']}"
           end
         end
       end
-      puts "\n----------Total Tweets for #{@user}: #{geo_count}---------------"
+      puts "----------Total Tweets for #{@user}: #{geo_count}---------------\n"
     rescue
       p $!
       puts "Stream may not have existed for: #{@user}"
