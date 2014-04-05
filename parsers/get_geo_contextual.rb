@@ -49,19 +49,11 @@ class UserContextualCollection
         tweet = JSON.parse(line.chomp)
         if tweet['coordinates']
 
-          #This is where we need to put the format here...
-          #puts tweet['coordinates']
-
-          unless tweet["created_at"].is_a? Time
-            datestamp = DateTime.parse(tweet["created_at"]).to_s
-            timestamp = Time.parse(datestamp).utc
-            tweet["created_at"] = timestamp
-          end
+          this_session.collection.insert(tweet)
 
           geo_count += 1
           if geo_count.modulo(200).zero?
-            puts tweet["created_at"].class
-            #puts "Found #{geo_count}, #{tweet['user']['screen_name']}: #{tweet['text']}"
+            puts "Found #{geo_count}, #{tweet['user']['screen_name']}: #{tweet['text']}"
           end
         end
       end
