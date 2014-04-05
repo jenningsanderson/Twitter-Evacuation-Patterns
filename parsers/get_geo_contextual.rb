@@ -21,9 +21,9 @@ class UserContextualCollection
   attr_reader   :root_path
 
   @@root_path = "/home/kena/geo_user_collection/"
-  @@session = nil
+  @@collection = nil
 
-  def initialize(user, session)
+  def initialize(user, collection)
     #Get the subcategory
     if user[0] =~ /[[:alpha:]]/
       alph = user[0].downcase
@@ -31,7 +31,7 @@ class UserContextualCollection
       alph = 'non'
     end
 
-    @@session = session
+    @@collection = collection
 
     @user = user.downcase
 
@@ -51,7 +51,7 @@ class UserContextualCollection
         tweet = JSON.parse(line.chomp)
         if tweet['coordinates']
 
-          this_session.collection.insert(tweet)
+          @@collection.insert(tweet)
 
           geo_count += 1
           if geo_count.modulo(200).zero?
@@ -85,7 +85,7 @@ if __FILE__ == $0
 
   user_screen_names.each do |user|
     puts "User: #{user}"
-    stream = UserContextualCollection.new(user, this_session)
+    stream = UserContextualCollection.new(user, this_session.collection)
     stream.read_stream
   end
 
