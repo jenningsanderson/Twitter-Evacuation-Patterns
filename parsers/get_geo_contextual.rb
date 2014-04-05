@@ -31,10 +31,10 @@ class UserContextualCollection
     (1..6).to_a.map!{|num| "geo#{num}"}.each do |section|
       if File.exists? "#{@@root_path}#{section}/user_data/#{alph}/#{user}-contextual.json"
         @file_path = "#{@@root_path}#{section}/user_data/#{alph}/#{user}-contextual.json"
+        @in_stream  = File.open(@file_path,'r')
         break
       end
     end
-    @in_stream  = File.open(@file_path,'r')
   end
 
   def read_stream(limit=nil)
