@@ -38,6 +38,7 @@ class UserContextualCollection
   end
 
   def read_stream
+    geo_count = 0
     @in_stream.each do |line|
       tweet = JSON.parse(line.chomp)
       if tweet['coordinates']
