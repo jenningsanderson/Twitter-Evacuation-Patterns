@@ -7,6 +7,9 @@ This script will look in the following directory to match a list of users
 '''
 
 require '../tweet_io'
+require 'bson'
+require 'date'
+require 'time'
 
 #/home/kena/geo_user_collection
 
@@ -49,6 +52,11 @@ class UserContextualCollection
           #This is where we need to put the format here...
           #puts tweet['coordinates']
 
+          unless tweet["created_at"].is_a? Time
+            datestamp = DateTime.parse(tweet["created_at"]).to_s
+            timestamp = Time.parse(datestamp).utc
+            tweet["created_at"] = timestamp
+          end
 
           geo_count += 1
           if geo_count.modulo(200).zero?
