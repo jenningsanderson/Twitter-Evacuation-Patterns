@@ -54,7 +54,7 @@ class UserContextualCollection
       end
       puts "\n----------Total Tweets for #{tweet['user']}: #{geo_count}---------------"
     rescue
-      p $1
+      p $!
       puts "Stream may not have existed for: #{@user}"
     end
   end
