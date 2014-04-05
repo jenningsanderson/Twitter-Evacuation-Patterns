@@ -79,7 +79,7 @@ if __FILE__ == $0
 
   #Open the Mongo connection for this session
   this_session = SandyMongoClient.new(limit=nil, db_name='sandygeo', coll='edited_tweets')
-  user_screen_names = this_session.collection.distinct("user.screen_name").first(10)
+  user_screen_names = this_session.collection.distinct("user.screen_name")
 
   puts "Found #{user_screen_names.length} distinct screen_names in edited_tweeets"
 
