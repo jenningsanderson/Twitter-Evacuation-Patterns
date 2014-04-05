@@ -23,13 +23,15 @@ class UserContextualCollection
   @@root_path = "/home/kena/geo_user_collection/"
   @@session = nil
 
-  def initialize(user)
+  def initialize(user, session)
     #Get the subcategory
     if user[0] =~ /[[:alpha:]]/
       alph = user[0].downcase
     else
       alph = 'non'
     end
+
+    @@session = session
 
     @user = user.downcase
 
@@ -81,11 +83,9 @@ if __FILE__ == $0
 
   puts "Found #{user_screen_names.length} distinct screen_names in edited_tweeets"
 
-  UserContextualCollection.session = this_session
-
   user_screen_names.each do |user|
     puts "User: #{user}"
-    stream = UserContextualCollection.new(user, session)
+    stream = UserContextualCollection.new(user, this_session)
     stream.read_stream
   end
 
