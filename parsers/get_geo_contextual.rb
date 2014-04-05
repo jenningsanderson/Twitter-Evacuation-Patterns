@@ -28,6 +28,8 @@ class UserContextualCollection
       alph = 'non'
     end
 
+    @user = user
+
     (1..6).to_a.map!{|num| "geo#{num}"}.each do |section|
       if File.exists? "#{@@root_path}#{section}/user_data/#{alph}/#{user}-contextual.json"
         @file_path = "#{@@root_path}#{section}/user_data/#{alph}/#{user}-contextual.json"
@@ -38,16 +40,22 @@ class UserContextualCollection
   end
 
   def read_stream
-    geo_count = 0
-    @in_stream.each do |line|
-      tweet = JSON.parse(line.chomp)
-      if tweet['coordinates']
-        #puts tweet['coordinates']
-        geo_count += 1
-        if geo_count.modulo(100).zero?
-          puts "Found #{geo_count}, #{tweet['user']['screen_name']}: #{tweet['text']}"
+    begin
+      geo_count = 0
+      @in_stream.each do |line|
+        tweet = JSON.parse(line.chomp)
+        if tweet['coordinates']
+          #puts tweet['coordinates']
+          geo_count += 1
+          if geo_count.modulo(100).zero?
+            puts "Found #{geo_count}, #{tweet['user']['screen_name']}: #{tweet['text']}"
+          end
         end
       end
+      puts "\n----------Total Tweets for #{tweet['user']}: #{geo_count}---------------"
+    rescue
+      p $1
+      puts "Stream may not have existed for: #{@user}"
     end
   end
 
