@@ -47,15 +47,15 @@ class UserContextualCollection
         if tweet['coordinates']
           #puts tweet['coordinates']
           geo_count += 1
-          if geo_count.modulo(100).zero?
+          if geo_count.modulo(200).zero?
             puts "Found #{geo_count}, #{tweet['user']['screen_name']}: #{tweet['text']}"
           end
         end
       end
-      puts "\n----------Total Tweets for #{user}: #{geo_count}---------------"
+      puts "\n----------Total Tweets for #{@user}: #{geo_count}---------------"
     rescue
       p $!
-      puts "Stream may not have existed for: #{user}"
+      puts "Stream may not have existed for: #{@user}"
     end
   end
 
