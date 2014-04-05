@@ -81,9 +81,11 @@ if __FILE__ == $0
 
   puts "Found #{user_screen_names.length} distinct screen_names in edited_tweeets"
 
+  UserContextualCollection.session = this_session
+
   user_screen_names.each do |user|
     puts "User: #{user}"
-    stream = UserContextualCollection.new(user)
+    stream = UserContextualCollection.new(user, session)
     stream.read_stream
   end
 
