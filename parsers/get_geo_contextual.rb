@@ -38,7 +38,7 @@ class UserContextualCollection
   end
 
   def read_stream(limit=nil)
-    @in_stream.first(lim).each do |line|
+    @in_stream.first(limit).each do |line|
       tweet = JSON.parse(line.chomp)
       if tweet['coordinates']
         #puts tweet['coordinates']
