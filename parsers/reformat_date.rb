@@ -1,14 +1,15 @@
-'''This script reformats the BSON date in Mongo to an actual date for queries...'''
+'''
+This script reformats the BSON date in Mongo to an actual date for queries...
+
+Deprecated (April 7): Too slow, Use javascript natively in MongoDB instead
+'''
 
 require '../tweet_io'
 require 'bson'
 require 'date'
 require 'time'
 
-
-
 if __FILE__ == $0
-  #Connect to Mongo
   conn = SandyMongoClient.new
 
   conn.get_all.each do |tweet|

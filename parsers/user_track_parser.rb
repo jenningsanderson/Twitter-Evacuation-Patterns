@@ -1,13 +1,10 @@
 '''
-1. Get distinct users
+Purpose:
+  Build a new collection with 1 document for each user that stores all tweets
+  with useful information about the user (tweets, times, etc).
 
-2. Iterate through distinct users, grab tweets (sort by date)
-
-3. Build user track geo object
-
-4. Save it back to Mongo as well?
-
-5. Interested fields: time, screen_name, text
+Runtime:
+  ~20 minutes for 50k users and 3.8 million tweets
 '''
 
 require 'mongo'
@@ -19,21 +16,25 @@ class TwittererPath
   def initialize(user_id)
     @user = {:id=>user_id,
              :geometry=> {:type=>"LineString", :coordinates=>[]},
-             :type => "Feature"
+             :type => "Feature",
              :handle =>[],
-             :tweets =>[]
-            }
+             :tweets =>[],
+             :tweet_count => 0}
   end
 
+  #Retrieve User's tweets, in chronological order
   def get_user_tweets
     @tweets = COLL.find(
       selector = {"user.id" => @user[:id]},
       opts={ :sort=>["created_at", Mongo::ASCENDING],
              :fields=>["coordinates","user","text","created_at", "entities", "place"]
           })
+
+    @user[:tweet_count] = @tweets.count
     @tweets.count > 1
   end
 
+  #Iterate through a user's tweets, build the document
   def parse_tweets
     @tweets.each do |tweet|
       @user[:handle] << tweet["user"]["screen_name"]
@@ -45,39 +46,33 @@ class TwittererPath
     end
   end
 
+  # Perform any final checks... yes, this would be better as m/r, but it crashed...
   def finalize_user
     @user[:handle] = @user[:handle].uniq.join(',')
-    case @tweets.count
-    when 1..20
-      DB['userpath_lt20'].insert(@user)
-    when 20..50
-      DB['userpath_20_50'].insert(@user)
-    when 50..100
-      DB['userpath_50_100'].insert(@user)
-    when 100..200
-      DB['userpath_100_200'].insert(@user)
-    else
-      DB['userpath_gt200'].insert(@user)
-    end
   end
 end #class
 
 if __FILE__ == $0
-
   limit = 1000000
+  new_db = 'userpaths'
 
   limit_string = ARGV.join.scan(/limit=\d+/i).first
+
   unless limit_string.nil?
     limit=limit_string.gsub!('limit=','').to_i
   end
-
-  puts "Calling the User Track Parser with:"
-  puts "limit: #{limit}"
 
   puts "Connecting to Mongo"
   mongo_conn = Mongo::MongoClient.new
   DB = mongo_conn['sandygeo']
   COLL = DB['edited_tweets']
+
+  puts "Dropping previous collection...",
+  DB[new_db].drop()
+  puts "done"
+
+  puts "Calling the User Track Parser with:"
+  puts "limit: #{limit}"
 
   puts "Getting distinct Users"
   distinct_users = COLL.distinct("user.id").first(limit)
@@ -88,6 +83,7 @@ if __FILE__ == $0
     if userpath.get_user_tweets
       userpath.parse_tweets
       userpath.finalize_user
+      DB[new_db].insert(userpath.user)
     else
       puts "#{user_id} had only 1 tweet"
     end
@@ -97,4 +93,9 @@ if __FILE__ == $0
       puts "Parsed #{i} users"
     end
   end
+
+  puts "Adding indexes"
+  puts DB[new_db].create_index({"id" => 1})
+  puts DB[new_db].create_index({"tweet_count" => 1})
+  puts DB[new_db].create_index({"coordinates" => "2dsphere"})
 end

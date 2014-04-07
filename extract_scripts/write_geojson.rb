@@ -39,24 +39,15 @@ end #Class
 
 if __FILE__ == $0
   limit = 500000
-  filename = 'testgeojson.geojson'
-  collection = 'userpath_lt20'
 
   args = ARGV.join(" ")+" "
+
+  collection = ARGV[1]
+  filename   = ARGV[2]
 
   limit_string = args.scan(/limit=\d+/i).first
   unless limit_string.nil?
     limit=limit_string.gsub!('limit=','').to_i
-  end
-
-  coll_string = args.scan(/coll=[a-zA-z0-9_]+\s/i).first
-  unless coll_string.nil?
-    collection=coll_string.gsub!('coll=','').strip
-  end
-
-  filename_string = args.scan(/name=[a-zA-z0-9_]+\s+/i).first
-  unless filename_string.nil?
-    filename=filename_string.gsub!('name=','').strip
   end
 
   puts "Calling the GeoJSON writer:"
