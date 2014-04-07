@@ -19,6 +19,7 @@ class TwittererPath
   def initialize(user_id)
     @user = {:id=>user_id,
              :geometry=> {:type=>"LineString", :coordinates=>[]},
+             :type => "Feature"
              :handle =>[],
              :tweets =>[]
             }
@@ -83,7 +84,6 @@ if __FILE__ == $0
 
   #Parse each distinct user
   distinct_users.each_with_index do |user_id, i|
-    puts user_id
     userpath = TwittererPath.new(user_id)
     if userpath.get_user_tweets
       userpath.parse_tweets
