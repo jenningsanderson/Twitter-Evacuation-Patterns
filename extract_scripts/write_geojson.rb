@@ -47,12 +47,12 @@ if __FILE__ == $0
     limit=limit_string.gsub!('limit=','').to_i
   end
 
-  coll_string = ARGV.join.scan(/coll=.+\s*/i).first
+  coll_string = ARGV.join.scan(/coll=.+(\s+|$)/i).first
   unless coll_string.nil?
     collection=coll_string.gsub!('coll=','')
   end
 
-  filename_string = ARGV.join.scan(/name=.+\s*/i).first
+  filename_string = ARGV.join.scan(/name=.+(\s+|$)/i).first
   unless filename_string.nil?
     filename=filename_string.gsub!('name=','')
   end
