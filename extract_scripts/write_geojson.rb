@@ -42,19 +42,21 @@ if __FILE__ == $0
   filename = 'testgeojson.geojson'
   collection = 'userpath_lt20'
 
-  limit_string = ARGV.join.scan(/limit=\d+/i).first
+  args = ARGV.join(" ")+" "
+
+  limit_string = args.scan(/limit=\d+/i).first
   unless limit_string.nil?
     limit=limit_string.gsub!('limit=','').to_i
   end
 
-  coll_string = ARGV.join.scan(/coll=.+(\s+|$)/i).first
+  coll_string = args.scan(/coll=[a-zA-z0-9_]+\s/i).first
   unless coll_string.nil?
-    collection=coll_string.gsub!('coll=','')
+    collection=coll_string.gsub!('coll=','').strip
   end
 
-  filename_string = ARGV.join.scan(/name=.+(\s+|$)/i).first
+  filename_string = args.scan(/name=.+\s+/i).first
   unless filename_string.nil?
-    filename=filename_string.gsub!('name=','')
+    filename=filename_string.gsub!('name=','').strip
   end
 
   puts "Calling the GeoJSON writer:"
