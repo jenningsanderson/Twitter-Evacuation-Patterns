@@ -54,7 +54,7 @@ if __FILE__ == $0
     collection=coll_string.gsub!('coll=','').strip
   end
 
-  filename_string = args.scan(/name=.+\s+/i).first
+  filename_string = args.scan(/name=[a-zA-z0-9_]+\s+/i).first
   unless filename_string.nil?
     filename=filename_string.gsub!('name=','').strip
   end
