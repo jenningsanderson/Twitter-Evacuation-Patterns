@@ -21,14 +21,19 @@ class GeoJSONAuthor
   end
 
   def write_geojson_paths
-    File.open(@filename+'_path.geojson', 'w') do |file|
+    File.open(@filename+'_paths.geojson', 'w') do |file|
       file.write("{\"type\" : \"FeatureCollection\", \"features\" :[\n")
       @cursor.each do |object|
         type = object["type"]
         geometry = object["geometry"].to_json
         handle = object["handle"].to_json
+        user_id = object["user_id"].to_json
+        tweet_count = object["tweet_count"].to_json
         file.write("{\"type\" : \"#{type}\", \"geometry\" : #{geometry},")
-        file.write("\"properties\" : {\"handle\" : #{handle} } }")
+        file.write("\"properties\" : {
+            \"handle\" : #{handle},
+            \"user_id\": #{user_id},
+            \"tweet_count\" : #{tweet_count} } }")
         if @cursor.has_next?
           file.write(",\n")
         end
@@ -42,6 +47,7 @@ class GeoJSONAuthor
       file.write("{\"type\" : \"FeatureCollection\", \"features\" :[")
       @cursor.each do |object|
         handle = object["handle"].to_json
+        user_id = object["id"].to_json
         coords = object["geometry"]["coordinates"]
         coords.each_with_index do |point,i|
           file.write("{\"type\" : \"Feature\",
@@ -50,6 +56,7 @@ class GeoJSONAuthor
             \"coordinates\" : #{point} },")
           tweet_data = object["tweets"][i]
           file.write("\"properties\" :{
+            \"user_id\": #{user_id}
             \"handle\" : #{handle},
             \"created_at\" : #{tweet_data.delete('created_at').to_json},
             \"text\" : #{tweet_data.delete('text').to_json},
