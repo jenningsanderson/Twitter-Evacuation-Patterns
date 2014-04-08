@@ -27,7 +27,7 @@ class GeoJSONAuthor
         type = object["type"]
         geometry = object["geometry"].to_json
         handle = object["handle"].to_json
-        user_id = object["user_id"].to_json
+        user_id = object["id"].to_json
         tweet_count = object["tweet_count"].to_json
         file.write("{\"type\" : \"#{type}\", \"geometry\" : #{geometry},")
         file.write("\"properties\" : {
@@ -56,7 +56,7 @@ class GeoJSONAuthor
             \"coordinates\" : #{point} },")
           tweet_data = object["tweets"][i]
           file.write("\"properties\" :{
-            \"user_id\": #{user_id}
+            \"user_id\": #{user_id},
             \"handle\" : #{handle},
             \"created_at\" : #{tweet_data.delete('created_at').to_json},
             \"text\" : #{tweet_data.delete('text').to_json},
