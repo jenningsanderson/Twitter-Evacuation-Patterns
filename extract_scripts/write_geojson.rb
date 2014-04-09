@@ -115,7 +115,7 @@ if __FILE__ == $0
   file.write_header
   cursor.each do |item|
       props = { :handle => item["handle"],
-                :user_id => item["user_id"],
+                :user_id => item["id"],
                 :tweet_count =>item["tweet_count"]}
       file.write_feature(item["geometry"], props)
   end
