@@ -1,121 +1,123 @@
 '''
-
 Write geojson from a mongo collection
-
 '''
 
 require 'mongo'
 require 'json'
+require 'optparse'
 
-class GeoJSONAuthor
-
+class GeoJSONWriter
   attr_reader :filename
 
-  def initialize(filename, cursor)
-    @filename = filename
-    @cursor   = cursor
+  def initialize(filename)
+    @filename = filename.dup #Getting weird frozen error...
+    unless @filename =~ /\.geojson$/
+      @filename << '.geojson'
+    end
+    @open_file = File.open(@filename, 'w')
   end
 
-  def reset_cursor
-    @cursor.rewind!
+  def write_header
+    @open_file.write "{\"type\" : \"FeatureCollection\", \"features\" :["
   end
 
-  def write_geojson_paths
-    File.open(@filename+'_paths.geojson', 'w') do |file|
-      file.write("{\"type\" : \"FeatureCollection\", \"features\" :[\n")
-      @cursor.each do |object|
-        type = object["type"]
-        geometry = object["geometry"].to_json
-        handle = object["handle"].to_json
-        user_id = object["id"].to_json
-        tweet_count = object["tweet_count"].to_json
-        file.write("{\"type\" : \"#{type}\", \"geometry\" : #{geometry},")
-        file.write("\"properties\" : {
-            \"handle\" : #{handle},
-            \"user_id\": #{user_id},
-            \"tweet_count\" : #{tweet_count} } }")
-        if @cursor.has_next?
-          file.write(",\n")
-        end
-      end
+  def write_feature(geometry, properties)
+    @open_file.write "{"
+    @open_file.write "\"type\" : \"Feature\", "
+    @open_file.write "\"geometry\" : #{geometry.to_json},"
+    @open_file.write "\"properties\" : #{properties.to_json}"
+    @open_file.write "},"
+  end
+
+  def write_footer
+    #Close the file and then truncate the last comma
+    @open_file.close()
+    File.truncate(@filename, File.size(@filename) - 1) #Remove the last comma
+
+    #Open the file again and close the object
+    File.open(@filename,'a') do |file|
       file.write(']}')
     end
   end
 
-  def write_geojson_tweets
-    File.open(@filename+'_tweets.geojson', 'w') do |file|
-      file.write("{\"type\" : \"FeatureCollection\", \"features\" :[")
-      @cursor.each do |object|
-        handle = object["handle"].to_json
-        user_id = object["id"].to_json
-        coords = object["geometry"]["coordinates"]
-        coords.each_with_index do |point,i|
-          file.write("{\"type\" : \"Feature\",
-            \"geometry\" : {
-            \"type\" : \"Point\",
-            \"coordinates\" : #{point} },")
-          tweet_data = object["tweets"][i]
-          file.write("\"properties\" :{
-            \"user_id\": #{user_id},
-            \"handle\" : #{handle},
-            \"created_at\" : #{tweet_data.delete('created_at').to_json},
-            \"text\" : #{tweet_data.delete('text').to_json},
-            \"place\": #{tweet_data.delete('place.fullname').to_json},
-            \"metadata\" : #{tweet_data.to_json}
-            }}")
-          if i < (coords.count-1)
-            file.write(',')
-          end
-        end
-        if @cursor.has_next?
-          file.write(",")
-        end
-      end
-      file.write(']}')
-    end
-  end
-end #Class
+end #end class
+
+
+
+
+
+
+
+
+
+
 
 
 if __FILE__ == $0
-  unless ARGV[0] and ARGV[1]
-    puts %Q{
-      Invoke this scirpt in the following way:
+  options = OpenStruct.new
+  opts = OptionParser.new do |opts|
+    opts.banner = "Usage: ruby write_geojson.rb -c COLLECTION -f FILE [-l LIMIT]"
+    opts.separator "\nSpecific options:"
 
-      ruby write_geojson.rb $COLLECTION $FILENAME [limit=X]
-
-      This script will write two files:
-        1. $FILENAME_paths.geojson
-        2. $FILENAME_tweets.geojson
-
-      The optional limit argument will choose the first X users.
-    }
-  else
-    limit = 500000
-    collection = ARGV[0]
-    filename   = ARGV[1]
-
-    limit_string = ARGV.join.scan(/limit=\d+/i).first
-    unless limit_string.nil?
-      limit=limit_string.gsub!('limit=','').to_i
+    opts.on("-c", "--collection Collection",
+            "Name of Collection"){|v| options.collection = v }
+    opts.on("-f", "--filename OutFile",
+            "Name of Output file"){|v| options.filename = v }
+    opts.on("-l", "--limit [LIMIT]",
+            "[Optional] Limit of documents to parse"){|v|
+              v ||= 500000
+              options.limit = v.to_i }
+    opts.on_tail("-h", "--help", "Show this message") do
+      puts opts
+      exit
     end
-
-    puts "Calling the GeoJSON writer:"
-    puts "limit: #{limit}"
-    puts "Outfile: #{filename}"
-    puts "Collection: #{collection}"
-
-    puts "Connecting to Mongo"
-    mongo_conn = Mongo::MongoClient.new
-    DB = mongo_conn['sandygeo']
-    COLL = DB[collection]
-    cursor = COLL.find({},{:limit=>limit})
-
-    file = GeoJSONAuthor.new(filename, cursor)
-    puts "Writing Paths"
-    file.write_geojson_paths
-    file.reset_cursor
-    puts "Writing Tweets"
-    file.write_geojson_tweets
   end
+  opts.parse!(ARGV)
+  unless options.collection and options.filename
+    puts opts
+    exit
+  end
+
+  puts "Calling the GeoJSON writer:"
+  puts "limit: #{options.limit}, (500000 is default)"
+  puts "Outfile: #{options.filename}"
+  puts "Collection: #{options.collection}"
+
+  puts "Connecting to Mongo"
+  mongo_conn = Mongo::MongoClient.new
+  DB = mongo_conn['sandygeo']
+  COLL = DB[options[:collection]]
+  cursor = COLL.find({},{:limit=>options.limit})
+
+  unless options.filename =~ /\.geojson$/
+    options.filename << '.geojson'
+  end
+
+  #Write tweets
+  tweets = options.filename.gsub('.','_tweets.')
+  file = GeoJSONWriter.new(tweets)
+  file.write_header
+  cursor.each do |item|
+    coords = item["geometry"]["coordinates"]
+    coords.each_with_index do |coords, i|
+      geometry = {:type=>"Point", :coordinates=>coords}
+      file.write_feature(geometry, item["tweets"][i])
+    end
+  end
+  file.write_footer
+
+  #Reset the cursor
+  cursor.rewind!
+
+  #Write Paths
+  paths = options.filename.gsub('.','_paths.')
+  file = GeoJSONWriter.new(paths)
+  file.write_header
+  cursor.each do |item|
+      props = { :handle => item["handle"],
+                :user_id => item["user_id"],
+                :tweet_count =>item["tweet_count"]}
+      file.write_feature(item["geometry"], props)
+  end
+  file.write_footer
 end
