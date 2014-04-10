@@ -104,7 +104,9 @@ if __FILE__ == $0
     coords.each_with_index do |coords, i|
       props[:text] = item["tweets"][i]["text"]
       props[:created_at] = item["tweets"][i]["created_at"]
-      props[:place] = item["tweets"][i]["place"]["full_name"]
+      unless item["tweets"][i]["place"].nil?
+        props[:place] = item["tweets"][i]["place"]["full_name"]
+      end
       geometry = {:type=>"Point", :coordinates=>coords}
       file.write_feature(geometry, props)
     end
