@@ -99,9 +99,13 @@ if __FILE__ == $0
   file.write_header
   cursor.each do |item|
     coords = item["geometry"]["coordinates"]
+    props = {:handle=>item["handle"],
+             :user_id=>item["id"]}
     coords.each_with_index do |coords, i|
+      props[:text] = item["tweets"][i]["text"]
+      props[:created_at] = item["tweets"][i]["created_at"]
       geometry = {:type=>"Point", :coordinates=>coords}
-      file.write_feature(geometry, item["tweets"][i])
+      file.write_feature(geometry, props)
     end
   end
   file.write_footer
