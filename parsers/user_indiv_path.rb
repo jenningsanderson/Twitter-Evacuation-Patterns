@@ -52,7 +52,7 @@ class IndivUserPath
                          :coordinates=>tweet["coordinates"]["coordinates"]},
                          :properties=>{:created_at=>tweet["created_at"],
                                        :text=>tweet["text"],
-                                       :place=>tweet["place"]["full_name"]}}
+                                       :place=>place}}
       @user[:path][:geometry][:coordinates] << tweet["coordinates"]["coordinates"]
     end
   end
