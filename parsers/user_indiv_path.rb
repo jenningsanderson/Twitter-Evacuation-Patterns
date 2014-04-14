@@ -8,24 +8,21 @@ require 'mongo'
 require 'json'
 require 'time'
 
-class UserTweetsByTime
-
-  @@storm_begin = Time.new(2012, 10, 28)
-  @@storm_end   = Time.new(2012, 11, 1)
+class IndivUserPath
 
   attr_reader :user
 
   def initialize(user_id)
     @user = {:id=>user_id,
              :handle=>[],
+             :points => [],
+             :path => {:type=>"Feature",
+                       :geometry=>{
+                          :type=>"LineString",
+                          :coordinates=>[]
+                      }},
              :type => "FeatureCollection",
-             :features=> [],
-             :handle        =>[],
              :tweet_count   => 0}
-    ["before", "during", "after"].each do |time|
-      instance_eval "@user[:#{time}_coords] = []"
-      instance_eval "@user[:#{time}_properties] = []"
-    end
   end
 
   #Retrieve User's tweets, in chronological order
@@ -40,28 +37,40 @@ class UserTweetsByTime
     @tweets.count > 1
   end
 
-  #Iterate through a user's tweets, build the document based on time
+  #Iterate through a user's tweets, build two features
   def parse_tweets
     @tweets.each do |tweet|
       @user[:handle] << tweet["user"]["screen_name"]
-      @user[:tweet_count] += 1
       unless tweet["place"].nil?
         place = tweet["place"]["full_name"]
       else
         place = nil
       end
+
+      @user[:points] << {:type=>"Feature",
+                         :geometry=>{:type=>"Point",
+                         :coordinates=>tweet["coordinates"]["coordinates"]},
+                         :properties=>{:created_at=>tweet["created_at"],
+                                       :text=>tweet["text"],
+                                       :place=>tweet["place"]["full_name"]}}
+      @user[:path][:geometry][:coordinates] << tweet["coordinates"]["coordinates"]
     end
   end
 
   # Perform any final checks... yes, this would be better as m/r, but it crashed...
   def finalize_user
     @user[:handle] = @user[:handle].uniq.join(',')
+    @user[:path][:properties]={:tweet_count=>@user[:tweet_count],
+                                :handle=>@user[:handle]}
+    @user[:features] = [@user[:path]]+user[:points]
+    @user.delete(:points)
+    @user.delete(:path)
   end
 end #class
 
 if __FILE__ == $0
   limit = 1000000
-  new_db = 'usertweets'
+  new_db = 'user_indiv_tweets'
 
   limit_string = ARGV.join.scan(/limit=\d+/i).first
 
@@ -86,7 +95,7 @@ if __FILE__ == $0
 
   #Parse each distinct user
   distinct_users.each_with_index do |user_id, i|
-    usertweets = UserTweetsByTime.new(user_id)
+    usertweets = IndivUserPath.new(user_id)
     if usertweets.get_user_tweets
       usertweets.parse_tweets
       usertweets.finalize_user

@@ -37,6 +37,11 @@ class GeoJSONWriter
     @open_file.write "},"
   end
 
+  def literal_write_feature(feature)
+    @open_file.write(feature.to_json)
+    @open_file.write(",")
+  end
+
   def write_footer
     #Close the file and then truncate the last comma
     @open_file.close()

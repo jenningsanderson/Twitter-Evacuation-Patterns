@@ -52,10 +52,10 @@ if __FILE__ == $0
     userfile = options.directory+'/'+item["handle"]+".geojson"
     file = GeoJSONWriter.new(userfile)
     file.write_header
-    file.add_options({:handle=>item["handle"], :id=>item["id"], :tweet_count=>item["tweet_count"]})
+    #file.add_options({:handle=>item["handle"], :id=>item["id"], :tweet_count=>item["tweet_count"]})
 
     item["features"].each do |feature|
-      file.write_feature(feature["feature"], feature["properties"])
+      file.literal_write_feature(feature)
     end
 
     file.write_footer
