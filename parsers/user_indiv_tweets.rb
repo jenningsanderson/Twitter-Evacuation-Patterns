@@ -136,11 +136,11 @@ if __FILE__ == $0
   puts "limit: #{limit}"
 
   puts "Getting distinct Users"
-  query = DB['userpaths'].find({geometry=>'$geoIntersects'=>{'$geometry'=>impact_hull}})
+  query = DB['userpaths'].find({'geometry'=>{'$geoIntersects'=>{'$geometry'=>impact_hull}}},{:fields=>['id']})
 
-  distinct_users = query.first(limit)
+  distinct_users = query.first(limit).collect{|x| x["id"]}
 
-  puts "Parsing #{distinct_users.count()}"
+  puts "Parsing #{distinct_users.length}"
 
   #Parse each distinct user
   distinct_users.each_with_index do |user_id, i|
