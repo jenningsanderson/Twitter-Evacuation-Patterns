@@ -58,8 +58,8 @@ class IndivTwitterers
 end #class
 
 impact_hull = {
-	"type" : "Polygon",
-	"coordinates" : [
+	"type" => "Polygon",
+	"coordinates" => [
 		[
 			[
 				-76.7672678371136,
