@@ -109,8 +109,8 @@ impact_hull = {
 	]
 }
 
-coastal_users = {       "type"=> "Polygon",
-        "coordinates"> [[
+coastal_users = {"type"=> "Polygon",
+        "coordinates"=> [[
           [
             -71.630859375,
             41.492120839687786
