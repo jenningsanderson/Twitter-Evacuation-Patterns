@@ -52,9 +52,7 @@ class GeoJSONWriter
       file.write(']}')
     end
   end
-
 end #end class
-
 
 
 

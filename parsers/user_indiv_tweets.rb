@@ -109,13 +109,82 @@ impact_hull = {
 	]
 }
 
+coastal_users = {       "type"=> "Polygon",
+        "coordinates"> [[
+          [
+            -71.630859375,
+            41.492120839687786
+          ],
+          [
+            -73.19091796875,
+            41.31907562295136
+          ],
+          [
+            -74.37744140625,
+            40.763901280945866
+          ],
+          [
+            -75.267333984375,
+            40.08647729380881
+          ],
+          [
+            -75.73974609375,
+            39.66491373749128
+          ],
+          [
+            -75.552978515625,
+            39.04478604850143
+          ],
+          [
+            -75.1904296875,
+            38.47079371120379
+          ],
+          [
+            -74.827880859375,
+            38.53097889440026
+          ],
+          [
+            -74.080810546875,
+            39.639537564366684
+          ],
+          [
+            -73.916015625,
+            40.405130697527866
+          ],
+          [
+            -73.948974609375,
+            40.50544628405211
+          ],
+          [
+            -73.245849609375,
+            40.55554790286311
+          ],
+          [
+            -72.21313476562499,
+            40.88029480552824
+          ],
+          [
+            -71.455078125,
+            41.178653972331674
+          ],
+          [
+            -71.56494140625,
+            41.4509614012039
+          ],
+        [
+            -71.630859375,
+            41.492120839687786
+          ]]
+        ]
+      }
+
 
 
 #Calling this only for users that are in our collection!
 
 if __FILE__ == $0
   limit = 1000000
-  new_db = 'most_impacted_users'
+  new_db = 'coastal_users'
 
   limit_string = ARGV.join.scan(/limit=\d+/i).first
 
@@ -136,11 +205,11 @@ if __FILE__ == $0
   puts "limit: #{limit}"
 
   puts "Getting distinct Users"
-  query = DB['userpaths'].find({'geometry'=>{'$geoIntersects'=>{'$geometry'=>impact_hull}}},{:fields=>['id']})
+  query = DB['userpaths'].find({'geometry'=>{'$geoIntersects'=>{'$geometry'=>coastal_users}}},{:fields=>['id']})
 
   distinct_users = query.first(limit).collect{|x| x["id"]}
 
-  puts "Parsing #{distinct_users.length}"
+  puts "Parsing #{distinct_users.length} distinct users"
 
   #Parse each distinct user
   distinct_users.each_with_index do |user_id, i|
