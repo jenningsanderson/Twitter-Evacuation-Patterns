@@ -37,9 +37,9 @@ gem install bson_ext
 ####Mongo Connection
 The data for this project is held on Project EPIC's local analytics server on the CU campus.  There are multiple collections created under the ````sandygeo```` database
 
-````edited_tweets````: The main collection of tweets cut to the study timeframe: October 20 to November 7, 2012.  Each document is a full tweet, as retrieved from the Twitter API.
+- ````edited_tweets````: The main collection of tweets cut to the study timeframe: October 20 to November 7, 2012.  Each document is a full tweet, as retrieved from the Twitter API.
 
-````coastal_users````: The final collection of 17,627 users that were identified as having a tweet within the highly affected eastern seaboard area as defined by FEMA.
+- ````coastal_users````: The final collection of 17,627 users that were identified as having a tweet within the highly affected eastern seaboard area as defined by FEMA.
 
 - ````after_sandy````: Tweets between October 1, 2012 and October 22, 2012 that were excluded from the project analysis.
 
@@ -51,7 +51,6 @@ most_impacted_users
 nynj_users
 sandbox
 system.indexes
-
 user_indiv_tweets
 userpaths
 
