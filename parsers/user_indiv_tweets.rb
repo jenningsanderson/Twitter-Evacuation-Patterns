@@ -32,7 +32,7 @@ class IndivTwitterers
     @tweets.count > 1
   end
 
-  #Iterate through a user's tweets, build two features
+  #Iterate through a user's tweets
   def parse_tweets
     @tweets.each do |tweet|
       @user[:handle] << tweet["user"]["screen_name"]

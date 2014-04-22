@@ -23,7 +23,9 @@ What can be learned from using a person's Twitter activity over the course of Su
 ##Timeline
 This project aims to be finished by the end of April, 2014
 
-###Dependencies
+##Dependencies
+
+Ruby Requirements
 ````
 gem install georuby
 gem install rgeo-shapefile
@@ -31,3 +33,42 @@ gem install bson
 gem install mongo
 gem install bson_ext
 ````
+
+####Mongo Connection
+The data for this project is held on Project EPIC's local analytics server on the CU campus.  There are multiple collections created under the ````sandygeo```` database
+
+````edited_tweets````: The main collection of tweets cut to the study timeframe: October 20 to November 7, 2012.  Each document is a full tweet, as retrieved from the Twitter API.
+
+````coastal_users````: The 
+
+Other collections:
+- ````after_sandy````
+- ````before_sandy````
+
+edited_tweets
+most_impacted_users
+nynj_users
+sandbox
+system.indexes
+tweets
+user_indiv_tweets
+userpaths
+
+
+##Project Directories
+
+###fileio Directory/
+####kml_output.rb
+Writes
+
+
+###mongo Directory/
+####linestring_reduce.js
+Map reduce function to generate the ````usertracks```` collection from the ````edited_tweets```` collection
+
+
+
+###extract_scripts/
+
+
+###parsers/
