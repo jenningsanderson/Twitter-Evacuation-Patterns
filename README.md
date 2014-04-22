@@ -79,6 +79,7 @@ Map reduce function to generate the ````usertracks```` collection from the ````e
 
 ###analysis/
 #####Twitter_In_Evac.py
-A python script 
+A python script
 
-###userAnalysis
+###userAnalysis/
+The Visual Studio project that take the extracted users and outputs diagnostic files, such as a KML, a CSV of perimeters, and each user's median points.
