@@ -14,14 +14,6 @@ Somewhere on order of 1% of tweets are geo-tagged.  That is, the metadata of the
 ##Movation
 What can be learned from using a person's Twitter activity over the course of Superstorm Sandy as a proxy for their location?
 
-##Datasets
-1. ~300,000 geo-coded tweets
-2. Storm data from USGS?
-3. Build-Environment Information from OpenStreetMap
-
-
-##Timeline
-This project aims to be finished by the end of April, 2014
 
 ##Dependencies
 
@@ -57,18 +49,36 @@ userpaths
 
 ##Project Directories
 
-###fileio Directory/
-####kml_output.rb
-Writes 
+###fileio/
+#####kml_output.rb
+Writes
 
+#####identified_users.kml
 
-###mongo Directory/
-####linestring_reduce.js
-Map reduce function to generate the ````usertracks```` collection from the ````edited_tweets```` collection
+#####tweet_io.rb
+Includes the two classes for interacting with Mongo.  ````SandyMongoClient```` creates an object for querying the database and returning tweets based on various parameters and ````Tweet_JSON_Reader```` reads and imports to mongo, a text file containing valid JSON tweets, separated by newlines.  The main runtime for this script runs an import; however, other scripts use the ````SandyMongoClient```` class for interacting with the database.
 
+#####write_geojson.rb
+Uses the ````json```` library to write valid geojson from a variety of inputs.  The main runtime of this script will write both a tweet  and a userpath geojson file from a users collection.
+
+#####write_user_tweets_geojson.rb
+Requires the ````write_geojson.rb```` script to generate a folder containing valid geojson objects for each user's tweets.
+
+#####tweet_shape.rb
+Uses the ````georuby```` library to create shapefiles from Tweets.  This functionality is deprecated because creating shapefiles for viewing the data is less convenient than KML or GeoJSON files.
+
+###mongo/
+#####linestring_reduce.js
+Map reduce function to generate the ````usertracks```` collection from the ````edited_tweets```` collection.
 
 
 ###extract_scripts/
-
+#####
 
 ###parsers/
+
+###analysis/
+#####Twitter_In_Evac.py
+A python script 
+
+###userAnalysis
