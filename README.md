@@ -42,6 +42,10 @@ The data for this project is held on Project EPIC's local analytics server on th
 
 
 
+##Project Conventions
+- Users are referenced by their id (A long number).  If a user has multiple screen names as their tweets are aggregated, their ````handle```` that is written will be a string of unique usernames separated by commas.
+
+
 ##Project Directories
 
 ###fileio/
@@ -68,9 +72,27 @@ Map reduce function to generate the ````usertracks```` collection from the ````e
 
 
 ###extract_scripts/
-#####
+#####tracks.rb
+Write two shapefiles from the collection, one of linestrings for each user, representing their path and one of just the the tweets as points.
+
+#####geo_bounded_tracks.rb
+Performs the same task as tracks.rb, but allows for geo-sensitive queries.
+
+#####mongo_extractor.rb
+A very simple Mongo --> Shapefile script for quick visualizations of data.
+
+#####find_users_within_area.rb
+A cleaner, more robust version of geo_bounded_tracks.rb, built for a bounding box of any shape polygon.
 
 ###parsers/
+#####extract_geo_json.rb
+Line by line parsing of a text file of JSON tweets delimitated by newlines.  Identifies tweets which are geotagged and writes them to a separate text file of the same format (JSON tweets separated by \n character)
+
+#####get_geo_contextual.rb
+Parses contextual stream text file, extrating geo-tagged tweets and inserting them into a Mongo collection.  The filepaths to the contextual streams are built dynamically based on the username that the script collects.
+
+#####reformat_date.rb
+A small helper function to reformat the date to ISOdate in order 
 
 ###analysis/
 #####Twitter_In_Evac.py
