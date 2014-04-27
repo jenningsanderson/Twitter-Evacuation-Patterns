@@ -110,7 +110,7 @@ if __FILE__ == $0
 
     identified_users = ['Max_Not_Mark','xxBang_Bang','leroyjabari','molly_mcgregor',
       'noreanc','BxMixPapii90','GreggTavella','ElCrupi','Aescano','Tofiquee',
-      'AbieT90','LBL4Life1','inthewordsofkim','dev_thompson495','Ko0lgoSh']
+      'AbieT90','LBL4Life1','inthewordsofkim','dev_thompson495','Ko0lgoSh', 'iKhoiBui']
 
 
     query = COLL.find({'handle' => {'$in'=>identified_users}}).first(options.limit)

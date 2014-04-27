@@ -5,6 +5,7 @@
 *.json
 *data/*/*/*
 data
+*.kml
 
 #We need to ignore shapefiles
 *.shp

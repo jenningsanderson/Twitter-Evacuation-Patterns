@@ -4,16 +4,11 @@
 
 [Project EPIC](http://epic.cs.colorado.edu), Geography 5303
 
-_This project will look at all of the Geo-Coded tweets from Hurricane Sandy_
+_This project looks at all of the Geo-Coded tweets from Hurricane Sandy_
 
 
 ##About
-Somewhere on order of 1% of tweets are geo-tagged.  That is, the metadata of the tweet includes the lat/long of the location from which the tweet was sent.
-
-
-##Movation
-What can be learned from using a person's Twitter activity over the course of Superstorm Sandy as a proxy for their location?
-
+Somewhere on order of 1% of tweets are geo-tagged.  What can be learned about a Twitterer's movement behavior during Hurricane Sandy?
 
 ##Dependencies
 
@@ -39,12 +34,12 @@ The data for this project is held on Project EPIC's local analytics server on th
 
 - ````tweets````: The original 260,859 geo-coded tweets extracted from the 22 million tweet keyword collection.  Used to identify geo-coding Twitterers for contextual stream fetching.
 
-most_impacted_users
-nynj_users
-sandbox
-system.indexes
-user_indiv_tweets
-userpaths
+- ````userpaths````: Distinct paths for 32,842 users.  Each document contains an array of tweets where each tweet has date, text, entities, and place information.  A GeoJSON Linestring Object exists for each user that tracks the user's path.
+
+-````user_indiv_tweets````: Similar to userpaths, but not a linestring
+
+-````most_impacted_users````: 
+
 
 
 ##Project Directories
