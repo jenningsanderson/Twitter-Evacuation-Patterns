@@ -36,9 +36,9 @@ The data for this project is held on Project EPIC's local analytics server on th
 
 - ````userpaths````: Distinct paths for 32,842 users.  Each document contains an array of tweets where each tweet has date, text, entities, and place information.  A GeoJSON Linestring Object exists for each user that tracks the user's path.
 
--````user_indiv_tweets````: Similar to userpaths, but not a Linestring, instead each individual tweet with place, text, and timestamp as properties.
+- ````user_indiv_tweets````: Similar to userpaths, but not a Linestring, instead each individual tweet with place, text, and timestamp as properties.
 
--````most_impacted_users````:
+- ````most_impacted_users````:
 
 
 
@@ -92,7 +92,20 @@ Line by line parsing of a text file of JSON tweets delimitated by newlines.  Ide
 Parses contextual stream text file, extrating geo-tagged tweets and inserting them into a Mongo collection.  The filepaths to the contextual streams are built dynamically based on the username that the script collects.
 
 #####reformat_date.rb
-A small helper function to reformat the date to ISOdate in order 
+A small helper function to reformat the string date to an ISOdate so that Mongo recognizes it.  Should be built into import -- otherwise, it's deprecated.  A javascript loop in the Mongo shell is more convenient.
+
+#####user_indiv_path.rb
+Creates a new collection where each document represents a single user and their tweet coordinates are stored as line strings to observe their movement path.
+
+#####user_indiv_tweet.rb
+Creates a new collection where each document represents a single user.  Their tweet coordinates are stored as points.
+
+#####user_node_collection.rb
+(Unfinished) Store a user's tweets in 3 timebins: before, during, after
+
+#####user_track_parser.rb
+(Deprecated) Performs similar function to ````user_indiv_path.rb````
+
 
 ###analysis/
 #####Twitter_In_Evac.py
