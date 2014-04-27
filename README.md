@@ -36,9 +36,9 @@ The data for this project is held on Project EPIC's local analytics server on th
 
 - ````userpaths````: Distinct paths for 32,842 users.  Each document contains an array of tweets where each tweet has date, text, entities, and place information.  A GeoJSON Linestring Object exists for each user that tracks the user's path.
 
--````user_indiv_tweets````: Similar to userpaths, but not a linestring
+-````user_indiv_tweets````: Similar to userpaths, but not a Linestring, instead each individual tweet with place, text, and timestamp as properties.
 
--````most_impacted_users````: 
+-````most_impacted_users````:
 
 
 
@@ -74,7 +74,7 @@ Map reduce function to generate the ````usertracks```` collection from the ````e
 
 ###analysis/
 #####Twitter_In_Evac.py
-A python script
+A python script that uses ArcPy to parse a CSV of before, during, and after locations for a particular user and perform comparisons of these locations to known evacuation zones.  Performs set intersect operations on lists of users to determine who sheltered in place in an evacuation zone.
 
 ###userAnalysis/
 The Visual Studio project that take the extracted users and outputs diagnostic files, such as a KML, a CSV of perimeters, and each user's median points.
