@@ -1,17 +1,14 @@
-## Hurricane Sandy Geo-Coded Tweets Project
-#### Project Lead: Jennings Anderson
-##### Members: Andrew Hardin, Ellie Falletta
+Evacuation & Migration Prediction through Twitter Analysis
+==============================================
 
-[Project EPIC](http://epic.cs.colorado.edu), Geography 5303
+Jennings Anderson @ [Project EPIC](http://epic.cs.colorado.edu)
 
-_This project looks at all of the Geo-Coded tweets from Hurricane Sandy_
+_This is a continuation of a project for GIS3 in Spring 2014 at CU Boulder by Jennings Anderson, Andrew Hardin, Ellie Falletta_
 
-
-##About
+##Motivation
 Somewhere on order of 1% of tweets are geo-tagged.  What can be learned about a Twitterer's movement behavior during Hurricane Sandy?
 
 ##Dependencies
-
 Ruby Requirements
 ````
 gem install georuby
@@ -20,6 +17,16 @@ gem install bson
 gem install mongo
 gem install bson_ext
 ````
+
+### Epic-Geo
+Most of the functions developed for the original project have been moved to a separate gem called epic-geo, a generic FileI/O and visualization tool I'm currently writing for all project EPIC GeoHCI related projects.
+
+The best way to stay up to do date with epic-geo is by using the bundler and pulling source from Github with the following line in your _Gemfile_
+````
+gem 'epic-geo', github: 'jenningsanderson/epic-geo'
+
+````
+_Note: Many of the dependencies for epic-geo are listed above, but not necessarily all, I am trying to keep this updated_
 
 ####Mongo Connection
 The data for this project is held on Project EPIC's local analytics server on the CU campus.  There are multiple collections created under the ````sandygeo```` database
@@ -110,6 +117,3 @@ Creates a new collection where each document represents a single user.  Their tw
 ###analysis/
 #####Twitter_In_Evac.py
 A python script that uses ArcPy to parse a CSV of before, during, and after locations for a particular user and perform comparisons of these locations to known evacuation zones.  Performs set intersect operations on lists of users to determine who sheltered in place in an evacuation zone.
-
-###userAnalysis/
-The Visual Studio project that take the extracted users and outputs diagnostic files, such as a KML, a CSV of perimeters, and each user's median points.
