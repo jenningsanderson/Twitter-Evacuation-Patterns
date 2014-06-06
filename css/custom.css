@@ -2,3 +2,7 @@ a.site-title{
   font-size: 2em;
   text-align: center;
 }
+
+a.site-title:hover{
+  font-size: 2em;
+}
