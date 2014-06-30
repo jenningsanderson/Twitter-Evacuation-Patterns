@@ -3,6 +3,7 @@
 #This is strictly for processing.  These methods should not make outside calls
 
 
+#Algorithm adopted from Andrew Hardin's C# function.
 def find_median_point(points_array)
 	x = []
 	y = []
