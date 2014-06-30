@@ -2,7 +2,6 @@
 
 #This is strictly for processing.  These methods should not make outside calls
 
-
 #Algorithm adopted from Andrew Hardin's C# function.
 def find_median_point(points_array)
 	x = []
@@ -23,7 +22,35 @@ def find_median_point(points_array)
 end
 
 
+def find_shelter_location(points_array, times)
 
+	#Use the timestamp with the points in order to build a pattern.  
+	#Bin size will have to be determined automatically?
+
+	#This part depends on regularity among a user
+
+	#=> Split the times up by histogram, all depends on how many we have.
+
+	unless times.sort == times
+		exit(0)
+	end
+
+	full_window = times.last - times.first
+
+	bin_size = full_window/(times.count/3) #Should have at least 3 tweets per bin?
+
+	#Need to do a bit more brainstorming on this one
+
+
+	#Build the bins, then put the indices into the times (don't care about day?)
+end
+
+
+
+
+
+
+end
 
 
 #For testing purposes
