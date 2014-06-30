@@ -7,6 +7,8 @@
 data
 *.kml
 
+_site/*
+
 #We need to ignore shapefiles
 *.shp
 *.shx
