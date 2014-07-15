@@ -24,7 +24,7 @@ end
 
 def find_shelter_location(points_array, times)
 
-	#Use the timestamp with the points in order to build a pattern.  
+	#Use the timestamp with the points in order to build a pattern.
 	#Bin size will have to be determined automatically?
 
 	#This part depends on regularity among a user

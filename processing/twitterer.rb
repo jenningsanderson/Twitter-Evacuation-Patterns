@@ -1,13 +1,13 @@
 #Must determine the best geo methods for this part of the project.
 
 #If we want to do the heavy lifting processing, what is the best tool? Probably geo_ruby?
-#Shouldn't be too afraid to use python, but I just don't want to...
+#Could probably be using more Python, but I'm enjoying doing this in Ruby
 
 
 #We should be more object oriented.  Here is an attempt to do so with Ruby
 class Twitterer
 
-	attr_accessor :handle, :id 
+	attr_accessor :handle, :id
 
 	def initialize(id)
 		@id = id
@@ -28,4 +28,3 @@ class Twitterer
 		return false
 	end
 end
-
