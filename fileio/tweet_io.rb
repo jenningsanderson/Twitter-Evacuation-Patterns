@@ -4,6 +4,7 @@ require 'geo_ruby/shp'
 require 'json'
 require 'mongo'
 require 'pp'
+require 'active_support/json'
 
 
 #Class for handling the a big tweet file from EPIC.
@@ -80,25 +81,45 @@ class SandyMongoClient
 	attr_reader :collection, :tweets, :tweets_for_plot
 	attr_accessor :limit, :query
 
-	def initialize(limit=nil, db_name='sandygeo', coll='edited_tweets')
-		client = Mongo::MongoClient.new # defaults to localhost:27017
-		@db = client[db_name]
-		@collection = @db[coll]
+	def initialize(	 limit=nil,
+										db_name='sandygeo',
+										coll='edited_tweets',
+										db_host="epic-analytics.cs.colorado.edu",
+										db_port=27017)
+
+		client = Mongo::MongoClient.new(db_host, db_port)
+		@database = client[db_name]
+		@collection = @database[coll]
 		@limit = limit
 		@query = {}
+	end
+
+	def write_object(object)
+		hash = JSON.parse(object.instance_values.to_json)
+		pp hash
+		@collection.insert(hash)
 	end
 
 	def get_all()
 		return @collection.find({},{:limit=>@limit})
 	end
 
-	def get_user_tweets(user_id_str, limit=nil)
-		@limit ||= limit
+	def get_distinct_users(this_limit=nil)
+		this_limit ||= @limit
+		users = []
+		@collection.find({},{:limit=>this_limit, :fields=>["user.id_str"]}).each do |tweet|
+			unless users.include? tweet['user']['id_str']
+				users << tweet['user']['id_str']
+			end
+		end
+		return users
+	end
+
+	def get_user_tweets(user_id_str)
 		return @collection.find(
 		  selector = {"user.id_str"=>user_id_str},
 
 			opts = {:sort    =>["created_at",Mongo::ASCENDING],
-			 			 :limit	 =>@limit,
 							:fields	=>["user.screen_name",
 													"user.id_str",
 													"text",
@@ -120,11 +141,6 @@ class SandyMongoClient
 				g.yield tweet_hash
 			end
 		end
-	end
-
-	#Returns an array of distinct user ids
-	def get_distinct_users
-		@collection.distinct("user.id_str")
 	end
 
 	def get_users_intersecting_bbox_from_tracks(bbox)
