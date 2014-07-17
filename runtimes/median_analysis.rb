@@ -36,8 +36,11 @@ MongoMapper.database = 'sandygeo'
 
 Twitterer.where( :tweet_count.lte => 7 ).each do |user|
   puts "User #{user.id_str} has #{user.tweets.count} tweets"
-  puts user.full_user_path.to_json
+  puts user.full_user_path_json.to_json
   #puts user.individual_points.to_json
   #puts user.individual_tweets.to_json
-  puts user.full_median_point.to_json
+  #puts user.full_median_point_json.to_json
+  user.process_geometry
+  puts user.user_path.convex_hull.area
+  puts user.user_points
 end
