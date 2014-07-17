@@ -46,13 +46,6 @@ def find_shelter_location(points_array, times)
 end
 
 
-
-
-
-
-end
-
-
 #For testing purposes
 if __FILE__ == $0
 	test_points = [[0,0],[5,5],[3,3],[2,2],[4,4]]
