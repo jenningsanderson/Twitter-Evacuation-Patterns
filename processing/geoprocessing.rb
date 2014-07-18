@@ -22,33 +22,29 @@ def find_median_point(points_array)
 end
 
 
-def find_shelter_location(points_array, times)
+def build_active_time_bins(tweets, dates)
 
-	#Use the timestamp with the points in order to build a pattern.
-	#Bin size will have to be determined automatically?
+	#Pull out the times of each tweet.
+	times = tweets.collect{|tweet| tweet["date"]}
 
-	#This part depends on regularity among a user
+	#Find the most active part of this user's daily activity
+	hours_of_day = [0]*8
+	times.each do |time|
+		hours_of_day[time.hour / 3] += 1
+	end
+	most_active_hours = hours_of_day.index hours_of_day.max
 
-	#=> Split the times up by histogram, all depends on how many we have.
+	#Get the tweets that occured in that chunk of time
+	pert_tweets = tweets.select{|tweet| ( tweet["date"].hour / 3) == most_active_hours}
 
-	unless times.sort == times
-		exit(0)
+	binned_tweets = []
+
+	#Now separate the tweets into bins:
+	(0..dates.length-2).each do |index|
+		binned_tweets << pert_tweets.select{|tweet| tweet["date"] > dates[index] and tweet["date"] < dates[index+1]}
+		#pert_tweets.delete_if{ |tweet| tweet["date"] > dates[index] and tweet["date"] < dates[index+1] }
 	end
 
-	full_window = times.last - times.first
-
-	bin_size = full_window/(times.count/3) #Should have at least 3 tweets per bin?
-
-	#Need to do a bit more brainstorming on this one
-
-
-	#Build the bins, then put the indices into the times (don't care about day?)
-end
-
-
-#For testing purposes
-if __FILE__ == $0
-	test_points = [[0,0],[5,5],[3,3],[2,2],[4,4]]
-	print find_median_point(test_points)
+	return binned_tweets
 
 end
