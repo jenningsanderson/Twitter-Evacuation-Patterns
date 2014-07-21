@@ -3,6 +3,10 @@
 #This is strictly for processing.  These methods should not make outside calls
 
 #Algorithm adopted from Andrew Hardin's C# function.
+# Given an array of points, this function will sort the x,y coordinates and
+# return the median point.  This seems to work better than an averaging
+# function because the median point will not geographically consider far outlying
+# points.
 def find_median_point(points_array)
 	x = []
 	y = []
@@ -22,6 +26,14 @@ def find_median_point(points_array)
 end
 
 
+#Given an array of Tweet objects and a list of dates, this function
+# returns an array of size dates.length-1 which are binned groups of the tweets
+# in which the tweets in each bin were the tweets that occured in the most active
+# 1/8th of the days.
+#
+# The tweets returned should not be solely considered for analysis, but rather used
+# in conjunction with a median or average location finding function to determine
+# the user's general geographic activity.
 def build_active_time_bins(tweets, dates)
 
 	#Pull out the times of each tweet.
@@ -44,7 +56,5 @@ def build_active_time_bins(tweets, dates)
 		binned_tweets << pert_tweets.select{|tweet| tweet["date"] > dates[index] and tweet["date"] < dates[index+1]}
 		#pert_tweets.delete_if{ |tweet| tweet["date"] > dates[index] and tweet["date"] < dates[index+1] }
 	end
-
 	return binned_tweets
-
 end

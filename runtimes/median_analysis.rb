@@ -1,7 +1,11 @@
-'''
-This script looks to build user objects for easy processing,
-next, it should write this format back to Mongo
-'''
+#
+# Median Analysis
+#
+# Using the Twitter/Tweet objects, this script connects to a Mongo collection
+# of name "Twitterer" and identifies a user's shelter locations in a given timeframe
+# These locations can then be used to run a median location algorithm to identify
+# their movement triangles, which can hint at an evacuation or not.
+#
 
 require 'mongo_mapper'
 require 'epic-geo'
@@ -21,15 +25,18 @@ write_3_bin_styles(kml_outfile.openfile)
 MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
+#Define the timewindows to split the tweets into
 sandy_dates = [
-  Time.new(2012,10,20),
-  Time.new(2012,10,28),
-  Time.new(2012,11,1),
-  Time.new(2012,11,9)
+  Time.new(2012,10,20), #Start of dataset
+  Time.new(2012,10,28), #Start of storm
+  Time.new(2012,11,1),  #End of Storm
+  Time.new(2012,11,9)   #End of Dataset
 ]
 
+#These names correspond with the KML styles for coloring
 time_frames = ["before", "during", "after"]
 
+#Search the Twitterer collection
 Twitterer.where( :tweet_count.gte => 200 ).each do |user|
   puts "User: #{user.handle}"
   user.process_geometry
@@ -53,9 +60,9 @@ Twitterer.where( :tweet_count.gte => 200 ).each do |user|
 
       folder = {:name => time_frames[index], :features => []}
 
-      time_slice.each do |tweet|
-        folder[:features] << tweet.as_epic_kml(style=time_frames[index])
-      end
+      #time_slice.each do |tweet|
+      #  folder[:features] << tweet.as_epic_kml(style=time_frames[index])
+      #end
 
       kml_folder[:folders] << folder
     end

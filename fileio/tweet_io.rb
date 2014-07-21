@@ -106,13 +106,19 @@ class SandyMongoClient
 
 	def get_distinct_users(this_limit=nil)
 		this_limit ||= @limit
-		users = []
-		@collection.find({},{:limit=>this_limit, :fields=>["user.id_str"]}).each do |tweet|
-			unless users.include? tweet['user']['id_str']
-				users << tweet['user']['id_str']
-			end
-		end
-		return users
+		# users = []
+
+		puts "Getting distinct users..."
+
+		distinct_users = @collection.distinct("user.id_str")
+
+		puts "Found #{distinct_users.length} distinct users"
+		# @collection.find({},{:limit=>this_limit, :fields=>["user.id_str"]}).each do |tweet|
+		# 	unless users.include? tweet['user']['id_str']
+		# 		users << tweet['user']['id_str']
+		# 	end
+		# end
+		return distinct_users
 	end
 
 	def get_user_tweets(user_id_str)
