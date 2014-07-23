@@ -14,11 +14,14 @@ require_relative '../models/tweet'
 MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
-Twitterer.all.each do |user|
-  #puts user.id_str
-  #handle = user.tweets.collect{|tweet| tweet["handle"]}.flatten.uniq.join(',')
+Twitterer.where(:handle => nil).each_with_index do |user, i|
+  handle = user.tweets.collect{|tweet| tweet["handle"]}.flatten.uniq.join(',')
+  user.handle = handle
   #puts handle
-  #user.handle = handle
-  user.process_geometry
+  #user.process_geometry
   user.save
+
+  if (i%100).zero?
+    print "#{i}.."
+  end
 end

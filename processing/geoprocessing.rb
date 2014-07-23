@@ -2,6 +2,9 @@
 
 #This is strictly for processing.  These methods should not make outside calls
 
+require 'kmeans-clustering'
+
+
 #Algorithm adopted from Andrew Hardin's C# function.
 # Given an array of points, this function will sort the x,y coordinates and
 # return the median point.  This seems to work better than an averaging
@@ -57,4 +60,37 @@ def build_active_time_bins(tweets, dates)
 		#pert_tweets.delete_if{ |tweet| tweet["date"] > dates[index] and tweet["date"] < dates[index+1] }
 	end
 	return binned_tweets
+end
+
+#Get clusters via k-means clustering from an array of Tweets
+def get_clusters(tweets, num_centers, num_iterations=5, processors=1)
+
+	# specify required operations
+	KMeansClustering::calcSum = lambda do |elements|
+	  sum = [0, 0]
+	  elements.each do |element|
+	    sum[0] += element[0]
+	    sum[1] += element[1]
+	  end
+	  sum
+	end
+
+	KMeansClustering::calcAverage = lambda do |sum, nb_elements|
+	  average = [0, 0]
+	  average[0] = sum[0] / nb_elements.to_f
+	  average[1] = sum[1] / nb_elements.to_f
+	  average
+	end
+
+	KMeansClustering::calcDistanceSquared = lambda do |element_a, element_b|
+	  d0 = element_b[0] - element_a[0]
+	  d1 = element_b[1] - element_a[1]
+	  (d0 * d0) + (d1 * d1)
+	end
+
+	elements = tweets.collect{ |tweet| tweet["coordinates"]["coordinates"]}
+
+	initial_centers = elements.sample(num_centers)
+
+	KMeansClustering::run(initial_centers, elements, num_iterations, processors)
 end

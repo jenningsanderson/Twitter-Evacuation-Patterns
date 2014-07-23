@@ -14,10 +14,10 @@ require_relative '../models/twitterer'
 require_relative '../models/tweet'
 require_relative '../processing/geoprocessing'
 
+
+#Prepare a KML file
 kml_outfile = KMLAuthor.new("../exports/median_locations.kml")
-
 kml_outfile.write_header("Median Location Testing")
-
 write_3_bin_styles(kml_outfile.openfile)
 
 
@@ -37,7 +37,7 @@ sandy_dates = [
 time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
-Twitterer.where( :tweet_count.gte => 200 ).each do |user|
+Twitterer.where( :tweet_count.gte => 600 ).each do |user|
   puts "User: #{user.handle}"
   user.process_geometry
 
