@@ -5,7 +5,6 @@ require 'geo_ruby/kml'
 
 
 
-
 def write_tweets_kml(filename, cursor, db, title='KML FILE')
   puts "Attempting to write a kml file... this is new"
 

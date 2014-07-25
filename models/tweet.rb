@@ -1,14 +1,21 @@
-'''
-Tweet Model.  A stripped version of a tweet with just the necesseties.
-'''
+# Tweet Model
+#
+# The Tweet Model is an embedded document of the Twitterer Class.
+#
 
 require 'mongo_mapper'
 require 'active_model'
 require 'georuby'
+require 'rgeo'
 
 class Tweet
 
-  #Using MongoMapper for Strength
+  @@geo_factory = RGeo::Geographic.simple_mercator_factory
+
+  #A Tweet can be accessed as an RGEO point object
+  attr_reader :point
+
+  #Extend the MongoMapper EmbeddedDocument
   include MongoMapper::EmbeddedDocument
 
   key :id_str, 			String
@@ -18,7 +25,8 @@ class Tweet
   key :date, 				Time
   key :coordinates, Hash
 
-
+  #Given a bson_tweet as returned from Mongo (or parsed via JSON),
+  # It creates a tweet object
   def initialize(bson_tweet)
     @id_str = bson_tweet["id"]
     @text   = bson_tweet["text"]
@@ -28,16 +36,26 @@ class Tweet
     @coordinates = bson_tweet["coordinates"]
   end
 
+  #In order to call the tweet.point instance, it must be defined
+  def as_point
+    @point = @@geo_factory.point(
+          @coordinates["coordinates"][0],
+          @coordinates["coordinates"][1])
+  end
+
+  #To write the tweet to a kml file from epic-geo,
+  # it must be formatted like so.
   def as_epic_kml(style=nil)
     {:time     => @date,
      :style    => style,
      :geometry => GeoRuby::SimpleFeatures::Point.from_x_y(
        @coordinates["coordinates"][0],
        @coordinates["coordinates"][1] ),
-     :name     => @handle,
+     :name     => nil, #Setting name to nil because otherwise it's hard to see
      :desc     =>
-     %Q{ Name: #{@handle}
-     Text: #{@text}}
+     %Q{#{@handle}<br />
+        #{@text}<br />
+        #{@date}}
     }
   end
 end
