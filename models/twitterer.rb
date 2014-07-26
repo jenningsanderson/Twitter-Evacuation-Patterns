@@ -50,7 +50,7 @@ class Twitterer
 
 	#Create rgeo points array for all tweets
 	def process_tweet_points
-		@points = tweets.collect{ |tweet| tweet.as_point| }
+		@points = tweets.collect{ |tweet| tweet.as_point }
 	end
 
 	# Just the points as a multi_point geo object

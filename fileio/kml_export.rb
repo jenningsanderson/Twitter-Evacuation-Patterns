@@ -1,6 +1,6 @@
-# KML Output
+# KML Export
 #
-# Write a KML file of Users and their tweets
+# Write a KML file of Users and their tweets from the Twitterers collection
 #
 
 require 'mongo_mapper'
@@ -10,6 +10,7 @@ require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
 filename = "KML_Output.kml"
+limit = 10
 
 #Prepare a KML file
 puts "Starting the following KML File: #{filename}"
@@ -35,7 +36,12 @@ sandy_dates = [
 time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
-Twitterer.where( :tweet_count.gte => 100).limit(10).each do |user|
+Twitterer.where(
+              :triangle_area.gte => 1000,
+              :triangle_area.lte => 10000,
+
+                          ).limit(limit).each do |user|
+
   print "Processing User: #{user.handle}..."
 
   binned_tweets = build_active_time_bins(user.tweets, sandy_dates)
@@ -48,13 +54,20 @@ Twitterer.where( :tweet_count.gte => 100).limit(10).each do |user|
 
   binned_tweets.each_with_index do |time_slice, index|
 
-    folder = {:name => time_frames[index], :features => []}
+    time = time_frames[index]
+
+    folder = {:name => time, :features => []}
 
     time_slice.each do |tweet|
-     folder[:features] << tweet.as_epic_kml(style=time_frames[index])
+     folder[:features] << tweet.as_epic_kml(style=time)
     end
 
+    poi = user.instance_eval(time.to_s)
+
     user_kml_folder[:folders] << folder
+
+    user_kml_folder[:features] <<
+      user.point_as_epic_kml(time, poi[0],poi[1],time)
   end
 
   #Finished with this user, write the folder
