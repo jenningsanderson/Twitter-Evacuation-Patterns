@@ -64,13 +64,11 @@ end
 
 #K-Means Clustering
 #Adapted from: https://gist.github.com/cfdrake/995804
-
 INFINITY = 1.0/0
 #
 # Cluster class, represents a centroid point along with its associated
 # nearby points
 #
-
 class Cluster
   attr_accessor :center, :tweets
 
@@ -108,7 +106,6 @@ end
 #
 # kmeans algorithm
 #
-
 def kmeans(tweets, k, iterations=10)
 
 	clusters = tweets.sample(k).collect{ |tweet| Cluster.new(tweet)}
@@ -159,6 +156,8 @@ def get_clusters(tweets, centers=5, iterations=10)
 	kmeans(tweets, centers, iterations).collect{|cluster| cluster.tweets}
 end
 
+#Find the densest cluster from a cluster of tweets, this could be a home?
+# --> Should check the timing of this.
 def get_most_dense_cluster(tweet_clusters)
 	most_dense = tweet_clusters[0]
 	max_density = 0.0
