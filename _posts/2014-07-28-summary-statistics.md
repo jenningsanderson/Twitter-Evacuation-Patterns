@@ -1,9 +1,14 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
-date:   2014-06-06 16:18:24
-categories: jekyll update
+title:  "Summary Statistics"
+date:   2014-07-28 3:30:00
 ---
+
+# Summary Statistics of the Data as of Today
+
+Currently looking at ````25,097```` users.  These are all users in which an evacuation triangle was able to be computed.
+
+
 
 You'll find this post in your `_posts` directory - edit this post and re-build (or run with the `-w` switch) to see your changes!
 To add new posts, simply add a file in the `_posts` directory that follows the convention: YYYY-MM-DD-name-of-post.ext.
