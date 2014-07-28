@@ -11,12 +11,10 @@ require_relative '../models/twitterer'
 require_relative '../models/tweet'
 require_relative '../processing/geoprocessing'
 
-
 #Prepare a KML file
 # kml_outfile = KMLAuthor.new("../exports/median_locations.kml")
 # kml_outfile.write_header("Sandbox Location Testing")
 # write_3_bin_styles(kml_outfile.openfile)
-
 
 #Static Setup
 MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')

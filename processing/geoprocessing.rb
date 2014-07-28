@@ -4,6 +4,8 @@
 
 GEOFACTORY = RGeo::Geographic.simple_mercator_factory
 
+require 'debugger'
+
 #Algorithm adopted from Andrew Hardin's C# function.
 # Given an array of points, this function will sort the x,y coordinates and
 # return the median point.  This seems to work better than an averaging
@@ -108,7 +110,7 @@ end
 #
 def kmeans(tweets, k, iterations=10)
 
-	clusters = tweets.sample(k).collect{ |tweet| Cluster.new(tweet)}
+  clusters = tweets.sample(k).collect{ |tweet| Cluster.new(tweet)}
 
   iterations.times do |index|
     # Assign points to clusters
@@ -141,7 +143,11 @@ def kmeans(tweets, k, iterations=10)
 	    end
 		end
   end
-	return clusters
+  	to_return = []
+  	clusters.each do |cluster|
+  		to_return << cluster.tweets
+  	end
+	return to_return
 end
 
 

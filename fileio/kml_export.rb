@@ -9,7 +9,7 @@ require 'epic-geo'
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
-filename = "KML_Output.kml"
+filename = "test_user-alexiscamuso.kml"
 limit = 10
 
 #Prepare a KML file
@@ -26,25 +26,22 @@ MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
 sandy_dates = [
-  Time.new(2012,10,20), #Start of dataset
+  Time.new(2012,10,19), #Start of dataset
   Time.new(2012,10,28), #Start of storm
   Time.new(2012,11,1),  #End of Storm
-  Time.new(2012,11,9)   #End of Dataset
+  Time.new(2012,11,10)   #End of Dataset
 ]
 
 #These names correspond with the KML styles for coloring
 time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
-Twitterer.where(
-              :triangle_area.gte => 1000,
-              :triangle_area.lte => 10000,
-
-                          ).limit(limit).each do |user|
+Twitterer.where(:handle=> 'alexiscamuso'
+              ).limit(limit).each do |user|
 
   print "Processing User: #{user.handle}..."
 
-  binned_tweets = build_active_time_bins(user.tweets, sandy_dates)
+  binned_tweets = user.split_tweets_into_time_bins(sandy_dates)
 
   user_kml_folder = {
     :name     => user.handle,
@@ -58,6 +55,8 @@ Twitterer.where(
 
     folder = {:name => time, :features => []}
 
+    #puts "In this folder: #{time_slice.length}"
+
     time_slice.each do |tweet|
      folder[:features] << tweet.as_epic_kml(style=time)
     end
@@ -70,6 +69,8 @@ Twitterer.where(
       user.point_as_epic_kml(time, poi[0],poi[1],time)
   end
 
+  #puts "Total Tweets: #{user.tweets.count}"
+  
   #Finished with this user, write the folder
   kml_outfile.write_folder(user_kml_folder)
   print "done\n"
