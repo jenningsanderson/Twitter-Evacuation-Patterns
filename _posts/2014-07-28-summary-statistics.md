@@ -13,4 +13,4 @@ Currently looking at ````25,097```` users.  These are all users in which an evac
 
 
 ##Distribution of Triangle Perimeters:
-![Log graph of triangle areas]({{site.baseurl}}/img_exports/triangle_lengths_graph.png "Triangle Areas")
+![Log graph of triangle areas]({{site.baseurl}}/img_exports/triangle_perimeters_graph.png "Triangle Areas")
