@@ -8,7 +8,7 @@ date:   2014-07-28 3:30:00
 
 Currently looking at ````25,097```` users.  These are all users in which an evacuation triangle was able to be computed.
 
-![Log graph of triangle areas](img_exports/triangle_areas_graph.png "Triangle Areas")
+![Log graph of triangle areas](/img_exports/triangle_areas_graph.png "Triangle Areas")
 
 You'll find this post in your `_posts` directory - edit this post and re-build (or run with the `-w` switch) to see your changes!
 To add new posts, simply add a file in the `_posts` directory that follows the convention: YYYY-MM-DD-name-of-post.ext.
