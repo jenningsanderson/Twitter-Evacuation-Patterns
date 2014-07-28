@@ -74,13 +74,13 @@ users.sort_by{ |user, values| values[:triangle_perimeter] }.each do |user, value
 
 end
 
-r.png("../img_exports/isoceles_ratio_V_perimeter.png",:height=>600,:width=>800)
+r.png("../img_exports/isoceles_ratio_V_perimeter_nolog.png",:height=>600,:width=>800)
 r.plot( 
   { :x=>triangle_perimeters,
     :y=>isoceles_ratios, 
     :ylab=>'Isoceles Ratios',
-    :xlab=>"Triangle Perimeters",
-    :log=>'xy'
+    :xlab=>"Triangle Perimeters"#,
+    #:log=>'xy'
   })
 r.eval_R "dev.off()"
 
