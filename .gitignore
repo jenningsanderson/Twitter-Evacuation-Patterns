@@ -1,1 +1,18 @@
 _site/*
+*.pages/
+*.DS_Store
+*.gitignore
+*.pdf
+*.json
+*data/*/*/*
+data
+*.kml
+
+#We need to ignore shapefiles
+*.shp
+*.shx
+*.prj
+*.dbf
+
+#Also, Ignore anythign from QGS
+*.qgs
