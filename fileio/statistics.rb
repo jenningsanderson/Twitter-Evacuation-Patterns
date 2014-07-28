@@ -43,5 +43,16 @@ end #End iterating over users
 r = RSRuby.instance
 
 r.png("../img_exports/triangle_perimeters_graph.png",:height=>600,:width=>800)
-r.plot({:x=>(1..triangle_lengths.length).to_a,:y=>triangle_lengths.sort.reverse, :log=>'y', :ylab=>'Triangle Areas',:xaxt=>'n',:xlab=>"Users"})
+r.plot( 
+  { :x=>(1..triangle_lengths.length).to_a,
+    :y=>triangle_lengths.sort.reverse, 
+    :log=>'y', :ylab=>'Triangle Areas',
+    :xaxt=>'n',:xlab=>"Users"
+  })
 r.eval_R "dev.off()"
+
+
+
+
+
+
