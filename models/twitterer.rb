@@ -38,11 +38,15 @@ class Twitterer
 	key :before, 			Array
 	key :during, 			Array
 	key :after, 			Array
-	key :triangle_area, Float
+	key :triangle_area, 	Float
 	key :triangle_perimeter, Float
-	key :before_during, Float
-	key :during_after, Float
-	key :before_after, Float
+	key :before_during, 	Float
+	key :during_after, 		Float
+	key :before_after, 		Float
+	key :isoceles_ratio, 	Float
+
+	#Filtering Credentials
+	key :affected_level, 	Integer
 
 	#Update functions
 	before_save { self.tweet_count = tweets.count }

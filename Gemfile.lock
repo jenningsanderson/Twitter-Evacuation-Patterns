@@ -1,0 +1,18 @@
+GIT
+  remote: git://github.com/jenningsanderson/epic-geo
+  revision: e8f3005f8772d4240cd1ec75aed1e28a938197a5
+  specs:
+    epic-geo (0.0.4)
+      json
+      rgeo
+
+GEM
+  specs:
+    json (1.8.1)
+    rgeo (0.3.20)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  epic-geo!

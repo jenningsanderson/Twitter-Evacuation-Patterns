@@ -59,7 +59,7 @@ r = RSRuby.instance
 # r.plot( 
 #   { :x=>(1..triangle_perimeters.length).to_a,
 #     :y=>triangle_perimeters.sort.reverse, 
-#     :log=>'y', :ylab=>'Triangle Areas',
+#     :log=>'y', :ylab=>'Triangle Perimeters',
 #     :xaxt=>'n',:xlab=>"Users"
 #   })
 # r.eval_R "dev.off()"
