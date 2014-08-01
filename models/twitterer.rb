@@ -48,6 +48,7 @@ class Twitterer
 	key :before_tweet_count, Integer
 	key :during_tweet_count, Integer
 	key :after_tweet_count, Integer
+	key :tri_confidence, Float
 
 	#Filtering Credentials
 	key :affected_level, 	Integer
@@ -82,6 +83,10 @@ class Twitterer
 	#Find the median point of the densest cluster from a set of clusters
 	# => This function calls functions from geoprocessing
 	def get_weighted_poi_from_clusters(tweet_clusters)
+		
+		#A metric for confidence
+		@tri_confidence = 0
+
 		#Find the densest cluster
 		densest_cluster = get_most_dense_cluster(tweet_clusters)
 
@@ -101,7 +106,7 @@ class Twitterer
 	end
 
 	#The triangle analysis method
-	def build_evac_triangle()
+	def build_evac_triangle
 		unless @before.nil? or @during.nil? or @after.nil?
 			before = @@tweet_factory.point(@before[0], @before[1])
 			during = @@tweet_factory.point(@during[0], @during[1])

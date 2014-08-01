@@ -13,7 +13,6 @@ class Tweet
   @@geo_factory = RGeo::Geographic.simple_mercator_factory
 
   #A Tweet can be accessed as an RGEO point object
-  attr_reader :point
 
   attr_accessor :cluster, :visited
 
@@ -39,8 +38,9 @@ class Tweet
   end
 
   #In order to call the tweet.point instance, it must be defined
-  def as_point
-    @point = @@geo_factory.point(
+
+  def point
+    @point ||= @@geo_factory.point(
           @coordinates["coordinates"][0],
           @coordinates["coordinates"][1])
   end
