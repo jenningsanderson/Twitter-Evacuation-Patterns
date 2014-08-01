@@ -79,9 +79,17 @@ class Twitterer
 	end
 
 
+	#Find the median point of the densest cluster from a set of clusters
+	# => This function calls functions from geoprocessing
+	def get_weighted_poi_from_clusters(tweet_clusters)
+		#Find the densest cluster
+		densest_cluster = get_most_dense_cluster(tweet_clusters)
 
+		#Find the median point
+		find_median_point(densest_cluster.collect{|tweet| tweet["coordinates"]["coordinates"]})
 
-
+		# => returns [x,y] (Not a point object)
+	end
 
 
 # ----------------- Evacuation Analysis Functions -----------------#

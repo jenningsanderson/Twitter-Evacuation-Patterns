@@ -7,6 +7,7 @@ GEOFACTORY = RGeo::Geographic.simple_mercator_factory
 require 'debugger'
 
 require_relative 'db_scan'
+require_relative 'k-means'
 
 #Algorithm adopted from Andrew Hardin's C# function.
 # Given an array of points, this function will sort the x,y coordinates and
@@ -79,120 +80,35 @@ def score_temporal_patterns(tweets)
 end
 
 
-#K-Means Clustering
-#Adapted from: https://gist.github.com/cfdrake/995804
-INFINITY = 1.0/0
-#
-# Cluster class, represents a centroid point along with its associated
-# nearby points
-#
-class Cluster
-  attr_accessor :center, :tweets
-
-  # Constructor with a starting centerpoint
-  def initialize(center)
-    @center = center.point
-    @tweets = []
-  end
-
-  # Recenters the centroid point and removes all of the associated points
-  def recenter!
-		unless @tweets.empty?
-	    xa = ya = 0
-	    old_center = @center
-
-	    # Sum up all x/y coords
-	    @tweets.each do |tweet|
-	      xa += tweet.point.x
-	      ya += tweet.point.y
-	    end
-
-	    # Average out data
-	    xa /= tweets.length
-	    ya /= tweets.length
-
-	    # Reset center and return distance moved
-	    @center = GEOFACTORY.point(xa, ya)
-	    return old_center.distance(center)
-		else
-			return 0
-		end
-  end
-end
-
-#
-# kmeans algorithm
-#
-def kmeans(tweets, k, iterations=10)
-
-  clusters = tweets.sample(k).collect{ |tweet| Cluster.new(tweet)}
-
-  iterations.times do |index|
-    # Assign points to clusters
-    tweets.each do |tweet|
-      min_dist = +INFINITY
-      min_cluster = nil
-
-      # Find the closest cluster
-      clusters.each do |cluster|
-        dist = tweet.point.distance(cluster.center)
-
-        if dist < min_dist
-          min_dist = dist
-          min_cluster = cluster
-        end
-      end
-
-      # Add to closest cluster
-      min_cluster.tweets << tweet
-    end
-
-    clusters.each do |cluster|
-      cluster.recenter!
-    end
-
-		if index < iterations-2
-	    # Reset points for the next iteration
-	    clusters.each do |cluster|
-	      cluster.tweets = []
-	    end
-		end
-  end
-  	to_return = []
-  	clusters.each do |cluster|
-  		to_return << cluster.tweets
-  	end
-	return to_return
-end
-
 
 #Get clusters via k-means clustering from an array of Tweets
-def get_clusters(tweets, centers=5, iterations=10)
+def get_k_means_clusters(tweets, centers=5, iterations=10)
 
 	#Make the point object of the tweet real
 	tweets.each do |tweet|
 		tweet.as_point
 	end
 
+	#Run the k_means algorithm
 	kmeans(tweets, centers, iterations).collect{|cluster| cluster.tweets}
 end
 
 
+#Density is defined as 2^(number of tweets) / (area of the tweets)
+# This is an exponential function because it needed more weight on the number of tweets
 def calculate_density(tweets)
 	num_tweets = tweets.length
 	multi_points = GEOFACTORY.multi_point(tweets.collect{|tweet| tweet.point})
 	hull = multi_points.convex_hull
 
 	if hull.respond_to? :area
-		#puts "Area: #{hull.area}"
-		#puts "Tweets: #{num_tweets}"
-		density = num_tweets**2 / (hull.area)
+		#It is important to really weight the number of tweets here.
+		density = 2**num_tweets / (hull.area)
 	else
-		density = 1.0
+		density = 0.01 #If no density can be determined, keep it low
 	end
 	density
 end
-
 
 
 #Find the densest cluster from a cluster of tweets, this could be a home?
@@ -211,3 +127,5 @@ def get_most_dense_cluster(tweet_clusters)
 	end
 	return most_dense
 end
+
+
