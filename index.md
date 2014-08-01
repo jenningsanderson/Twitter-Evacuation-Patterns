@@ -11,8 +11,8 @@ layout: default
   </p>
 
   <p>This project is a continuation of work previously done with Andrew Hardin and Ellie Falletta</p>
-  
-  <hr />
+  <br>
+  <hr>
   <h1>Posts</h1>
  
    <ul class="posts">
