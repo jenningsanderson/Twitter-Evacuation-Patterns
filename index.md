@@ -11,9 +11,10 @@ layout: default
   </p>
 
   <p>This project is a continuation of work previously done with Andrew Hardin and Ellie Falletta</p>
+  
   <br>
   <hr>
-  <h1>Posts</h1>
+  <h2>Contents</h2>
  
    <ul class="posts">
      {% for post in site.posts %}
