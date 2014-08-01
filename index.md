@@ -9,6 +9,8 @@ layout: default
   <p>The goal of this project is to identify potential evacuation behavior based on geotags and timestamps within a Twitterer's contextual stream (EPIC).
 
   </p>
+
+  <p>This project is a continuation of work previously done with Andrew Hardin and Ellie Falletta</p>
   
   <h1>Posts</h1>
  
