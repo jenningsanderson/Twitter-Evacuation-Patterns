@@ -2,7 +2,7 @@
 #
 # Modified by TJA July 31, 2014
 #
-# Modified to allow Tweets to maintain their existing status
+# Modified to allow Tweets to maintain in their original form
 #
 
 #Original Header:

@@ -45,10 +45,6 @@ class Tweet
           @coordinates["coordinates"][1])
   end
 
-  def items
-    self.as_point
-  end
-
   #To write the tweet to a kml file from epic-geo,
   # it must be formatted like so.
   def as_epic_kml(style=nil)

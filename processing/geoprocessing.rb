@@ -65,6 +65,32 @@ def build_active_time_bins(tweets, dates)
 	return binned_tweets
 end
 
+def score_temporal_patterns(tweets)
+	times = tweets.collect{|tweet| tweet["date"]}
+
+	blocks = []
+
+	times.each do |time|
+		blocks << time.hour/3
+	end
+
+	return blocks.group_by{|val| val}.keys.size
+
+	# hours_of_day = [0]*8
+	# times.each do |time|
+	# 	hours_of_day[time.hour / 3] += 1
+	# end
+	#most_active_hours = hours_of_day.index hours_of_day.max
+
+	#So what happens next?  I have the geospatial clustering, but I want the time grouping?
+	#--> Determine the spread of these...
+
+	#Now calculate the standard deviation of 'blocks?'
+
+	# => Not too bad of an idea, actually.
+
+end
+
 
 #K-Means Clustering
 #Adapted from: https://gist.github.com/cfdrake/995804
@@ -164,6 +190,24 @@ def get_clusters(tweets, centers=5, iterations=10)
 	kmeans(tweets, centers, iterations).collect{|cluster| cluster.tweets}
 end
 
+
+def calculate_density(tweets)
+	num_tweets = tweets.length
+	multi_points = GEOFACTORY.multi_point(tweets.collect{|tweet| tweet.point})
+	hull = multi_points.convex_hull
+
+	if hull.respond_to? :area
+		#puts "Area: #{hull.area}"
+		#puts "Tweets: #{num_tweets}"
+		density = 2**num_tweets / (hull.area) #This works better as 2**num_tweets / hull.area
+	else
+		density = 0.0
+	end
+	density
+end
+
+
+
 #Find the densest cluster from a cluster of tweets, this could be a home?
 # --> Should check the timing of this.
 def get_most_dense_cluster(tweet_clusters)
@@ -171,16 +215,7 @@ def get_most_dense_cluster(tweet_clusters)
 	max_density = 0.0
 
 	tweet_clusters.each do |tweet_cluster|
-		num_tweets = tweet_cluster.length
-
-		multi_point = GEOFACTORY.multi_point(tweet_cluster.collect{|tweet| tweet.point})
-		hull = multi_point.convex_hull
-
-		if hull.respond_to? :area
-			density = num_tweets / hull.area
-		else
-			density = 0.0
-		end
+		density = calculate_density(tweet_cluster)
 
 		if density > max_density
 			max_density = density
