@@ -91,18 +91,13 @@ r = RSRuby.instance
 
 
 #===============  Tweet Count Histogram
-r.png("../img_exports/TweetCountHistogram_lt200.png",:height=>600,:width=>800)
-r.hist( { 
-    :x=>tweet_count,
-    :ylab=>'Number of Users',
-    :xlab=>"Number of Tweets",
-    :breaks=>200,
-    :main=> "Tweets per User Histogram (Users with < 200 tweets)"
-  })
-r.eval_R "dev.off()"
-
-
-
-
-
+# r.png("../img_exports/TweetCountHistogram_lt200.png",:height=>600,:width=>800)
+# r.hist( { 
+#     :x=>tweet_count,
+#     :ylab=>'Number of Users',
+#     :xlab=>"Number of Tweets",
+#     :breaks=>200,
+#     :main=> "Tweets per User Histogram (Users with < 200 tweets)"
+#   })
+# r.eval_R "dev.off()"
 

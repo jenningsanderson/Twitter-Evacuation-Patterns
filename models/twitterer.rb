@@ -45,6 +45,10 @@ class Twitterer
 	key :before_after, 		Float
 	key :isoceles_ratio, 	Float
 
+	key :before_tweet_count, Integer
+	key :during_tweet_count, Integer
+	key :after_tweet_count, Integer
+
 	#Filtering Credentials
 	key :affected_level, 	Integer
 

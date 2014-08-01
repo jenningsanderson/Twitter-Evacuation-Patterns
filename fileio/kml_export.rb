@@ -36,7 +36,7 @@ sandy_dates = [
 time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
-Twitterer.where( :handle=>'sam_gardner'
+Twitterer.where(
                 # :before_after.lte=> 100,
                 # :isoceles_ratio.gte => 0.99,
                 # :isoceles_ratio.lte => 1.01,

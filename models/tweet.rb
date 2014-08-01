@@ -15,6 +15,8 @@ class Tweet
   #A Tweet can be accessed as an RGEO point object
   attr_reader :point
 
+  attr_accessor :cluster, :visited
+
   #Extend the MongoMapper EmbeddedDocument
   include MongoMapper::EmbeddedDocument
 
@@ -41,6 +43,10 @@ class Tweet
     @point = @@geo_factory.point(
           @coordinates["coordinates"][0],
           @coordinates["coordinates"][1])
+  end
+
+  def items
+    self.as_point
   end
 
   #To write the tweet to a kml file from epic-geo,
