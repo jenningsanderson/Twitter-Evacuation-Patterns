@@ -74,20 +74,7 @@ def score_temporal_patterns(tweets)
 		blocks << time.hour/3
 	end
 
-	return blocks.group_by{|val| val}.keys.size
-
-	# hours_of_day = [0]*8
-	# times.each do |time|
-	# 	hours_of_day[time.hour / 3] += 1
-	# end
-	#most_active_hours = hours_of_day.index hours_of_day.max
-
-	#So what happens next?  I have the geospatial clustering, but I want the time grouping?
-	#--> Determine the spread of these...
-
-	#Now calculate the standard deviation of 'blocks?'
-
-	# => Not too bad of an idea, actually.
+	blocks.group_by{|value| value}.keys.length # => Essentially a measure of deviation
 
 end
 
@@ -199,9 +186,9 @@ def calculate_density(tweets)
 	if hull.respond_to? :area
 		#puts "Area: #{hull.area}"
 		#puts "Tweets: #{num_tweets}"
-		density = 2**num_tweets / (hull.area) #This works better as 2**num_tweets / hull.area
+		density = num_tweets**2 / (hull.area)
 	else
-		density = 0.0
+		density = 1.0
 	end
 	density
 end
