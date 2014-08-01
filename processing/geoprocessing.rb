@@ -6,6 +6,8 @@ GEOFACTORY = RGeo::Geographic.simple_mercator_factory
 
 require 'debugger'
 
+require_relative 'db_scan'
+
 #Algorithm adopted from Andrew Hardin's C# function.
 # Given an array of points, this function will sort the x,y coordinates and
 # return the median point.  This seems to work better than an averaging

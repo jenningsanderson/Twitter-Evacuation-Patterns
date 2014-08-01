@@ -27,33 +27,16 @@ sandy_dates = [
 time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
-counter = 0
-Twitterer.where( :triangle_area.gte => 100).limit(10).each_with_index do |user, index|
-  print "Beginning #{user.handle}: "
 
-  #Must use proper error handling because issues have been known to arise
-  begin
-
-    user.
-
-
-
-  rescue => e
-    
-  end #End the error handling
-
-  if user.issue.zero?
-      counter += 1
-      print "..Success"
-    else
-      print "..F"
-    end
-
+Twitterer.where( :triangle_area.gte => 100).limit(nil).each_with_index do |user, index|
+  
+  user.isoceles_ratio = user.before_during / user.during_after
   user.save
-  puts ""
 
-  if (index % 10).zero?
-    puts "\t Status: #{index} processed, #{counter} were successful (#{counter.to_f/(index+1)})"
+  if (index % 100).zero?
+    print "."
+  elsif (index%1001).zero?
+    print index
   end
 
 end #End the Search
