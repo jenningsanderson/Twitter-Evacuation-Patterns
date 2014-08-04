@@ -84,7 +84,7 @@ class DBScanCluster
 		@tweets.each do |tweet_i|
 			@tweets.each do |tweet_j|
 
-				d = tweet_i.as_point.distance(tweet_j.as_point)
+				d = tweet_i.point.distance(tweet_j.point)
 
 				@distance_hash[ [tweet_i, tweet_j] ] = d
 				@distance_hash[ [tweet_j, tweet_i] ] = d

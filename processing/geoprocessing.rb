@@ -118,6 +118,7 @@ end
 #Find the densest cluster from a cluster of tweets, this could be a home?
 # --> Should check the timing of this.
 def get_most_dense_cluster(tweet_clusters)
+	# puts "Length: #{tweet_clusters.length}"
 	most_dense = tweet_clusters[0]
 	max_density = 0.0
 

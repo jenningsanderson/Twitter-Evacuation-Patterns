@@ -30,8 +30,8 @@ time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
 
-Twitterer.where( :tweet_count.gte => 100).limit(100).each_with_index do |user, index|
-  
+Twitterer.where( :tweet_count.gt => 50).limit(nil).each_with_index do |user, index|
+
   # => user is a Twitterer instance.  Be sure to call user.save at the end.
 
   # => First, find the POIs
@@ -42,21 +42,21 @@ Twitterer.where( :tweet_count.gte => 100).limit(100).each_with_index do |user, i
     time = time_frames[index]
 
     #Calculate the current POI
-    dbscanner = DBScanCluster.new(time_slice, epsilon=50, min_pts=2) #This seems to work...
+    dbscanner = DBScanCluster.new(time_slice, epsilon=50, min_pts=2) #This seems to work okay...
     clusters = dbscanner.run
 
     #Pull out the actual [x,y] point
-    poi, confidence = get_weighted_poi_from_clusters(clusters.values)
+    poi = user.get_weighted_poi_from_clusters(clusters) #Yes, passing in a hash
 
     #Write this point to the user
     user.set_poi(time, poi)
   end
 
   #Build the triangle, set values
-  #user.build_evac_triangle
+  user.build_evac_triangle
 
-  #user.save # => Be sure to comment this in only once positive the logic is good...
-  
+  user.save # => Be sure to comment this in only once positive the logic is good...
+
   #=============== Show Status
   if (index % 10).zero?
     print "."
@@ -65,4 +65,3 @@ Twitterer.where( :tweet_count.gte => 100).limit(100).each_with_index do |user, i
   end
 
 end #End the Search
-

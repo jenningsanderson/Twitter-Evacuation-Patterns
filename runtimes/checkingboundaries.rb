@@ -45,11 +45,8 @@ boundary = GEOFACTORY.multi_point(boundary_points).convex_hull
 counter = 0
 
 #Search the Twitterer collection
-Twitterer.where( :tweet_count.gte => 1).limit(nil).each_with_index do |user, index|
+Twitterer.where( :tweet_count.lte => 50).limit(nil).each_with_index do |user, index|
   #print "User: #{user.handle}..."
-
-  #Access points
-  user.process_tweet_points
 
   #Make the user linestring
   user_string = GEOFACTORY.line_string(user.points)

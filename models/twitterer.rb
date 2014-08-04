@@ -82,18 +82,31 @@ class Twitterer
 
 	#Find the median point of the densest cluster from a set of clusters
 	# => This function calls functions from geoprocessing
+	# => The incoming tweet_clusters is a hash from DBscan
 	def get_weighted_poi_from_clusters(tweet_clusters)
-		
+
 		#A metric for confidence
-		@tri_confidence = 0
+		@tri_confidence = 0 # => unimplemented
 
-		#Find the densest cluster
-		densest_cluster = get_most_dense_cluster(tweet_clusters)
+		#Be careful here because tweet_clusters is a Hash where one key may be negative 1.
+		# Remove the key of -1 if it exists (This is the group of scattered tweets)
+		if tweet_clusters.keys.include? -1
+			tweet_clusters.delete(-1)
+		end
 
-		#Find the median point
-		find_median_point(densest_cluster.collect{|tweet| tweet["coordinates"]["coordinates"]})
+		unless
+			tweet_clusters.length.zero?
 
-		# => returns [x,y] (Not a point object)
+			#Find the densest cluster
+			densest_cluster = get_most_dense_cluster(tweet_clusters.values) #Pass in just the points
+
+			#Find the median point
+			return find_median_point(densest_cluster.collect{|tweet| tweet["coordinates"]["coordinates"]})
+
+			# => returns [x,y] (Not a point object)
+		else
+			return [nil, nil]
+		end
 	end
 
 
@@ -102,7 +115,9 @@ class Twitterer
 	#The type is either 'before, during, or after'
 	#coords is an array (lon, lat) to be saved...
 	def set_poi(type, coords)
-		instance_eval "@#{type} = #{coords}"
+		unless coords[0].nil?
+			instance_eval "@#{type} = #{coords}"
+		end
 	end
 
 	#The triangle analysis method
