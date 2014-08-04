@@ -10,16 +10,16 @@ require 'rgeo'
 
 class Tweet
 
+  #A Tweet can be accessed as an RGEO point object as tweet.point
   @@geo_factory = RGeo::Geographic.simple_mercator_factory
 
-  #A Tweet can be accessed as an RGEO point object
-  attr_reader :point
-
+  #Used for DBScan Clustering
   attr_accessor :cluster, :visited
 
   #Extend the MongoMapper EmbeddedDocument
   include MongoMapper::EmbeddedDocument
 
+  #Variables to be saved to Mongo
   key :id_str, 			String
   key :text, 				String
   key :user, 				String
@@ -27,8 +27,8 @@ class Tweet
   key :date, 				Time
   key :coordinates, Hash
 
-  #Given a bson_tweet as returned from Mongo (or parsed via JSON),
-  # It creates a tweet object
+  # Given a bson_tweet as returned from Mongo (or parsed via JSON),
+  # It creates a (basic) tweet object
   def initialize(bson_tweet)
     @id_str = bson_tweet["id"]
     @text   = bson_tweet["text"]
@@ -39,18 +39,15 @@ class Tweet
   end
 
   #In order to call the tweet.point instance, it must be defined
-  def as_point
-    @point = @@geo_factory.point(
+  def point
+    #Return point or define and then return point
+    @point ||= @@geo_factory.point(
           @coordinates["coordinates"][0],
           @coordinates["coordinates"][1])
   end
 
-  def items
-    self.as_point
-  end
-
   #To write the tweet to a kml file from epic-geo,
-  # it must be formatted like so.
+  # it must be formatted as follows:
   def as_epic_kml(style=nil)
     {:time     => @date,
      :style    => style,

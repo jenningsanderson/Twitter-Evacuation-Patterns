@@ -51,7 +51,10 @@ Twitterer.where( :tweet_count => 50, :affected_level => 1).limit(25).each do |us
   results = cluster.run
 
   results.each do |k,v|
-    puts "Group: #{k} --> #{v.length}"
+    density = calculate_density(v)
+    spread = score_temporal_patterns(v)
+    puts "Group: #{k} --> #{v.length} ==> #{density} ==> #{spread}==> #{density/spread}"
+      #This could be the new algorithm... could be.
     this_folder = {:name => "Group #{k}", :features=>[]}
     v.each do |tweet|
       this_folder[:features] << tweet.as_epic_kml(style="r_style_#{k+1}")

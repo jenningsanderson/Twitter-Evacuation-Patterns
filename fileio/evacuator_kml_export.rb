@@ -9,9 +9,9 @@ require 'epic-geo'
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
-filename = "test_boundaries.kml"
-limit = 100
-min_tweets = 3
+filename = "new_clustering_algorithm.kml"
+limit = 10
+min_tweets = 5
 
 #Prepare a KML file
 puts "Starting the following KML File: #{filename}"
@@ -23,7 +23,7 @@ write_3_bin_styles(kml_outfile.openfile)
 #Should also add a style here
 
 #Static Setup
-MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
+MongoMapper.connection = Mongo::Connection.new #('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
 sandy_dates = [
@@ -52,45 +52,53 @@ results = Twitterer.where(
 
 puts "Number of results for this query: #{results.count}"
 
-# results.each do |user|
+results.each do |user|
 
-#   print "Processing User: #{user.handle}..."
+  print "Processing User: #{user.handle}..."
 
-#   binned_tweets = user.split_tweets_into_time_bins(sandy_dates)
+  binned_tweets = user.split_tweets_into_time_bins(sandy_dates)
 
-#   user_kml_folder = {
-#     :name     => user.handle,
-#     :folders => [],
-#     :features => [user.userpath_as_epic_kml]
-#   }
+  user_kml_folder = {
+    :name     => user.handle,
+    :folders => [],
+    :features => [user.userpath_as_epic_kml]
+  }
 
-#   binned_tweets.each_with_index do |time_slice, index|
+  binned_tweets.each_with_index do |time_slice, index|
 
-#     time = time_frames[index]
+    time = time_frames[index]
 
-#     folder = {:name => time, :features => []}
+    folder = {:name => time, :features => []}
 
-#     #puts "In this folder: #{time_slice.length}"
+    #puts "In this folder: #{time_slice.length}"
 
-#     time_slice.each do |tweet|
-#      folder[:features] << tweet.as_epic_kml(style=time)
-#     end
+    time_slice.each do |tweet|
+     folder[:features] << tweet.as_epic_kml(style=time)
+    end
 
-#     poi = user.instance_eval(time.to_s)
+    #poi = user.instance_eval(time.to_s)
 
-#     user_kml_folder[:folders] << folder
+    #Calculate a new poi from the algo
+    #Run clusters
 
-#     user_kml_folder[:features] <<
-#       user.point_as_epic_kml(time, poi[0],poi[1],time)
-#   end
+    dbscanner = DBScanCluster.new(time_slice, epsilon=50, min_pts=2)
+    clusters = dbscanner.run
 
-#   #puts "Total Tweets: #{user.tweets.count}"
+    poi = get_weighted_poi_from_clusters(clusters.values)
+
+    user_kml_folder[:folders] << folder
+
+    user_kml_folder[:features] <<
+      user.point_as_epic_kml(time, poi[0],poi[1],time)
+  end
+
+  #puts "Total Tweets: #{user.tweets.count}"
   
-#   #Finished with this user, write the folder
-#   kml_outfile.write_folder(user_kml_folder)
-#   print "done\n"
-# end
+  #Finished with this user, write the folder
+  kml_outfile.write_folder(user_kml_folder)
+  print "done\n"
+end
 
-# #Finally, close the KML file
-# kml_outfile.write_footer
-# puts "Finished writing the file: #{filename}"
+#Finally, close the KML file
+kml_outfile.write_footer
+puts "Finished writing the file: #{filename}"
