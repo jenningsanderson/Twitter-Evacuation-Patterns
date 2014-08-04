@@ -1,6 +1,10 @@
-#This file will hold a series of algorithms for determining different pieces of information for a user
+#
+# Geo-Processing Functions
+#
+#
 
-#This is strictly for processing.  These methods should not make outside calls
+# This is strictly for processing.  These methods should not make outside calls
+# to models/classes
 
 GEOFACTORY = RGeo::Geographic.simple_mercator_factory
 
@@ -127,5 +131,3 @@ def get_most_dense_cluster(tweet_clusters)
 	end
 	return most_dense
 end
-
-

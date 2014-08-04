@@ -16,7 +16,7 @@
 class DBScanCluster
 
 	def initialize(tweets, epsilon=0.05, min_pts=2)
-		
+
 		@tweets,@epsilon,@min_pts = tweets,epsilon,min_pts
 
 		build_distance_matrix
@@ -27,7 +27,7 @@ class DBScanCluster
 	end
 
 	def _dbscan
-		clusters = {}     
+		clusters = {}
 		clusters[-1] = []
 		current_cluster = -1
 		for point in @tweets
@@ -44,7 +44,7 @@ class DBScanCluster
 					clusters[-1].push(point)
 				end
 			end
-		end 
+		end
 		return clusters
 	end
 
@@ -61,13 +61,13 @@ class DBScanCluster
 		cluster_points = []
 		neighbours.each do  |point|
 			if not point.visited
-				point.visited = true 
+				point.visited = true
 				new_points = immediate_neighbours(point)
 				new_points.each do |p|
 					if  not (neighbours.include? p)
-						neighbours.push(p) 
+						neighbours.push(p)
 					end
-				end  if new_points.size >= @min_pts 
+				end  if new_points.size >= @min_pts
 			end
 
 			if !point.cluster
@@ -80,7 +80,7 @@ class DBScanCluster
 
 	#Perform all of the distance calculations in n^2 time, then just look them up
 	def build_distance_matrix
-		@distance_hash = {} 
+		@distance_hash = {}
 		@tweets.each do |tweet_i|
 			@tweets.each do |tweet_j|
 

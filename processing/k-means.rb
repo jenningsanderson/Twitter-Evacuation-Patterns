@@ -1,5 +1,11 @@
-#K-Means Clustering
-#Adapted from: https://gist.github.com/cfdrake/995804
+#
+# K-Means Clustering
+#
+# Allows Tweets to be used as points for x-iterations of k clusters. 
+#
+# Adapted from: https://gist.github.com/cfdrake/995804
+#
+
 INFINITY = 1.0/0
 #
 # Cluster class, represents a centroid point along with its associated
