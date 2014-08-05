@@ -8,4 +8,4 @@ permalink: /triangles/
 
 Given the three points of interest for a user,  a triangle is drawn.  Comparing these triangles by the following:
 
-##Reference the image from the presentation
+![Triangles]({{site.baseurl}}/img_exports/triangle_explanation.png "Triangle Ratios")
