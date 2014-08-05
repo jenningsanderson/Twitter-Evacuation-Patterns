@@ -45,7 +45,10 @@ boundary = GEOFACTORY.multi_point(boundary_points).convex_hull
 counter = 0
 
 #Search the Twitterer collection
-Twitterer.where( :tweet_count.lte => 19).limit(nil).each_with_index do |user, index|
+Twitterer.where( :tweet_count.lt => 105,
+                  :tweet_count.gt => 19
+
+                ).limit(nil).each_with_index do |user, index|
   #print "User: #{user.handle}..."
 
   user.affected_level = 10
