@@ -88,6 +88,8 @@ class Twitterer
 		#A metric for confidence
 		@tri_confidence = 0 # => unimplemented
 
+		#This function DOES account for time it's called in the get_most_dense_cluster function
+
 		#Be careful here because tweet_clusters is a Hash where one key may be negative 1.
 		# Remove the key of -1 if it exists (This is the group of scattered tweets)
 		if tweet_clusters.keys.include? -1
