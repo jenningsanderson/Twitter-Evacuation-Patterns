@@ -9,13 +9,14 @@ layout: default
   <p>The goal of this project is to identify potential evacuation behavior based on geotags and timestamps within a Twitterer's contextual stream (EPIC).
 
   </p>
+  <br />
 
-  <p>This project is a continuation of work previously done with Andrew Hardin and Ellie Falletta</p>
-  
+  <p>This project is a continuation of work previously done with Andrew Hardin and Ellie Falletta in CU Geography 5303 (Spring 2014)</p>
+
   <br>
   <hr>
   <h2>Contents</h2>
- 
+
    <ul class="posts">
      {% for post in site.posts %}
        <li>
@@ -30,7 +31,7 @@ layout: default
   <h2>References</h2>
   <ol>
     <li>Project EPIC at University of Colorado Boulder</li>
-    <li>Sandy-GIS Project from GIS 3 at University of Colorado Boulder</li>
+    <li>Sandy-GIS Project from GIS 3 at University of Colorado Boulder (Spring 2014)</li>
   </ol>
 
 </div>
