@@ -22,6 +22,19 @@ date:   2014-08-04 09:30:00
 [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].forEach(function(limit){print(users.count({$and : [{before_tweet_count : {$gte : limit}},{during_tweet_count : {$gte : limit}},{after_tweet_count : {$gte : limit}}]}))})
 ````
 
+###Tweet Count
+![Tweet Count Histogram]({{site.baseurl}}/img_exports/TweetCountHistogram_lte100.png "Tweet Counts")
+
+
+
+###Here is what it looks like for users with <= 100 tweets
+![Triangle Perimeters]({{site.baseurl}}/img_exports/triangle_perimeters_graph_lte100tweets.png "Triangle Perimeters")
+
+
+
+![Log graph of triangle areas]({{site.baseurl}}/img_exports/triangle_areas_graph.png "Triangle Areas")
+
+
 
 ##TODO
 1. Rerun the clustering algorithm and give each user a better location based on dbscan (not the previous k-means density count)
