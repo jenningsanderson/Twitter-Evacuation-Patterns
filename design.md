@@ -20,6 +20,8 @@ October 22 - 28 | October 28 - Nov 1 | November 1 - December 7 |
 
 ##Step 2: Identify clusters in time & space
 
+![DBScan Example]({{site.baseurl}}/img_exports/DB_Scan_GoogleEarth.png "Triangle Ratios")
+
 Using the DBscan algorithm, tweets are clustered by geospatial density.  Each of these clusters is then analyzed for regularity.  The ranking is as follows:
 
 ```Density``` = (number of tweets)<sup>2</sup> / (area of convex hull around tweets)
