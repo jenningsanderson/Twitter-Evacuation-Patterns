@@ -9,8 +9,8 @@ require 'epic-geo'
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
-filename = "test_boundaries-sam_gardner.kml"
-limit = 100
+filename = "testing_algo_again.kml"
+limit = 50
 
 #Prepare a KML file
 puts "Starting the following KML File: #{filename}"
@@ -36,12 +36,12 @@ sandy_dates = [
 time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
-Twitterer.where(
-                # :before_after.lte=> 100,
-                # :isoceles_ratio.gte => 0.99,
-                # :isoceles_ratio.lte => 1.01,
-                # :triangle_perimeter.gte=> 1000,
-                # :triangle_perimeter.lte=> 500000,
+Twitterer.where( :tweet_count.lte=> 19,
+                 :before_after.lte=> 100,
+                 :isoceles_ratio.gte => 0.99,
+                 :isoceles_ratio.lte => 1.01,
+                 :triangle_perimeter.gte=> 1000,
+                 :triangle_perimeter.lte=> 500000,
               ).limit(limit).each do |user|
 
   print "Processing User: #{user.handle}..."
@@ -75,7 +75,7 @@ Twitterer.where(
   end
 
   #puts "Total Tweets: #{user.tweets.count}"
-  
+
   #Finished with this user, write the folder
   kml_outfile.write_folder(user_kml_folder)
   print "done\n"

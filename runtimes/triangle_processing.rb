@@ -30,7 +30,7 @@ time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
 
-Twitterer.where( :tweet_count.lte => 50).limit(nil).each_with_index do |user, index|
+Twitterer.where( :tweet_count.gt => 20).limit(nil).each_with_index do |user, index|
 
   # => user is a Twitterer instance.  Be sure to call user.save at the end.
 
