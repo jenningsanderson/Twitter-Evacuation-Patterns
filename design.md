@@ -32,7 +32,7 @@ Dividing a 24 hour day into 8 separate time bins of 3 hours, the goal here is to
 
 Imagine two clusters of tweets: X and O:
 
-Hour | Day 1 | Day 2 | Day 3 | Day 4 | Day 5 | Day 6 | Day 7 |
+| Hour | Day 1 | Day 2 | Day 3 | Day 4 | Day 5 | Day 6 | Day 7 |
 |:------ |:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
 1 |  X   |  X    |  X    |  X    |  X    |   X   |   X   |   X   |  X    |
 2 |      |       |       |       |       |       |       |       |       |
