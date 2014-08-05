@@ -16,7 +16,7 @@ require_relative '../models/tweet'
 
 
 #Static Setup
-MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
+MongoMapper.connection = Mongo::Connection.new#('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
 #Open the export file
@@ -35,10 +35,7 @@ Twitterer.where(:affected_level => 1).limit(100).sort(:handle).each_with_index d
 	html_export.add_content(this_content)
 
 end
-html_export.write_navigation
+html_export.write_navigation("User List")
 html_export.write_content
 
 html_export.close_file
-
-
-
