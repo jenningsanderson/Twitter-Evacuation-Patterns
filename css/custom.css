@@ -6,3 +6,7 @@ a.site-title{
 a.site-title:hover{
   font-size: 2em;
 }
+
+td{
+  padding: 3px 5px 3px 5px;
+}
