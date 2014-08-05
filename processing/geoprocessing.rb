@@ -125,6 +125,9 @@ def get_most_dense_cluster(tweet_clusters)
 	tweet_clusters.each do |tweet_cluster|
 		density = calculate_density(tweet_cluster)
 
+		#Divide this number by the spread...
+		density /= score_temporal_patterns(tweet_cluster)
+
 		if density > max_density
 			max_density = density
 			most_dense = tweet_cluster
