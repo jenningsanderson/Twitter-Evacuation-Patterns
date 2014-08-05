@@ -20,7 +20,7 @@ October 22 - 28 | October 28 - Nov 1 | November 1 - December 7 |
 
 ![DBScan Example]({{site.baseurl}}/img_exports/DB_Scan_GoogleEarth.png "DB Scan Example")
 
-The ![DBScan algorithm](http://en.wikipedia.org/wiki/DBSCAN) is used here for density based clustering.  Tweets are clustered by geospatial density.
+The [DBScan algorithm](http://en.wikipedia.org/wiki/DBSCAN) is used here for density based clustering.  Tweets are clustered by geospatial density.
 
 Each cluster is then analyzed for relative density:
 
@@ -33,15 +33,15 @@ Dividing a 24 hour day into 8 separate time bins of 3 hours, the goal here is to
 Imagine two clusters of tweets: X and O:
 
 Hour | Day 1 | Day 2 | Day 3 | Day 4 | Day 5 | Day 6 | Day 7 |
-|------ |-------| -------| -------| -------| -------| -------| -------| -------|
-1 | X  |  X     |   X   |   X   |   X   |   X   |    X   |     X   |    X    |
-2 |      |         |         |        |        |         |          |          |          |
-3 |      |         |         |        |        |         |          |          |   O    |
-4 | O  |         |         |        |        |   O   |          |          |          |
-5 |      |         |    O  |        |   O  |         |          |    O   |          |
-6 |      |   O   |         |        |        |         |   O    |          |          |
-7 |      |         |         |  O   |        |         |          |          |          |
-8 |      |         |         |        |        |         |          |          |          |
+|:------ |:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
+1 |  X   |  X    |  X    |  X    |  X    |   X   |   X   |   X   |  X    |
+2 |      |       |       |       |       |       |       |       |       |
+3 |      |       |       |       |       |       |       |       |  O    |
+4 |  O   |       |       |       |       |   O   |       |       |       |
+5 |      |       |  O    |       |  O    |       |       |    O  |       |
+6 |      |  O    |       |       |       |       |   O   |       |       |
+7 |      |       |       |  O    |       |       |       |       |       |
+8 |      |       |       |       |       |       |       |       |       |
 
 In this 7 day window, Each cluster of tweets had exactly 7 tweets, once per day.  However, the temporal spread of the X tweets is only 1, meaning that each day the user tweeted from within the same 3 hour window.
 
