@@ -1,7 +1,7 @@
 ---
 title: Data Set
 layout: page
-url: /data/
+permalink: /data/
 ---
 
 #The DataSet
