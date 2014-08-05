@@ -45,16 +45,13 @@ boundary = GEOFACTORY.multi_point(boundary_points).convex_hull
 counter = 0
 
 #Search the Twitterer collection
-Twitterer.where( :tweet_count.lte => 50).limit(nil).each_with_index do |user, index|
+Twitterer.where( :tweet_count.lt => 40).limit(nil).each_with_index do |user, index|
   #print "User: #{user.handle}..."
-
-  #Make the user linestring
-  user_string = GEOFACTORY.line_string(user.points)
 
   user.affected_level = 10
 
   #Check it
-  val = user_string.intersects? boundary
+  val = user.user_path.intersects? boundary
   if val
     counter+=1
     user.affected_level = 1

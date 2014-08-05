@@ -14,7 +14,7 @@ require_relative '../models/tweet'
 require_relative '../processing/geoprocessing'
 
 #Static Setup
-MongoMapper.connection = Mongo::Connection.new #('epic-analytics.cs.colorado.edu')
+MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
 #Define the timewindows to split the tweets into
@@ -30,7 +30,7 @@ time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
 
-Twitterer.where( :tweet_count.gt => 50).limit(nil).each_with_index do |user, index|
+Twitterer.where( :tweet_count.lte => 50).limit(nil).each_with_index do |user, index|
 
   # => user is a Twitterer instance.  Be sure to call user.save at the end.
 
