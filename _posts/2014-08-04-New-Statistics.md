@@ -31,11 +31,6 @@ date:   2014-08-04 09:30:00
 ![Triangle Perimeters]({{site.baseurl}}/img_exports/triangle_perimeters_graph_lte100tweets.png "Triangle Perimeters")
 
 
-
-![Log graph of triangle areas]({{site.baseurl}}/img_exports/triangle_areas_graph.png "Triangle Areas")
-
-
-
 ##TODO
 1. Rerun the clustering algorithm and give each user a better location based on dbscan (not the previous k-means density count)
 
