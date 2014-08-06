@@ -45,14 +45,13 @@ Each user is stored as a document with embedded tweet documents:
 
 The main features of the structure are:
 
-````
-Twitterer
-    -ID
-    -Handle
-    -Tweet Count
 
-    Tweets
-      -Coordinates
-      -Text
-      -Time
-````
+  Twitterer
+      -ID
+      -Handle
+      -Tweet Count
+
+      Tweets
+        -Coordinates
+        -Text
+        -Time
