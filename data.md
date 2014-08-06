@@ -4,8 +4,6 @@ layout: page
 permalink: /data/
 ---
 
-#The DataSet
-
 There were 22,250,274 tweets generated during Hurricane Sandy which referenced Sandy.  260,589 of these tweets (1.1%) were geotagged from 154,703 users.
 
 Collecting these user's geotagged _contextual stream_ of tweets yields a total of 22 million tweets.
@@ -26,37 +24,35 @@ The first round of geo-based filtering is based on the following crude box:
 The following two counts are available:
 
 ####Intersecting User ():
-This user's Userpath (the linestring constructed from each of their tweet points) intersects with this bounding box.
-
+A user's path (the linestring constructed from each of their tweet points) intersects with this bounding box.
 ![Intersecting User (Potentially Affected User)]({{site.baseurl}}/img_exports/intersecting_users_example.png)
 
 
 ####Potentially highly affected User ():
-This user's calculated _before_ shelter location lies within this bounding box.
-
+A user's calculated _before_ shelter location lies within this bounding box.
 ![Highly Affected User]({{site.baseurl}}/img_exports/highly_impacted_users_example.png)
 
-
 ####Highly Impacted User (Number coming):
-This user's calculated _before_ shelter location lies within a known evacuation zone.
-
+A user's calculated _before_ shelter location lies within a known evacuation zone.  NYC Evacuation Zones (A,B,C) pictured below:
 ![NYC Evacuation Zones]({{site.baseurl}}/img_exports/NYC_evacuation_zones.png)
 
 
 #Database Design
 
-1. Running on mongoDB, utilizing MongoMapper to allow objects.
+1. Running on mongoDB, utilizing MongoMapper to allow object interactions.
 
-Each user is a document with embedded tweet documents
+Each user is stored as a document with embedded tweet documents:
+
+The main features of the structure are:
 
 ````
 Twitterer
-  -ID
-  -Handle
-  -Tweet Count
+    -ID
+    -Handle
+    -Tweet Count
 
-  Tweets
-    -Coordinates
-    -Text
-    -Time
+    Tweets
+      -Coordinates
+      -Text
+      -Time
 ````
