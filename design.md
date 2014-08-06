@@ -6,14 +6,14 @@ permalink: /design/
 
 #User Shelter
 
-The main design of this work is to identify where a user took shelter at various times during Hurricane Sandy
+The main design of this work is to identify where a user took shelter at various times during Hurricane Sandy.  From these points of interest, a Twitterers's movement pattern during the hurricane can be analyzed to determine protective decisions they may (or may not) have made.
 
 
 ###Step 1. Establish Time Bins for the event:
 
 Before | During | After
 :-----:| :-----:| :----:
-October 22 - 28 | October 28 - Nov 1 | November 1 - December 7 |
+October 22 - 28 | October 28 - Nov 1 | November 1 - November 7 |
 
 
 ###Step 2. Identify spatial clusters
@@ -22,21 +22,22 @@ October 22 - 28 | October 28 - Nov 1 | November 1 - December 7 |
 
 The [DBScan algorithm](http://en.wikipedia.org/wiki/DBSCAN) is used here for density based clustering.  Tweets are clustered by geospatial density.
 
-Each cluster is then analyzed for relative density:
+Each cluster is then analyzed for _relative density_:
 
-The number of tweets is very important and will be washed out by the relative size of the area (square meters).  Therefore, a Tweet Variable is defined as: _2<sup>(number of tweets)</sup>_
+The number of tweets is very important and will be washed out by the relative size of the area (square meters).  Therefore, a Tweet Variable is defined as: _2<sup>(number of tweets)</sup>_ to heavily weight the number of tweets.
 
 The area of the tweet cluster is defined as the area of the convex hull constructed from the points in the cluster.
 
-(Possible to get an image of this?)
 
 The tweet density is then defined as:
-```(Tweet Variable) / (Area of convex hull)
+````(Tweet Variable) / (Area of convex hull)````
 
 ###Step 3. Identify Temporal Spread
+We must determine a user's repetitive tweeting behavior to get the best idea of when and where they tweet.  Empirical analysis and speaking with lead Geo-HCI researcher, (Brent Hecht)[http://www.brenthecht.com/] tells that people generally seem to show repetitive tweet behavior at a given location.  For example, watching television at home at night.
 
-Dividing a 24 hour day into 8 separate time bins of 3 hours, the goal here is to find repetitive behavior.
+Dividing a 24 hour day into 8 separate time bins of 3 hours, the goal is to find repetitive temporal behavior.
 
+####Example:
 Imagine two clusters of tweets: X and O:
 
 |Hour | Day 1 | Day 2 | Day 3 | Day 4 | Day 5 | Day 6 | Day 7 | Day 8 | Day 9 |
