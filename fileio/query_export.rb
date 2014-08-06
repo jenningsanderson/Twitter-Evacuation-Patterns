@@ -9,8 +9,8 @@ require 'epic-geo'
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
-filename = "probable_evacuators"
-limit = 50
+filename = "perfect_triangles"
+limit = 10
 
 #Prepare a KML file
 puts "Starting the following KML File: #{filename}"
@@ -41,10 +41,10 @@ sandy_dates = [
 time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
-results = Twitterer.where( :tweet_count.lte=> 100,
-                 :before_after.lte=> 100,
-                 :isoceles_ratio.gte => 0.99,
-                 :isoceles_ratio.lte => 1.01,
+results = Twitterer.where( :tweet_count.gte=> 300,
+                 :before_after.gte=> 1000,
+                 :isoceles_ratio.gte => 2,
+                #  :isoceles_ratio.lte => 1.01,
                  :triangle_perimeter.gte=> 1000,
                  :triangle_perimeter.lte=> 500000,
                  :affected_level => 2
