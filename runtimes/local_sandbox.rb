@@ -18,7 +18,7 @@ kml_outfile.write_header("DBScan Cluster Testing")
 generate_random_styles(kml_outfile.openfile, 20)
 
 #Static Setup
-MongoMapper.connection = Mongo::Connection.new #Localhost
+MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
 #Define the timewindows to split the tweets into
@@ -33,7 +33,7 @@ MongoMapper.database = 'sandygeo'
 # time_frames = ["before", "during", "after"]
 
 
-Twitterer.where( :tweet_count => 50, :affected_level => 1).limit(25).each do |user|
+Twitterer.where( :tweet_count => 50, :affected_level => 5).limit(10).each do |user|
   print "User: #{user.handle}..."
 
   #Access points
