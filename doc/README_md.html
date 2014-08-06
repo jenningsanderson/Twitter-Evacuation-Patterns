@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>README - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body class="file">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+<div id="table-of-contents">
+  <nav class="section">
+    <h3 class="section-header">Table of Contents</h3>
+    <ul>
+      <li><a href="#label-Evacuation+%26+Migration+Prediction+through+Twitter+Analysis">Evacuation &amp; Migration Prediction through Twitter Analysis</a>
+      <li><a href="#label-Motivation">Motivation</a>
+      <li><a href="#label-Dependencies">Dependencies</a>
+      <li><a href="#label-Epic-Geo">Epic-Geo</a>
+      <li><a href="#label-Mongo+Connection">Mongo Connection</a>
+      <li><a href="#label-Project+Conventions">Project Conventions</a>
+      <li><a href="#label-Project+Directories">Project Directories</a>
+      <li><a href="#label-fileio%2F">fileio/</a>
+      <li><a href="#label-kml_output.rb">kml_output.rb</a>
+      <li><a href="#label-identified_users.kml">identified_users.kml</a>
+      <li><a href="#label-tweet_io.rb">tweet_io.rb</a>
+      <li><a href="#label-write_geojson.rb">write_geojson.rb</a>
+      <li><a href="#label-write_user_tweets_geojson.rb">write_user_tweets_geojson.rb</a>
+      <li><a href="#label-tweet_shape.rb">tweet_shape.rb</a>
+      <li><a href="#label-mongo%2F">mongo/</a>
+      <li><a href="#label-linestring_reduce.js">linestring_reduce.js</a>
+      <li><a href="#label-extract_scripts%2F">extract_scripts/</a>
+      <li><a href="#label-tracks.rb">tracks.rb</a>
+      <li><a href="#label-geo_bounded_tracks.rb">geo_bounded_tracks.rb</a>
+      <li><a href="#label-mongo_extractor.rb">mongo_extractor.rb</a>
+      <li><a href="#label-find_users_within_area.rb">find_users_within_area.rb</a>
+      <li><a href="#label-parsers%2F">parsers/</a>
+      <li><a href="#label-extract_geo_json.rb">extract_geo_json.rb</a>
+      <li><a href="#label-get_geo_contextual.rb">get_geo_contextual.rb</a>
+      <li><a href="#label-reformat_date.rb">reformat_date.rb</a>
+      <li><a href="#label-user_indiv_path.rb">user_indiv_path.rb</a>
+      <li><a href="#label-user_indiv_tweet.rb">user_indiv_tweet.rb</a>
+      <li><a href="#label-user_node_collection.rb">user_node_collection.rb</a>
+      <li><a href="#label-user_track_parser.rb">user_track_parser.rb</a>
+      <li><a href="#label-analysis%2F">analysis/</a>
+      <li><a href="#label-Twitter_In_Evac.py">Twitter_In_Evac.py</a>
+    </ul>
+  </nav>
+</div>
+
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./README_md.html">README</a>
+  
+    <li class="file"><a href="./doc/created_rid.html">created.rid</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Cluster.html">Cluster</a>
+  
+    <li><a href="./Mongo.html">Mongo</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./Tweet.html">Tweet</a>
+  
+    <li><a href="./Tweet/RGeo.html">Tweet::RGeo</a>
+  
+    <li><a href="./Twitterer.html">Twitterer</a>
+  
+    <li><a href="./Twitterer/RGeo.html">Twitterer::RGeo</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation" class="description">
+  
+<h1 id="label-Evacuation+%26+Migration+Prediction+through+Twitter+Analysis">Evacuation &amp; Migration Prediction through Twitter Analysis<span><a href="#label-Evacuation+%26+Migration+Prediction+through+Twitter+Analysis">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
+
+<p>Jennings Anderson @ <a href="http://epic.cs.colorado.edu">Project EPIC</a></p>
+
+<p><em>This is a continuation of a project for GIS3 in Spring 2014 at CU
+Boulder by Jennings Anderson, Andrew Hardin, Ellie Falletta</em></p>
+
+<h2 id="label-Motivation">Motivation<span><a href="#label-Motivation">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Somewhere on order of 1% of tweets are geo-tagged. What can be learned
+about a Twitterer&#39;s movement behavior during Hurricane Sandy?</p>
+
+<h2 id="label-Dependencies">Dependencies<span><a href="#label-Dependencies">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Ruby Requirements
+&lt;code&gt;
+gem install georuby
+gem install
+rgeo-shapefile
+gem install bson
+gem install mongo
+gem install
+bson_ext
+&lt;/code&gt;</p>
+
+<h3 id="label-Epic-Geo">Epic-Geo<span><a href="#label-Epic-Geo">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>Most of the functions developed for the original project have been moved to
+a separate gem called epic-geo, a generic FileI/O and visualization tool
+I&#39;m currently writing for all project EPIC GeoHCI related projects.</p>
+
+<p>The best way to stay up to do date with epic-geo is by using the bundler
+and pulling source from Github with the following line in your
+<em>Gemfile</em>
+````
+gem &#39;epic-geo&#39;, github:
+&#39;jenningsanderson/epic-geo&#39;</p>
+
+<p>““
+<em>Note: Many of the dependencies for epic-geo are listed above, but
+not necessarily all, I am trying to keep this updated</em></p>
+
+<h4 id="label-Mongo+Connection"><a href="Mongo.html">Mongo</a> Connection<span><a href="#label-Mongo+Connection">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>The data for this project is held on Project EPIC&#39;s local analytics
+server on the CU campus. There are multiple collections created under the
+<code>sandygeo</code> database</p>
+<ul><li>
+<p><code>edited_tweets</code>: The main collection of tweets cut to the study
+timeframe: October 20 to November 7, 2012. Each document is a full tweet,
+as retrieved from the Twitter API.</p>
+</li><li>
+<p><code>coastal_users</code>: The final collection of 17,627 users that were
+identified as having a tweet within the highly affected eastern seaboard
+area as defined by FEMA.</p>
+</li><li>
+<p><code>after_sandy</code>: Tweets between October 1, 2012 and October 22,
+2012 that were excluded from the project analysis.</p>
+</li><li>
+<p><code>before_sandy</code>: Tweets between November 7, 2012 and December 1,
+2012 that were excluded from the project analysis.</p>
+</li><li>
+<p><code>tweets</code>: The original 260,859 geo-coded tweets extracted from
+the 22 million tweet keyword collection. Used to identify geo-coding
+Twitterers for contextual stream fetching.</p>
+</li><li>
+<p><code>userpaths</code>: Distinct paths for 32,842 users. Each document
+contains an array of tweets where each tweet has date, text, entities, and
+place information. A GeoJSON Linestring <a href="Object.html">Object</a>
+exists for each user that tracks the user&#39;s path.</p>
+</li><li>
+<p><code>user_indiv_tweets</code>: Similar to userpaths, but not a Linestring,
+instead each individual tweet with place, text, and timestamp as
+properties.</p>
+</li><li>
+<p><code>most_impacted_users</code>:</p>
+</li></ul>
+
+<h2 id="label-Project+Conventions">Project Conventions<span><a href="#label-Project+Conventions">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<ul><li>
+<p>Users are referenced by their id (A long number). If a user has multiple
+screen names as their tweets are aggregated, their <code>handle</code> that
+is written will be a string of unique usernames separated by commas.</p>
+</li></ul>
+
+<h2 id="label-Project+Directories">Project Directories<span><a href="#label-Project+Directories">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<h3 id="label-fileio%2F">fileio/<span><a href="#label-fileio%2F">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<h5 id="label-kml_output.rb">kml_output.rb<span><a href="#label-kml_output.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<p>Writes</p>
+
+<h5 id="label-identified_users.kml">identified_users.kml<span><a href="#label-identified_users.kml">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<h5 id="label-tweet_io.rb">tweet_io.rb<span><a href="#label-tweet_io.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<p>Includes the two classes for interacting with <a
+href="Mongo.html">Mongo</a>. <code>SandyMongoClient</code> creates an
+object for querying the database and returning tweets based on various
+parameters and <code>Tweet_JSON_Reader</code> reads and imports to mongo, a
+text file containing valid JSON tweets, separated by newlines. The main
+runtime for this script runs an import; however, other scripts use the
+<code>SandyMongoClient</code> class for interacting with the database.</p>
+
+<h5 id="label-write_geojson.rb">write_geojson.rb<span><a href="#label-write_geojson.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<p>Uses the <code>json</code> library to write valid geojson from a variety of
+inputs. The main runtime of this script will write both a tweet and a
+userpath geojson file from a users collection.</p>
+
+<h5 id="label-write_user_tweets_geojson.rb">write_user_tweets_geojson.rb<span><a href="#label-write_user_tweets_geojson.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<p>Requires the <code>write_geojson.rb</code> script to generate a folder
+containing valid geojson objects for each user&#39;s tweets.</p>
+
+<h5 id="label-tweet_shape.rb">tweet_shape.rb<span><a href="#label-tweet_shape.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<p>Uses the <code>georuby</code> library to create shapefiles from Tweets.
+This functionality is deprecated because creating shapefiles for viewing
+the data is less convenient than KML or GeoJSON files.</p>
+
+<h3 id="label-mongo%2F">mongo/<span><a href="#label-mongo%2F">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<h5 id="label-linestring_reduce.js">linestring_reduce.js<span><a href="#label-linestring_reduce.js">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<p>Map reduce function to generate the <code>usertracks</code> collection from
+the <code>edited_tweets</code> collection.</p>
+
+<h3 id="label-extract_scripts%2F">extract_scripts/<span><a href="#label-extract_scripts%2F">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<h5 id="label-tracks.rb">tracks.rb<span><a href="#label-tracks.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<p>Write two shapefiles from the collection, one of linestrings for each user,
+representing their path and one of just the the tweets as points.</p>
+
+<h5 id="label-geo_bounded_tracks.rb">geo_bounded_tracks.rb<span><a href="#label-geo_bounded_tracks.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<p>Performs the same task as tracks.rb, but allows for geo-sensitive queries.</p>
+
+<h5 id="label-mongo_extractor.rb">mongo_extractor.rb<span><a href="#label-mongo_extractor.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<p>A very simple <a href="Mongo.html">Mongo</a> –&gt; Shapefile script for
+quick visualizations of data.</p>
+
+<h5 id="label-find_users_within_area.rb">find_users_within_area.rb<span><a href="#label-find_users_within_area.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<p>A cleaner, more robust version of geo_bounded_tracks.rb, built for a
+bounding box of any shape polygon.</p>
+
+<h3 id="label-parsers%2F">parsers/<span><a href="#label-parsers%2F">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<h5 id="label-extract_geo_json.rb">extract_geo_json.rb<span><a href="#label-extract_geo_json.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<p>Line by line parsing of a text file of JSON tweets delimitated by newlines.
+Identifies tweets which are geotagged and writes them to a separate text
+file of the same format (JSON tweets separated by n character)</p>
+
+<h5 id="label-get_geo_contextual.rb">get_geo_contextual.rb<span><a href="#label-get_geo_contextual.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<p>Parses contextual stream text file, extrating geo-tagged tweets and
+inserting them into a <a href="Mongo.html">Mongo</a> collection. The
+filepaths to the contextual streams are built dynamically based on the
+username that the script collects.</p>
+
+<h5 id="label-reformat_date.rb">reformat_date.rb<span><a href="#label-reformat_date.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<p>A small helper function to reformat the string date to an ISOdate so that
+<a href="Mongo.html">Mongo</a> recognizes it. Should be built into import –
+otherwise, it&#39;s deprecated. A javascript loop in the <a
+href="Mongo.html">Mongo</a> shell is more convenient.</p>
+
+<h5 id="label-user_indiv_path.rb">user_indiv_path.rb<span><a href="#label-user_indiv_path.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<p>Creates a new collection where each document represents a single user and
+their tweet coordinates are stored as line strings to observe their
+movement path.</p>
+
+<h5 id="label-user_indiv_tweet.rb">user_indiv_tweet.rb<span><a href="#label-user_indiv_tweet.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<p>Creates a new collection where each document represents a single user.
+Their tweet coordinates are stored as points.</p>
+
+<h5 id="label-user_node_collection.rb">user_node_collection.rb<span><a href="#label-user_node_collection.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<p>(Unfinished) Store a user&#39;s tweets in 3 timebins: before, during, after</p>
+
+<h5 id="label-user_track_parser.rb">user_track_parser.rb<span><a href="#label-user_track_parser.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<p>(Deprecated) Performs similar function to <code>user_indiv_path.rb</code></p>
+
+<h3 id="label-analysis%2F">analysis/<span><a href="#label-analysis%2F">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<h5 id="label-Twitter_In_Evac.py">Twitter_In_Evac.py<span><a href="#label-Twitter_In_Evac.py">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
+
+<p>A python script that uses ArcPy to parse a CSV of before, during, and after
+locations for a particular user and perform comparisons of these locations
+to known evacuation zones. Performs set intersect operations on lists of
+users to determine who sheltered in place in an evacuation zone.</p>
+
+</div>
+
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

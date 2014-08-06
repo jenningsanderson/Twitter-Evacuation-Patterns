@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class Object - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>config.rb
+    <li>processing/geoprocessing.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">BasicObject
+  
+</nav>
+
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-i-build_active_time_bins">#build_active_time_bins</a>
+    
+    <li ><a href="#method-i-find_median_point">#find_median_point</a>
+    
+    <li ><a href="#method-i-get_clusters">#get_clusters</a>
+    
+    <li ><a href="#method-i-get_most_dense_cluster">#get_most_dense_cluster</a>
+    
+    <li ><a href="#method-i-kmeans">#kmeans</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./README_md.html">README</a>
+  
+    <li class="file"><a href="./doc/created_rid.html">created.rid</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Cluster.html">Cluster</a>
+  
+    <li><a href="./Mongo.html">Mongo</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./Tweet.html">Tweet</a>
+  
+    <li><a href="./Tweet/RGeo.html">Tweet::RGeo</a>
+  
+    <li><a href="./Twitterer.html">Twitterer</a>
+  
+    <li><a href="./Twitterer/RGeo.html">Twitterer::RGeo</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Object</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="GEOFACTORY">GEOFACTORY
+        
+        <dd class="description"><p>This is strictly for processing.  These methods should not make outside
+calls</p>
+        
+      
+        <dt id="INFINITY">INFINITY
+        
+        <dd class="description"><p>K-Means Clustering Adapted from: <a
+href="https://gist.github.com/cfdrake/995804">gist.github.com/cfdrake/995804</a></p>
+        
+      
+        <dt id="USERS_TO_IGNORE">USERS_TO_IGNORE
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-build_active_time_bins" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">build_active_time_bins</span><span
+            class="method-args">(tweets, dates)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Given an array of <a href="Tweet.html">Tweet</a> objects and a list of
+dates, this function</p>
+
+<pre>returns an array of size dates.length-1 which are binned groups of the tweets
+in which the tweets in each bin were the tweets that occured in the most active
+1/8th of the days.
+
+The tweets returned should not be solely considered for analysis, but rather used
+in conjunction with a median or average location finding function to determine
+the user&#39;s general geographic activity.</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="build_active_time_bins-source">
+            <pre><span class="ruby-comment"># File processing/geoprocessing.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_active_time_bins</span>(<span class="ruby-identifier">tweets</span>, <span class="ruby-identifier">dates</span>)
+
+        <span class="ruby-comment">#Pull out the times of each tweet.</span>
+        <span class="ruby-identifier">times</span> = <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tweet</span>[<span class="ruby-string">&quot;date&quot;</span>]}
+
+        <span class="ruby-comment">#Find the most active part of this user&#39;s daily activity</span>
+        <span class="ruby-identifier">hours_of_day</span> = [<span class="ruby-value">0</span>]<span class="ruby-operator">*</span><span class="ruby-value">8</span>
+        <span class="ruby-identifier">times</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">time</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">hours_of_day</span>[<span class="ruby-identifier">time</span>.<span class="ruby-identifier">hour</span> <span class="ruby-operator">/</span> <span class="ruby-value">3</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">most_active_hours</span> = <span class="ruby-identifier">hours_of_day</span>.<span class="ruby-identifier">index</span> <span class="ruby-identifier">hours_of_day</span>.<span class="ruby-identifier">max</span>
+
+        <span class="ruby-comment">#Get the tweets that occured in that chunk of time</span>
+        <span class="ruby-identifier">pert_tweets</span> = <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> ( <span class="ruby-identifier">tweet</span>[<span class="ruby-string">&quot;date&quot;</span>].<span class="ruby-identifier">hour</span> <span class="ruby-operator">/</span> <span class="ruby-value">3</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">most_active_hours</span>}
+
+        <span class="ruby-identifier">binned_tweets</span> = []
+
+        <span class="ruby-comment">#Now separate the tweets into bins:</span>
+        (<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">dates</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">-</span><span class="ruby-value">2</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">binned_tweets</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">pert_tweets</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tweet</span>[<span class="ruby-string">&quot;date&quot;</span>] <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">dates</span>[<span class="ruby-identifier">index</span>] <span class="ruby-keyword">and</span> <span class="ruby-identifier">tweet</span>[<span class="ruby-string">&quot;date&quot;</span>] <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">dates</span>[<span class="ruby-identifier">index</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>]}
+                <span class="ruby-comment">#pert_tweets.delete_if{ |tweet| tweet[&quot;date&quot;] &gt; dates[index] and tweet[&quot;date&quot;] &lt; dates[index+1] }</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-identifier">binned_tweets</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- build_active_time_bins-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- build_active_time_bins-method -->
+
+    
+      <div id="method-i-find_median_point" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_median_point</span><span
+            class="method-args">(points_array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Algorithm adopted from Andrew Hardin&#39;s C# function.</p>
+
+<pre>Given an array of points, this function will sort the x,y coordinates and
+return the median point.  This seems to work better than an averaging
+function because the median point will not geographically consider far outlying
+points.</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="find_median_point-source">
+            <pre><span class="ruby-comment"># File processing/geoprocessing.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_median_point</span>(<span class="ruby-identifier">points_array</span>)
+        <span class="ruby-identifier">x</span> = []
+        <span class="ruby-identifier">y</span> = []
+        <span class="ruby-identifier">points_array</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">point</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">x</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">point</span>[<span class="ruby-value">0</span>]
+                <span class="ruby-identifier">y</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">point</span>[<span class="ruby-value">1</span>]
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">x</span>.<span class="ruby-identifier">sort!</span>
+        <span class="ruby-identifier">y</span>.<span class="ruby-identifier">sort!</span>
+        <span class="ruby-keyword">if</span> (<span class="ruby-identifier">points_array</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">%</span> <span class="ruby-value">2</span>).<span class="ruby-identifier">zero?</span>
+                <span class="ruby-identifier">mid</span> = <span class="ruby-identifier">x</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">/</span><span class="ruby-value">2</span>
+                <span class="ruby-keyword">return</span> [ (<span class="ruby-identifier">x</span>[<span class="ruby-identifier">mid</span>]<span class="ruby-operator">+</span><span class="ruby-identifier">x</span>[<span class="ruby-identifier">mid</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>]) <span class="ruby-operator">/</span><span class="ruby-value">2.0</span>, (<span class="ruby-identifier">y</span>[<span class="ruby-identifier">mid</span>]<span class="ruby-operator">+</span><span class="ruby-identifier">y</span>[<span class="ruby-identifier">mid</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>])<span class="ruby-operator">/</span><span class="ruby-value">2.0</span>]
+        <span class="ruby-keyword">else</span>
+                <span class="ruby-identifier">mid</span> = <span class="ruby-identifier">x</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">/</span><span class="ruby-value">2</span>
+                <span class="ruby-keyword">return</span> [<span class="ruby-identifier">x</span>[<span class="ruby-identifier">mid</span>],<span class="ruby-identifier">y</span>[<span class="ruby-identifier">mid</span>]]
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- find_median_point-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- find_median_point-method -->
+
+    
+      <div id="method-i-get_clusters" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_clusters</span><span
+            class="method-args">(tweets, centers=5, iterations=10)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get clusters via k-means clustering from an array of Tweets</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_clusters-source">
+            <pre><span class="ruby-comment"># File processing/geoprocessing.rb, line 149</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_clusters</span>(<span class="ruby-identifier">tweets</span>, <span class="ruby-identifier">centers</span>=<span class="ruby-value">5</span>, <span class="ruby-identifier">iterations</span>=<span class="ruby-value">10</span>)
+
+        <span class="ruby-comment">#Make the point object of the tweet real</span>
+        <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">as_point</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">kmeans</span>(<span class="ruby-identifier">tweets</span>, <span class="ruby-identifier">centers</span>, <span class="ruby-identifier">iterations</span>).<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">cluster</span><span class="ruby-operator">|</span> <span class="ruby-identifier">cluster</span>.<span class="ruby-identifier">tweets</span>}
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_clusters-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_clusters-method -->
+
+    
+      <div id="method-i-get_most_dense_cluster" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_most_dense_cluster</span><span
+            class="method-args">(tweet_clusters)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Find the densest cluster from a cluster of tweets, this could be a home?</p>
+
+<pre>--&gt; Should check the timing of this.</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="get_most_dense_cluster-source">
+            <pre><span class="ruby-comment"># File processing/geoprocessing.rb, line 161</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_most_dense_cluster</span>(<span class="ruby-identifier">tweet_clusters</span>)
+        <span class="ruby-identifier">most_dense</span> = <span class="ruby-identifier">tweet_clusters</span>[<span class="ruby-value">0</span>]
+        <span class="ruby-identifier">max_density</span> = <span class="ruby-value">0.0</span>
+
+        <span class="ruby-identifier">tweet_clusters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tweet_cluster</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">num_tweets</span> = <span class="ruby-identifier">tweet_cluster</span>.<span class="ruby-identifier">length</span>
+
+                <span class="ruby-identifier">multi_point</span> = <span class="ruby-constant">GEOFACTORY</span>.<span class="ruby-identifier">multi_point</span>(<span class="ruby-identifier">tweet_cluster</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">point</span>})
+                <span class="ruby-identifier">hull</span> = <span class="ruby-identifier">multi_point</span>.<span class="ruby-identifier">convex_hull</span>
+
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">hull</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-value">:area</span>
+                        <span class="ruby-identifier">density</span> = <span class="ruby-identifier">num_tweets</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">hull</span>.<span class="ruby-identifier">area</span>
+                <span class="ruby-keyword">else</span>
+                        <span class="ruby-identifier">density</span> = <span class="ruby-value">0.0</span>
+                <span class="ruby-keyword">end</span>
+
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">density</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">max_density</span>
+                        <span class="ruby-identifier">max_density</span> = <span class="ruby-identifier">density</span>
+                        <span class="ruby-identifier">most_dense</span> = <span class="ruby-identifier">tweet_cluster</span>
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-identifier">most_dense</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_most_dense_cluster-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_most_dense_cluster-method -->
+
+    
+      <div id="method-i-kmeans" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">kmeans</span><span
+            class="method-args">(tweets, k, iterations=10)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>kmeans algorithm</p>
+          
+          
+
+          
+          <div class="method-source-code" id="kmeans-source">
+            <pre><span class="ruby-comment"># File processing/geoprocessing.rb, line 109</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">kmeans</span>(<span class="ruby-identifier">tweets</span>, <span class="ruby-identifier">k</span>, <span class="ruby-identifier">iterations</span>=<span class="ruby-value">10</span>)
+
+        <span class="ruby-identifier">clusters</span> = <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">sample</span>(<span class="ruby-identifier">k</span>).<span class="ruby-identifier">collect</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> <span class="ruby-constant">Cluster</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">tweet</span>)}
+
+  <span class="ruby-identifier">iterations</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+    <span class="ruby-comment"># Assign points to clusters</span>
+    <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">min_dist</span> = <span class="ruby-operator">+</span><span class="ruby-constant">INFINITY</span>
+      <span class="ruby-identifier">min_cluster</span> = <span class="ruby-keyword">nil</span>
+
+      <span class="ruby-comment"># Find the closest cluster</span>
+      <span class="ruby-identifier">clusters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cluster</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">dist</span> = <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">point</span>.<span class="ruby-identifier">distance</span>(<span class="ruby-identifier">cluster</span>.<span class="ruby-identifier">center</span>)
+
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">dist</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">min_dist</span>
+          <span class="ruby-identifier">min_dist</span> = <span class="ruby-identifier">dist</span>
+          <span class="ruby-identifier">min_cluster</span> = <span class="ruby-identifier">cluster</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment"># Add to closest cluster</span>
+      <span class="ruby-identifier">min_cluster</span>.<span class="ruby-identifier">tweets</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">tweet</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">clusters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cluster</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">cluster</span>.<span class="ruby-identifier">recenter!</span>
+    <span class="ruby-keyword">end</span>
+
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">index</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">iterations</span><span class="ruby-operator">-</span><span class="ruby-value">2</span>
+            <span class="ruby-comment"># Reset points for the next iteration</span>
+            <span class="ruby-identifier">clusters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cluster</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">cluster</span>.<span class="ruby-identifier">tweets</span> = []
+            <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-identifier">clusters</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- kmeans-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- kmeans-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
