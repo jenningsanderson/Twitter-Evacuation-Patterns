@@ -28,7 +28,7 @@ class Twitterer
 	#Key Twitterer Values needed
 	key :id_str, 			String, :required => true, :unique => true
 	key :handle, 			String
-	key :tweet_count, 		Integer
+	key :tweet_count, Integer
 	key :issue,				Integer
 
 	#Embed the following types of documents:

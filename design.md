@@ -9,7 +9,7 @@ permalink: /design/
 The main design of this work is to identify where a user took shelter at various times during Hurricane Sandy
 
 
-###Step 1. Establish Time Bins for the event: 
+###Step 1. Establish Time Bins for the event:
 
 Before | During | After
 :-----:| :-----:| :----:
@@ -24,7 +24,12 @@ The [DBScan algorithm](http://en.wikipedia.org/wiki/DBSCAN) is used here for den
 
 Each cluster is then analyzed for relative density:
 
-```Density``` = 2<sup>(number of tweets)</sup> /  (area of convex hull around tweets)
+The number of tweets is very important and will be washed out by the relative size of the area (square meters).  Therefore, a Tweet Variable is defined as: ```2<sup>(number of tweets)</sup>```
+
+The area of the tweet cluster is defined as the area of the convex hull constructed from the points in the cluster.
+
+The tweet density is then defined as:
+```(Tweet Variable) / (Area of convex hull)
 
 ###Step 3. Identify Temporal Spread
 
@@ -43,13 +48,13 @@ Imagine two clusters of tweets: X and O:
 |7    |       |       |       |  O    |       |       |       |       |       |
 |8    |       |       |       |       |       |       |       |       |       |
 
-In this 9 day window, Each cluster of tweets had exactly 7 tweets, once per day.  However, the temporal spread of the X tweets is only 1, meaning that each day the user tweeted from within the same 3 hour window.
+In this 9 day window, Each cluster of tweets had exactly 9 tweets, once per day.  However, the temporal spread of the X tweets is only 1, meaning that each day the user tweeted from within the same 3 hour window.
 
-The O tweets, however, have a temporal spread of 5, meaning that these 7 tweets in this cluster happened sporadically over 21 hours of the day.
+The O tweets, however, have a temporal spread of 5, meaning that the 9 tweets in this cluster occurred sporadically over 21 hours of the day, each day.
 
-The ultimate calculation formula is: 
+The units turn out to be:
 
-````Tweets / Area / Time Spread````
+````Tweet Count Variable / Area / Time Spread````
 
 
 ```Time Clusters``` = Value between 1 and 8: Number of blocks of 3 hours in which the tweets in that cluster occur.  (A measure of deviation within the hours of the day when a user tweets)
