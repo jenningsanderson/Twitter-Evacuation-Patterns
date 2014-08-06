@@ -14,7 +14,7 @@ Further time-filtering for October 22 - November 7 and manual filtering of easy 
 
 Next, users with less than 15 tweets total were removed.
 
-The working dataset includes **20317 users** with **y tweets**.
+The working dataset includes **20,317 users** with **1,653,031 tweets**.
 
 
 
@@ -25,22 +25,22 @@ The first round of geo-based filtering is based on the following crude box:
 
 The following two counts are available:
 
-####Intersecting User:
+####Intersecting User ():
 This user's Userpath (the linestring constructed from each of their tweet points) intersects with this bounding box.
 
 ![Intersecting User (Potentially Affected User)]({{site.baseurl}}/img_exports/intersecting_users_example.png)
 
 
-####Potentially highly affected User:
-This user's calculated _before_ shelter location lies within this box.
+####Potentially highly affected User ():
+This user's calculated _before_ shelter location lies within this bounding box.
 
 ![Highly Affected User]({{site.baseurl}}/img_exports/highly_impacted_users_example.png)
 
 
-####Highly Impacted User:
+####Highly Impacted User (Number coming):
 This user's calculated _before_ shelter location lies within a known evacuation zone.
 
-(Image coming)
+![NYC Evacuation Zones]({{site.baseurl}}/img_exports/NYC_evacuation_zones.png)
 
 
 #Database Design
