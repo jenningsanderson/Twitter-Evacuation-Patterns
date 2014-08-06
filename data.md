@@ -28,19 +28,19 @@ The following two counts are available:
 ####Intersecting User:
 This user's Userpath (the linestring constructed from each of their tweet points) intersects with this bounding box.
 
-![Original Geo bounding box]({{site.baseurl}}/img_exports/geo_affected_boundary.png)
+![Intersecting User (Potentially Affected User)]({{site.baseurl}}/img_exports/intersecting_users_example.png)
+
 
 ####Potentially highly affected User:
 This user's calculated _before_ shelter location lies within this box.
 
-![Potentially Affected User]({{site.baseurl}}/img_exports/intersecting_users_example.png)
+![Highly Affected User]({{site.baseurl}}/img_exports/highly_impacted_users_example.png)
 
 
 ####Highly Impacted User:
 This user's calculated _before_ shelter location lies within a known evacuation zone.
 
-![Highly Affected User]({{site.baseurl}}/img_exports/highly_impacted_users_example.png)
-
+(Image coming)
 
 
 #Database Design
