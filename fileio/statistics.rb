@@ -39,7 +39,7 @@ tweet_count = []
 users = {}
 
 #Go to the Twitterer collection
-Twitterer.where(:affected_level => 2 ).limit(nil).each_with_index do |user, index|
+Twitterer.where(:affected_level.lt => 10, :isoceles_ratio.gt => 0, :isoceles_ratio.lt =>5).limit(nil).each_with_index do |user, index|
 
   users[user.id_str] = {
 
@@ -85,22 +85,22 @@ end
 puts triangle_perimeters.length
 puts isoceles_ratios.length
 
-r.png("../img_exports/isoceles_ratio_V_perimeter_within_box.png",:height=>600,:width=>800)
+r.png("../img_exports/isoceles_ratio_V_perimeter_affected_lt_10_ratio_0-5.png",:height=>600,:width=>800)
 r.plot(
   { :x=>triangle_perimeters,
     :y=>isoceles_ratios,
     :ylab=>'Isoceles Ratios',
     :xlab=>"Triangle Perimeters",
-    :log=>'xy'
+    :log=>'x'
   })
 r.eval_R "dev.off()"
 
-#=============  Triangle Perimeters
-# r.png("../img_exports/triangle_perimeters_graph_lte100tweets.png",:height=>600,:width=>800)
+# #=============  Triangle Perimeters
+# r.png("../img_exports/triangle_perimeters_graph_affected_lt_10.png",:height=>600,:width=>800)
 # r.plot(
 #   { :x=>(1..triangle_perimeters.length).to_a,
 #     :y=>triangle_perimeters.sort.reverse,
-#     :log=>'y', :ylab=>'Triangle Perimeters for Users <= 100 tweets',
+#     :log=>'y', :ylab=>'Triangle Perimeters for Users in or intersecting bounding box',
 #     :xaxt=>'n',:xlab=>"Users"
 #   })
 # r.eval_R "dev.off()"

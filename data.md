@@ -23,13 +23,13 @@ The first round of geo-based filtering is based on the following crude box:
 
 The following two counts are available:
 
-####Intersecting User ():
+####Intersecting Users (1,873):
 A user's path (the linestring constructed from each of their tweet points) intersects with this bounding box.
 
 ![Intersecting User (Potentially Affected User)]({{site.baseurl}}/img_exports/intersecting_users_example.png)
 
 
-####Potentially highly affected User ():
+####Potentially highly affected Users (5,106):
 A user's calculated _before_ shelter location lies within this bounding box.
 
 ![Highly Affected User]({{site.baseurl}}/img_exports/highly_impacted_users_example.png)

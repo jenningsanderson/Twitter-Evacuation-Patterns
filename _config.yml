@@ -1,7 +1,7 @@
 # Site settings
 title: "Predicting Evacuation and Migration Behavior during Crisis with Twitter"
 email: "jennings.anderson@colorado.edu"
-description: "2014 Summer research project for Project EPIC."
+description: "2014 Research project with Project EPIC and the National Center for Atmospheric Research."
 baseurl: "/Twitter-Evacuation-Patterns"
 url: "jenningsanderson.github.io"
 
@@ -10,3 +10,4 @@ markdown: kramdown
 permalink: pretty
 
 twitter: "JenningsAtCU"
+github: "jenningsanderson"
