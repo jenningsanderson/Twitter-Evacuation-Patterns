@@ -14,7 +14,7 @@ Further time-filtering for October 22 - November 7 and manual filtering of easy 
 
 Next, users with less than 15 tweets total were removed.
 
-The working dataset includes **x users** with **y tweets**.
+The working dataset includes **20317 users** with **y tweets**.
 
 
 
