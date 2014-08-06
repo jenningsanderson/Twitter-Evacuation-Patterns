@@ -24,9 +24,11 @@ The [DBScan algorithm](http://en.wikipedia.org/wiki/DBSCAN) is used here for den
 
 Each cluster is then analyzed for relative density:
 
-The number of tweets is very important and will be washed out by the relative size of the area (square meters).  Therefore, a Tweet Variable is defined as: ```2<sup>(number of tweets)</sup>```
+The number of tweets is very important and will be washed out by the relative size of the area (square meters).  Therefore, a Tweet Variable is defined as: _2<sup>(number of tweets)</sup>_
 
 The area of the tweet cluster is defined as the area of the convex hull constructed from the points in the cluster.
+
+(Possible to get an image of this?)
 
 The tweet density is then defined as:
 ```(Tweet Variable) / (Area of convex hull)
