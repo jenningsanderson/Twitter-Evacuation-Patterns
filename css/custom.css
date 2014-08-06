@@ -1,0 +1,12 @@
+a.site-title{
+  font-size: 2em;
+  text-align: center;
+}
+
+a.site-title:hover{
+  font-size: 2em;
+}
+
+th, td{
+  padding: 3px 5px 3px 5px;
+}

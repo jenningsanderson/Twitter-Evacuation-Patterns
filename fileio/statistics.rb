@@ -64,6 +64,52 @@ end #End iterating over users
 #Start RSRuby
 r = RSRuby.instance
 
+# =============  Triangle Perimeters
+# r.png("../img_exports/triangle_perimeters_graph.png",:height=>600,:width=>800)
+# r.plot(
+#   { :x=>(1..triangle_perimeters.length).to_a,
+#     :y=>triangle_perimeters.sort.reverse,
+#     :log=>'y', :ylab=>'Triangle Perimeters',
+#     :xaxt=>'n',:xlab=>"Users"
+#   })
+# r.eval_R "dev.off()"
+
+
+# Triangle Ratios
+users.sort_by{ |user, values| values[:triangle_perimeter] }.each do |user, values|
+
+  triangle_perimeters << values[:triangle_perimeter]
+  isoceles_ratios << values[:isoceles_ratio]
+
+end
+
+r.png("../img_exports/isoceles_ratio_V_perimeter_nolog.png",:height=>600,:width=>800)
+r.plot(
+  { :x=>triangle_perimeters,
+    :y=>isoceles_ratios,
+    :ylab=>'Isoceles Ratios',
+    :xlab=>"Triangle Perimeters"#,
+    #:log=>'xy'
+  })
+r.eval_R "dev.off()"
+
+
+# =============  Triangle Ratios
+# users.sort_by{ |user, values| values[:triangle_perimeter] }.each do |user, values|
+#   triangle_perimeters << values[:triangle_perimeter]
+#   isoceles_ratios << values[:isoceles_ratio]
+# end
+
+# r.png("../img_exports/isoceles_ratio_V_perimeter.png",:height=>600,:width=>800)
+# r.plot(
+#   { :x=>triangle_perimeters,
+#     :y=>isoceles_ratios,
+#     :ylab=>'Isoceles Ratios',
+#     :xlab=>"Triangle Perimeters",
+#     :log=>'xy'
+#   })
+# r.eval_R "dev.off()"
+
 #=============  Triangle Perimeters
 r.png("../img_exports/triangle_perimeters_graph_lte100tweets.png",:height=>600,:width=>800)
 r.plot(
@@ -89,6 +135,7 @@ r.plot(
     :xlab=>"Triangle Perimeters"
   })
 r.eval_R "dev.off()"
+
 
 
 #===============  Tweet Count Histogram

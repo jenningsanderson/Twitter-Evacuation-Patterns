@@ -1,3 +1,4 @@
+_site/*
 *.pages/
 *.DS_Store
 *.gitignore
@@ -6,8 +7,6 @@
 *data/*/*/*
 data
 *.kml
-
-_site/*
 
 #We need to ignore shapefiles
 *.shp
