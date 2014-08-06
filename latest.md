@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Latest
-permalink: /updates/
+permalink: /latest/
 ---
 
 

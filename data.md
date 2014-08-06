@@ -25,15 +25,18 @@ The following two counts are available:
 
 ####Intersecting User ():
 A user's path (the linestring constructed from each of their tweet points) intersects with this bounding box.
+
 ![Intersecting User (Potentially Affected User)]({{site.baseurl}}/img_exports/intersecting_users_example.png)
 
 
 ####Potentially highly affected User ():
 A user's calculated _before_ shelter location lies within this bounding box.
+
 ![Highly Affected User]({{site.baseurl}}/img_exports/highly_impacted_users_example.png)
 
 ####Highly Impacted User (Number coming):
 A user's calculated _before_ shelter location lies within a known evacuation zone.  NYC Evacuation Zones (A,B,C) pictured below:
+
 ![NYC Evacuation Zones]({{site.baseurl}}/img_exports/NYC_evacuation_zones.png)
 
 
