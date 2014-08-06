@@ -49,7 +49,7 @@ This user's calculated _before_ shelter location lies within a known evacuation 
 
 Each user is a document with embedded tweet documents
 
-```
+````
 Twitterer
   -ID
   -Handle
@@ -59,4 +59,4 @@ Twitterer
     -Coordinates
     -Text
     -Time
-```
+````
