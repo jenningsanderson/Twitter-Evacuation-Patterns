@@ -10,3 +10,9 @@ a.site-title:hover{
 th, td{
   padding: 3px 5px 3px 5px;
 }
+
+img{
+  margin-left: 20px;
+  border-left: 2px solid #222;
+  padding-left: 1px;
+}

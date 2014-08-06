@@ -6,9 +6,18 @@ permalink: /data/
 
 #The DataSet
 
-There were over 20 million tweets generated during Hurricane Sandy which referenced Sandy.  These tweets came from (x) distinct users.
+There were 22,250,274 tweets generated during Hurricane Sandy which referenced Sandy.  260,589 of these tweets (1.1%) were geotagged from 154,703 users.
 
-(155,507 users)?
+Collecting these user's geotagged _contextual stream_ of tweets yields a total of 22 million tweets.
+
+Further time-filtering for October 22 - November 7 and manual filtering of easy to find spam, leaves a dataset of (1.9 million tweets)
+
+
+
+##Geo-Based Filtering
+The first round of geo-based filtering is based on the following crude box:
+
+![]
 
 **Geotagged count**
 
