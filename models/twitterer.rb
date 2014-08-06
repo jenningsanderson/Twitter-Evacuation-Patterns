@@ -139,6 +139,8 @@ class Twitterer
 			@before_during = before.distance(during)
 			@during_after  = during.distance(after)
 			@before_after  = before.distance(after)
+
+			@isoceles_ratio = (@before_during / @during_after)
 		end
 	end
 

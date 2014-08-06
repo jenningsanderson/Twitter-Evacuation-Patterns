@@ -9,8 +9,8 @@ require 'epic-geo'
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
-filename = "probable_evacuators"
-limit = 50
+filename = "highly_impacted_user"
+limit = 10
 
 #Prepare a KML file
 puts "Starting the following KML File: #{filename}"

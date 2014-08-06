@@ -39,7 +39,7 @@ tweet_count = []
 users = {}
 
 #Go to the Twitterer collection
-Twitterer.where(:tweet_count.lte => 100).limit(nil).each_with_index do |user, index|
+Twitterer.where(:affected_level => 2, :isoceles_ratio.ne=>nil).limit(nil).each_with_index do |user, index|
 
   users[user.id_str] = {
 
@@ -83,13 +83,16 @@ users.sort_by{ |user, values| values[:triangle_perimeter] }.each do |user, value
 
 end
 
-r.png("../img_exports/isoceles_ratio_V_perimeter_nolog.png",:height=>600,:width=>800)
+puts triangle_perimeters.count
+puts isoceles_ratios.count
+
+r.png("../img_exports/isoceles_ratio_V_perimeter_affected_2.png",:height=>600,:width=>800)
 r.plot(
   { :x=>triangle_perimeters,
     :y=>isoceles_ratios,
     :ylab=>'Isoceles Ratios',
-    :xlab=>"Triangle Perimeters"#,
-    #:log=>'xy'
+    :xlab=>"Triangle Perimeters",
+    :log=>'xy'
   })
 r.eval_R "dev.off()"
 
@@ -111,40 +114,40 @@ r.eval_R "dev.off()"
 # r.eval_R "dev.off()"
 
 #=============  Triangle Perimeters
-r.png("../img_exports/triangle_perimeters_graph_lte100tweets.png",:height=>600,:width=>800)
-r.plot(
-  { :x=>(1..triangle_perimeters.length).to_a,
-    :y=>triangle_perimeters.sort.reverse,
-    :log=>'y', :ylab=>'Triangle Perimeters for Users <= 100 tweets',
-    :xaxt=>'n',:xlab=>"Users"
-  })
-r.eval_R "dev.off()"
+# r.png("../img_exports/triangle_perimeters_graph_lte100tweets.png",:height=>600,:width=>800)
+# r.plot(
+#   { :x=>(1..triangle_perimeters.length).to_a,
+#     :y=>triangle_perimeters.sort.reverse,
+#     :log=>'y', :ylab=>'Triangle Perimeters for Users <= 100 tweets',
+#     :xaxt=>'n',:xlab=>"Users"
+#   })
+# r.eval_R "dev.off()"
 
 
 #=============  Triangle Ratios
-users.sort_by{ |user, values| values[:triangle_perimeter] }.each do |user, values|
-  triangle_perimeters << values[:triangle_perimeter]
-  isoceles_ratios << values[:isoceles_ratio]
-end
-
-r.png("../img_exports/isoceles_ratio_V_perimeter_lte100tweets.png",:height=>600,:width=>800)
-r.plot(
-  { :x=>triangle_perimeters,
-    :y=>isoceles_ratios,
-    :ylab=>'Isoceles Ratios',
-    :xlab=>"Triangle Perimeters"
-  })
-r.eval_R "dev.off()"
+# users.sort_by{ |user, values| values[:triangle_perimeter] }.each do |user, values|
+#   triangle_perimeters << values[:triangle_perimeter]
+#   isoceles_ratios << values[:isoceles_ratio]
+# end
+#
+# r.png("../img_exports/isoceles_ratio_V_perimeter_lte100tweets.png",:height=>600,:width=>800)
+# r.plot(
+#   { :x=>triangle_perimeters,
+#     :y=>isoceles_ratios,
+#     :ylab=>'Isoceles Ratios',
+#     :xlab=>"Triangle Perimeters"
+#   })
+# r.eval_R "dev.off()"
 
 
 
 #===============  Tweet Count Histogram
-r.png("../img_exports/TweetCountHistogram_lte100.png",:height=>600,:width=>800)
-r.hist( {
-    :x=>tweet_count,
-    :ylab=>'Number of Users',
-    :xlab=>"Number of Tweets",
-    :breaks=>200,
-    :main=> "Tweets per User Histogram (Users with <= 100 tweets)"
-  })
-r.eval_R "dev.off()"
+# r.png("../img_exports/TweetCountHistogram_lte100.png",:height=>600,:width=>800)
+# r.hist( {
+#     :x=>tweet_count,
+#     :ylab=>'Number of Users',
+#     :xlab=>"Number of Tweets",
+#     :breaks=>200,
+#     :main=> "Tweets per User Histogram (Users with <= 100 tweets)"
+#   })
+# r.eval_R "dev.off()"
