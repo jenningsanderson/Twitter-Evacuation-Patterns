@@ -33,7 +33,7 @@ The tweet density is then defined as:
 ````(Tweet Variable) / (Area of convex hull)````
 
 ###Step 3. Identify Temporal Spread
-We must determine a user's repetitive tweeting behavior to get the best idea of when and where they tweet.  Empirical analysis and speaking with lead Geo-HCI researcher, (Brent Hecht)[http://www.brenthecht.com/] tells that people generally seem to show repetitive tweet behavior at a given location.  For example, watching television at home at night.
+We must determine a user's repetitive tweeting behavior to get the best idea of when and where they tweet.  Empirical analysis and speaking with lead Geo-HCI researcher, [Brent Hecht](http://www.brenthecht.com/) tells that people generally seem to show repetitive tweet behavior at a given location.  For example, watching television at home at night.
 
 Dividing a 24 hour day into 8 separate time bins of 3 hours, the goal is to find repetitive temporal behavior.
 
