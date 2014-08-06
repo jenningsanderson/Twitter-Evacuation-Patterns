@@ -22,6 +22,10 @@ kml_outfile.write_header("KML Output of Specific Users")
 write_3_bin_styles(kml_outfile.openfile)
 #Should also add a style here
 
+#Prepare the HTML export
+html_export = HTML_Writer.new("../exports/#{filename}.html")
+html_export.write_header('Exported along with KML file')
+
 #Static Setup
 MongoMapper.connection = Mongo::Connection.new #('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
@@ -37,7 +41,7 @@ sandy_dates = [
 time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
-results = Twitterer.where( 
+results = Twitterer.where(
   :affected_level => 1,
   :before_after.lte=> 100,
   :isoceles_ratio.gte => 0.99,
@@ -47,7 +51,7 @@ results = Twitterer.where(
   :before_tweet_count.gte=> min_tweets,
   :during_tweet_count.gte=> min_tweets,
   :after_tweet_count.gte=> min_tweets
-  
+
 ).limit(limit)
 
 puts "Number of results for this query: #{results.count}"
@@ -93,7 +97,7 @@ results.each do |user|
   end
 
   #puts "Total Tweets: #{user.tweets.count}"
-  
+
   #Finished with this user, write the folder
   kml_outfile.write_folder(user_kml_folder)
   print "done\n"

@@ -42,12 +42,13 @@ end
 
 boundary = GEOFACTORY.multi_point(boundary_points).convex_hull
 
-counter = 0
+path_counter = 0
+before_counter = 0
 
 #Search the Twitterer collection
-Twitterer.where( :tweet_count.lt => 105,
-                  :tweet_count.gt => 19
-
+Twitterer.where( :affected_level => 10,
+                 :tweet_count.lt => 500,
+                 :tweet_count.gte => 200
                 ).limit(nil).each_with_index do |user, index|
   #print "User: #{user.handle}..."
 
@@ -56,8 +57,14 @@ Twitterer.where( :tweet_count.lt => 105,
   #Check it
   val = user.user_path.intersects? boundary
   if val
-    counter+=1
+    path_counter+=1
     user.affected_level = 5
+    unless user.before[0].nil?
+      if GEOFACTORY.point(user.before[0], user.before[1]).within? boundary
+        before_counter +=1
+        user.affected_level = 2
+      end
+    end
   end
 
   user.save
@@ -65,6 +72,6 @@ Twitterer.where( :tweet_count.lt => 105,
   if (index % 100).zero?
     print "."
   elsif (index%1001).zero?
-    print "#{counter} / #{index+1}"
+    print "#{path_counter} / #{index+1}"
   end
 end
