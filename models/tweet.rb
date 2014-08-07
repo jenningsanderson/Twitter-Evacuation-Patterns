@@ -30,7 +30,7 @@ class Tweet
   # Given a bson_tweet as returned from Mongo (or parsed via JSON),
   # It creates a (basic) tweet object
   def initialize(bson_tweet)
-    @id_str = bson_tweet["id"]
+    @id_str = bson_tweet["id_str"]
     @text   = bson_tweet["text"]
     @user   = bson_tweet["user"]["id_str"]
     @handle = bson_tweet["user"]["screen_name"]
