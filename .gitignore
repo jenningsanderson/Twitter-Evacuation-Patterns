@@ -7,7 +7,6 @@ _site/*
 *data/*/*/*
 data
 *.kml
-*.html
 
 #We need to ignore shapefiles
 *.shp
