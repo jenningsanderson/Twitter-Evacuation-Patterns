@@ -9,8 +9,8 @@ require 'epic-geo'
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
-filename = "anidiotsjourney"
-limit = 500
+filename = "EffinwitESH"
+limit = 100
 
 #Prepare a KML file
 puts "Starting the following KML File: #{filename}"
@@ -34,21 +34,27 @@ sandy_dates = [
   Time.new(2012,10,19), #Start of dataset
   Time.new(2012,10,28), #Start of storm
   Time.new(2012,11,1),  #End of Storm
-  Time.new(2012,11,10)   #End of Dataset
+  Time.new(2012,11,10)  #End of Dataset
 ]
+
+tweet_limit = 10
 
 #These names correspond with the KML styles for coloring
 time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
-results = Twitterer.where( :handle => "anidiotsjourney"
+results = Twitterer.where( :handle => "EffinwitESH"
                  #:tweet_count.gte=> 300,
                 #  :before_after.lt=> 100,
                 #  :isoceles_ratio.gte => 0.99,
                 #  :isoceles_ratio.lte => 1.01,
                 #  :triangle_perimeter.gte=> 1000,
                 #  :triangle_perimeter.lte=> 500000,
-                #  :affected_level => 2
+                # # :before_during.lt => 160000,
+                #  :affected_level => 2,
+                #  :before_tweet_count.gte => tweet_limit,
+                #  :during_tweet_count.gte => tweet_limit,
+                #  :after_tweet_count.gte => tweet_limit,
               ).limit(limit).sort(:handle)
 
 puts "Query found #{results.count} users"
