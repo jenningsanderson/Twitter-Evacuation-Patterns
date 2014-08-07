@@ -12,7 +12,7 @@ Identifying a natural break in perimeter length could determine a decent thresho
 ![Triangle Perimeter: ]({{site.baseurl}}/img_exports/triangle_perimeters_graph_affected_lt_10.png)
 
 
-####Isoceles Ratio vs.  Triangle Perimeters
+####Isoceles Ratio vs. Triangle Perimeters
 Looking at all users which either intersected with or had their before shelter location within the bounding box.
 
 ![Isoceles Ratio vs. Triangle Perimeter]({{site.baseurl}}/img_exports/isoceles_ratio_V_perimeter_moderately_affected.png)
