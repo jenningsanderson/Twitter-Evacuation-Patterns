@@ -53,6 +53,8 @@ class Twitterer
 	#Filtering Credentials
 	key :affected_level, 	Integer
 
+	key :evac_zone, String
+
 	#Update functions
 	before_save { self.tweet_count = tweets.count }
 
