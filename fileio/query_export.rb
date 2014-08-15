@@ -9,8 +9,8 @@ require 'epic-geo'
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
-filename = "potential_evacuators_not_limited_to_evac"
-limit = nil
+filename = "EffinwitESH"
+limit = 100
 
 #Prepare a KML file
 puts "Starting the following KML File: #{filename}"
@@ -34,14 +34,16 @@ sandy_dates = [
   Time.new(2012,10,19), #Start of dataset
   Time.new(2012,10,28), #Start of storm
   Time.new(2012,11,1),  #End of Storm
-  Time.new(2012,11,10)   #End of Dataset
+  Time.new(2012,11,10)  #End of Dataset
 ]
+
+tweet_limit = 10
 
 #These names correspond with the KML styles for coloring
 time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
-results = Twitterer.where( 
+results = Twitterer.where(
                  :before_after.lte=> 50,
                  :isoceles_ratio.gte => 0.99,
                  :isoceles_ratio.lte => 1.01,
