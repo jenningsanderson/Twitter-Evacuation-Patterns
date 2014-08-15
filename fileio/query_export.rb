@@ -9,8 +9,8 @@ require 'epic-geo'
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
-filename = "highly_impacted_user"
-limit = 10
+filename = "shelter_in_place_evac_zones"
+limit = nil
 
 #Prepare a KML file
 puts "Starting the following KML File: #{filename}"
@@ -41,13 +41,13 @@ sandy_dates = [
 time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
-results = Twitterer.where( :tweet_count.lte=> 100,
-                 :before_after.lte=> 100,
-                 :isoceles_ratio.gte => 0.99,
-                 :isoceles_ratio.lte => 1.01,
-                 :triangle_perimeter.gte=> 1000,
-                 :triangle_perimeter.lte=> 500000,
-                 :affected_level => 2
+results = Twitterer.where( 
+                 # :before_after.lte=> 100,
+                 # :isoceles_ratio.gte => 0.9,
+                 # :isoceles_ratio.lte => 1.1,
+                 #:triangle_perimeter.gte=> 1000,
+                 :triangle_perimeter.lte=> 1000,
+                 :affected_level => 1
               ).limit(limit).sort(:handle)
 
 puts "Query found #{results.count} users"

@@ -50,6 +50,8 @@ class Twitterer
 	key :after_tweet_count, Integer
 	key :tri_confidence, Float
 
+	key :evac_zones,		Array
+
 	#Filtering Credentials
 	key :affected_level, 	Integer
 

@@ -29,13 +29,67 @@ raw_evac_zones = RGeo::GeoJSON.decode(geojson_file, :json_parser => :json)
 
 evac_zones = raw_evac_zones.group_by{|zone| zone['CAT1NNE']}
 
-geom = evac_zones["A"][0].geometry.to_s
+zone_arrays = {}
 
-zone_a_1 = GEOFACTORY.parse_wkt(geom)
+["A","B","C"].each{|zone|
+	zone_arrays[zone] = []
+	evac_zones[zone].each do |part|
+		zone_arrays[zone] << GEOFACTORY.parse_wkt(part.geometry.to_s)
+	end
+}
 
-puts zone_a_1.class
+puts "finished parsing this particular geometry"
 
-puts zone_a_1.area
+#Now that we have the zones made, we just iterate and see who's there...
+
+potential_affected = Twitterer.where(:affected_level => 2)
+
+count = potential_affected.count
+puts "Found #{count} users:"
+
+Twitterer.where(:affected_level => 2).each_with_index do |user, index|
+	before = GEOFACTORY.point(user.before[0], user.before[1])
+	during = GEOFACTORY.point(user.during[0], user.during[1])
+	after  = GEOFACTORY.point(user.after[0],  user.after[1])
+	
+	flag = false
+	user.evac_zones = []
+
+	[before, during, after].each do |time_frame|
+
+		zone_arrays["A"].each do |zone|
+			if time_frame.within? zone
+				flag = true
+				user.affected_level = 1
+				user.evac_zones << "Before"
+			end
+		end
+
+		zone_arrays["B"].each do |zone|
+			if time_frame.within? zone
+				flag = true
+				user.evac_zones << "During"
+			end
+		end
+
+		zone_arrays["B"].each do |zone|
+			if time_frame.within? zone
+				flag = true
+				user.evac_zones << "After"
+			end
+		end
+	end
+
+	user.save if flag
+
+	if (index % 100).zero?
+		print "."
+	elsif (index %1001).zero?
+		print "(#{index}/#{count})"
+	end
+end
+
+#Returns nil because the polygons overlap...
 
 # puts evac_zones["A"].collect{|parts| parts["geom"]}
 
