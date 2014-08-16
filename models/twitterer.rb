@@ -48,14 +48,15 @@ class Twitterer
 	key :before_tweet_count, Integer
 	key :during_tweet_count, Integer
 	key :after_tweet_count, Integer
-	key :tri_confidence, Float
-
-	key :evac_zones,		Array
+	key :tri_confidence,	Float
 
 	#Filtering Credentials
-	key :affected_level, 	Integer
+	key :affected_level_before,	Integer
+	key :affected_level_during,	Integer
+	key :affected_level_after,	Integer
+	key :path_affected,		Boolean
 
-	key :evac_zone, String
+	key :evac_zone, 		String #Not implemented?
 
 	#Update functions
 	before_save { self.tweet_count = tweets.count }
