@@ -13,26 +13,26 @@ require_relative '../models/tweet'
 require_relative '../processing/geoprocessing'
 
 #Static Setup
-MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
-MongoMapper.database = 'sandygeo'
+# MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
+# MongoMapper.database = 'sandygeo'
 
-geojson_string = %{"{
-  "type": "Polygon",
-  "coordinates": [[
-    [-76.055416,36.988536],
-    [-76.416506,39.084008],
-    [-73.872974,41.654353],
-    [-70.874853,41.732875],
-    [-76.055416,36.988536]
-    ]]
-  }"
-}
+# geojson_string = %{"{
+#   "type": "Polygon",
+#   "coordinates": [[
+#     [-76.055416,36.988536],
+#     [-76.416506,39.084008],
+#     [-73.872974,41.654353],
+#     [-70.874853,41.732875],
+#     [-76.055416,36.988536]
+#     ]]
+#   }"
+# }
 
-rgeo_geojson = RGeo::GeoJSON.decode(geojson_string, :json_parser => :json)
+ncar_geojson = File.read('../GeoJSON/NCAR_BoundingBox.GeoJSON')
 
-puts rgeo_geojson.inspect
+rgeo_geojson = RGeo::GeoJSON.decode(ncar_geojson, :json_parser => :json)
 
-# ncar_bounding_box = GEOFACTORY.polygon.parse_wkt( rgeo_geojson.geometry.to_s )
+ncar_bounding_box = GEOFACTORY.parse_wkt( rgeo_geojson[0].geometry.to_s )
 
 # #Now iterate over the Twitterer collection to update the affected_level parameter (Set it to 4 if they fall in this zone)
 # Twitterer.where(
