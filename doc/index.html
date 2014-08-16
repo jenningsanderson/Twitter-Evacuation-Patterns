@@ -2,93 +2,293 @@
 
 <html>
 <head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta charset="UTF-8">
 
 <title>RDoc Documentation</title>
 
-<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
 </script>
 
-<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
 
 
-<body>
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="./index.html">Home</a>
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
     <a href="./table_of_contents.html#classes">Classes</a>
     <a href="./table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
+  </div>
+</div>
 
 
-  <nav id="search-section" class="section project-section" class="initially-hidden">
+    <div id="search-section" role="search" class="project-section initially-hidden">
   <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
              title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
   </form>
+</div>
 
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
-
+  </div>
 
   <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
 
-  <ul>
+  <ul class="link-list">
   
-    <li class="file"><a href="./README_md.html">README</a>
+    <li><a href="./GeoJSON/NYC_EvacZones_GeoJSON.html">NYC_EvacZones.GeoJSON</a>
   
-    <li class="file"><a href="./doc/created_rid.html">created.rid</a>
+    <li><a href="./README_md.html">README</a>
+  
+    <li><a href="./_includes/footer_html.html">footer.html</a>
+  
+    <li><a href="./_includes/head_html.html">head.html</a>
+  
+    <li><a href="./_includes/header_html.html">header.html</a>
+  
+    <li><a href="./_layouts/default_html.html">default.html</a>
+  
+    <li><a href="./_layouts/page_html.html">page.html</a>
+  
+    <li><a href="./_layouts/post_html.html">post.html</a>
+  
+    <li><a href="./_posts/2014-07-28-summary-statistics_md.html">2014-07-28-summary-statistics</a>
+  
+    <li><a href="./_posts/2014-07-28-triangle-analysis_md.html">2014-07-28-triangle-analysis</a>
+  
+    <li><a href="./_posts/2014-07-31-db-scan_md.html">2014-07-31-db-scan</a>
+  
+    <li><a href="./_posts/2014-08-04-New-Statistics_md.html">2014-08-04-New-Statistics</a>
+  
+    <li><a href="./_posts/2014-08-05-Latest-Statistics_md.html">2014-08-05-Latest-Statistics</a>
+  
+    <li><a href="./css/custom_css.html">custom.css</a>
+  
+    <li><a href="./css/main_css.html">main.css</a>
+  
+    <li><a href="./doc/Cluster_html.html">Cluster.html</a>
+  
+    <li><a href="./doc/Mongo_html.html">Mongo.html</a>
+  
+    <li><a href="./doc/Object_html.html">Object.html</a>
+  
+    <li><a href="./doc/README_md_html.html">README_md.html</a>
+  
+    <li><a href="./doc/Tweet_html.html">Tweet.html</a>
+  
+    <li><a href="./doc/Tweet/RGeo_html.html">RGeo.html</a>
+  
+    <li><a href="./doc/Twitterer_html.html">Twitterer.html</a>
+  
+    <li><a href="./doc/Twitterer/RGeo_html.html">RGeo.html</a>
+  
+    <li><a href="./doc/doc/created_rid_html.html">created_rid.html</a>
+  
+    <li><a href="./doc/index_html.html">index.html</a>
+  
+    <li><a href="./doc/js/darkfish_js.html">darkfish.js</a>
+  
+    <li><a href="./doc/js/jquery_js.html">jquery.js</a>
+  
+    <li><a href="./doc/js/navigation_js.html">navigation.js</a>
+  
+    <li><a href="./doc/js/search_js.html">search.js</a>
+  
+    <li><a href="./doc/js/search_index_js.html">search_index.js</a>
+  
+    <li><a href="./doc/js/searcher_js.html">searcher.js</a>
+  
+    <li><a href="./doc/rdoc_css.html">rdoc.css</a>
+  
+    <li><a href="./doc/table_of_contents_html.html">table_of_contents.html</a>
+  
+    <li><a href="./exports/AlexJBaker_html.html">AlexJBaker.html</a>
+  
+    <li><a href="./exports/AlexJBaker_kml.html">AlexJBaker.kml</a>
+  
+    <li><a href="./exports/DBScanClusters_kml.html">DBScanClusters.kml</a>
+  
+    <li><a href="./exports/EffinwitESH_html.html">EffinwitESH.html</a>
+  
+    <li><a href="./exports/EffinwitESH_kml.html">EffinwitESH.kml</a>
+  
+    <li><a href="./exports/KML_Output_kml.html">KML_Output.kml</a>
+  
+    <li><a href="./exports/K_Means_Median_Clustering_kml.html">K_Means_Median_Clustering.kml</a>
+  
+    <li><a href="./exports/Twitterer_KML_Export_kml.html">Twitterer_KML_Export.kml</a>
+  
+    <li><a href="./exports/ageciuba_html.html">ageciuba.html</a>
+  
+    <li><a href="./exports/ageciuba_kml.html">ageciuba.kml</a>
+  
+    <li><a href="./exports/all_users_who_started_in_evac_zone_html.html">all_users_who_started_in_evac_zone.html</a>
+  
+    <li><a href="./exports/all_users_who_started_in_evac_zone_kml.html">all_users_who_started_in_evac_zone.kml</a>
+  
+    <li><a href="./exports/anidiotsjourney_html.html">anidiotsjourney.html</a>
+  
+    <li><a href="./exports/anidiotsjourney_kml.html">anidiotsjourney.kml</a>
+  
+    <li><a href="./exports/before_point_in_evac_zone_html.html">before_point_in_evac_zone.html</a>
+  
+    <li><a href="./exports/before_point_in_evac_zone_kml.html">before_point_in_evac_zone.kml</a>
+  
+    <li><a href="./exports/before_point_in_evac_zone_before_after_lte100_html.html">before_point_in_evac_zone_before_after_lte100.html</a>
+  
+    <li><a href="./exports/before_point_in_evac_zone_before_after_lte100_kml.html">before_point_in_evac_zone_before_after_lte100.kml</a>
+  
+    <li><a href="./exports/chime_live_demo_html.html">chime_live_demo.html</a>
+  
+    <li><a href="./exports/chime_live_demo_kml.html">chime_live_demo.kml</a>
+  
+    <li><a href="./exports/chime_live_demo2_html.html">chime_live_demo2.html</a>
+  
+    <li><a href="./exports/chime_live_demo2_kml.html">chime_live_demo2.kml</a>
+  
+    <li><a href="./exports/evacuators_with_before_point_in_evac_zone_html.html">evacuators_with_before_point_in_evac_zone.html</a>
+  
+    <li><a href="./exports/evacuators_with_before_point_in_evac_zone_kml.html">evacuators_with_before_point_in_evac_zone.kml</a>
+  
+    <li><a href="./exports/first_before_zone_html.html">first_before_zone.html</a>
+  
+    <li><a href="./exports/first_before_zone_kml.html">first_before_zone.kml</a>
+  
+    <li><a href="./exports/good_sample_evacuators_html.html">good_sample_evacuators.html</a>
+  
+    <li><a href="./exports/good_sample_evacuators_kml.html">good_sample_evacuators.kml</a>
+  
+    <li><a href="./exports/highly_impacted_user_html.html">highly_impacted_user.html</a>
+  
+    <li><a href="./exports/highly_impacted_user_kml.html">highly_impacted_user.kml</a>
+  
+    <li><a href="./exports/intersecting_user_html.html">intersecting_user.html</a>
+  
+    <li><a href="./exports/intersecting_user_kml.html">intersecting_user.kml</a>
+  
+    <li><a href="./exports/median_locations_kml.html">median_locations.kml</a>
+  
+    <li><a href="./exports/new_clustering_algorithm_kml.html">new_clustering_algorithm.kml</a>
+  
+    <li><a href="./exports/perfect_triangles_html.html">perfect_triangles.html</a>
+  
+    <li><a href="./exports/perfect_triangles_kml.html">perfect_triangles.kml</a>
+  
+    <li><a href="./exports/potential_evacuators_html.html">potential_evacuators.html</a>
+  
+    <li><a href="./exports/potential_evacuators_kml.html">potential_evacuators.kml</a>
+  
+    <li><a href="./exports/potential_evacuators_not_limited_to_evac_html.html">potential_evacuators_not_limited_to_evac.html</a>
+  
+    <li><a href="./exports/potential_evacuators_not_limited_to_evac_kml.html">potential_evacuators_not_limited_to_evac.kml</a>
+  
+    <li><a href="./exports/probable_evacuators_html.html">probable_evacuators.html</a>
+  
+    <li><a href="./exports/probable_evacuators_kml.html">probable_evacuators.kml</a>
+  
+    <li><a href="./exports/sample_evac_gt10_perbin_html.html">sample_evac_gt10_perbin.html</a>
+  
+    <li><a href="./exports/sample_evac_gt10_perbin_kml.html">sample_evac_gt10_perbin.kml</a>
+  
+    <li><a href="./exports/shelter_in_place_evac_zones_html.html">shelter_in_place_evac_zones.html</a>
+  
+    <li><a href="./exports/shelter_in_place_evac_zones_kml.html">shelter_in_place_evac_zones.kml</a>
+  
+    <li><a href="./exports/shelter_in_place_in_evac_zone_html.html">shelter_in_place_in_evac_zone.html</a>
+  
+    <li><a href="./exports/shelter_in_place_in_evac_zone_kml.html">shelter_in_place_in_evac_zone.kml</a>
+  
+    <li><a href="./exports/test_affected_users_html.html">test_affected_users.html</a>
+  
+    <li><a href="./exports/test_boundaries-camilletuutti_kml.html">test_boundaries-camilletuutti.kml</a>
+  
+    <li><a href="./exports/test_boundaries-sam_gardner_kml.html">test_boundaries-sam_gardner.kml</a>
+  
+    <li><a href="./exports/test_boundaries_kml.html">test_boundaries.kml</a>
+  
+    <li><a href="./exports/test_user-alexiscamuso_kml.html">test_user-alexiscamuso.kml</a>
+  
+    <li><a href="./exports/test_user-epiczombie23_kml.html">test_user-epiczombie23.kml</a>
+  
+    <li><a href="./exports/test_user-mandisa2994_kml.html">test_user-mandisa2994.kml</a>
+  
+    <li><a href="./exports/test_user-sidkneemurrick_kml.html">test_user-sidkneemurrick.kml</a>
+  
+    <li><a href="./exports/testing_html.html">testing.html</a>
+  
+    <li><a href="./exports/testing_kml.html">testing.kml</a>
+  
+    <li><a href="./exports/testing_algo_again_kml.html">testing_algo_again.kml</a>
+  
+    <li><a href="./index_md.html">index</a>
+  
+    <li><a href="./pages/about_md.html">about</a>
+  
+    <li><a href="./pages/data_md.html">data</a>
+  
+    <li><a href="./pages/design_md.html">design</a>
+  
+    <li><a href="./pages/latest_md.html">latest</a>
+  
+    <li><a href="./pages/triangles_md.html">triangles</a>
   
   </ul>
-</nav>
+</div>
 
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
+    <div id="classindex-section" class="nav-section">
+  <h3>Class and Module Index</h3>
 
   <ul class="link-list">
   
     <li><a href="./Cluster.html">Cluster</a>
   
-    <li><a href="./Mongo.html">Mongo</a>
+    <li><a href="./DBScanCluster.html">DBScanCluster</a>
   
     <li><a href="./Object.html">Object</a>
   
     <li><a href="./Tweet.html">Tweet</a>
   
-    <li><a href="./Tweet/RGeo.html">Tweet::RGeo</a>
-  
     <li><a href="./Twitterer.html">Twitterer</a>
   
-    <li><a href="./Twitterer/RGeo.html">Twitterer::RGeo</a>
-  
   </ul>
-</nav>
+</div>
 
   </div>
 </nav>
 
-<div id="documentation" class="description">
+<main role="main">
 <p>This is the API documentation for RDoc Documentation.
-</div>
+</main>
 
 
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

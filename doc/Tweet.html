@@ -2,72 +2,71 @@
 
 <html>
 <head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta charset="UTF-8">
 
 <title>class Tweet - RDoc Documentation</title>
 
-<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
 </script>
 
-<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
 
 
-<body id="top" class="class">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="./index.html">Home</a>
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
     <a href="./table_of_contents.html#classes">Classes</a>
     <a href="./table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
+  </div>
+</div>
 
-
-  <nav id="search-section" class="section project-section" class="initially-hidden">
+    <div id="search-section" role="search" class="project-section initially-hidden">
   <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
              title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
   </form>
+</div>
 
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
-
+  </div>
 
   
-
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>models/tweet.rb
-  </ul>
-</nav>
-
-    
-  </div>
 
   <div id="class-metadata">
     
-    <nav id="parent-class-section" class="section">
-  <h3 class="section-header">Parent</h3>
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
   
   <p class="link"><a href="Object.html">Object</a>
   
-</nav>
+</div>
 
-    <!-- Included Modules -->
-<nav id="includes-section" class="section">
-  <h3 class="section-header">Included Modules</h3>
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
 
   <ul class="link-list">
   
@@ -76,70 +75,35 @@
   
   
   </ul>
-</nav>
+</div>
 
     
     <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
 
-  <ul class="link-list">
+  <ul class="link-list" role="directory">
     
     <li ><a href="#method-c-new">::new</a>
     
     <li ><a href="#method-i-as_epic_kml">#as_epic_kml</a>
     
-    <li ><a href="#method-i-as_point">#as_point</a>
+    <li ><a href="#method-i-point">#point</a>
     
   </ul>
-</nav>
-
-  </div>
-
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="./README_md.html">README</a>
-  
-    <li class="file"><a href="./doc/created_rid.html">created.rid</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="./Cluster.html">Cluster</a>
-  
-    <li><a href="./Mongo.html">Mongo</a>
-  
-    <li><a href="./Object.html">Object</a>
-  
-    <li><a href="./Tweet.html">Tweet</a>
-  
-    <li><a href="./Tweet/RGeo.html">Tweet::RGeo</a>
-  
-    <li><a href="./Twitterer.html">Twitterer</a>
-  
-    <li><a href="./Twitterer/RGeo.html">Twitterer::RGeo</a>
-  
-  </ul>
-</nav>
+</div>
 
   </div>
 </nav>
 
-<div id="documentation">
-  <h1 class="class">class Tweet</h1>
+<main role="main" aria-labelledby="class-Tweet">
+  <h1 id="class-Tweet" class="class">
+    class Tweet
+  </h1>
 
-  <div id="description" class="description">
+  <section class="description">
     
-  </div><!-- description -->
+  </section>
 
   
   
@@ -152,31 +116,46 @@
     
 
     
-    <!-- Attributes -->
-    <section id="attribute-method-details" class="method-section section">
-      <h3 class="section-header">Attributes</h3>
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
 
       
-      <div id="attribute-i-point" class="method-detail">
+      <div id="attribute-i-cluster" class="method-detail">
         <div class="method-heading attribute-method-heading">
-          <span class="method-name">point</span><span
-            class="attribute-access-type">[R]</span>
+          <span class="method-name">cluster</span><span
+            class="attribute-access-type">[RW]</span>
         </div>
 
         <div class="method-description">
         
-        <p>A <a href="Tweet.html">Tweet</a> can be accessed as an RGEO point object</p>
+        <p>Used for DBScan Clustering</p>
         
         </div>
       </div>
       
-    </section><!-- attribute-method-details -->
+      <div id="attribute-i-visited" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">visited</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Used for DBScan Clustering</p>
+        
+        </div>
+      </div>
+      
+    </section>
     
 
-    <!-- Methods -->
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Class Methods</h3>
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
 
     
       <div id="method-c-new" class="method-detail ">
@@ -192,38 +171,38 @@
 
         <div class="method-description">
           
-          <p>Given a bson_tweet as returned from <a href="Mongo.html">Mongo</a> (or
-parsed via JSON),</p>
-
-<pre>It creates a tweet object</pre>
+          <p>Given a bson_tweet as returned from Mongo (or parsed via JSON), It creates
+a (basic) tweet object</p>
           
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File models/tweet.rb, line 30</span>
+            <pre><span class="ruby-comment"># File models/tweet.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">bson_tweet</span>)
-  <span class="ruby-ivar">@id_str</span> = <span class="ruby-identifier">bson_tweet</span>[<span class="ruby-string">&quot;id&quot;</span>]
+  <span class="ruby-ivar">@id_str</span> = <span class="ruby-identifier">bson_tweet</span>[<span class="ruby-string">&quot;id_str&quot;</span>]
   <span class="ruby-ivar">@text</span>   = <span class="ruby-identifier">bson_tweet</span>[<span class="ruby-string">&quot;text&quot;</span>]
   <span class="ruby-ivar">@user</span>   = <span class="ruby-identifier">bson_tweet</span>[<span class="ruby-string">&quot;user&quot;</span>][<span class="ruby-string">&quot;id_str&quot;</span>]
   <span class="ruby-ivar">@handle</span> = <span class="ruby-identifier">bson_tweet</span>[<span class="ruby-string">&quot;user&quot;</span>][<span class="ruby-string">&quot;screen_name&quot;</span>]
   <span class="ruby-ivar">@date</span>   = <span class="ruby-identifier">bson_tweet</span>[<span class="ruby-string">&quot;created_at&quot;</span>]
   <span class="ruby-ivar">@coordinates</span> = <span class="ruby-identifier">bson_tweet</span>[<span class="ruby-string">&quot;coordinates&quot;</span>]
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- new-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- new-method -->
+      </div>
 
     
-    </section><!-- public-class-method-details -->
+    </section>
   
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
 
     
       <div id="method-i-as_epic_kml" class="method-detail ">
@@ -241,13 +220,13 @@ parsed via JSON),</p>
           
           <p>To write the tweet to a kml file from epic-geo,</p>
 
-<pre>it must be formatted like so.</pre>
+<pre>it must be formatted as follows:</pre>
           
           
 
           
           <div class="method-source-code" id="as_epic_kml-source">
-            <pre><span class="ruby-comment"># File models/tweet.rb, line 48</span>
+            <pre><span class="ruby-comment"># File models/tweet.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">as_epic_kml</span>(<span class="ruby-identifier">style</span>=<span class="ruby-keyword">nil</span>)
   {<span class="ruby-value">:time</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@date</span>,
    <span class="ruby-value">:style</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">style</span>,
@@ -261,20 +240,20 @@ parsed via JSON),</p>
       #{@date}}</span>
   }
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- as_epic_kml-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- as_epic_kml-method -->
+      </div>
 
     
-      <div id="method-i-as_point" class="method-detail ">
+      <div id="method-i-point" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">as_point</span><span
+          <span class="method-name">point</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -289,33 +268,33 @@ parsed via JSON),</p>
           
 
           
-          <div class="method-source-code" id="as_point-source">
-            <pre><span class="ruby-comment"># File models/tweet.rb, line 40</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">as_point</span>
-  <span class="ruby-ivar">@point</span> = <span class="ruby-identifier">@@geo_factory</span>.<span class="ruby-identifier">point</span>(
+          <div class="method-source-code" id="point-source">
+            <pre><span class="ruby-comment"># File models/tweet.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">point</span>
+  <span class="ruby-comment">#Return point or define and then return point</span>
+  <span class="ruby-ivar">@point</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">@@geo_factory</span>.<span class="ruby-identifier">point</span>(
         <span class="ruby-ivar">@coordinates</span>[<span class="ruby-string">&quot;coordinates&quot;</span>][<span class="ruby-value">0</span>],
         <span class="ruby-ivar">@coordinates</span>[<span class="ruby-string">&quot;coordinates&quot;</span>][<span class="ruby-value">1</span>])
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- as_point-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- as_point-method -->
+      </div>
 
     
-    </section><!-- public-instance-method-details -->
+    </section>
   
-  </section><!-- 5Buntitled-5D -->
+  </section>
+</main>
 
-</div><!-- documentation -->
 
-
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

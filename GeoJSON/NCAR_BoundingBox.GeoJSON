@@ -1,0 +1,20 @@
+{
+"type" : "FeatureCollection",
+"features" : [{
+		"type": "Feature",
+		"properties" : {
+			"Source" : "NCAR"
+		},
+		"geometry" : {
+			"type": "Polygon",
+			"coordinates": [[
+			[-76.055416,36.988536],
+			[-76.416506,39.084008],
+			[-73.872974,41.654353],
+			[-70.874853,41.732875],
+			[-76.055416,36.988536]
+			]]
+		}
+	}]
+}
+

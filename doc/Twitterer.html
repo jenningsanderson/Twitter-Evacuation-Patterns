@@ -2,72 +2,71 @@
 
 <html>
 <head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta charset="UTF-8">
 
 <title>class Twitterer - RDoc Documentation</title>
 
-<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
 </script>
 
-<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
 
 
-<body id="top" class="class">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="./index.html">Home</a>
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
     <a href="./table_of_contents.html#classes">Classes</a>
     <a href="./table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
+  </div>
+</div>
 
-
-  <nav id="search-section" class="section project-section" class="initially-hidden">
+    <div id="search-section" role="search" class="project-section initially-hidden">
   <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
              title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
   </form>
+</div>
 
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
-
+  </div>
 
   
-
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>models/twitterer.rb
-  </ul>
-</nav>
-
-    
-  </div>
 
   <div id="class-metadata">
     
-    <nav id="parent-class-section" class="section">
-  <h3 class="section-header">Parent</h3>
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
   
   <p class="link"><a href="Object.html">Object</a>
   
-</nav>
+</div>
 
-    <!-- Included Modules -->
-<nav id="includes-section" class="section">
-  <h3 class="section-header">Included Modules</h3>
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
 
   <ul class="link-list">
   
@@ -76,20 +75,22 @@
   
   
   </ul>
-</nav>
+</div>
 
     
     <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
 
-  <ul class="link-list">
+  <ul class="link-list" role="directory">
     
     <li ><a href="#method-i-build_evac_triangle">#build_evac_triangle</a>
     
     <li ><a href="#method-i-full_median_point_json">#full_median_point_json</a>
     
     <li ><a href="#method-i-full_user_path_json">#full_user_path_json</a>
+    
+    <li ><a href="#method-i-get_weighted_poi_from_clusters">#get_weighted_poi_from_clusters</a>
     
     <li ><a href="#method-i-individual_points_json">#individual_points_json</a>
     
@@ -110,54 +111,19 @@
     <li ><a href="#method-i-userpath_as_epic_kml">#userpath_as_epic_kml</a>
     
   </ul>
-</nav>
-
-  </div>
-
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="./README_md.html">README</a>
-  
-    <li class="file"><a href="./doc/created_rid.html">created.rid</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="./Cluster.html">Cluster</a>
-  
-    <li><a href="./Mongo.html">Mongo</a>
-  
-    <li><a href="./Object.html">Object</a>
-  
-    <li><a href="./Tweet.html">Tweet</a>
-  
-    <li><a href="./Tweet/RGeo.html">Tweet::RGeo</a>
-  
-    <li><a href="./Twitterer.html">Twitterer</a>
-  
-    <li><a href="./Twitterer/RGeo.html">Twitterer::RGeo</a>
-  
-  </ul>
-</nav>
+</div>
 
   </div>
 </nav>
 
-<div id="documentation">
-  <h1 class="class">class Twitterer</h1>
+<main role="main" aria-labelledby="class-Twitterer">
+  <h1 id="class-Twitterer" class="class">
+    class Twitterer
+  </h1>
 
-  <div id="description" class="description">
+  <section class="description">
     
-  </div><!-- description -->
+  </section>
 
   
   
@@ -170,9 +136,10 @@
     
 
     
-    <!-- Attributes -->
-    <section id="attribute-method-details" class="method-section section">
-      <h3 class="section-header">Attributes</h3>
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
 
       
       <div id="attribute-i-after" class="method-detail">
@@ -227,13 +194,14 @@
         </div>
       </div>
       
-    </section><!-- attribute-method-details -->
+    </section>
     
 
-    <!-- Methods -->
     
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
 
     
       <div id="method-i-build_evac_triangle" class="method-detail ">
@@ -255,8 +223,8 @@
 
           
           <div class="method-source-code" id="build_evac_triangle-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 87</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_evac_triangle</span>()
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 130</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_evac_triangle</span>
         <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@before</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@during</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@after</span>.<span class="ruby-identifier">nil?</span>
                 <span class="ruby-identifier">before</span> = <span class="ruby-identifier">@@tweet_factory</span>.<span class="ruby-identifier">point</span>(<span class="ruby-ivar">@before</span>[<span class="ruby-value">0</span>], <span class="ruby-ivar">@before</span>[<span class="ruby-value">1</span>])
                 <span class="ruby-identifier">during</span> = <span class="ruby-identifier">@@tweet_factory</span>.<span class="ruby-identifier">point</span>(<span class="ruby-ivar">@during</span>[<span class="ruby-value">0</span>], <span class="ruby-ivar">@during</span>[<span class="ruby-value">1</span>])
@@ -272,16 +240,18 @@
                 <span class="ruby-ivar">@before_during</span> = <span class="ruby-identifier">before</span>.<span class="ruby-identifier">distance</span>(<span class="ruby-identifier">during</span>)
                 <span class="ruby-ivar">@during_after</span>  = <span class="ruby-identifier">during</span>.<span class="ruby-identifier">distance</span>(<span class="ruby-identifier">after</span>)
                 <span class="ruby-ivar">@before_after</span>  = <span class="ruby-identifier">before</span>.<span class="ruby-identifier">distance</span>(<span class="ruby-identifier">after</span>)
+
+                <span class="ruby-ivar">@isoceles_ratio</span> = (<span class="ruby-ivar">@before_during</span> <span class="ruby-operator">/</span> <span class="ruby-ivar">@during_after</span>)
         <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- build_evac_triangle-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- build_evac_triangle-method -->
+      </div>
 
     
       <div id="method-i-full_median_point_json" class="method-detail ">
@@ -303,7 +273,7 @@
 
           
           <div class="method-source-code" id="full_median_point_json-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 154</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 199</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">full_median_point_json</span>
         <span class="ruby-identifier">median_point</span> = <span class="ruby-identifier">find_median_point</span> <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span>
                 <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">coordinates</span>[<span class="ruby-string">&quot;coordinates&quot;</span>]
@@ -311,14 +281,14 @@
 
         <span class="ruby-keyword">return</span> {<span class="ruby-value">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Point&quot;</span>, <span class="ruby-value">:coordinates</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">median_point</span>}
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- full_median_point_json-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- full_median_point_json-method -->
+      </div>
 
     
       <div id="method-i-full_user_path_json" class="method-detail ">
@@ -340,19 +310,80 @@
 
           
           <div class="method-source-code" id="full_user_path_json-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 149</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 194</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">full_user_path_json</span>
         <span class="ruby-identifier">points</span> = <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">collect</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">coordinates</span>[<span class="ruby-string">&quot;coordinates&quot;</span>]}
         <span class="ruby-keyword">return</span> {<span class="ruby-value">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;LineString&quot;</span>, <span class="ruby-value">:coordinates</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">points</span>}
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- full_user_path_json-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- full_user_path_json-method -->
+      </div>
+
+    
+      <div id="method-i-get_weighted_poi_from_clusters" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_weighted_poi_from_clusters</span><span
+            class="method-args">(tweet_clusters)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Find the median point of the densest cluster from a set of clusters</p>
+
+<pre class="ruby">=<span class="ruby-operator">&gt;</span> <span class="ruby-constant">This</span> <span class="ruby-identifier">function</span> <span class="ruby-identifier">calls</span> <span class="ruby-identifier">functions</span> <span class="ruby-identifier">from</span> <span class="ruby-identifier">geoprocessing</span>
+=<span class="ruby-operator">&gt;</span> <span class="ruby-constant">The</span> <span class="ruby-identifier">incoming</span> <span class="ruby-identifier">tweet_clusters</span> <span class="ruby-identifier">is</span> <span class="ruby-identifier">a</span> <span class="ruby-identifier">hash</span> <span class="ruby-identifier">from</span> <span class="ruby-constant">DBscan</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="get_weighted_poi_from_clusters-source">
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_weighted_poi_from_clusters</span>(<span class="ruby-identifier">tweet_clusters</span>)
+
+        <span class="ruby-comment">#A metric for confidence</span>
+        <span class="ruby-ivar">@tri_confidence</span> = <span class="ruby-value">0</span> <span class="ruby-comment"># =&gt; unimplemented</span>
+
+        <span class="ruby-comment">#This function DOES account for time it&#39;s called in the get_most_dense_cluster function</span>
+
+        <span class="ruby-comment">#Be careful here because tweet_clusters is a Hash where one key may be negative 1.</span>
+        <span class="ruby-comment"># Remove the key of -1 if it exists (This is the group of scattered tweets)</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">tweet_clusters</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value">-1</span>
+                <span class="ruby-identifier">tweet_clusters</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">-1</span>)
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-keyword">unless</span>
+                <span class="ruby-identifier">tweet_clusters</span>.<span class="ruby-identifier">length</span>.<span class="ruby-identifier">zero?</span>
+
+                <span class="ruby-comment">#Find the densest cluster</span>
+                <span class="ruby-identifier">densest_cluster</span> = <span class="ruby-identifier">get_most_dense_cluster</span>(<span class="ruby-identifier">tweet_clusters</span>.<span class="ruby-identifier">values</span>) <span class="ruby-comment">#Pass in just the points</span>
+
+                <span class="ruby-comment">#Find the median point</span>
+                <span class="ruby-keyword">return</span> <span class="ruby-identifier">find_median_point</span>(<span class="ruby-identifier">densest_cluster</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tweet</span>[<span class="ruby-string">&quot;coordinates&quot;</span>][<span class="ruby-string">&quot;coordinates&quot;</span>]})
+
+                <span class="ruby-comment"># =&gt; returns [x,y] (Not a point object)</span>
+        <span class="ruby-keyword">else</span>
+                <span class="ruby-keyword">return</span> [<span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>]
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
 
     
       <div id="method-i-individual_points_json" class="method-detail ">
@@ -376,19 +407,19 @@
 
           
           <div class="method-source-code" id="individual_points_json-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 127</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 172</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">individual_points_json</span>
         <span class="ruby-identifier">points</span> = <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">collect</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">coordinates</span>[<span class="ruby-string">&quot;coordinates&quot;</span>]}
         <span class="ruby-keyword">return</span> {<span class="ruby-value">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;MultiPoint&quot;</span>, <span class="ruby-value">:coordinates</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">points</span>}
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- individual_points_json-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- individual_points_json-method -->
+      </div>
 
     
       <div id="method-i-individual_tweets_json" class="method-detail ">
@@ -410,7 +441,7 @@
 
           
           <div class="method-source-code" id="individual_tweets_json-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 134</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 179</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">individual_tweets_json</span>
         <span class="ruby-identifier">features</span> = []
         <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span>
@@ -424,14 +455,14 @@
         <span class="ruby-keyword">end</span>
         <span class="ruby-keyword">return</span> {<span class="ruby-value">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;FeatureCollection&quot;</span>, <span class="ruby-value">:features</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">features</span>}
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- individual_tweets_json-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- individual_tweets_json-method -->
+      </div>
 
     
       <div id="method-i-point_as_epic_kml" class="method-detail ">
@@ -453,20 +484,20 @@
 
           
           <div class="method-source-code" id="point_as_epic_kml-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 179</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 224</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">point_as_epic_kml</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">style</span>=<span class="ruby-keyword">nil</span>)
         { <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>,
                 <span class="ruby-value">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">style</span>,
           <span class="ruby-value">:geometry</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">GeoRuby</span><span class="ruby-operator">::</span><span class="ruby-constant">SimpleFeatures</span><span class="ruby-operator">::</span><span class="ruby-constant">Point</span>.<span class="ruby-identifier">from_coordinates</span>([<span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span>]) }
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- point_as_epic_kml-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- point_as_epic_kml-method -->
+      </div>
 
     
       <div id="method-i-process_tweet_points" class="method-detail ">
@@ -488,18 +519,18 @@
 
           
           <div class="method-source-code" id="process_tweet_points-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 52</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">process_tweet_points</span>
-        <span class="ruby-ivar">@points</span> = <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">collect</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">as_point</span> }
+        <span class="ruby-ivar">@points</span> = <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">collect</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">point</span> }
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- process_tweet_points-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- process_tweet_points-method -->
+      </div>
 
     
       <div id="method-i-set_poi" class="method-detail ">
@@ -522,18 +553,20 @@
 
           
           <div class="method-source-code" id="set_poi-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 82</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 123</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_poi</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">coords</span>)
-        <span class="ruby-identifier">instance_eval</span> <span class="ruby-node">&quot;@#{type} = #{coords}&quot;</span>
+        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">coords</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">nil?</span>
+                <span class="ruby-identifier">instance_eval</span> <span class="ruby-node">&quot;@#{type} = #{coords}&quot;</span>
+        <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- set_poi-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- set_poi-method -->
+      </div>
 
     
       <div id="method-i-split_tweets_into_time_bins" class="method-detail ">
@@ -555,7 +588,7 @@
 
           
           <div class="method-source-code" id="split_tweets_into_time_bins-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 107</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 152</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">split_tweets_into_time_bins</span>(<span class="ruby-identifier">time_bins</span>)
         <span class="ruby-identifier">binned_tweets</span> = []
 
@@ -567,14 +600,14 @@
 
         <span class="ruby-keyword">return</span> <span class="ruby-identifier">binned_tweets</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- split_tweets_into_time_bins-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- split_tweets_into_time_bins-method -->
+      </div>
 
     
       <div id="method-i-user_path" class="method-detail ">
@@ -596,21 +629,21 @@
 
           
           <div class="method-source-code" id="user_path-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 65</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">user_path</span>
         <span class="ruby-keyword">if</span> <span class="ruby-ivar">@points</span>.<span class="ruby-identifier">nil?</span>
                 <span class="ruby-identifier">process_tweet_points</span>
         <span class="ruby-keyword">end</span>
         <span class="ruby-ivar">@userpath</span> = <span class="ruby-identifier">@@tweet_factory</span>.<span class="ruby-identifier">line_string</span>(<span class="ruby-ivar">@points</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- user_path-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- user_path-method -->
+      </div>
 
     
       <div id="method-i-user_points" class="method-detail ">
@@ -632,21 +665,21 @@
 
           
           <div class="method-source-code" id="user_points-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 57</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">user_points</span>
         <span class="ruby-keyword">if</span> <span class="ruby-ivar">@points</span>.<span class="ruby-identifier">nil?</span>
                 <span class="ruby-identifier">process_tweet_points</span>
         <span class="ruby-keyword">end</span>
         <span class="ruby-identifier">@@tweet_factory</span>.<span class="ruby-identifier">multi_point</span>(<span class="ruby-ivar">@points</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- user_points-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- user_points-method -->
+      </div>
 
     
       <div id="method-i-userpath_as_epic_kml" class="method-detail ">
@@ -668,7 +701,7 @@
 
           
           <div class="method-source-code" id="userpath_as_epic_kml-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 169</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 214</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">userpath_as_epic_kml</span>
         <span class="ruby-identifier">linestring</span> = <span class="ruby-constant">GeoRuby</span><span class="ruby-operator">::</span><span class="ruby-constant">SimpleFeatures</span><span class="ruby-operator">::</span><span class="ruby-constant">LineString</span>.<span class="ruby-identifier">from_coordinates</span>(
                 <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">coordinates</span>[<span class="ruby-string">&quot;coordinates&quot;</span>]} )
@@ -677,26 +710,25 @@
          <span class="ruby-value">:geometry</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">linestring</span>,
         }
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- userpath_as_epic_kml-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- userpath_as_epic_kml-method -->
+      </div>
 
     
-    </section><!-- public-instance-method-details -->
+    </section>
   
-  </section><!-- 5Buntitled-5D -->
+  </section>
+</main>
 
-</div><!-- documentation -->
 
-
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 
