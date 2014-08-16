@@ -13,7 +13,7 @@ require_relative '../models/tweet'
 require_relative '../processing/geoprocessing'
 
 #Static Setup
-MongoMapper.connection = Mongo::Connection.new#('epic-analytics.cs.colorado.edu')
+MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
 #Get the NCAR bounding box:
@@ -42,6 +42,7 @@ string_vals = ["before", "during", "after"]
 
 
 #Now iterate over the entire collection
+found = 0
 Twitterer.where(
 				
 				:tweet_count.gte => 1 #All users
@@ -67,7 +68,9 @@ Twitterer.where(
 		[before, during, after].each_with_index do |time_frame, index| #This is x3 time.
 
 			if time_frame.within? ncar_bounding_box
-				user.instance_eval "affected_level_#{string_vals[index]} = 10" #user.affected_level_before = 10 if their before value falls into bounding box.  Straight forward?
+
+				found += 1
+				eval "user.affected_level_#{string_vals[index]} = 10" #user.affected_level_before = 10 if their before value falls into bounding box.  Straight forward?
 
 				#Now it's time to investigate if that value is within an actual evacuation zone.
 				["A", "B", "C"].each_with_index do |zone, zone_index| #Will be 0,1,2
@@ -75,7 +78,9 @@ Twitterer.where(
 					zone_arrays[zone].each do |zone_geometry| #Iterate through each of the elements of the zone
 						
 						if time_frame.within? zone_geometry #Check if the point is within the zone geom
-							user.instance_eval "affected_level_#{string_vals[index]} = #{zone_index+1}" #Will be 1 for A, 2 for B, and 3 for C.
+							string = "user.affected_level_#{string_vals[index]} = #{zone_index+1}"
+							eval string #Will be 1 for A, 2 for B, and 3 for C.
+						
 						end
 					end
 				end
@@ -90,6 +95,6 @@ Twitterer.where(
 	if (index % 100).zero?
 		print "."
 	elsif (index%1001).zero?
-		print "#{path_counter} / #{index+1}"
+		print "#{found} / #{index+1}"
 	end
 end
