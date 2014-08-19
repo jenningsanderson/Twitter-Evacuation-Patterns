@@ -9,7 +9,7 @@ require 'epic-geo'
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
-filename = "EffinwitESH"
+filename = "shelter_in_place_zone_a"
 limit = 100
 
 #Prepare a KML file
@@ -44,13 +44,15 @@ time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
 results = Twitterer.where(
-                 :before_after.lte=> 50,
-                 :isoceles_ratio.gte => 0.99,
-                 :isoceles_ratio.lte => 1.01,
-                 :triangle_perimeter.gte=> 1000,
-                 :triangle_perimeter.lte=> 500000,
+                 #:before_after.lte=> 50,
+                 #:isoceles_ratio.gte => 0.99,
+                 #:isoceles_ratio.lte => 1.01,
+                 #:triangle_perimeter.gte=> 1000,
+                 #:triangle_perimeter.lte=> 500000,
                  #:triangle_perimeter.lte => 1000,
-                 :affected_level.lte => 2
+                 :affected_level_before => 1,
+                 :affected_level_during => 1,
+                 :affected_level_after => 1
               ).limit(limit).sort(:handle)
 
 puts "Query found #{results.count} users"
