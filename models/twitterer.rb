@@ -50,10 +50,12 @@ class Twitterer
 	key :before_after, 		Float
 	key :isoceles_ratio, 	Float
 
+	key :shelter_in_place,  Boolean
+	key :confidence, 		Float
+
 	key :before_tweet_count,	Integer
 	key :during_tweet_count,	Integer
 	key :after_tweet_count, 	Integer
-	key :tri_confidence,		Float
 
 	#Filtering Credentials
 	key :affected_level_before,	Integer
@@ -129,24 +131,55 @@ class Twitterer
 # ----------------- New POI Algorithm Functions -------------------#
 
 	def new_location_calculation
-	# 1. Build clusters from tweets with DBScan.	#Calls the DBScan Algorithm from ../processing/db_scan.rb
+	# 1. Build clusters from tweets with DBScan.	
 
+		#Calls the DBScan Algorithm from ../processing/db_scan.rb
 		# Parameters: epsilon = max distance (50 meters), min_pts = 3, for triangulation
 		dbscanner = DBScanCluster.new(tweets, epsilon=50, min_pts=3) #This seems to work okay...
 
 		# Run the db_scan algorithm
 	    @clusters = dbscanner.run
 
-	    #Throw away the unclassifiable cluster
+	    #Throw away the unclassifiable cluster (Save them as a variable with the Twitterer for now)
 	    @unclassified_tweets = @clusters.delete(-1)
 
-	# 2. Now analyze the clusters to find temporal holes?
+    # 1.5 If a user now has no clusters, then we can't classify them.  If they have one cluster, then
+    # they are a shelter-in-placer.
+    	if @clusters.keys.length < 2
+    		case @clusters.keys.length
+    		when 0
+    			@affected_level = 1000 #Cannot determine an appropriate value for this user.
+    			@before = nil
+    			@during = nil
+    			@after  = nil
+    		when 1
+    			@shelter_in_place = true 
+    			location = find_median_point(@clusters[0].collect{|tweet| tweet["coordinates"]["coordinates"]})
+    			@before, @during, @after = location, location, location
+    		end
+    	end
+
+
+	# 2. Analyze the clusters to find temporal holes
+
+		#Sort the clusters by length (number of tweets is most important)
+
+		t_scores = []
 		@clusters.sort_by{|k,v| v.length}.reverse.each do |id, cluster|
-
-			puts "Cluster: #{id} has #{cluster.length} tweets with T_Score of #{score_temporal_patterns(cluster)}"
-			find_temporal_holes(cluster)
-
+			#The t_score is the spread.
+			t_score = score_temporal_patterns(cluster)
+			t_scores << t_score
+			puts "Cluster: #{id} has #{cluster.length} tweets with T_Score of #{t_score}"
+			group_cluster_by_days(cluster)
 		end
+
+	# 2.5 If a user only has one cluster, then they must be a shelter-in-place person.
+	# Mark their before, during, and after as the same location.
+		if @clusters.
+
+		find_temporal_holes(@clusters)
+
+	# 3. 
 
 	
 	end

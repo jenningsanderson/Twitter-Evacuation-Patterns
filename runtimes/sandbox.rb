@@ -23,12 +23,12 @@ MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
 #Define the timewindows to split the tweets into
-# sandy_dates = [
-#   Time.new(2012,10,20), #Start of dataset
-#   Time.new(2012,10,28), #Start of storm
-#   Time.new(2012,11,1),  #End of Storm
-#   Time.new(2012,11,9)   #End of Dataset
-# ]
+sandy_dates = [
+  Time.new(2012,10,20), #Start of dataset
+  Time.new(2012,10,28), #Start of storm
+  Time.new(2012,11,1),  #End of Storm
+  Time.new(2012,11,9)   #End of Dataset
+]
 
 #These names correspond with the KML styles for coloring
 styles = ["before", "after"]
@@ -40,7 +40,8 @@ end
 #Search the Twitterer collection
 Twitterer.where( 
 
-  :tweet_count.gte => 50
+  :tweet_count.gte => 50,
+  :affected_level_before => 1
 
   ).limit(10).each do |user|
   puts "User: #{user.handle}..."
