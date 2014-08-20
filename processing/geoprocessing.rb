@@ -12,6 +12,7 @@ require 'debugger'
 
 require_relative 'db_scan'
 require_relative 'k-means'
+require_relative 'time_processing'
 
 #Algorithm adopted from Andrew Hardin's C# function.
 # Given an array of points, this function will sort the x,y coordinates and
@@ -69,20 +70,6 @@ def build_active_time_bins(tweets, dates)
 	end
 	return binned_tweets
 end
-
-def score_temporal_patterns(tweets)
-	times = tweets.collect{|tweet| tweet["date"]}
-
-	blocks = []
-
-	times.each do |time|
-		blocks << time.hour/3
-	end
-
-	blocks.group_by{|value| value}.keys.length # => Essentially a measure of deviation
-
-end
-
 
 
 #Get clusters via k-means clustering from an array of Tweets

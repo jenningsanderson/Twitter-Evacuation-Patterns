@@ -5,6 +5,8 @@
 #
 # This class extends a MongoMapper document with embedded Tweet objects
 #
+# For the purpose of Efficiency, this model only includes tweets with Geotags.
+#
 
 require 'mongo_mapper'
 require 'active_model'
@@ -12,7 +14,7 @@ require 'rgeo' 					# RGEO is stronger geo-processing
 require 'georuby'				# Georuby allows for easier point => KML
 
 #Load the geoprocessing algorithms
-require_relative '../processing/geoprocessing'
+require_relative '../processing/geoprocessing' #Is this actually necessary?
 
 class Twitterer
 
@@ -22,14 +24,17 @@ class Twitterer
 	#Enable access to points of interest
 	attr_reader :points, :before, :during, :after
 
+	#Mostly for testing, but maybe need access to these
+	attr_reader :clusters, :unclassified_tweets
+
 	#Extend MongoMapper
 	include MongoMapper::Document
 
 	#Key Twitterer Values needed
 	key :id_str, 			String, :required => true, :unique => true
-	key :handle, 			String
-	key :tweet_count, Integer
-	key :issue,				Integer
+	key :handle, 			String, :required => true
+	key :tweet_count, 		Integer
+	key :issue,				Integer #A flag
 
 	#Embed the following types of documents:
 	many :tweets
@@ -39,36 +44,40 @@ class Twitterer
 	key :during, 			Array
 	key :after, 			Array
 	key :triangle_area, 	Float
-	key :triangle_perimeter, Float
+	key :triangle_perimeter,Float
 	key :before_during, 	Float
 	key :during_after, 		Float
 	key :before_after, 		Float
 	key :isoceles_ratio, 	Float
 
-	key :before_tweet_count, Integer
-	key :during_tweet_count, Integer
-	key :after_tweet_count, Integer
-	key :tri_confidence,	Float
+	key :before_tweet_count,	Integer
+	key :during_tweet_count,	Integer
+	key :after_tweet_count, 	Integer
+	key :tri_confidence,		Float
 
 	#Filtering Credentials
 	key :affected_level_before,	Integer
 	key :affected_level_during,	Integer
 	key :affected_level_after,	Integer
-	key :path_affected,		Boolean
+	key :path_affected,			Boolean
 
-	key :evac_zone, 		String #Not implemented?
+	#On Save functions
+	before_save do
 
-	#Update functions
-	before_save { self.tweet_count = tweets.count }
+		self.tweet_count = tweets.count #Update the local tweet_count variable.
 
-# --------------------- GeoSpatial Functions ------------------------#
-
-	#Create rgeo points array for all tweets
-	def process_tweet_points
-		@points = tweets.collect{ |tweet| tweet.point }
 	end
 
-	# Just the points as a multi_point geo object
+
+
+# --------------------- GeoSpatial General Functions ------------------------#
+
+	#Create an rgeo points array for all of a user's tweets
+	def process_tweet_points
+		@points = tweets.collect{ |tweet| tweet.point } #tweet.point returns an Rgeo point for the tweet
+	end
+
+	# Return Just the points as a multi_point geo object
 	def user_points
 		if @points.nil?
 			process_tweet_points
@@ -114,6 +123,32 @@ class Twitterer
 		else
 			return [nil, nil]
 		end
+	end
+
+
+# ----------------- New POI Algorithm Functions -------------------#
+
+	def new_location_calculation
+	# 1. Build clusters from tweets with DBScan.	#Calls the DBScan Algorithm from ../processing/db_scan.rb
+
+		# Parameters: epsilon = max distance (50 meters), min_pts = 3, for triangulation
+		dbscanner = DBScanCluster.new(tweets, epsilon=50, min_pts=3) #This seems to work okay...
+
+		# Run the db_scan algorithm
+	    @clusters = dbscanner.run
+
+	    #Throw away the unclassifiable cluster
+	    @unclassified_tweets = @clusters.delete(-1)
+
+	# 2. Now analyze the clusters to find temporal holes?
+		@clusters.sort_by{|k,v| v.length}.reverse.each do |id, cluster|
+
+			puts "Cluster: #{id} has #{cluster.length} tweets with T_Score of #{score_temporal_patterns(cluster)}"
+			find_temporal_holes(cluster)
+
+		end
+
+	
 	end
 
 
