@@ -148,7 +148,7 @@ class Twitterer
     	if @clusters.keys.length < 2
     		case @clusters.keys.length
     		when 0
-    			@affected_level = 1000 #Cannot determine an appropriate value for this user.
+    			@affected_level = 1000 #Cannot determine an appropriate location for this user.
     			@before = nil
     			@during = nil
     			@after  = nil
@@ -157,32 +157,33 @@ class Twitterer
     			location = find_median_point(@clusters[0].collect{|tweet| tweet["coordinates"]["coordinates"]})
     			@before, @during, @after = location, location, location
     		end
-    	end
+    	else #Continue with the analysis
 
 
 	# 2. Analyze the clusters to find temporal holes
 
-		#Sort the clusters by length (number of tweets is most important)
+			t_scores = {} #t_scores by cluster
 
-		t_scores = []
-		@clusters.sort_by{|k,v| v.length}.reverse.each do |id, cluster|
-			#The t_score is the spread.
-			t_score = score_temporal_patterns(cluster)
-			t_scores << t_score
-			puts "Cluster: #{id} has #{cluster.length} tweets with T_Score of #{t_score}"
-			group_cluster_by_days(cluster)
-		end
+			#Sort the clusters by length (number of tweets is most important)
+			@clusters.sort_by{|k,v| v.length}.reverse.each do |id, cluster|
+				
+				#The t_score is the spread.
+				t_scores[id] = score_temporal_patterns(cluster)
+				
+				puts "Cluster: #{id} has #{cluster.length} tweets with T_Score of #{t_scores[id]}"
+			
+			end
 
-	# 2.5 If a user only has one cluster, then they must be a shelter-in-place person.
-	# Mark their before, during, and after as the same location.
-		if @clusters.
-
-		find_temporal_holes(@clusters)
+			find_temporal_holes(@clusters, t_scores)
 
 	# 3. 
-
 	
-	end
+
+
+
+		end #End case that @clusters.length > 1
+	
+	end #End function
 
 
 # ----------------- Evacuation Analysis Functions -----------------#

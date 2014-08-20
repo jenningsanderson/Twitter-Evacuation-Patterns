@@ -22,7 +22,7 @@ def group_cluster_by_days(tweets)
 end
 
 
-def find_temporal_holes(clusters)
+def find_temporal_holes(clusters, t_scores)
 
 	#Which days involve which clusters?
 
@@ -43,8 +43,9 @@ def find_temporal_holes(clusters)
 		puts "#{k} ==> #{v}"
 	end
 
-end
+	starting_point = 
 
+end
 
 
 
