@@ -42,8 +42,8 @@ Twitterer.where(
 
   #:tweet_count.gte => 50,
   #:affected_level_before => 1
-  :issue => 100
-  #:handle => "arojass"
+  :issue => 100,
+  :handle => "iKhoiBui"
   ).limit(50).sort(:handle).each do |user|
   print "User: #{user.handle}..."
 

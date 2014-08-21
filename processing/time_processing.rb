@@ -3,7 +3,6 @@
 #
 #
 
-
 require 'time'
 
 BEFORE_SANDY = Time.new("2012","10","29").yday
@@ -62,42 +61,73 @@ def find_temporal_pattern(clusters, t_scores)
 	shelter_zones = []
 	zone_scores = {}
 
-	valid_keys.each_with_index do |day, day_index|
+	valid_keys.each_with_index do |day|
 
-		clusters_by_day[day].each do |zone| #Looking at zones for each day
+		#If more than one zone per day, handle that separately
 
+		if clusters_by_day[day].length == 1
+			zone = clusters_by_day[day][0]
 			zone_scores[zone] ||=0
-			
+
 			#Have to start somewhere, so put first zone(s) in
-			if day_index.zero?
+			if shelter_zones.empty?
 				#Push the first zone value(s) onto the stack, but do not score the value
-				shelter_zones << zone
+				shelter_zones.unshift(zone)
+			
 			else
-				last_val = shelter_zones.pop #Pop the last value off the stack
+				if shelter_zones.include? zone
+					weight = shelter_zones.index(zone)+1 #This will determine where it is, relatively
+					zone_scores[zone] += (1.to_f / weight)
+				end
+				shelter_zones.unshift(zone) #Add the zone to the front
+			end
+		else
+			#We have a day with multiple zones
+			if shelter_zones.empty?
+				
+				#Create the shelter_zones array with these datapoints
+				shelter_zones = clusters_by_day[day] 
+			else
+				#Need to find the indexes and take the lower one, then push that value.
+				prev_zone = clusters_by_day[day].shift #Pop the zone off the front
+				zone_scores[prev_zone] ||=0
+				prev_weight = 10000
+				if shelter_zones.include? prev_zone
+					prev_weight = shelter_zones.index(prev_zone)+1
+				end
 
-				if last_val == zone #This zone is equal to the last zone, cool, consistency, reward:
-					shelter_zones << zone << zone #Add it back on twice
-					zone_scores[zone] += 1 #Increment the zone score
-				
-				else #It was not the last one, so pop it off until we find it?
-				
-					while (last_val != zone) or (last_val != nil)
-						last_val = shelter_zones.pop
+				until clusters_by_day[day].empty? do
+					this_zone = clusters_by_day[day].shift
+					zone_scores[this_zone] ||=0
+					if shelter_zones.include? this_zone
+						this_weight = shelter_zones.index(this_zone)+1
+						
+						if this_weight < prev_weight
+							prev_weight = this_weight
+							prev_zone = this_zone
+						end
+					
 					end
-
-					#Now put this zone onto the stack
-					shelter_zones << zone
+				
+				end
+				shelter_zones.unshift(prev_zone)
+				unless prev_weight == 10000
+					zone_scores[prev_zone] += (1.to_f / prev_weight)
 				end
 			end
 		end
 	end
+
+	shelter_zones.reverse!
+
+	#Now find the shelter zones that were pertinent:
+
 
 	puts "================" 
 	print shelter_zones
 	puts "\n----------------"
 	print zone_scores
 	puts "\n================"
-
 
 	return 1 if shelter_zones.uniq.length == 1
 
