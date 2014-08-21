@@ -20,3 +20,8 @@ Now... How to do that.
 
 
 
+
+####Issues with Previous Method
+
+ 1. Users were far too dynamic in their time bins. Static time bins could not capture it.
+ 2. Evacuations are not as clear cut as originally hoped.  Some users did not return home immediately, this is probably  the result of the power outages along the Eastern Seaboard.

@@ -32,7 +32,7 @@ class Twitterer
 
 	#Key Twitterer Values needed
 	key :id_str, 			String, :required => true, :unique => true
-	key :handle, 			String, :required => true
+	key :handle, 			String
 	key :tweet_count, 		Integer
 	key :issue,				Integer #A flag
 
@@ -50,12 +50,15 @@ class Twitterer
 	key :before_after, 		Float
 	key :isoceles_ratio, 	Float
 
+	key :unclassifiable,    Boolean
 	key :shelter_in_place,  Boolean
 	key :confidence, 		Float
 
 	key :before_tweet_count,	Integer
 	key :during_tweet_count,	Integer
 	key :after_tweet_count, 	Integer
+
+	key :unclassified_percentage, Float
 
 	#Filtering Credentials
 	key :affected_level_before,	Integer
@@ -135,13 +138,15 @@ class Twitterer
 
 		#Calls the DBScan Algorithm from ../processing/db_scan.rb
 		# Parameters: epsilon = max distance (50 meters), min_pts = 3, for triangulation
-		dbscanner = DBScanCluster.new(tweets, epsilon=50, min_pts=3) #This seems to work okay...
+		dbscanner = DBScanCluster.new(tweets, epsilon=25, min_pts=2) #This seems to work okay...
 
 		# Run the db_scan algorithm
 	    @clusters = dbscanner.run
 
 	    #Throw away the unclassifiable cluster (Save them as a variable with the Twitterer for now)
 	    @unclassified_tweets = @clusters.delete(-1)
+
+	    @unclassified_percentage = @unclassified_tweets.length.to_f / tweets.count
 
     # 1.5 If a user now has no clusters, then we can't classify them.  If they have one cluster, then
     # they are a shelter-in-placer.
@@ -164,19 +169,36 @@ class Twitterer
 
 			t_scores = {} #t_scores by cluster
 
-			#Sort the clusters by length (number of tweets is most important)
+			#Sort the clusters by length (number of tweets is most important, as that's our indicator)
 			@clusters.sort_by{|k,v| v.length}.reverse.each do |id, cluster|
 				
-				#The t_score is the spread.
+				#The t_score is the spread, weighted by tweets.
 				t_scores[id] = score_temporal_patterns(cluster)
 				
-				puts "Cluster: #{id} has #{cluster.length} tweets with T_Score of #{t_scores[id]}"
-			
+				#puts "Cluster: #{id} has #{cluster.length} tweets with T_Score of #{t_scores[id]}"
 			end
 
-			find_temporal_holes(@clusters, t_scores)
+
+		#The temporal pattern will return 0 or 1 if it's a short case, otherwise it will
+			
+			points_of_interest = find_temporal_pattern(@clusters, t_scores)
+
+			if points_of_interest.is_a? Integer
+				case points_of_interest 
+				when 0
+					@unclassifiable = true
+				when 1
+					@shelter_in_place = true
+				end
+			else
+				before_cluster = points_of_interest[:before]
+				during_cluster = points_of_interest[:during]
+				after_cluster  = points_of_interest[:after]
+			end
 
 	# 3. 
+
+		#puts "Unclassified %: #{@unclassified_percentage}"
 	
 
 

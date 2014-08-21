@@ -40,11 +40,12 @@ end
 #Search the Twitterer collection
 Twitterer.where( 
 
-  :tweet_count.gte => 50,
-  :affected_level_before => 1
-
-  ).limit(10).each do |user|
-  puts "User: #{user.handle}..."
+  #:tweet_count.gte => 50,
+  #:affected_level_before => 1
+  :issue => 100
+  #:handle => "arojass"
+  ).limit(50).sort(:handle).each do |user|
+  print "User: #{user.handle}..."
 
   user.new_location_calculation
 
@@ -76,7 +77,16 @@ Twitterer.where(
 
     count +=1
   end
-  puts "-----------------------"
+  
+  if user.shelter_in_place
+    puts "\tShelter In Place"
+  elsif user.unclassifiable
+    puts "\tNot Enough Information"
+  else
+    puts "\tMoved"
+  end
+
+  puts "\n"
 
   kml_outfile.write_folder(kml_folder)
 
