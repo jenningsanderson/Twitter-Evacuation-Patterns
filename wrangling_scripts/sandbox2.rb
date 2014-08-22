@@ -13,12 +13,8 @@ MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
 results = Twitterer.where(
-	:issue.gte => 50,
-	:unclassifiable => nil,
-	:shelter_in_place => true,
-	:shelter_in_place_location => nil
-	
-)
+	:hazard_level_before => 10
+).limit(1)
 
 puts "Found #{results.count} results, now processing"
 
@@ -26,15 +22,11 @@ results.each_with_index do |user, index|
 
 	puts user.handle
 
-	unless user.cluster_locations[:before_home].nil? and user.cluster_locations[:after_home].nil?
-		if user.cluster_locations[:before_home] == user.cluster_locations[:after_home]
-	 		if user.during_storm_movement.empty?
-	 			user.shelter_in_place_location = user.cluster_locations[:before_home]
-	 			user.save
-			end
-		end
-	end
+	user.new_location_calculation
 
+	user.issue = 23
+
+	#user.save
 
 	puts "\n====================\n"
 

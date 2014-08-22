@@ -3,10 +3,10 @@
 # 
 # Sets a hazard_level_before for just the before point
 
-require 'rubygems'
-require 'bundler/setup'
-require 'active_support'
-require 'active_support/deprecation'
+# require 'rubygems'
+# require 'bundler/setup'
+# require 'active_support'
+# require 'active_support/deprecation'
 
 require 'mongo_mapper'
 require 'epic-geo'

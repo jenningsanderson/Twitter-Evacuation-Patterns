@@ -46,7 +46,6 @@ class Twitterer
 	#key :affected_level, 	Boolean
 
 	key :hazard_level_before, Integer
-
 	key :unclassifiable,    Boolean
 	key :shelter_in_place,  Boolean
 	key :shelter_in_place_location, 	Array
