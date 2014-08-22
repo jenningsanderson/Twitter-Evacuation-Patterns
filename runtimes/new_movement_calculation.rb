@@ -5,10 +5,11 @@
 require 'rubygems'
 require 'bundler/setup'
 
+require 'active_support'
+require 'active_support/deprecation'
+
 require 'mongo_mapper'
 require 'epic-geo'
-
-require 'active_support/deprecation'
 
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
