@@ -3,7 +3,6 @@
 #
 require 'mongo_mapper'
 require 'epic-geo'
-require 'rgeo'
 
 require_relative '../models/twitterer'
 require_relative '../models/tweet'

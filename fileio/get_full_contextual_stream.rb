@@ -67,7 +67,11 @@ def retrieve_file(name)
 	    	puts e.backtrace
 	    	puts "Stream may not have existed for: #{user}"
 	    end
-		return tweets.sort_by{|tweet| tweet[:date]}
+	    if tweets.length > 0
+			return tweets.sort_by{|tweet| tweet[:date]}
+		else
+			puts "No tweets!"
+		end
 	else
 		puts "Error, unable to find the stream"
 		return false
