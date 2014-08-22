@@ -59,7 +59,7 @@ def retrieve_file(name)
 	    	puts e.backtrace
 	    	puts "Stream may not have existed for: #{user}"
 	    end
-		return tweets
+		return tweets.sort_by{|tweet| tweet[:date]}
 	else
 		puts "Error, unable to find the stream"
 		return false
@@ -89,6 +89,6 @@ users.each do |handle|
 end 
 
 #Finally, close the files...
-html_export.write_navigation
+html_export.write_navigation("User List")
 html_export.write_content
 html_export.close_file
