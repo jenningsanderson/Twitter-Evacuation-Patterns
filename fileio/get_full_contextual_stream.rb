@@ -75,6 +75,6 @@ users.each do |handle|
 end 
 
 #Finally, close the files...
-html_export.write_navigation("User List")
+html_export.write_navigation
 html_export.write_content
 html_export.close_file
