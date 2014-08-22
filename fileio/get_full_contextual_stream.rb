@@ -32,6 +32,7 @@ def retrieve_file(name)
 			file_path = test_path
 			in_stream  = File.open(file_path,'r')
 			break
+		end
 	end
 
 	unless file_path.nil?
