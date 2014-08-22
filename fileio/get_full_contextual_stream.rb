@@ -69,12 +69,13 @@ def retrieve_file(name)
 		geo_count = 0
 		in_stream.each do |line|
 			tweet = JSON.parse(line.chomp)
+        	
         	if tweet['coordinates']
 				geo_count += 1
 			end
 			reg_count +=1
 
-			tweets << {:date=>tweet["created_at", :text=>tweet["text"]}
+			tweets << {:date =>tweet["created_at"], :text=>tweet["text"] }
           
 		end
     	puts "----------Geo Ratio for #{user}: #{geo_count} / #{reg_count}---------------\n"
