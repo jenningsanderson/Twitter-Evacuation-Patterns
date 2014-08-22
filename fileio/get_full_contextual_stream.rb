@@ -9,8 +9,8 @@ require 'epic-geo'
 require 'time'
 
 
-start_date = Time.new(2012,07,01)
-end_date   = Time.new(2012,12,31)
+START_DATE = Time.new(2012,07,01)
+END_DATE   = Time.new(2012,12,31)
 
 #Find the document on the server
 def retrieve_file(name)
@@ -57,7 +57,7 @@ def retrieve_file(name)
 
 				date = Time.parse(tweet["created_at"])
 
-				if (date > start_date) and (date < end_date)
+				if (date > START_DATE) and (date < END_DATE)
 					tweets << {:date => date.to_s, :text=>tweet["text"] }
 	          	end
 			end
