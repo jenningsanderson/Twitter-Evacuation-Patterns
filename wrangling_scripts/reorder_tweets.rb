@@ -2,7 +2,8 @@
 # Reorder the Tweets to be temporally accurate
 require 'rubygems'
 require 'bundler/setup'
-
+require 'active_support'
+require 'active_support/deprecation'
 require 'mongo_mapper'
 
 require_relative '../models/twitterer'
