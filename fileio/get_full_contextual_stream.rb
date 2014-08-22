@@ -8,6 +8,10 @@ require 'epic-geo'
 
 require 'time'
 
+
+start_date = Time.new(2012,07,01)
+end_date   = Time.new(2012,12,31)
+
 #Find the document on the server
 def retrieve_file(name)
 
@@ -51,8 +55,11 @@ def retrieve_file(name)
 				end
 				reg_count +=1
 
-				tweets << {:date => Time.parse(tweet["created_at"]), :text=>tweet["text"] }
-	          
+				date = Time.parse(tweet["created_at"])
+
+				if (date > start_date) and (date < end_date)
+					tweets << {:date => date.to_s, :text=>tweet["text"] }
+	          	end
 			end
 	    	puts "----------Geo Ratio for #{user}: #{geo_count} / #{reg_count}---------------\n"
 	    rescue => e
