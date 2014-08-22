@@ -31,29 +31,37 @@ def retrieve_file(name)
 		end
 	end
 
-	#Now read the stream and return the Hash
+	puts "Found the stream at: #{filepath}"
 
-	begin
-		reg_count = 0
-		geo_count = 0
-		in_stream.each do |line|
-			tweet = JSON.parse(line.chomp)
-        	
-        	if tweet['coordinates']
-				geo_count += 1
+	unless in_stream.nil?
+
+		#Now read the stream and return the Hash
+		begin
+			reg_count = 0
+			geo_count = 0
+			in_stream.each do |line|
+				tweet = JSON.parse(line.chomp)
+	        	
+	        	if tweet['coordinates']
+					geo_count += 1
+				end
+				reg_count +=1
+
+				tweets << {:date =>tweet["created_at"], :text=>tweet["text"] }
+	          
 			end
-			reg_count +=1
+	    	puts "----------Geo Ratio for #{user}: #{geo_count} / #{reg_count}---------------\n"
+	    rescue => e
+	    	p $!
+	    	puts e.backtrace
+	    	puts "Stream may not have existed for: #{user}"
+	    end
+		return tweets
+	else
+		puts "Error, unable to find the stream"
+		return false
+	end
 
-			tweets << {:date =>tweet["created_at"], :text=>tweet["text"] }
-          
-		end
-    	puts "----------Geo Ratio for #{user}: #{geo_count} / #{reg_count}---------------\n"
-    rescue
-    	p $!
-    	puts "Stream may not have existed for: #{user}"
-    end
-
-    return tweets
 end
 
 #====================== Runtime down here
@@ -70,8 +78,11 @@ users = ["iKhoiBui"]
 
 users.each do |handle|
 	tweets = retrieve_file(handle)
-	this_content = {:name => handle, :content=>tweets}
-	html_export.add_content(this_content)
+	
+	if tweets
+		this_content = {:name => handle, :content=>tweets}
+		html_export.add_content(this_content)
+	end
 end 
 
 #Finally, close the files...
