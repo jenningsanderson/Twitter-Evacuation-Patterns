@@ -1,5 +1,7 @@
 #
 # Reorder the Tweets to be temporally accurate
+require 'rubygems'
+require 'bundler/setup'
 
 require 'mongo_mapper'
 

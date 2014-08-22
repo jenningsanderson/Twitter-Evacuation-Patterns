@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'bundler/setup'
+
 require 'mongo_mapper'
 
 require_relative '../models/twitterer'
