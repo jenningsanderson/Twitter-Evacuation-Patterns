@@ -23,6 +23,9 @@ def retrieve_file(name)
 
 	user = name.downcase
 
+	file_path = nil
+	in_stream = nil
+
 	(1..6).to_a.map!{|num| "geo#{num}"}.each do |section|
 		test_path = "#{root_path}#{section}/user_data/#{alph}/#{user}-contextual.json"
 		if File.exists? test_path
