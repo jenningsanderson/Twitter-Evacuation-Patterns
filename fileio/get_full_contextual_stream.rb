@@ -16,11 +16,10 @@ def retrieve_file(name)
 
 	#Get the subcategory
 	if name[0] =~ /[[:alpha:]]/
-		alph = user[0].downcase
+		alph = name[0].downcase
 	else
 		alph = 'non'
 	end
-
 
 	user = name.downcase
 
