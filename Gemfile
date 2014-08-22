@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'georuby'
-gem 'mongomapper'
+gem 'mongo_mapper'
 
 #If we use the Gemfile, then we can always build the latest version of epic-geo
 
