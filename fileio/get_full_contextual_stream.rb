@@ -24,16 +24,18 @@ def retrieve_file(name)
 	user = name.downcase
 
 	(1..6).to_a.map!{|num| "geo#{num}"}.each do |section|
-		if File.exists? "#{root_path}#{section}/user_data/#{alph}/#{user}-contextual.json"
-			file_path = "#{root_path}#{section}/user_data/#{alph}/#{user}-contextual.json"
+		test_path = "#{root_path}#{section}/user_data/#{alph}/#{user}-contextual.json"
+		if File.exists? test_path
+			file_path = test_path
 			in_stream  = File.open(file_path,'r')
 			break
+		else
+			puts "This path failed: #{test_path}"
 		end
 	end
 
-	puts "Found the stream at: #{file_path}"
-
-	unless in_stream.nil?
+	unless file_path.nil?
+		puts "Found the path, now reading from: #{file_path}"
 
 		#Now read the stream and return the Hash
 		begin
