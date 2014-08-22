@@ -43,6 +43,8 @@ class Twitterer
 	key :cluster_locations, Hash	#This has :before_home and :after_home
 	key :cluster_movement_pattern, Array
 
+	key :affected_level, 	Boolean
+
 	key :unclassifiable,    Boolean
 	key :shelter_in_place,  Boolean
 	key :shelter_in_place_location, 	Array
@@ -69,7 +71,7 @@ class Twitterer
 	# key :affected_level_before,	Integer
 	# key :affected_level_during,	Integer
 	# key :affected_level_after,	Integer
-	# key :path_affected,			Boolean
+	key :path_affected,			Boolean
 
 	#On Save functions
 	before_save do

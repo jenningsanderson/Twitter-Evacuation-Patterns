@@ -1,5 +1,5 @@
 #
-# Reprocess for the NCAR Bounding Box (Ignoring my older bounding box)
+# Process the NCAR Bounding Box
 # 
 # Sets an affected level for each time bin.
 
@@ -37,22 +37,21 @@ zone_arrays = {}
 
 puts "Successfully processed the NYC Evac zones."
 
-
-string_vals = ["before", "during", "after"]
+#string_vals = ["before", "during", "after"]
 
 
 #Now iterate over the entire collection
 found = 0
-Twitterer.where(
+results = Twitterer.where(
 				
-				:tweet_count.gte => 1 #All users
-                
-                ).limit(nil).each_with_index do |user, index|
+				:issue => 50, #All users that have been processed thus far.
+                :unclassifiable => nil #We need to know if we can process them
 
-	#Set the new defaults for all users
-	user.affected_level_before = 100
-	user.affected_level_during = 100
-	user.affected_level_after  = 100
+                ).limit(nil)
+
+puts "Found #{results.count} results, now processing"
+
+results.each_with_index do |user, index|
 
 
 	#Check that their path intersects the bounding box at any point, if not, then move on!
@@ -60,16 +59,22 @@ Twitterer.where(
 		
 		user.path_affected = true
 
-		#Cast the before, during, after points to a point object
-		before = GEOFACTORY.point(user.before[0], user.before[1])
-		during = GEOFACTORY.point(user.during[0], user.during[1])
-		after  = GEOFACTORY.point(user.after[0],  user.after[1])
+		#Cast their location points
+		before_home_array = user.cluster_locations[:before_home] || user.shelter_in_place_location
 
-		[before, during, after].each_with_index do |time_frame, index| #This is x3 time.
+		unless before_home_array.nil?
+			before_home_pnt = GEOFACTORY.point(before_home_array[0], before_home_array[1] )
+		else
+			user.unclassifiable = true
+		end
 
-			if time_frame.within? ncar_bounding_box
+		unless user.unclassifiable
+
+
+			if before_home_pnt.within? ncar_bounding_box
 
 				found += 1
+				user.affected_level_before = 10
 				eval "user.affected_level_#{string_vals[index]} = 10" #user.affected_level_before = 10 if their before value falls into bounding box.  Straight forward?
 
 				#Now it's time to investigate if that value is within an actual evacuation zone.
