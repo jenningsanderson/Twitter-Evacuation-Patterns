@@ -4,14 +4,19 @@
 #
 #
 
+require 'rubygems'
+require 'bundler/setup'
+
+
 require 'epic-geo'
+
 
 # KML Export
 #
 # Write a KML file of Users and their tweets from the Twitterers collection
 #
 
-require 'epic-geo'
+
 
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
