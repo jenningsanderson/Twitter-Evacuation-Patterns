@@ -7,7 +7,7 @@ require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
 #Static Setup
-MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
+MongoMapper.connection = Mongo::Connection.new#('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
 Twitterer.where(

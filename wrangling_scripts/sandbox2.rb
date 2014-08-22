@@ -3,7 +3,7 @@ require 'mongo_mapper'
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
-MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
+MongoMapper.connection = Mongo::Connection.new#('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
 results = Twitterer.where(
