@@ -59,14 +59,14 @@ end
 #====================== Runtime down here
 
 
-filename = "lisuhc"
+filename = "testing"
 
 #Prepare an HTML File
 html_export = HTML_Writer.new("../exports/#{filename}.html")
 html_export.write_header('HTML Export of user search')
 
 
-users = ["lisuhc"]
+users = ["iKhoiBui"]
 
 users.each do |handle|
 	tweets = retrieve_file(handle)
