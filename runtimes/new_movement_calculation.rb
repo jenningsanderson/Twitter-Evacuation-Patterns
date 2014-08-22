@@ -8,9 +8,6 @@ require 'bundler/setup'
 require 'mongo_mapper'
 require 'epic-geo'
 
-require 'active_support'
-require 'active_support/core_ext'
-
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 require_relative '../processing/geoprocessing'
