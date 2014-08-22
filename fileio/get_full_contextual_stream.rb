@@ -10,7 +10,7 @@ require 'epic-geo'
 #Find the document on the server
 def retrieve_file(name)
 
-	tweets = {}
+	tweets = []
 
 	root_path = "/home/kena/geo_user_collection/"
 
@@ -32,9 +32,6 @@ def retrieve_file(name)
 			file_path = test_path
 			in_stream  = File.open(file_path,'r')
 			break
-		else
-			puts "This path failed: #{test_path}"
-		end
 	end
 
 	unless file_path.nil?
