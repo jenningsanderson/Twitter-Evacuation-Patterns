@@ -31,7 +31,7 @@ def retrieve_file(name)
 		end
 	end
 
-	puts "Found the stream at: #{filepath}"
+	puts "Found the stream at: #{file_path}"
 
 	unless in_stream.nil?
 
