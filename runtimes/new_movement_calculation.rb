@@ -30,7 +30,7 @@ results = Twitterer.where(
   :issue => 100,
 
 
-  ).limit(nil)
+  ).limit(nil).sort(:tweet_count)
 
 puts "Found #{results.count} results..."
 evac_count = 0
