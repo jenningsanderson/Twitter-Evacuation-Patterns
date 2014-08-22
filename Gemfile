@@ -3,8 +3,6 @@ source 'http://rubygems.org'
 gem 'georuby'
 gem 'mongo_mapper'
 gem 'rgeo'
-gem 'activesupport'
-gem 'activerecord'
 gem 'bson_ext'
 
 #If we use the Gemfile, then we can always build the latest version of epic-geo
