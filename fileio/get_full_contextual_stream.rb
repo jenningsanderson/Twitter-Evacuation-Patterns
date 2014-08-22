@@ -6,6 +6,7 @@ require 'rubygems'
 require 'bundler/setup'
 require 'epic-geo'
 
+require 'time'
 
 #Find the document on the server
 def retrieve_file(name)
@@ -50,7 +51,7 @@ def retrieve_file(name)
 				end
 				reg_count +=1
 
-				tweets << {:date =>tweet["created_at"], :text=>tweet["text"] }
+				tweets << {:date => Time.parse(tweet["created_at"]), :text=>tweet["text"] }
 	          
 			end
 	    	puts "----------Geo Ratio for #{user}: #{geo_count} / #{reg_count}---------------\n"
