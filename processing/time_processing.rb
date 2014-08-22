@@ -5,11 +5,6 @@
 
 require 'time'
 
-BEFORE_SANDY = Time.new("2012","10","29").yday
-
-AFTER_SANDY  = Time.new("2012","11","4").yday
-
-
 def group_cluster_by_days(tweets)
 	days = tweets.group_by{|tweet| tweet["date"].yday}.sort_by{|k,v| k}
 end
@@ -44,18 +39,6 @@ def find_temporal_pattern(clusters, t_scores)
 	valid_keys = clusters_by_day.keys.sort.reject{|x| (x < 295) or (x > 314)} #Just look at the time surrounding the Hurricane
 
 	return 0 if valid_keys.length.zero? 	#If there are no more valid keys, return 0
-
-	#Just for debugging
-		sorted_clusters = clusters_by_day.sort_by{|k,v| k}
-
-		sorted_clusters.each do |k,v|
-			puts "#{k} ==> #{v}"
-		end
-	#End debugging
-
-	#Now build a map of their locations:
-
-	#Start before the beginning of the storm and look at when the clusters are in relation to eachother
 
 	#Else, lets continue with the analysis
 	shelter_zones = []
@@ -106,9 +89,7 @@ def find_temporal_pattern(clusters, t_scores)
 							prev_weight = this_weight
 							prev_zone = this_zone
 						end
-					
 					end
-				
 				end
 				shelter_zones.unshift(prev_zone)
 				unless prev_weight == 10000
@@ -118,18 +99,61 @@ def find_temporal_pattern(clusters, t_scores)
 		end
 	end
 
-	shelter_zones.reverse!
+	if shelter_zones.uniq.count==1
+		return shelter_zones.uniq
+	end
 
-	#Now find the shelter zones that were pertinent:
+	return shelter_zones.reverse!
+end
+
+def find_best_before_cluster(clusters, t_scores)
+	
+	clusters_by_day = {} #This will be a hash like this: 301=>1,2 302=>4, etc.
+
+		clusters.each do |cluster_id, tweets|
+			days = group_cluster_by_days(tweets)
+			
+			days.each do |day, tweets|
+				clusters_by_day[day] ||= []
+				clusters_by_day[day] << cluster_id unless t_scores[cluster_id] > 0.1 #Only want high quality zones
+			end
+		end
+
+		clusters_by_day.delete_if{|k,v| v.empty?}
+
+		clusters_by_day.delete_if{|k,v| k > 302 } #Get all points from before the Hurricane
+
+		return nil if clusters_by_day.keys.length.zero? 	#If there are no more valid keys, return 0
+
+		return mode(clusters_by_day.values)
+	
+end
 
 
-	puts "================" 
-	print shelter_zones
-	puts "\n----------------"
-	print zone_scores
-	puts "\n================"
+def find_best_after_cluster(clusters, t_scores)
+	clusters_by_day = {} #This will be a hash like this: 301=>1,2 302=>4, etc.
 
-	return 1 if shelter_zones.uniq.length == 1
+		clusters.each do |cluster_id, tweets|
+			days = group_cluster_by_days(tweets)
+			
+			days.each do |day, tweets|
+				clusters_by_day[day] ||= []
+				clusters_by_day[day] << cluster_id unless t_scores[cluster_id] > 0.1 #Only want high quality zones
+			end
+		end
+		clusters_by_day.delete_if{|k,v| v.empty?}
+		clusters_by_day.delete_if{|k,v| k < 314 } #Get all points after the Hurricane
+		return nil if clusters_by_day.keys.length.zero? 	#If there are no more valid keys, return 0
+		return mode(clusters_by_day.values)
+end
+
+
+def mode(array)
+	#http://stackoverflow.com/questions/412169/ruby-how-to-find-item-in-array-which-has-the-most-occurrences
+	array.group_by{|i| i}.max{|x,y| x[1].length <=> y[1].length}[0][0]
+end
+
+
 
 
 	#One attempt:
@@ -187,9 +211,6 @@ def find_temporal_pattern(clusters, t_scores)
 	# end
 
 	# puts location_scores
-
-	return {:before=>1, :during=>2, :after=>3}
-end
 
 
 

@@ -1,6 +1,5 @@
 '''
-Scripts to run on an existing twitterers collection to perform calculations
-
+A simple script to assign handles to the users
 '''
 
 require 'mongo_mapper'

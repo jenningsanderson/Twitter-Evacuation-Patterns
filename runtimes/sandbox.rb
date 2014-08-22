@@ -7,6 +7,7 @@
 require 'mongo_mapper'
 require 'epic-geo'
 require 'rgeo'
+require 'pp'
 
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
@@ -38,14 +39,23 @@ end
 
 
 #Search the Twitterer collection
-Twitterer.where( 
+results = Twitterer.where( 
 
   #:tweet_count.gte => 50,
   #:affected_level_before => 1
-  :issue => 100,
-  :handle => "iKhoiBui"
-  ).limit(50).sort(:handle).each do |user|
-  print "User: #{user.handle}..."
+
+  :handle.in => ["Bacon_Season", "EffinwitESH", "FoxyQuant", "JayresC", "KelACampbell", "LynnKatherinex3", "Max_Not_Mark", "kriistinax33", "fredstardagreat", "honeyberk", "knowacki", "lmarks19", "marietta_amato", "mattgunn", "petemall", "ricardovice", "rishegee", "robertkohr", "rockawaytrading", "uthmanbaksh", "yawetse", "PhanieMoore", "RayDelRae", "SlaintePaddys", "anneeoanneo", "_dbourret", "c4milo", "contentmode", "cooper_smith", "derrickc82", "eelain212", "ericabrooke12"]
+  #:handle.in => [ "dpickering11","robertkohr", "Xsd","jessnic0le","aimerlaterre","SteveScottWCBS","MegEHarrington","nicolelmancini","DomC_","lisuhc"]
+  #:issue => 100,
+
+
+  ).limit(100).sort(:handle)
+
+puts "Found #{results.count} results..."
+evac_count = 0
+
+results.each do |user|
+  puts "User: #{user.handle}..."
 
   user.new_location_calculation
 
@@ -83,7 +93,8 @@ Twitterer.where(
   elsif user.unclassifiable
     puts "\tNot Enough Information"
   else
-    puts "\tMoved"
+    puts "\tMoved: #{user.confidence}"
+    evac_count +=1
   end
 
   puts "\n"
@@ -113,7 +124,8 @@ Twitterer.where(
   # user.build_evac_triangle
 
   # kml_outfile.write_folder(kml_folder)
-
 end
+
+puts "Found #{evac_count} evacuators"
 
 kml_outfile.write_footer
