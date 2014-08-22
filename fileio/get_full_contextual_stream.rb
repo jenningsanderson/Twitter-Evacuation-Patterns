@@ -16,11 +16,6 @@ require 'epic-geo'
 # Write a KML file of Users and their tweets from the Twitterers collection
 #
 
-
-
-require_relative '../models/twitterer'
-require_relative '../models/tweet'
-
 filename = "lisuhc"
 
 #Prepare an HTML File
