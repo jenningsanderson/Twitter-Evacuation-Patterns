@@ -2,42 +2,12 @@
 # Gets a user's full contextual stream and writes it to HTML
 #
 #
-#
-
 require 'rubygems'
 require 'bundler/setup'
-
-
 require 'epic-geo'
 
 
-# KML Export
-#
-# Write a KML file of Users and their tweets from the Twitterers collection
-#
-
-filename = "lisuhc"
-
-#Prepare an HTML File
-html_export = HTML_Writer.new("../exports/#{filename}.html")
-html_export.write_header('HTML Export of user search')
-
 #Find the document on the server
-
-users = ["lisuhc"]
-
-users.each do |handle|
-	tweets = retrieve_file(handle)
-	this_content = {:name => handle, :content=>tweets}
-	html_export.add_content(this_content)
-end 
-
-#Finally, close the files...
-html_export.write_navigation("User List")
-html_export.write_content
-html_export.close_file
-
-
 def retrieve_file(name)
 
 	tweets = {}
@@ -86,3 +56,26 @@ def retrieve_file(name)
 
     return tweets
 end
+
+#====================== Runtime down here
+
+
+filename = "lisuhc"
+
+#Prepare an HTML File
+html_export = HTML_Writer.new("../exports/#{filename}.html")
+html_export.write_header('HTML Export of user search')
+
+
+users = ["lisuhc"]
+
+users.each do |handle|
+	tweets = retrieve_file(handle)
+	this_content = {:name => handle, :content=>tweets}
+	html_export.add_content(this_content)
+end 
+
+#Finally, close the files...
+html_export.write_navigation("User List")
+html_export.write_content
+html_export.close_file
