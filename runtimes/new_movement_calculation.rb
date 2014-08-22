@@ -1,6 +1,10 @@
 #
 # New Movement Calculation for updated users.
 #
+
+require 'rubygems'
+require 'bundler/setup'
+
 require 'mongo_mapper'
 require 'epic-geo'
 
