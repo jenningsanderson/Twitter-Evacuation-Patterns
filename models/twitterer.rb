@@ -43,7 +43,9 @@ class Twitterer
 	key :cluster_locations, Hash	#This has :before_home and :after_home
 	key :cluster_movement_pattern, Array
 
-	key :affected_level, 	Boolean
+	#key :affected_level, 	Boolean
+
+	key :hazard_level_before, Integer
 
 	key :unclassifiable,    Boolean
 	key :shelter_in_place,  Boolean

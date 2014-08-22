@@ -1,7 +1,12 @@
 #
-# Process the NCAR Bounding Box
+# Process the NCAR Bounding Box & NYC Evacuation Zones
 # 
-# Sets an affected level for each time bin.
+# Sets a hazard_level_before for just the before point
+
+require 'rubygems'
+require 'bundler/setup'
+require 'active_support'
+require 'active_support/deprecation'
 
 require 'mongo_mapper'
 require 'epic-geo'
@@ -41,7 +46,6 @@ puts "Successfully processed the NYC Evac zones."
 
 
 #Now iterate over the entire collection
-found = 0
 results = Twitterer.where(
 				
 				:issue => 50, #All users that have been processed thus far.
@@ -69,23 +73,19 @@ results.each_with_index do |user, index|
 		end
 
 		unless user.unclassifiable
-
+			user.hazard_level_before = 100
 
 			if before_home_pnt.within? ncar_bounding_box
 
-				found += 1
-				user.affected_level_before = 10
-				eval "user.affected_level_#{string_vals[index]} = 10" #user.affected_level_before = 10 if their before value falls into bounding box.  Straight forward?
+				user.hazard_level_before = 50 #Means they were in the ncar_bounding_box
 
 				#Now it's time to investigate if that value is within an actual evacuation zone.
 				["A", "B", "C"].each_with_index do |zone, zone_index| #Will be 0,1,2
 
 					zone_arrays[zone].each do |zone_geometry| #Iterate through each of the elements of the zone
 						
-						if time_frame.within? zone_geometry #Check if the point is within the zone geom
-							string = "user.affected_level_#{string_vals[index]} = #{zone_index+1}"
-							eval string #Will be 1 for A, 2 for B, and 3 for C.
-						
+						if before_home_pnt.within? zone_geometry #Check if the point is within the zone geom
+							user.hazard_level_before = (zone_index+1)*10
 						end
 					end
 				end
@@ -95,11 +95,13 @@ results.each_with_index do |user, index|
 		user.path_affected = false
 	end
 
+	user.issue = 40
+
 	user.save
 
-	if (index % 100).zero?
+	if (index % 10).zero?
 		print "."
-	elsif (index%1001).zero?
-		print "#{found} / #{index+1}"
+	elsif (index%101).zero?
+		print "#{index}"
 	end
 end
