@@ -6,8 +6,8 @@ baseurl: "/Twitter-Evacuation-Patterns"
 url: "jenningsanderson.github.io"
 
 # Build settings
-markdown: kramdown
-permalink: pretty
+markdown: redcarpet
+extensions: [fenced_code_blocks]
 
 twitter: "JenningsAtCU"
 github: "jenningsanderson"
