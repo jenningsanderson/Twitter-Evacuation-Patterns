@@ -69,29 +69,33 @@ after_sandy  = Time.new(2012,11,03)
 import_count = 0
 
 to_import.each_with_index do |uid, index|
+	begin
+		user_tweets = coll.find({"user.id_str" => uid})
+		obj_tweets = []
+		valid_count = 0
 
-	user_tweets = coll.find({"user.id_str" => uid})
-	obj_tweets = []
-	valid_count = 0
-
-	user_tweets.each do |tweet|
-		this_tweet = Tweet.new( tweet )
-		if (this_tweet.date > before_sandy) and (this_tweet.date < after_sandy)
-			valid_count +=1
+		user_tweets.each do |tweet|
+			this_tweet = Tweet.new( tweet )
+			if (this_tweet.date > before_sandy) and (this_tweet.date < after_sandy)
+				valid_count +=1
+			end
+			obj_tweets << this_tweet
 		end
-		obj_tweets << this_tweet
-	end
 
-	unless valid_count < 3
-		this_user = Twitterer.create( {:id_str => uid} )
-		this_user.tweets = obj_tweets.sort_by{|tweet| tweet.date}
-		this_user.issue = 120
-		this_user.save
-		import_count+=1
-	end
+		unless valid_count < 3
+			this_user = Twitterer.create( {:id_str => uid} )
+			this_user.tweets = obj_tweets.sort_by{|tweet| tweet.date}
+			this_user.issue = 120
+			this_user.save
+			import_count+=1
+		end
 
-	if (index%10).zero?
-    	print "..(#{import_count}/#{index+1})"
+		if (index%10).zero?
+	    	print "..(#{import_count}/#{index+1})"
+		end
+	rescue
+		puts "error"
+		puts $!
 	end
 end
 
