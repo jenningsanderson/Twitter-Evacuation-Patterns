@@ -9,10 +9,10 @@ require_relative '../models/tweet'
 
 
 #Static Setup
-MongoMapper.connection = Mongo::Connection.new#('epic-analytics.cs.colorado.edu')
+MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
-Twitterer.where(:handle => nil).each_with_index do |user, i|
+Twitterer.where(:handle => "").each_with_index do |user, i|
   handle = user.tweets.collect{|tweet| tweet["handle"]}.flatten.uniq.join(', ')
   user.handle = handle
   #puts handle
