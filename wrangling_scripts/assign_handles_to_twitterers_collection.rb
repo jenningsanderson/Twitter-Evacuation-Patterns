@@ -21,11 +21,18 @@ results = Twitterer.where(:handle.in => ["",nil])
 
 puts "Found #{results.count} users without handles"
 results.each_with_index do |user, i|
-  handle = user.tweets.collect{|tweet| tweet["handle"]}.flatten.uniq.join(', ')
-  user.handle = handle
-  user.save
+	begin
+		handle = user.tweets.collect{|tweet| tweet["handle"]}.flatten.uniq.join(', ')
+		user.handle = handle
+		user.save
 
-  if (i%100).zero?
-    print "#{i}.."
-  end
+		if (i%100).zero?
+			print "#{i}.."
+		end
+	rescue => e 
+		puts "Ahh!  An error occured"
+		puts $!
+		puts e.backtrace
+		next
+	end
 end
