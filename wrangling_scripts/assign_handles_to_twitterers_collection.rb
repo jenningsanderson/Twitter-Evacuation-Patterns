@@ -30,7 +30,7 @@ results.each_with_index do |user, i|
 			print "#{i}.."
 		end
 	rescue => e 
-		puts "Ahh!  An error occured"
+		puts "Ahh!  An error occured with user: #{user.handle}"
 		puts $!
 		puts e.backtrace
 		next
