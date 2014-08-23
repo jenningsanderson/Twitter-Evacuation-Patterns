@@ -39,7 +39,7 @@ distinct_users = coll.distinct("user.id_str")
 
 puts "There are #{distinct_users.length} in the entire tweet collection"
 
-to_import = distinct_users - existing_ids
+to_import = (distinct_users - existing_ids).sort
 
 puts "There are #{to_import.length} user ids left to import"
 
@@ -67,12 +67,11 @@ before_sandy = Time.new(2012,10,28)
 after_sandy  = Time.new(2012,11,03)
 
 import_count = 0
+failed_count = 0
 
 to_import.each_with_index do |uid, index|
-	begin
-		user_tweets = coll.find({"user.id_str" => uid})
-		obj_tweets = []
-		valid_count = 0
+	
+	user_tweets = coll.find({"user.id_str" => uid})
 
 		user_tweets.each do |tweet|
 			this_tweet = Tweet.new( tweet )
@@ -88,6 +87,8 @@ to_import.each_with_index do |uid, index|
 			this_user.issue = 120
 			this_user.save
 			import_count+=1
+		else
+			failed_count +=1
 		end
 
 		if (index%10).zero?
@@ -100,3 +101,10 @@ to_import.each_with_index do |uid, index|
 end
 
 puts "\n-----------\n"
+
+puts "Failed Count: #{failed_count}"
+puts "Imported: #{import_count}"
+puts "Original size: #{to_import.length}"
+puts "There are #{existing_ids.length} distinct Twitterers in the collection"
+puts "There are #{distinct_users.length} in the entire tweet collection"
+
