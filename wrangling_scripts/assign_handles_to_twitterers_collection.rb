@@ -17,7 +17,10 @@ require_relative '../models/tweet'
 MongoMapper.connection = Mongo::Connection.new#('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
-Twitterer.where(:handle.in => ["",nil]).each_with_index do |user, i|
+results = Twitterer.where(:handle.in => ["",nil])
+
+puts "Found #{results.count} users without handles"
+results.each_with_index do |user, i|
   handle = user.tweets.collect{|tweet| tweet["handle"]}.flatten.uniq.join(', ')
   user.handle = handle
   user.save
