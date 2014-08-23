@@ -7,15 +7,17 @@
 require 'mongo_mapper'
 require 'epic-geo'
 require 'rgeo'
+require 'pp'
 
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 require_relative '../processing/geoprocessing'
 
 #Prepare a KML file
-# kml_outfile = KMLAuthor.new("../exports/median_locations.kml")
-# kml_outfile.write_header("Sandbox Location Testing")
-# write_3_bin_styles(kml_outfile.openfile)
+kml_outfile = KMLAuthor.new("../exports/new_clustering.kml")
+kml_outfile.write_header("New Clustering Output")
+write_3_bin_styles(kml_outfile.openfile)
+generate_random_styles(kml_outfile.openfile, 10)
 
 #Static Setup
 MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
@@ -30,47 +32,75 @@ sandy_dates = [
 ]
 
 #These names correspond with the KML styles for coloring
-time_frames = ["before", "during", "after"]
+styles = ["before", "after"]
+10.times do |index|
+  styles << "r_style_#{index}"
+end
 
-#Bounding box:
-factory = RGeo::Geographic.simple_mercator_factory
-
-points=[[-71.630859375,41.492120839687786],[-73.19091796875,41.31907562295136],[-74.37744140625,40.763901280945866],[-75.267333984375,40.08647729380881],[-75.73974609375,39.66491373749128],[-75.552978515625,39.04478604850143],[-75.1904296875,38.47079371120379],[-74.827880859375,38.53097889440026],[-74.080810546875,39.639537564366684],[-73.916015625,40.405130697527866],[-73.948974609375,40.50544628405211],[-73.245849609375,40.55554790286311],[-72.21313476562499,40.88029480552824],[-71.455078125,41.178653972331674],[-71.56494140625,41.4509614012039],[-71.630859375,41.492120839687786]]
-
-boundary = factory.multi_point(points)
 
 #Search the Twitterer collection
-Twitterer.where( :tweet_count.gte => 1).limit(10).each do |user|
-  print "User: #{user.handle}..."
+results = Twitterer.where( 
 
-  #Access points
-  user.process_tweet_points
+  #:tweet_count.gte => 50,
+  #:affected_level_before => 1
 
-  #Make the user linestring
-  user_string = factory.line_string(user.points)
+  :handle.in => ["Bacon_Season", "EffinwitESH", "FoxyQuant", "JayresC", "KelACampbell", "LynnKatherinex3", "Max_Not_Mark", "kriistinax33", "fredstardagreat", "honeyberk", "knowacki", "lmarks19", "marietta_amato", "mattgunn", "petemall", "ricardovice", "rishegee", "robertkohr", "rockawaytrading", "uthmanbaksh", "yawetse", "PhanieMoore", "RayDelRae", "SlaintePaddys", "anneeoanneo", "_dbourret", "c4milo", "contentmode", "cooper_smith", "derrickc82", "eelain212", "ericabrooke12"]
+  #:handle.in => [ "dpickering11","robertkohr", "Xsd","jessnic0le","aimerlaterre","SteveScottWCBS","MegEHarrington","nicolelmancini","DomC_","lisuhc"]
+  #:issue => 100,
 
-  #Check it
-  val = user_string.intersects? boundary
 
-  print val
+  ).limit(100).sort(:handle)
 
-  new_centers = get_clusters(user.tweets, 3, 10, 2)
+puts "Found #{results.count} results..."
+evac_count = 0
 
-  new_centers.each do |x,y|
-    print user.point_as_epic_kml(x,y,"before",)
+results.each do |user|
+  puts "User: #{user.handle}..."
 
+  user.new_location_calculation
+
+  kml_folder = {
+      :name     => user.handle,
+      :folders => [],
+      :features => [user.userpath_as_epic_kml]
+    }
+
+  unclassified = user.unclassified_tweets
+
+  unclassified_folder = {:name=>"Ungrouped", :features=>[]}
+
+  unclassified.each do |unclassified_tweet|
+    unclassified_folder[:features] << unclassified_tweet.as_epic_kml(style="during")
   end
 
-  puts "\n--------\n"
-  #user.process_geometry
+  kml_folder[:folders] << unclassified_folder
 
-  # binned_tweets = build_active_time_bins(user.tweets, sandy_dates)
+  count = 0
+  user.clusters.sort_by{|k,v| v.length}.reverse.each do |k,v|
+    this_folder = {:name=>k.to_s, :features=>[]}
+    
+    v.each do |tweet|
+      this_folder[:features] << tweet.as_epic_kml(style=styles[count])
+    end
 
-  # kml_folder = {
-  #     :name     => user.handle,
-  #     :folders => [],
-  #     :features => [user.userpath_as_epic_kml]
-  #   }
+    kml_folder[:folders] << this_folder
+
+    count +=1
+  end
+  
+  if user.shelter_in_place
+    puts "\tShelter In Place"
+  elsif user.unclassifiable
+    puts "\tNot Enough Information"
+  else
+    puts "\tMoved: #{user.confidence}"
+    evac_count +=1
+  end
+
+  puts "\n"
+
+  kml_outfile.write_folder(kml_folder)
+
 
   # binned_tweets.each_with_index do |time_slice, index|
 
@@ -94,13 +124,8 @@ Twitterer.where( :tweet_count.gte => 1).limit(10).each do |user|
   # user.build_evac_triangle
 
   # kml_outfile.write_folder(kml_folder)
-
-
-  #full_user_path_json.to_json
-  #puts user.individual_points.to_json
-  #puts user.individual_tweets.to_json
-  #puts user.full_median_point_json.to_json
-  #puts user.user_points
 end
 
-# kml_outfile.write_footer
+puts "Found #{evac_count} evacuators"
+
+kml_outfile.write_footer

@@ -9,7 +9,7 @@ require 'epic-geo'
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
-filename = "testing_evac_zone_users"
+filename = "lisuhc"
 limit = 100
 
 #Prepare a KML file
@@ -44,11 +44,12 @@ time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
 results = Twitterer.where(
-                :affected_level => 1,
+                :handle => "lisuhc"
+                #:affected_level => 1,
                 #:before_after.lte=> 50,
                 #:isoceles_ratio.gte => 0.9,
                 #:isoceles_ratio.lte => 1.1,
-                :triangle_perimeter.gte=> 800,
+                #:triangle_perimeter.gte=> 800,
                 #:triangle_perimeter.lte=> 500000,
                 #:triangle_perimeter.lte => 1000,
                 #:affected_level_before => 1,

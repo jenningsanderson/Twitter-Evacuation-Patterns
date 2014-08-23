@@ -1,7 +1,12 @@
 #
-# Reprocess for the NCAR Bounding Box (Ignoring my older bounding box)
+# Process the NCAR Bounding Box & NYC Evacuation Zones
 # 
-# Sets an affected level for each time bin.
+# Sets a hazard_level_before for just the before point
+
+# require 'rubygems'
+# require 'bundler/setup'
+# require 'active_support'
+# require 'active_support/deprecation'
 
 require 'mongo_mapper'
 require 'epic-geo'
@@ -37,22 +42,20 @@ zone_arrays = {}
 
 puts "Successfully processed the NYC Evac zones."
 
-
-string_vals = ["before", "during", "after"]
+#string_vals = ["before", "during", "after"]
 
 
 #Now iterate over the entire collection
-found = 0
-Twitterer.where(
+results = Twitterer.where(
 				
-				:tweet_count.gte => 1 #All users
-                
-                ).limit(nil).each_with_index do |user, index|
+				:issue => 50, #All users that have been processed thus far.
+                :unclassifiable => nil #We need to know if we can process them
 
-	#Set the new defaults for all users
-	user.affected_level_before = 100
-	user.affected_level_during = 100
-	user.affected_level_after  = 100
+                ).limit(nil)
+
+puts "Found #{results.count} results, now processing"
+
+results.each_with_index do |user, index|
 
 
 	#Check that their path intersects the bounding box at any point, if not, then move on!
@@ -60,27 +63,29 @@ Twitterer.where(
 		
 		user.path_affected = true
 
-		#Cast the before, during, after points to a point object
-		before = GEOFACTORY.point(user.before[0], user.before[1])
-		during = GEOFACTORY.point(user.during[0], user.during[1])
-		after  = GEOFACTORY.point(user.after[0],  user.after[1])
+		#Cast their location points
+		before_home_array = user.cluster_locations[:before_home] || user.shelter_in_place_location
 
-		[before, during, after].each_with_index do |time_frame, index| #This is x3 time.
+		unless before_home_array.nil?
+			before_home_pnt = GEOFACTORY.point(before_home_array[0], before_home_array[1] )
+		else
+			user.unclassifiable = true
+		end
 
-			if time_frame.within? ncar_bounding_box
+		unless user.unclassifiable
+			user.hazard_level_before = 100
 
-				found += 1
-				eval "user.affected_level_#{string_vals[index]} = 10" #user.affected_level_before = 10 if their before value falls into bounding box.  Straight forward?
+			if before_home_pnt.within? ncar_bounding_box
+
+				user.hazard_level_before = 50 #Means they were in the ncar_bounding_box
 
 				#Now it's time to investigate if that value is within an actual evacuation zone.
 				["A", "B", "C"].each_with_index do |zone, zone_index| #Will be 0,1,2
 
 					zone_arrays[zone].each do |zone_geometry| #Iterate through each of the elements of the zone
 						
-						if time_frame.within? zone_geometry #Check if the point is within the zone geom
-							string = "user.affected_level_#{string_vals[index]} = #{zone_index+1}"
-							eval string #Will be 1 for A, 2 for B, and 3 for C.
-						
+						if before_home_pnt.within? zone_geometry #Check if the point is within the zone geom
+							user.hazard_level_before = (zone_index+1)*10
 						end
 					end
 				end
@@ -90,11 +95,13 @@ Twitterer.where(
 		user.path_affected = false
 	end
 
+	user.issue = 40
+
 	user.save
 
-	if (index % 100).zero?
+	if (index % 10).zero?
 		print "."
-	elsif (index%1001).zero?
-		print "#{found} / #{index+1}"
+	elsif (index%101).zero?
+		print "#{index}"
 	end
 end
