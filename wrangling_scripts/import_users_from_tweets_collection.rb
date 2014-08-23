@@ -19,10 +19,10 @@ require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
 #Static Setup
-MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
+MongoMapper.connection = Mongo::Connection.new#('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
-conn = Mongo::MongoClient.new('epic-analytics.cs.colorado.edu')
+conn = Mongo::MongoClient.new#('epic-analytics.cs.colorado.edu')
 db = conn['sandygeo']
 coll = db['geo_tweets']
 
