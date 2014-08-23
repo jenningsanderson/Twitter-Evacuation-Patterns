@@ -70,7 +70,7 @@ import_count = 0
 failed_count = 0
 
 to_import.each_with_index do |uid, index|
-	
+	begin
 	user_tweets = coll.find({"user.id_str" => uid})
 
 		user_tweets.each do |tweet|
