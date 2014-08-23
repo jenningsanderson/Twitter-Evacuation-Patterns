@@ -13,25 +13,31 @@ require_relative '../models/tweet'
 MongoMapper.connection = Mongo::Connection.new#('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
+sort_count = 0
+
 Twitterer.where(
-				
-				:issue => 80 #Users that have already been processed
+				:tweet_count.gte => 1 #All users
                 
                 ).limit(nil).each_with_index do |user, index|
 
-	ordered_tweets = user.tweets.sort_by{|tweet| tweet.date}
+	tweet_dates = user.tweets.collect{|tweet| tweet.date}
 
-	user.tweets = ordered_tweets
+	unless (tweet_dates == tweet_dates.sort)
 
-	#puts user.tweets.collect{|tweet| tweet.date}
+		ordered_tweets = user.tweets.sort_by{|tweet| tweet.date}
 
-	user.issue = 50
+		user.tweets = ordered_tweets
 
-	user.save
+		user.issue = 50
+
+		user.save
+
+		sort_count +=1
+	else
 
 	if (index % 10).zero?
 		print "."
 	elsif (index%101).zero?
-		print "#{index}"
+		print "(#{sort_count} / #{index})"
 	end
 end
