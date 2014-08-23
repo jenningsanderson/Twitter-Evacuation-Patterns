@@ -27,14 +27,12 @@ First, the DBScan algorithm is run on all of a user's points to determine all of
 ####Temporal Regularity Analysis
 Similar to the previous method, each cluster is given a ```T_score``` This is defined as the following block of code (Also, see the Design page for a better description of this temporal regularity grouping step)
 
-````
-times = tweets.collect{|tweet| tweet["date"]}
+	times = tweets.collect{|tweet| tweet["date"]}
 	blocks = []
 	times.each do |time|
 		blocks << time.hour/3
 	end
 	blocks.group_by{|value| value}.keys.length / times.length**2.to_f
-````
 
 ####Finding the Gap
 Imagine reducing a user's location each day to the following array of cluster IDs:
