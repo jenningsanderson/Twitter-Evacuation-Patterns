@@ -33,7 +33,7 @@ Twitterer.where(
 		user.save
 
 		sort_count +=1
-	else
+	end
 
 	if (index % 10).zero?
 		print "."
