@@ -26,7 +26,7 @@ results.each_with_index do |user, i|
 	begin
 		user.tweets.each do |tweet|
 			unless handles.include? tweet.handle
-				handles << handle
+				handles << tweet.handle
 			end
 		end
 		
