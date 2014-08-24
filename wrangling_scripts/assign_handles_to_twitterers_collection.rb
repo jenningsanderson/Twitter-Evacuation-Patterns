@@ -20,6 +20,7 @@ MongoMapper.database = 'sandygeo'
 results = Twitterer.where(:handle.in => ["",nil]).sort(:tweet_count)
 
 puts "Found #{results.count} users without handles"
+
 results.each_with_index do |user, i|
 	handles = []
 	begin
@@ -28,8 +29,8 @@ results.each_with_index do |user, i|
 				handles << handle
 			end
 		end
-		handles.join(', ')
-		user.handle = handle
+		
+		user.handle = handles.uniq.join(', ')
 		#user.save
 
 		puts user.handle
