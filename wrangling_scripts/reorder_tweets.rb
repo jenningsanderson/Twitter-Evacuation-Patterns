@@ -18,7 +18,7 @@ sort_count = 0
 Twitterer.where(
 				:tweet_count.gte => 1 #All users
                 
-                ).limit(nil).each_with_index do |user, index|
+                ).limit(nil).sort(:tweet_count).each_with_index do |user, index|
 
 	tweet_dates = user.tweets.collect{|tweet| tweet.date}
 
