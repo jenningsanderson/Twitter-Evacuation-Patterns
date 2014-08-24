@@ -33,7 +33,12 @@ Twitterer.where(
 		user.save
 
 		sort_count +=1
-	end
+	else{
+		unless user.issue <= 50
+			user.issue = 50
+			user.save
+		end
+	}
 
 	if (index % 10).zero?
 		print "."
