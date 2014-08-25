@@ -3,10 +3,10 @@
 # 
 # Sets a hazard_level_before for just the before point
 
-# require 'rubygems'
-# require 'bundler/setup'
-# require 'active_support'
-# require 'active_support/deprecation'
+require 'rubygems'
+require 'bundler/setup'
+require 'active_support'
+require 'active_support/deprecation'
 
 require 'mongo_mapper'
 require 'epic-geo'
@@ -18,7 +18,7 @@ require_relative '../models/tweet'
 require_relative '../processing/geoprocessing'
 
 #Static Setup
-MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
+MongoMapper.connection = Mongo::Connection.new#('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
 #Get the NCAR bounding box:
@@ -41,9 +41,6 @@ zone_arrays = {}
 }
 
 puts "Successfully processed the NYC Evac zones."
-
-#string_vals = ["before", "during", "after"]
-
 
 #Now iterate over the entire collection
 results = Twitterer.where(
