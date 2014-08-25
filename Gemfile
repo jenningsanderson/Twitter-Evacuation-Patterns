@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'georuby'
 gem 'mongo_mapper'
 gem 'rgeo'
+gem 'rgeo-geojson'
 gem 'bson_ext'
 gem 'debugger'
 

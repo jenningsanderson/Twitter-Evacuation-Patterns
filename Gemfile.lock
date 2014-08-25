@@ -43,6 +43,8 @@ GEM
     plucky (0.6.6)
       mongo (~> 1.5)
     rgeo (0.3.20)
+    rgeo-geojson (0.2.3)
+      rgeo (>= 0.3.7)
     thread_safe (0.3.4)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -57,3 +59,4 @@ DEPENDENCIES
   georuby
   mongo_mapper
   rgeo
+  rgeo-geojson
