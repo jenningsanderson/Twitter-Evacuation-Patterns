@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "New Data Structure""
-date:   2014-08-23 1:45:00
+date:   2014-08-25 1:45:00
 ---
 
 
@@ -37,6 +37,7 @@ A ranking variable for a user's calculated pre-storm home/shelter location that 
 |50| The user's before home/shelter location exists within the Bounding Box |
 |  |
 |100| The user's before home/shelter location does not fall within the bounding box, however, their full movement path between tweets does intersect with the bounding box.  (Could be a user traveling through NYC)
+
 
 ###Movement Variables
 
