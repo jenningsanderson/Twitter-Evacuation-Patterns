@@ -18,7 +18,7 @@ sort_count = 0
 Twitterer.where(
 				:tweet_count.gte => 1 #All users
                 
-                ).limit(nil).each_with_index do |user, index|
+                ).limit(nil).sort(:tweet_count).each_with_index do |user, index|
 
 	tweet_dates = user.tweets.collect{|tweet| tweet.date}
 
@@ -33,6 +33,11 @@ Twitterer.where(
 		user.save
 
 		sort_count +=1
+	else
+		unless user.issue <= 50
+			user.issue = 50
+			user.save
+		end
 	end
 
 	if (index % 10).zero?

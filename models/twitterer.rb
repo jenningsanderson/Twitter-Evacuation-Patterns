@@ -40,7 +40,7 @@ class Twitterer
 	many :tweets
 
 	key :during_storm_movement, Array 	#This will be made into a LineString
-	key :cluster_locations, Hash	#This has :before_home and :after_home
+	key :cluster_locations, 	Hash	#This has :before_home and :after_home
 	key :cluster_movement_pattern, Array
 
 	#key :affected_level, 	Boolean
@@ -60,19 +60,19 @@ class Twitterer
 	# key :before_during, 	Float
 	# key :during_after, 		Float
 	# key :before_after, 		Float
-	# key :isoceles_ratio, 	Float
+	# key :isoceles_ratio, 	Float 
 
 	# key :before_tweet_count,	Integer
 	# key :during_tweet_count,	Integer
 	# key :after_tweet_count, 	Integer
 
-	key :unclassified_percentage, Integer
+	key :unclassified_percentage,	Integer
 
 	#Filtering Credentials
 	# key :affected_level_before,	Integer
 	# key :affected_level_during,	Integer
 	# key :affected_level_after,	Integer
-	key :path_affected,			Boolean
+	key :path_affected,				Boolean
 
 	#On Save functions
 	before_save do
