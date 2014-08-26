@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "New Data Structure""
+title:  "New Data Structure"
 date:   2014-08-25 1:45:00
 ---
 
@@ -14,12 +14,14 @@ The Twitterer model has the following attributes and metrics.  Model Functions a
 These attributes are indexed to make intelligent queries.  All geo-relevant queries should only look at users where ```path_affected == true```.  Queries to determine evacuation behavior should further filter for ```shelter_in_place == false```
 
 ####Basic Filtering Attributes
+
 | Variable					| Type		| Description |
-|--------------------------------------------------|
+|---------------------------------------------------------|
 | ```unclassifiable```	| Boolean | At some point, the method has deemed this user as unclassifiable due to a lack of information _**Update**: Users with no affected path are also considered unclassifiable currently_ |
 | ```path_affected```	| Boolean | Whether or not this user's path intersects with the bounding box |
 | ```shelter_in_place```	| Boolean | If the method has determined at any point the user sheltered in place, then this value is set to true |
 | ```unclassified_percentage``` | Integer | A rounded integer [0,100], that describes the percentage of the user's tweets that did not land in a cluster during the DBScan clustering.
+
 
 
 
@@ -30,9 +32,9 @@ A ranking variable for a user's calculated pre-storm home/shelter location that 
 
 | Value			| Description |
 |----------------------------------------|
-|10| The user's before home/shelter location exists in ** NYC Evacuation Zone A ** |
-|20| The user's before home/shelter location exists in ** NYC Evacuation Zone B ** |
-|30| The user's before home/shelter location exists in ** NYC Evacuation Zone C ** |
+|10| The user's before home/shelter location exists in **NYC Evacuation Zone A** |
+|20| The user's before home/shelter location exists in **NYC Evacuation Zone B** |
+|30| The user's before home/shelter location exists in **NYC Evacuation Zone C** |
 |  |
 |50| The user's before home/shelter location exists within the Bounding Box |
 |  |
@@ -45,10 +47,11 @@ A ranking variable for a user's calculated pre-storm home/shelter location that 
 |----------------------------------------|
 | ```shelter_in_place_location``` | Array | If a user sheltered in place, then this is the location that was calculated for that |
 | ```during_storm_movement``` | 2D Array | The x,y points of the user's during storm movement |
-|```cluster_movement_pattern```| Array | A list of cluster IDs, including the before and after the storm. ** Example: ** ```["1","1","2","2","1"]``` implies that a user's before and after storm location are calculated as cluster ID "1" and during the storm they moved from cluster 1 to cluster 2, but did not return to cluster 1 in the during storm window.
+|```cluster_movement_pattern```| Array | A list of cluster IDs, including the before and after the storm. **Example:** ```["1","1","2","2","1"]``` implies that a user's before and after storm location are calculated as cluster ID "1" and during the storm they moved from cluster 1 to cluster 2, but did not return to cluster 1 in the during storm window.
 
 
 ###Stored Location Attributes
+
 | Variable | Type | Description |
 |-------------------------------|
 |```cluster_locations``` | Hash | Key : Value pair of Cluster ID : ```[x,y]```.  If available, ```:before_home``` and ```:after_home``` are keys |
