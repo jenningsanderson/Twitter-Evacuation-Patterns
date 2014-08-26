@@ -33,13 +33,13 @@ results = Twitterer.where(
 
 				:path_affected => nil #We need to know if we can process them
                 
-                ).limit(nil)
+                ).limit(nil).sort(:tweet_count)
 
 puts "Found #{results.count} results, now processing"
 
 results.each_with_index do |user, index|
 
-	#Check the tweets are in order before we do this...
+	# Check the tweets are in order before we do this...
 	tweet_dates = user.tweets.collect{|tweet| tweet.date}
 
 	unless (tweet_dates == tweet_dates.sort)
@@ -47,7 +47,7 @@ results.each_with_index do |user, index|
 		user.tweets = ordered_tweets
 	end
 
-	#Check that their path intersects the bounding box at any point, if not, then move on!
+	# Check that their path intersects the bounding box at any point, if not, then move on!
 	if user.user_path.intersects? ncar_bounding_box	
 		user.path_affected = true
 	else
