@@ -8,11 +8,12 @@ There were 22,250,274 tweets generated during Hurricane Sandy which referenced S
 
 Collecting these user's geotagged _contextual stream_ of tweets yields a total of 22 million tweets.
 
-Filtering these tweets between October 
+The tweets were next limited to the time frame of October 1, 2012 - December 31, 2012.
 
-Next, users with less than 15 tweets total were removed.
+Next, users with less than 3 tweets were removed.  Later analysis will most likely ignore these users (and users with many more tweets) anyway because they will become "unclassifiable" for not having distinct clusters.
 
-The working dataset includes **20,317 users** with **1,653,031 tweets**.
+
+The working dataset includes **29,119 users** with **1,653,031 tweets**.
 
 
 

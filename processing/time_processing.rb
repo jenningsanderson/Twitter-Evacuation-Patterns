@@ -16,6 +16,7 @@ def score_temporal_patterns(tweets)
 	times.each do |time|
 		blocks << time.hour/3
 	end
+
 	blocks.group_by{|value| value}.keys.length / times.length**2.to_f # => Essentially a measure of deviation
 end
 
@@ -34,76 +35,85 @@ def find_temporal_pattern(clusters, t_scores)
 		end
 	end
 
+	t_scores.each do |k,v|
+		puts "cluster #{k} has t_score #{v}"
+	end
+
 	clusters_by_day.delete_if{|k,v| v.empty?}
 
 	valid_keys = clusters_by_day.keys.sort.reject{|x| (x < 295) or (x > 314)} #Just look at the time surrounding the Hurricane
 
 	return 0 if valid_keys.length.zero? 	#If there are no more valid keys, return 0
 
+
+	valid_keys.each do |key|
+		puts "#{key} => #{clusters_by_day[key]}"
+	end
+
 	#Else, lets continue with the analysis
 	shelter_zones = []
 	zone_scores = {}
 
-	valid_keys.each_with_index do |day|
+	# valid_keys.each_with_index do |day|
 
-		#If more than one zone per day, handle that separately
+	# 	#If more than one zone per day, handle that separately
 
-		if clusters_by_day[day].length == 1
-			zone = clusters_by_day[day][0]
-			zone_scores[zone] ||=0
+	# 	if clusters_by_day[day].length == 1
+	# 		zone = clusters_by_day[day][0]
+	# 		zone_scores[zone] ||=0
 
-			#Have to start somewhere, so put first zone(s) in
-			if shelter_zones.empty?
-				#Push the first zone value(s) onto the stack, but do not score the value
-				shelter_zones.unshift(zone)
+	# 		#Have to start somewhere, so put first zone(s) in
+	# 		if shelter_zones.empty?
+	# 			#Push the first zone value(s) onto the stack, but do not score the value
+	# 			shelter_zones.unshift(zone)
 			
-			else
-				if shelter_zones.include? zone
-					weight = shelter_zones.index(zone)+1 #This will determine where it is, relatively
-					zone_scores[zone] += (1.to_f / weight)
-				end
-				shelter_zones.unshift(zone) #Add the zone to the front
-			end
-		else
-			#We have a day with multiple zones
-			if shelter_zones.empty?
+	# 		else
+	# 			if shelter_zones.include? zone
+	# 				weight = shelter_zones.index(zone)+1 #This will determine where it is, relatively
+	# 				zone_scores[zone] += (1.to_f / weight)
+	# 			end
+	# 			shelter_zones.unshift(zone) #Add the zone to the front
+	# 		end
+	# 	else
+	# 		#We have a day with multiple zones
+	# 		if shelter_zones.empty?
 				
-				#Create the shelter_zones array with these datapoints
-				shelter_zones = clusters_by_day[day] 
-			else
-				#Need to find the indexes and take the lower one, then push that value.
-				prev_zone = clusters_by_day[day].shift #Pop the zone off the front
-				zone_scores[prev_zone] ||=0
-				prev_weight = 10000
-				if shelter_zones.include? prev_zone
-					prev_weight = shelter_zones.index(prev_zone)+1
-				end
+	# 			#Create the shelter_zones array with these datapoints
+	# 			shelter_zones = clusters_by_day[day] 
+	# 		else
+	# 			#Need to find the indexes and take the lower one, then push that value.
+	# 			prev_zone = clusters_by_day[day].shift #Pop the zone off the front
+	# 			zone_scores[prev_zone] ||=0
+	# 			prev_weight = 10000
+	# 			if shelter_zones.include? prev_zone
+	# 				prev_weight = shelter_zones.index(prev_zone)+1
+	# 			end
 
-				until clusters_by_day[day].empty? do
-					this_zone = clusters_by_day[day].shift
-					zone_scores[this_zone] ||=0
-					if shelter_zones.include? this_zone
-						this_weight = shelter_zones.index(this_zone)+1
+	# 			until clusters_by_day[day].empty? do
+	# 				this_zone = clusters_by_day[day].shift
+	# 				zone_scores[this_zone] ||=0
+	# 				if shelter_zones.include? this_zone
+	# 					this_weight = shelter_zones.index(this_zone)+1
 						
-						if this_weight < prev_weight
-							prev_weight = this_weight
-							prev_zone = this_zone
-						end
-					end
-				end
-				shelter_zones.unshift(prev_zone)
-				unless prev_weight == 10000
-					zone_scores[prev_zone] += (1.to_f / prev_weight)
-				end
-			end
-		end
-	end
+	# 					if this_weight < prev_weight
+	# 						prev_weight = this_weight
+	# 						prev_zone = this_zone
+	# 					end
+	# 				end
+	# 			end
+	# 			shelter_zones.unshift(prev_zone)
+	# 			unless prev_weight == 10000
+	# 				zone_scores[prev_zone] += (1.to_f / prev_weight)
+	# 			end
+	# 		end
+	# 	end
+	# end
 
-	if shelter_zones.uniq.count==1
-		return shelter_zones.uniq
-	end
+	# if shelter_zones.uniq.count==1
+	# 	return shelter_zones.uniq
+	# end
 
-	return shelter_zones.reverse!
+	# return shelter_zones.reverse!
 end
 
 def find_best_before_cluster(clusters, t_scores)

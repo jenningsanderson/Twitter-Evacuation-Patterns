@@ -34,16 +34,19 @@ puts "Search returned #{results.count} results"
 
 # counter = 0
 tweet_sum = 0
+second_sum = 0
 results.each_with_index do |user, index|
 
   tweet_sum += user.tweet_count
+  second_sum += user.tweets.length
 
   #=============== Show Status
   if (index % 100).zero?
     print "."
   elsif (index%1001).zero?
-    print "(#{tweet_sum} / #{index})"
+    print "(#{tweet_sum} | #{second_sum}/ #{index})"
   end
 end #End the Search
 
-puts "#{tweet_sum} total tweets"
+puts "\n=========================\ntweet_count sum: #{tweet_sum}"
+puts "\n=========================\ntweet array sum: #{second_sum}"
