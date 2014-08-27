@@ -4,8 +4,11 @@
 #
 require 'rubygems'
 require 'bundler/setup'
-require 'epic-geo'
+require 'active_support'
+require 'active_support/deprecation'
+require 'mongo_mapper'
 
+require 'epic-geo'
 require 'time'
 
 require_relative '../models/twitterer'
