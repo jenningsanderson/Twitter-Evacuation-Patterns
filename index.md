@@ -2,7 +2,6 @@
 layout: default
 ---
 
-
 ![Header Imge]({{site.baseurl}}/img_exports/header_img.png "Google Earth Example")
 
 <div class="home">

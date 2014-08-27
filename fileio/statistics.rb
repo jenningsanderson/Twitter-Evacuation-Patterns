@@ -20,15 +20,6 @@ require_relative '../models/tweet'
 MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
-sandy_dates = [
-  Time.new(2012,10,19), #Start of dataset
-  Time.new(2012,10,28), #Start of storm
-  Time.new(2012,11,1),  #End of Storm
-  Time.new(2012,11,10)   #End of Dataset
-]
-
-#These names correspond with the KML styles for coloring
-time_frames = ["before", "during", "after"]
 
 #Different types of stats to get
 triangle_areas = []
@@ -39,14 +30,24 @@ tweet_count = []
 users = {}
 
 #Go to the Twitterer collection
-Twitterer.where(:affected_level.lt => 10, :isoceles_ratio.gt => 0, :isoceles_ratio.lt =>5).limit(nil).each_with_index do |user, index|
+results = Twitterer.where(
 
-  users[user.id_str] = {
+          :tweet_count.lte => 200
 
-    :isoceles_ratio => user.isoceles_ratio, #The closer to 1, the better
-    :triangle_perimeter  => user.triangle_perimeter
+  ).limit(nil)
 
-  }
+puts "Found #{results.count} results"
+
+results..each_with_index do |user, index|
+
+  # users[user.id_str] = {
+
+  #   :isoceles_ratio => user.isoceles_ratio, #The closer to 1, the better
+  #   :triangle_perimeter  => user.triangle_perimeter
+
+  # }
+
+  tweet_count << user.tweet_count
 
   #triangle_perimeters << user.triangle_perimeter
 
@@ -77,24 +78,24 @@ r = RSRuby.instance
 
 
 # =============  Triangle Ratios
-users.sort_by{ |user, values| values[:triangle_perimeter] }.each do |user, values|
-  triangle_perimeters << values[:triangle_perimeter]
-  isoceles_ratios << values[:isoceles_ratio]
-end
+# users.sort_by{ |user, values| values[:triangle_perimeter] }.each do |user, values|
+#   triangle_perimeters << values[:triangle_perimeter]
+#   isoceles_ratios << values[:isoceles_ratio]
+# end
 
 
-puts triangle_perimeters.count
-puts isoceles_ratios.count
+# puts triangle_perimeters.count
+# puts isoceles_ratios.count
 
-r.png("../img_exports/isoceles_ratio_V_perimeter_affected_lt_10_ratio_0-5.png",:height=>600,:width=>800)
-r.plot(
-  { :x=>triangle_perimeters,
-    :y=>isoceles_ratios,
-    :ylab=>'Isoceles Ratios',
-    :xlab=>"Triangle Perimeters",
-    :log=>'x'
-  })
-r.eval_R "dev.off()"
+# r.png("../img_exports/isoceles_ratio_V_perimeter_affected_lt_10_ratio_0-5.png",:height=>600,:width=>800)
+# r.plot(
+#   { :x=>triangle_perimeters,
+#     :y=>isoceles_ratios,
+#     :ylab=>'Isoceles Ratios',
+#     :xlab=>"Triangle Perimeters",
+#     :log=>'x'
+#   })
+# r.eval_R "dev.off()"
 
 # #=============  Triangle Perimeters
 # r.png("../img_exports/triangle_perimeters_graph_affected_lt_10.png",:height=>600,:width=>800)
@@ -150,12 +151,12 @@ r.eval_R "dev.off()"
 
 
 #===============  Tweet Count Histogram
-# r.png("../img_exports/TweetCountHistogram_lte100.png",:height=>600,:width=>800)
-# r.hist( {
-#     :x=>tweet_count,
-#     :ylab=>'Number of Users',
-#     :xlab=>"Number of Tweets",
-#     :breaks=>200,
-#     :main=> "Tweets per User Histogram (Users with <= 100 tweets)"
-#   })
-# r.eval_R "dev.off()"
+r.png("../img_exports/statistics/tweet_count_histogram_lte_200.png",:height=>600,:width=>800)
+r.hist( {
+    :x=>tweet_count,
+    :ylab=>'Number of Users',
+    :xlab=>"Number of Tweets",
+    :breaks=>200,
+    :main=> "Tweets per User Histogram (Users with <= 200 Tweets)"
+  })
+r.eval_R "dev.off()"

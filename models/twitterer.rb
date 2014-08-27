@@ -7,6 +7,7 @@
 #
 # For the purpose of Efficiency, this model only includes tweets with Geotags.
 #
+#
 
 require 'mongo_mapper'
 require 'active_model'
@@ -76,9 +77,7 @@ class Twitterer
 
 	#On Save functions
 	before_save do
-
 		self.tweet_count = tweets.count #Update the local tweet_count variable.
-
 	end
 
 
@@ -116,14 +115,14 @@ class Twitterer
 	# 1. Build clusters from tweets with DBScan.	
 
 		#Calls the DBScan Algorithm from ../processing/db_scan.rb
-		# Parameters: epsilon = max distance (50 meters), min_pts = 3, for triangulation
+		# Parameters: epsilon = max distance (25 meters), min_pts = 2, for triangulation
 		dbscanner = DBScanCluster.new(tweets, epsilon=25, min_pts=2) #This seems to work okay...
 
 		# Run the db_scan algorithm
 	    clusters = dbscanner.run
-
 	    @clusters = {}
 
+	    #Set the instance clusters variable.  Note the keys are strings, not integers
 	    clusters.keys.each do |key|
 	    	@clusters[key.to_s] = clusters[key]
 	    end
@@ -133,27 +132,16 @@ class Twitterer
 
 	    @unclassified_percentage = (@unclassified_tweets.length.to_f / tweets.count*100).round
 
-    # 1.5 If a user now has no clusters, then we can't classify them.  If they have one cluster, then
-    # they are a shelter-in-placer.
+    # 1.5 If a user now has no clusters, then we can't classify them.
 
-    	if @clusters.keys.length < 2
-    		case @clusters.keys.length
-    		when 0
-    			@unclassifiable = true
-    			@confidence = 0
-    		when 1
-    			@shelter_in_place = true 
-    			location = find_median_point(@clusters[@clusters.keys[0]].collect{|tweet| tweet["coordinates"]["coordinates"]})
-    			@shelter_in_place_location = location
-    			@confidence = 20
-    		end
+    	if @clusters.empty?
+    		@unclassifiable = true
     	
-    	else #Continue with the analysis
-    		@shelter_in_place = false
-
-
+    	else #Continue with the analysis because the user does have clusters
+	
 	# 2. Analyze the clusters to find temporal holes and identify before and after home locations
 
+			#Cluster locations will be saved to the user for later referencing
 			@cluster_locations = {:before_home=>[], :after_home=>[]}
 
 			t_scores = {} #t_scores by cluster
@@ -169,7 +157,10 @@ class Twitterer
 
 			#Process before & after points
 			most_likely_home_cluster = find_best_before_cluster(@clusters, t_scores)
+				
 			unless most_likely_home_cluster.nil?
+				puts "Before Home Location: #{most_likely_home_cluster}"
+
 				loc = find_median_point(@clusters[most_likely_home_cluster].collect{|tweet| tweet["coordinates"]["coordinates"]})
 				@cluster_locations[most_likely_home_cluster] = loc
 				@cluster_locations[:before_home] = loc
@@ -179,6 +170,7 @@ class Twitterer
 		
 			most_likely_post_event_home = find_best_after_cluster(@clusters, t_scores)
 			unless most_likely_post_event_home.nil?
+				puts "After Home Location: #{most_likely_post_event_home}"
 				if @cluster_locations[most_likely_post_event_home].nil?
 					loc = find_median_point(@clusters[most_likely_post_event_home].collect{|tweet| tweet["coordinates"]["coordinates"]})
 					@cluster_locations[most_likely_post_event_home] = loc
@@ -192,101 +184,104 @@ class Twitterer
 		
 		#The temporal pattern will return 0 or 1 if it's a short case, otherwise it will
 			points_of_interest = find_temporal_pattern(@clusters, t_scores)
+		end
+	# 		# puts "POI: #{points_of_interest}"
 
-			puts "POI: #{points_of_interest}"
+	# 		# if points_of_interest.is_a? Integer
+	# 		# 	@unclassifiable = true
+	# 		# elsif points_of_interest.length==1
+	# 		# 	@shelter_in_place = true
+	# 		# 	@shelter_in_place_location = cluster_locations[points_of_interest[0]]
+	# 		# 	@confidence = 50
+	# 		# else
 
-			if points_of_interest.is_a? Integer
-				@unclassifiable = true
-			elsif points_of_interest.length==1
-				@shelter_in_place = true
-				@shelter_in_place_location = cluster_locations[points_of_interest[0]]
-				@confidence = 50
-			else
-
-				movement_path = [points_of_interest.shift]
-				mp_index = 0
-				#In this case, POIs is an array of cluster IDs.  We will build a linestring from it.
-				points_of_interest.each do |cluster_id|
+	# 		# 	movement_path = [points_of_interest.shift]
+	# 		# 	mp_index = 0
+	# 		# 	#In this case, POIs is an array of cluster IDs.  We will build a linestring from it.
+	# 		# 	points_of_interest.each do |cluster_id|
 					
-					unless movement_path[mp_index] == cluster_id
-						movement_path << cluster_id
-						mp_index +=1
-					end
-				end
+	# 		# 		unless movement_path[mp_index] == cluster_id
+	# 		# 			movement_path << cluster_id
+	# 		# 			mp_index +=1
+	# 		# 		end
+	# 		# 	end
 				
-				puts "Movement Path: #{most_likely_home_cluster} :: #{movement_path} :: #{most_likely_post_event_home}"
+	# 		# 	puts "Movement Path: #{most_likely_home_cluster} :: #{movement_path} :: #{most_likely_post_event_home}"
 
-				#Now turn their during-storm movement path into a geo object:
-				@during_storm_movement = []
-				movement_path.each do |cluster_id|
-					cluster_locations[cluster_id] ||= find_median_point(@clusters[cluster_id].collect{|tweet| tweet["coordinates"]["coordinates"]})
-					@during_storm_movement << cluster_locations[cluster_id]
-				end
+	# 		# 	#Now turn their during-storm movement path into a geo object:
+	# 		# 	@during_storm_movement = []
+	# 		# 	movement_path.each do |cluster_id|
+	# 		# 		cluster_locations[cluster_id] ||= find_median_point(@clusters[cluster_id].collect{|tweet| tweet["coordinates"]["coordinates"]})
+	# 		# 		@during_storm_movement << cluster_locations[cluster_id]
+	# 		# 	end
 
-				#At this point, we know the following things about our user:
+	# 		# 	#At this point, we know the following things about our user:
 				
-				# cluster_locations[:before_home]
-				# cluster_locations[:after_home]
-				# during_storm_movement
+	# 		# 	# cluster_locations[:before_home]
+	# 		# 	# cluster_locations[:after_home]
+	# 		# 	# during_storm_movement
 
-				#Now we can make a couple of inferences, does the following happen?
-				#Place > New Place > Place (If so, give them a boosted evac score...)
-				index = 0
+	# 		# 	#Now we can make a couple of inferences, does the following happen?
+	# 		# 	#Place > New Place > Place (If so, give them a boosted evac score...)
+	# 		# 	index = 0
 
-				full_movement = [most_likely_home_cluster]+movement_path+[most_likely_post_event_home]
-				full_movement.reject!{|x| x.nil?}
+	# 		# 	full_movement = [most_likely_home_cluster]+movement_path+[most_likely_post_event_home]
+	# 		# 	full_movement.reject!{|x| x.nil?}
 
-				#Look for patterns
-				until full_movement[index+3].nil? do
-					if full_movement[index] == full_movement[index+2]
-						@confidence += 10
-					elsif
-						full_movement[index]== full_movement[index+3]
-						@confidence += 20
-					end
-					index+=1
-				end
+	# 		# 	#Look for patterns
+	# 		# 	until full_movement[index+3].nil? do
+	# 		# 		if full_movement[index] == full_movement[index+2]
+	# 		# 			@confidence += 10
+	# 		# 		elsif
+	# 		# 			full_movement[index]== full_movement[index+3]
+	# 		# 			@confidence += 20
+	# 		# 		end
+	# 		# 		index+=1
+	# 		# 	end
 
-				#Is the movement array symmetrical?
-				if (full_movement[0..full_movement.length/2] & full_movement[full_movement.length/2..-1]).present?
-					@confidence +=20
-				end
+	# 		# 	#Is the movement array symmetrical?
+	# 		# 	if (full_movement[0..full_movement.length/2] & full_movement[full_movement.length/2..-1]).present?
+	# 		# 		@confidence +=20
+	# 		# 	end
 
-				#Lets save the full movement as well:
-				@cluster_movement_pattern = full_movement
+	# 		# 	#Lets save the full movement as well:
+	# 		# 	@cluster_movement_pattern = full_movement
 
-				#Also, check their other locations...
-				if @cluster_locations[:before_home] == @cluster_locations[:after_home]
-					#User started and ended in the same place
-					@confidence +=10
+	# 		# 	#Also, check their other locations...
+	# 		# 	if @cluster_locations[:before_home] == @cluster_locations[:after_home]
+	# 		# 		#User started and ended in the same place
+	# 		# 		@confidence +=10
 					
-					if @during_storm_movement[0]==@cluster_locations[:before_home]
+	# 		# 		if @during_storm_movement[0]==@cluster_locations[:before_home]
 						
-						#User left from "home" location
-						@confidence += 10
+	# 		# 			#User left from "home" location
+	# 		# 			@confidence += 10
 
-						if @during_storm_movement[-1]==@cluster_locations[:after_home]
+	# 		# 			if @during_storm_movement[-1]==@cluster_locations[:after_home]
 							
-							#User left during storm and returned to home location
-							@confidence += 10
+	# 		# 				#User left during storm and returned to home location
+	# 		# 				@confidence += 10
 
-							if @during_storm_movement[1] != @cluster_locations[:before_home]
-								@confidence += 10
-							end
-						end
-					end
-				end
-			end
+	# 		# 				if @during_storm_movement[1] != @cluster_locations[:before_home]
+	# 		# 					@confidence += 10
+	# 		# 				end
+	# 		# 			end
+	# 		# 		end
+	# 		# 	end
+	# 		# end
 
-	# 3. 
+	# # 3. 
 
-		#puts "Unclassified %: #{@unclassified_percentage}"
+	# 	#puts "Unclassified %: #{@unclassified_percentage}"
 
-		end #End case that @clusters.length > 1
+	# 	end #End case that @clusters.length > 1
 	
 	end #End function
 
+	def evac_analysis
+		pattern = @cluster_movement_pattern
 
+	end
 
 
 
