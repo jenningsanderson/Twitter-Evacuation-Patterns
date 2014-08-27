@@ -7,6 +7,7 @@
 #
 # For the purpose of Efficiency, this model only includes tweets with Geotags.
 #
+#
 
 require 'mongo_mapper'
 require 'active_model'
@@ -76,9 +77,7 @@ class Twitterer
 
 	#On Save functions
 	before_save do
-
 		self.tweet_count = tweets.count #Update the local tweet_count variable.
-
 	end
 
 
@@ -116,7 +115,7 @@ class Twitterer
 	# 1. Build clusters from tweets with DBScan.	
 
 		#Calls the DBScan Algorithm from ../processing/db_scan.rb
-		# Parameters: epsilon = max distance (50 meters), min_pts = 3, for triangulation
+		# Parameters: epsilon = max distance (25 meters), min_pts = 2, for triangulation
 		dbscanner = DBScanCluster.new(tweets, epsilon=25, min_pts=2) #This seems to work okay...
 
 		# Run the db_scan algorithm

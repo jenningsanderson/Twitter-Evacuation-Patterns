@@ -8,7 +8,7 @@ There were 22,250,274 tweets generated during Hurricane Sandy which referenced S
 
 Collecting these user's geotagged _contextual stream_ of tweets yields a total of 22 million tweets.
 
-Further time-filtering for October 22 - November 7 and manual filtering of easy to find spam,
+Filtering these tweets between October 
 
 Next, users with less than 15 tweets total were removed.
 
@@ -19,7 +19,7 @@ The working dataset includes **20,317 users** with **1,653,031 tweets**.
 ##Geo-Based Filtering
 The first round of geo-based filtering is based on the following crude box:
 
-![Original Geo bounding box]({{site.baseurl}}/img_exports/geo_affected_boundary.png)
+![Original Geo bounding box]({{site.baseurl}}/img_exports/maps/ncar_bounding_box.png)
 
 The following two counts are available:
 
@@ -29,7 +29,7 @@ A user's path (the linestring constructed from each of their tweet points) inter
 ![Intersecting User (Potentially Affected User)]({{site.baseurl}}/img_exports/intersecting_users_example.png)
 
 
-####Potentially highly affected Users (5,106):
+####Potentially affected affected Users (5,106):
 A user's calculated _before_ shelter location lies within this bounding box.
 
 ![Highly Affected User]({{site.baseurl}}/img_exports/highly_impacted_users_example.png)
