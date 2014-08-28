@@ -56,23 +56,23 @@ failed_count = 0
 
 to_import.each_with_index do |uid, index|
 	begin
-	obj_tweets = []
-	valid_count = 0
-	user_tweets = coll.find(
-		selector = {"user.id_str" => uid}, 
-		opts = {:sort=> :asc}
-	)
+		obj_tweets = []
+		valid_count = 0
+		user_tweets = coll.find(
+			selector = {"user.id_str" => uid}, 
+			opts	 = {:sort=> :asc}
+		)
 
-		if user_tweets.count > 1300
-			user_tweets.skip(user_tweets.count-1300)
-		end
-
-		user_tweets.each do |tweet|
-			this_tweet = Tweet.new( tweet )
-			if (this_tweet.date > before_sandy) and (this_tweet.date < after_sandy)
-				valid_count +=1
+		user_tweets.each_with_index do |tweet, index|
+			if index < 1000
+				this_tweet = Tweet.new( tweet )
+				if (this_tweet.date > before_sandy) and (this_tweet.date < after_sandy)
+					valid_count +=1
+				end
+				obj_tweets << this_tweet
+			else
+				break
 			end
-			obj_tweets << this_tweet
 		end
 
 		unless valid_count < 3
