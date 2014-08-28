@@ -17,6 +17,15 @@ The [DBScan algorithm](http://en.wikipedia.org/wiki/DBSCAN) is used here for den
 1. Not necessary to define #clusters before hand (Like k-means).
 2. Includes a non-cluster group which can be thrown out.
 
+####Zero Confidence
+The tweets that are unable to placed in a cluster are treated as noise.  There are two attributes set from this cluster:
+	
+	@unclassifiable = true (If there are no other clusters)
+	@unclassified_percentage = (number of tweets in non-cluster group) / (total tweets)
+
+If ```unclassifiable```, then that user is ignored for further analysis.  The ```unclassified_percentage``` can be used as measure of confidence later in the analysis.  if the majority of a user's tweets land in the unclassifiable cluster, then it is hard to be sure that the clusters that were identified are accurate representations of the user's potential shelter locations.
+
+
 
 ###Step 3. Identify Temporal Spread
 We must determine a user's repetitive tweeting behavior to get the best idea of when and where they tweet.  Empirical analysis and speaking with lead Geo-HCI researcher, [Brent Hecht](http://www.brenthecht.com/), shows that people generally seem to show repetitive tweet behavior at a given location.  For example, watching television at home at night.
@@ -57,6 +66,7 @@ Each cluster then gets a normalized ```t_score```, which represents the temporal
 	Cluster: 6 has 3 tweets with T_Score of 0.1111111111111111
 
 Cluster 0 is the obvious choice for a **home location** in this example and clusters 3 and 4 are very interesting as well.  In the event a user tweeted from multiple clusters in a day, the cluster with the lowest ```t_score``` will be favored as the dominant location for that day.  In searching for an evacuation, finding multiple days during the storm where this user did not tweet from location 0 would be a high indicator.
+
 
 ###Before & After Home (Shelter) Locations
 A user's ```before_home``` shelter location is determined by the most tweeted from location with the lowest ```t_score``` before October 28 (the day before landfall).  Similarly, the ```after_home``` location is determined by the most tweeted from location after November 8.
