@@ -6,6 +6,10 @@
 # The "3" is quite arbitrary, but with any less than that, the process will throw them out
 # anyways.
 #
+# It will cap the user at 1300 Tweets, taking an even number off the beginning and the front.
+# More than 1300 tweets results in a stack overflow.
+#
+#
 
 require 'rubygems'
 require 'bundler/setup'
@@ -29,7 +33,6 @@ coll = db['geo_tweets']
 limit = 10000000 #Hopefully an arbitrarily high limit
 
 puts "Running the User Import for max (#{limit} )users"
-# sandy_tweets = SandyMongoClient.new(limit=limit)
 
 existing_ids = Twitterer.distinct("id_str")
 
@@ -37,7 +40,7 @@ puts "There are #{existing_ids.length} distinct users in the collection already"
 
 distinct_users = coll.distinct("user.id_str")
 
-puts "There are #{distinct_users.length} in the entire tweet collection"
+puts "There are #{distinct_users.length} in the entire geo_tweet collection"
 
 to_import = (distinct_users - existing_ids).sort
 
@@ -55,7 +58,15 @@ to_import.each_with_index do |uid, index|
 	begin
 	obj_tweets = []
 	valid_count = 0
-	user_tweets = coll.find({"user.id_str" => uid})
+	user_tweets = coll.find(
+		selector = {"user.id_str" => uid}, 
+		opts = {:sort=> :asc}
+	)
+
+		if user_tweets.count > 1300
+			cut_off = (user_tweets.count - 1300)/2
+			user_tweets = user_tweets[cut_off .. -cut_off]
+		end
 
 		user_tweets.each do |tweet|
 			this_tweet = Tweet.new( tweet )
@@ -69,7 +80,7 @@ to_import.each_with_index do |uid, index|
 			this_user = Twitterer.create( {:id_str => uid} )
 			this_user.tweets = obj_tweets.sort_by{|tweet| tweet.date}
 			this_user.issue = 120
-			this_user.save
+			#this_user.save
 			import_count+=1
 		else
 			failed_count +=1
@@ -86,7 +97,7 @@ end
 
 puts "\n-----------\n"
 
-puts "Failed Count: #{failed_count}"
+puts "Failed to meet criteria count: #{failed_count}"
 puts "Imported: #{import_count}"
 puts "Original size: #{to_import.length}"
 puts "There are #{existing_ids.length} distinct Twitterers in the collection"
