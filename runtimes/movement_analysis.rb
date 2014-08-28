@@ -18,10 +18,10 @@ MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
 #Lets also write a KML file for visualizing this information
-kml_outfile = KMLAuthor.new("../exports/#{filename}.kml")
-kml_outfile.write_header("KML Output of Specific Users")
-generate_random_styles(kml_outfile.openfile, 30)
-write_3_bin_styles(kml_outfile.openfile)
+# kml_outfile = KMLAuthor.new("../exports/#{filename}.kml")
+# kml_outfile.write_header("KML Output of Specific Users")
+# generate_random_styles(kml_outfile.openfile, 30)
+# write_3_bin_styles(kml_outfile.openfile)
 
 
 def add_user_cluster_to_kml(user, kml_file)
@@ -49,7 +49,8 @@ results = Twitterer.where(
 	
 	# :hazard_level_before => 10,
 	# :shelter_in_place.ne => true
-	:handle => "BaconSeason"
+	#:handle => "BaconSeason"
+	:issue => 120
 
 ).limit(nil).sort(:tweet_count).limit(25).sort(:handle)
 
@@ -62,12 +63,13 @@ results.each_with_index do |user, index|
 	
 	unless user.shelter_in_place
 		user.new_location_calculation
+		user.save
 
-		add_user_cluster_to_kml(user, kml_outfile)
+		# add_user_cluster_to_kml(user, kml_outfile)
 	end
 
 	puts "==================\n\n"
 
 end
 
-kml_outfile.write_footer
+# kml_outfile.write_footer
