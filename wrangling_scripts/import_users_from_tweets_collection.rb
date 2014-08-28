@@ -67,7 +67,7 @@ to_import.each_with_index do |uid, index|
 
 		if user_tweets.count > 1200
 			users_above_limit += 1
-			over = (((user_tweets.count)/ 2)-600).round
+			over = (((user_tweets.count)/ 3)-600).round
 			user_tweets.skip( over )
 		end
 
