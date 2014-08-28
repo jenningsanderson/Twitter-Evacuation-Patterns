@@ -63,8 +63,12 @@ to_import.each_with_index do |uid, index|
 			opts	 = {:sort=> :asc}
 		)
 
+		over = (user_tweets.count - 1300)/2
+		user_tweets.skip(over)
+		limit = (user_tweets.count - 1300)+over
+
 		user_tweets.each_with_index do |tweet, index|
-			if index < 1000
+			if index < limit
 				this_tweet = Tweet.new( tweet )
 				if (this_tweet.date > before_sandy) and (this_tweet.date < after_sandy)
 					valid_count +=1
