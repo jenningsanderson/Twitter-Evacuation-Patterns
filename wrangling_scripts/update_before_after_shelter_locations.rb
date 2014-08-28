@@ -41,12 +41,10 @@ results.each_with_index do |user, index|
 
 	user.save
 
-	if (index % 100).zero?
+	if (index % 10).zero?
 	    print "."
-	elsif (index%1001).zero?
+	elsif (index%101).zero?
 	    print "#{index}"
 	end
-
-	puts "==================\n\n"
 
 end
