@@ -64,8 +64,7 @@ to_import.each_with_index do |uid, index|
 	)
 
 		if user_tweets.count > 1300
-			cut_off = (user_tweets.count - 1300)/2
-			user_tweets = user_tweets.each[cut_off .. -cut_off]
+			user_tweets.skip(user_tweets.count-1300)
 		end
 
 		user_tweets.each do |tweet|
@@ -80,7 +79,7 @@ to_import.each_with_index do |uid, index|
 			this_user = Twitterer.create( {:id_str => uid} )
 			this_user.tweets = obj_tweets.sort_by{|tweet| tweet.date}
 			this_user.issue = 120
-			#this_user.save
+			this_user.save
 			import_count+=1
 		else
 			failed_count +=1
