@@ -66,7 +66,7 @@ to_import.each_with_index do |uid, index|
 		)
 
 		if user_tweets.count > 1200
-			puts user_tweets.first["user.screen_name"]
+			puts "Trouble User: #{uid}"
 			users_above_limit += 1
 			over = (((user_tweets.count)/ 1.5)).round
 			user_tweets.skip( over )
