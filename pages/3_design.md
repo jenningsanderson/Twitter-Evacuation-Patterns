@@ -8,15 +8,7 @@ permalink: /design/
 
 The main design of this work is to identify where a user took shelter at various times during Hurricane Sandy.  From these points of interest, a Twitterers's movement pattern during the hurricane can be analyzed to determine protective decisions they may (or may not) have made about their shelters.
 
-
-###Step 1. Establish Time Bins for the event:
-
-Before | During | After
-:-----:| :-----:| :----:
-October 22 - 28 | October 28 - Nov 1 | November 1 - November 7 |
-
-
-###Step 2. Identify spatial clusters
+###Step 1. Identify Spatial Clusters
 
 ![DBScan Example]({{site.baseurl}}/img_exports/DB_Scan_GoogleEarth.png "DB Scan Example")
 
@@ -25,15 +17,6 @@ The [DBScan algorithm](http://en.wikipedia.org/wiki/DBSCAN) is used here for den
 1. Not necessary to define #clusters before hand (Like k-means).
 2. Includes a non-cluster group which can be thrown out.
 
-Each cluster is then analyzed for _relative density_:
-
-The number of tweets is very important and will be washed out by the relative size of the area (square meters).  Therefore, a Tweet Variable is defined as: _2<sup>(number of tweets)</sup>_ to heavily weight the number of tweets.
-
-The area of the tweet cluster is defined as the area of the convex hull constructed from the points in the cluster.
-
-
-The tweet density is then defined as:
-````(Tweet Variable) / (Area of convex hull)````
 
 ###Step 3. Identify Temporal Spread
 We must determine a user's repetitive tweeting behavior to get the best idea of when and where they tweet.  Empirical analysis and speaking with lead Geo-HCI researcher, [Brent Hecht](http://www.brenthecht.com/), shows that people generally seem to show repetitive tweet behavior at a given location.  For example, watching television at home at night.
@@ -58,18 +41,24 @@ In this 9 day window, Each cluster of tweets had exactly 9 tweets, once per day.
 
 The O tweets, however, have a temporal spread of 5, meaning that the 9 tweets in this cluster occurred sporadically over 21 hours of the day, each day.
 
-The units turn out to be:
+Each cluster then gets a normalized ```t_score```, which represents the temporal spread.  Here is an extreme example for a particular user:
 
-````Tweet Count Variable / Area / Time Spread````
+	Cluster: 0 has 967 tweets with T_Score of 8.555335374493764e-06
+	Cluster: 4 has 56 tweets with T_Score of 0.00031887755102040814
+	Cluster: 3 has 49 tweets with T_Score of 0.001665972511453561
+	Cluster: 8 has 20 tweets with T_Score of 0.0025
+	Cluster: 2 has 15 tweets with T_Score of 0.0044444444444444444
+	Cluster: 11 has 9 tweets with T_Score of 0.012345679012345678
+	Cluster: 9 has 9 tweets with T_Score of 0.012345679012345678
+	Cluster: 7 has 6 tweets with T_Score of 0.027777777777777776
+	Cluster: 5 has 4 tweets with T_Score of 0.0625
+	Cluster: 1 has 4 tweets with T_Score of 0.0625
+	Cluster: 10 has 3 tweets with T_Score of 0.1111111111111111
+	Cluster: 6 has 3 tweets with T_Score of 0.1111111111111111
 
+Cluster 0 is the obvious choice for a **home location** in this example and clusters 3 and 4 are very interesting as well.  In the event a user tweeted from multiple clusters in a day, the cluster with the lowest ```t_score``` will be favored as the dominant location for that day.  In searching for an evacuation, finding multiple days during the storm where this user did not tweet from location 0 would be a high indicator.
 
-```Weighted Location``` = The median location of the cluster which maximizes  the above formula.
+###Before & After Home (Shelter) Locations
+A user's ```before_home``` shelter location is determined by the most tweeted from location with the lowest ```t_score``` before October 28 (the day before landfall).  Similarly, the ```after_home``` location is determined by the most tweeted from location after November 8.
 
-This weighted location is then set as the 'before', 'during', or 'after' location of a user with reference to the time bin that included these tweets.
-
-
-#####Visual Example:
-
-![Part 1]({{site.baseurl}}/img_exports/poi_example_part1.png "Overview of POIs")
-
-![Part 2]({{site.baseurl}}/img_exports/poi_example_part2.png "During, After Expanded")
+In some cases, these values are not available due to lack of tweets.  In these cases, a user's first and last locations in their ```during_storm_movement```  cluster list is used, but the   confidence of these users' movement prediction is significantly reduced.

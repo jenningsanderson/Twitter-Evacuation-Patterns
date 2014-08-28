@@ -1,7 +1,8 @@
 ---
-layout: page
-title: Triangles
-permalink: /triangles/
+layout: post
+title: "Triangles (Previous Analysis Method)"
+date:   2014-08-20 19:00:00
+permalink: /Triangles
 ---
 
 #Before, During, After

@@ -12,6 +12,8 @@ The tweets were next limited to the time frame of October 1, 2012 - December 31,
 
 Next, users with less than 3 tweets between **October 28** and **November 3** were removed.  Later analysis will most likely ignore these users (and users with many more tweets) anyway because they will become _unclassifiable_ for not having distinct clusters.
 
+Similarly, users were limited to 1,200 tweets (Only a few users exceeded this count) because it caused a stack-overflow on the database server when that many data points were used in calculations.  In these cases, we kept the middle 1,200 tweets from a user that validated the above restraints. 
+
 The working dataset includes **29,119 users** with **3,118,108 tweets**.  See the [Statistics page]({{site.baseurl}}/Statistics) for histograms of this breakdown.
 
  
