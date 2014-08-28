@@ -52,6 +52,14 @@ class Twitterer
 	key :shelter_in_place_location, 	Array
 	key :confidence, 		Float
 
+
+	#Cluster Info
+	key :clusters_per_day,	Hash
+	key :t_scores,			Hash
+
+	key :before_home_cluster, String
+	key :after_home_cluster, String
+
 	#Sandy Evacuation Specific values to track (deprecated)
 	# key :before, 			Array
 	# key :during, 			Array
@@ -108,6 +116,51 @@ class Twitterer
 
 # ----------------- New POI Algorithm Functions -------------------#
 
+	def get_and_store_clusters
+		dbscanner = DBScanCluster.new(tweets, epsilon=25, min_pts=2) #This seems to work okay...
+
+		# Run the db_scan algorithm
+	    clusters = dbscanner.run
+	    @clusters = {}
+	    @cluster_locations ||= {}
+
+	    #Set the instance clusters variable.  Note the keys are strings, not integers
+	    clusters.keys.each do |key|
+	    	key_string = key.to_s
+	    	@clusters[key_string] = clusters[key]
+	    	
+	    	#Set the cluster locations as well (for storage, we can plot tweets on these later...)!
+	    	unless key_string=="-1"
+	    		@cluster_locations[key_string] ||= find_median_point(@clusters[key_string].collect{|tweet| tweet["coordinates"]["coordinates"]})
+	    	end
+	    end
+	   
+	    #Throw away the unclassifiable cluster (Save them as a variable with the Twitterer for now)
+		@unclassified_tweets = @clusters.delete("-1")
+		@unclassified_percentage = (@unclassified_tweets.length.to_f / tweets.count*100).round
+
+		if @clusters.empty?
+			@unclassifiable = true
+
+		else #Continue with the calculations because the user DOES have clusters
+
+			#Calculate T_scores
+			t_scores = {} #t_scores by cluster
+			#Sort the clusters by length (number of tweets is most important, as that's our indicator)
+			@clusters.sort_by{|k,v| v.length}.reverse.each do |id, cluster|
+				#The t_score is the spread, weighted by tweets.
+				t_scores[id] = score_temporal_patterns(cluster)
+				#puts "Cluster: #{id} has #{cluster.length} tweets with T_Score of #{t_scores[id]}"
+			end
+			@t_scores = t_scores #Save the t_scores for later access...
+
+			#Now save clusters_by_day for later access...
+			@clusters_per_day = sort_clusters_by_day(@clusters)
+		end
+	end
+
+
+
 	def new_location_calculation
 
 		@confidence = 0
@@ -129,15 +182,13 @@ class Twitterer
 
 	    #Throw away the unclassifiable cluster (Save them as a variable with the Twitterer for now)
 		@unclassified_tweets = @clusters.delete("-1")
-
 		@unclassified_percentage = (@unclassified_tweets.length.to_f / tweets.count*100).round
 
-    # 1.5 If a user now has no clusters, then we can't classify them.
 
 		if @clusters.empty?
 			@unclassifiable = true
 
-		else #Continue with the analysis because the user does have clusters
+		else #Continue with the analysis because the user DOES have clusters
 	
 	# 2. Analyze the clusters to find temporal holes and identify before and after home locations
 
@@ -154,6 +205,8 @@ class Twitterer
 				
 				puts "Cluster: #{id} has #{cluster.length} tweets with T_Score of #{t_scores[id]}"
 			end
+
+			@t_scores = t_scores #Save the t_scores for later access...
 
 			#Process before & after points
 			most_likely_home_cluster = find_best_before_cluster(@clusters, t_scores)

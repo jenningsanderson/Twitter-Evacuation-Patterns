@@ -47,13 +47,12 @@ end
 
 results = Twitterer.where( 
 	
-	# :hazard_level_before => 10,
-	# :shelter_in_place.ne => true
-	#:handle => "BaconSeason"
-	:issue => 120,
-	:cluster_locations=> {}
+	:path_affected => true,
+	:unclassifiable.ne => true,
+	:issue.ne => 1000,
+	
 
-).limit(nil).sort(:tweet_count).limit(25).sort(:handle)
+).limit(nil).sort(:tweet_count)
 
 puts "Found #{results.count} users"
 
@@ -61,13 +60,14 @@ results.each_with_index do |user, index|
 
 	puts user.handle
 	puts "------------------"
-	
-	unless user.shelter_in_place
-		user.new_location_calculation
-		user.save
 
-		# add_user_cluster_to_kml(user, kml_outfile)
-	end
+	user.get_and_store_clusters
+
+	user.issue = 1000
+
+	user.save
+
+	#add_user_cluster_to_kml(user, kml_outfile)
 
 	puts "==================\n\n"
 
