@@ -56,6 +56,8 @@ failed_count = 0
 
 users_above_limit = 0
 
+trouble_users = []
+
 to_import.each_with_index do |uid, index|
 	begin
 		obj_tweets = []
@@ -67,8 +69,9 @@ to_import.each_with_index do |uid, index|
 
 		if user_tweets.count > 1200
 			puts "Trouble User: #{uid}"
+			trouble_users << uid
 			users_above_limit += 1
-			over = (((user_tweets.count)/ 1.5)).round
+			over = (((user_tweets.count)/ 1.1)).round
 			user_tweets.skip( over )
 		end
 
@@ -108,3 +111,5 @@ puts "\n-----------\n"
 puts "Failed to meet criteria count: #{failed_count}"
 puts "Had over 1200 tweets: #{users_above_limit}"
 puts "Imported: #{import_count}"
+
+print trouble_users
