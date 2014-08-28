@@ -31,7 +31,7 @@ def find_temporal_pattern(clusters, t_scores)
 		
 		days.each do |day, tweets|
 			clusters_by_day[day] ||= []
-			clusters_by_day[day] << cluster_id unless t_scores[cluster_id] > 0.1 #Only want high quality zones
+			clusters_by_day[day] << cluster_id # unless t_scores[cluster_id] > 0.1 #Only want high quality zones
 		end
 	end
 

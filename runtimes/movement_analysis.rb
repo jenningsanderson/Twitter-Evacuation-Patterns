@@ -50,7 +50,8 @@ results = Twitterer.where(
 	# :hazard_level_before => 10,
 	# :shelter_in_place.ne => true
 	#:handle => "BaconSeason"
-	:issue => 120
+	:issue => 120,
+	:cluster_locations=> {}
 
 ).limit(nil).sort(:tweet_count).limit(25).sort(:handle)
 
