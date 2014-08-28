@@ -65,7 +65,7 @@ to_import.each_with_index do |uid, index|
 
 		if user_tweets.count > 1300
 			cut_off = (user_tweets.count - 1300)/2
-			user_tweets = user_tweets[cut_off .. -cut_off]
+			user_tweets = user_tweets.each[cut_off .. -cut_off]
 		end
 
 		user_tweets.each do |tweet|

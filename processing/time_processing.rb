@@ -35,10 +35,6 @@ def find_temporal_pattern(clusters, t_scores)
 		end
 	end
 
-	t_scores.each do |k,v|
-		puts "cluster #{k} has t_score #{v}"
-	end
-
 	clusters_by_day.delete_if{|k,v| v.empty?}
 
 	valid_keys = clusters_by_day.keys.sort.reject{|x| (x < 295) or (x > 314)} #Just look at the time surrounding the Hurricane

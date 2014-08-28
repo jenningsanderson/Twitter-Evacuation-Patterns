@@ -128,16 +128,16 @@ class Twitterer
 	    end
 
 	    #Throw away the unclassifiable cluster (Save them as a variable with the Twitterer for now)
-	    @unclassified_tweets = @clusters.delete("-1")
+		@unclassified_tweets = @clusters.delete("-1")
 
-	    @unclassified_percentage = (@unclassified_tweets.length.to_f / tweets.count*100).round
+		@unclassified_percentage = (@unclassified_tweets.length.to_f / tweets.count*100).round
 
     # 1.5 If a user now has no clusters, then we can't classify them.
 
-    	if @clusters.empty?
-    		@unclassifiable = true
-    	
-    	else #Continue with the analysis because the user does have clusters
+		if @clusters.empty?
+			@unclassifiable = true
+
+		else #Continue with the analysis because the user does have clusters
 	
 	# 2. Analyze the clusters to find temporal holes and identify before and after home locations
 
@@ -152,7 +152,7 @@ class Twitterer
 				#The t_score is the spread, weighted by tweets.
 				t_scores[id] = score_temporal_patterns(cluster)
 				
-				#puts "Cluster: #{id} has #{cluster.length} tweets with T_Score of #{t_scores[id]}"
+				puts "Cluster: #{id} has #{cluster.length} tweets with T_Score of #{t_scores[id]}"
 			end
 
 			#Process before & after points
