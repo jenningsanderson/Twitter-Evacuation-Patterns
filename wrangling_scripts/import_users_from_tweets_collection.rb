@@ -54,6 +54,8 @@ after_sandy  = Time.new(2012,11,03)
 import_count = 0
 failed_count = 0
 
+users_above_limit = 0
+
 to_import.each_with_index do |uid, index|
 	begin
 		obj_tweets = []
@@ -64,6 +66,7 @@ to_import.each_with_index do |uid, index|
 		)
 
 		if user_tweets.count > 1200
+			users_above_limit += 1
 			over = (((user_tweets.count)/ 2)-600).round
 			user_tweets.skip( over )
 		end
@@ -102,8 +105,5 @@ end
 puts "\n-----------\n"
 
 puts "Failed to meet criteria count: #{failed_count}"
+puts "Had over 1200 tweets: #{users_above_limit}"
 puts "Imported: #{import_count}"
-puts "Original size: #{to_import.length}"
-puts "There are #{existing_ids.length} distinct Twitterers in the collection"
-puts "There are #{distinct_users.length} in the entire tweet collection"
-
