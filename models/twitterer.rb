@@ -280,7 +280,6 @@ class Twitterer
 
 	def evac_analysis
 		pattern = @cluster_movement_pattern
-
 	end
 
 
