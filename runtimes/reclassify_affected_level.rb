@@ -42,48 +42,49 @@ puts "Successfully processed the NYC Evac zones."
 results = Twitterer.where(
 				:path_affected => true,
                 :unclassifiable => nil, 	#We need to know if we can process them
-                :hazard_level_before => nil
+                :clusters_per_day => nil,
+                :hazard_level_before => 100
 ).limit(nil)
 
 puts "Found #{results.count} results, now processing"
 
 updated_users = 0
+error_count = 0
 
 results.each_with_index do |user, index|
 
 	#Cast their location points
-	before_home_array = user.cluster_locations[:before_home] || user.shelter_in_place_location
+	before_home_array = user.cluster_locations[:before_home]
 
-	unless before_home_array.nil?
-		before_home_pnt = GEOFACTORY.point(before_home_array[0], before_home_array[1] )
+	before_home_pnt = GEOFACTORY.point(before_home_array[0], before_home_array[1] )
 
-		updated_users +=1
-		if before_home_pnt.within? ncar_bounding_box
-			
-			user.hazard_level_before = 50 #Means they were in the ncar_bounding_box
+	updated_users +=1
+	if before_home_pnt.within? ncar_bounding_box
+		
+		user.hazard_level_before = 50 #Means they were in the ncar_bounding_box
 
-			#Now it's time to investigate if that value is within an actual evacuation zone.
-			["A", "B", "C"].each_with_index do |zone, zone_index| #Will be 0,1,2
+		#Now it's time to investigate if that value is within an actual evacuation zone.
+		["A", "B", "C"].each_with_index do |zone, zone_index| #Will be 0,1,2
 
-				zone_arrays[zone].each do |zone_geometry| #Iterate through each of the elements of the zone
-					
-					if before_home_pnt.within? zone_geometry #Check if the point is within the zone geom
-						user.hazard_level_before = (zone_index+1)*10
-					end
+			zone_arrays[zone].each do |zone_geometry| #Iterate through each of the elements of the zone
+				
+				if before_home_pnt.within? zone_geometry #Check if the point is within the zone geom
+					user.hazard_level_before = (zone_index+1)*10
 				end
 			end
-		else
-			user.hazard_level_before = 100
 		end
 	else
-		user.issue = 500
+		user.hazard_level_before = 100
 	end
 
+	user.issue = 2000
 	user.save
 
 	if (index % 10).zero?
 		print "."
 	elsif (index%101).zero?
-		print "#{updated_users} / #{index}"
+		print "#{error_count} | #{updated_users} / #{index+1}"
 	end
 end
+
+puts "Updated Users: #{updated_users}"

@@ -15,7 +15,7 @@ require_relative '../models/tweet'
 require_relative '../processing/geoprocessing'
 
 #Static Setup
-MongoMapper.connection = Mongo::Connection.new#('epic-analytics.cs.colorado.edu')
+MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
 
@@ -23,7 +23,7 @@ results = Twitterer.where(
 	
 	:path_affected => true,
 	:unclassifiable.ne => true,
-	:issue => 1000,
+	:before_home_cluster => nil
 
 ).limit(nil).sort(:tweet_count)
 

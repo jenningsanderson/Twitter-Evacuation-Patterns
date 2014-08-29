@@ -52,7 +52,13 @@ results.each_with_index do |user, index|
 		user.path_affected = true
 	else
 		user.path_affected = false
-		user.unclassifiable = true
 	end
 	user.save
+
+	if (index % 10).zero?
+	    print "."
+	elsif (index%101).zero?
+	    print "#{index}"
+	end
+	
 end

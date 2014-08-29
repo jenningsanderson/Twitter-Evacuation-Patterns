@@ -126,14 +126,14 @@ def score_cluster_pattern(clusters, t_scores)
 	distribution_weights = {
 		300 => 1,
 		301 => 1,
-		302 => 3,		#October 28, 2012
+		302 => 2,		#October 28, 2012
 		303 => 3,		#October 29, 2012
-		304 => 4,		#October 30, 2012
-		305 => 4,		#October 31, 2012
+		304 => 8,		#October 30, 2012
+		305 => 8,		#October 31, 2012
 		306 => 4,		#November 1, 2012
 		307 => 3,		#November 2, 2012
 		308 => 2,		#November 3, 2012	LynnCatherineX3 came back home 
-		309 => 1,
+		309 => 1,		#November 4, 2012
 		310 => 1,
 		311 => 1,
 		312 => 1,
@@ -141,13 +141,28 @@ def score_cluster_pattern(clusters, t_scores)
 		314 => 1,
 	}
 
-	#Rules
-	# 1. Definately need to use a before location if it's available.
-		#If one of the earlier locations is that value, then use it.
-
 	probable_before_locations = []
 	probable_evac_locations   = []
+	probable_after_locations  = []
 
+	clusters.each do | day, clusters_that_day |
+
+		yday = day.to_i
+
+		clusters_that_day.each do |indiv_cluster|
+			unless t_scores[indiv_cluster] > 0.1
+				if yday < 303 
+				 	probable_before_locations << ([indiv_cluster] * distribution_weights[yday])
+				elsif yday > 308
+					probable_after_locations << ([indiv_cluster] * distribution_weights[yday])
+				else
+					probable_evac_locations << ([indiv_cluster] * distribution_weights[yday])
+				end
+			end
+		end
+	end
+
+	return probable_before_locations.flatten, probable_evac_locations.flatten, probable_after_locations.flatten
 
 end
 
@@ -173,8 +188,12 @@ end
 
 
 def mode(array)
-	#http://stackoverflow.com/questions/412169/ruby-how-to-find-item-in-array-which-has-the-most-occurrences
-	array.group_by{|i| i}.max{|x,y| x[1].length <=> y[1].length}[0]
+	if array.empty? or array.nil?
+		return nil
+	else
+		#http://stackoverflow.com/questions/412169/ruby-how-to-find-item-in-array-which-has-the-most-occurrences
+		array.group_by{|i| i}.max{|x,y| x[1].length <=> y[1].length}[0]
+	end
 end
 
 

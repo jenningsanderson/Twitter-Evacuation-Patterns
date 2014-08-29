@@ -49,8 +49,7 @@ results = Twitterer.where(
 	
 	:path_affected => true,
 	:unclassifiable.ne => true,
-	:issue.ne => 1000,
-	
+	:t_scores => nil
 
 ).limit(nil).sort(:tweet_count)
 
