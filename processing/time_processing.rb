@@ -120,7 +120,7 @@ end
 
 
 
-def score_cluster_pattern(clusters, t_scores)
+def score_cluster_pattern(clusters, t_scores, before_home_cluster)
 
 	#Weights
 	distribution_weights = {
@@ -128,9 +128,9 @@ def score_cluster_pattern(clusters, t_scores)
 		301 => 1,
 		302 => 2,		#October 28, 2012
 		303 => 3,		#October 29, 2012
-		304 => 8,		#October 30, 2012
+		304 => 5,		#October 30, 2012
 		305 => 8,		#October 31, 2012
-		306 => 4,		#November 1, 2012
+		306 => 6,		#November 1, 2012
 		307 => 3,		#November 2, 2012
 		308 => 2,		#November 3, 2012	LynnCatherineX3 came back home 
 		309 => 1,		#November 4, 2012
@@ -145,7 +145,7 @@ def score_cluster_pattern(clusters, t_scores)
 	probable_evac_locations   = []
 	probable_after_locations  = []
 
-	clusters.each do | day, clusters_that_day |
+	clusters.sort_by{|k,v| k.to_i}.each do | day, clusters_that_day |
 
 		yday = day.to_i
 
@@ -156,7 +156,11 @@ def score_cluster_pattern(clusters, t_scores)
 				elsif yday > 308
 					probable_after_locations << ([indiv_cluster] * distribution_weights[yday])
 				else
+					# if probable_before_locations.include? indiv_cluster
 					probable_evac_locations << ([indiv_cluster] * distribution_weights[yday])
+					# else
+					# 	probable_evac_locations << ([indiv_cluster] * distribution_weights[yday] * 2)
+					# end
 				end
 			end
 		end

@@ -55,8 +55,9 @@ results = Twitterer.where(
 	# :hazard_level_before => 50
 	:unclassified_percentage.lte => 50,
 	# :unclassifiable.ne => true,
-	:tweet_count.gte => 100,
+	#:tweet_count.gte => 100,
 	# :hazard_level_before => 10
+	#:handle => "DomC_"
 	:handle.in => evacuated_users
 
 ).limit(nil).sort(:tweet_count)

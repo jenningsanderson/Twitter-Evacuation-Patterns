@@ -167,7 +167,7 @@ class Twitterer
 		end
 
 		#There was more than one cluster involved, so there is some level of movement.
-		before, during, after = score_cluster_pattern( pertinent_clusters, @t_scores )
+		before, during, after = score_cluster_pattern( pertinent_clusters, @t_scores, before_home_cluster )
 
 		if during.empty?
 			#Need to know where they were DURING the event

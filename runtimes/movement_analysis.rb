@@ -47,9 +47,10 @@ end
 
 results = Twitterer.where( 
 	
-	:path_affected => true,
-	:unclassifiable.ne => true,
-	:t_scores => nil
+	# :path_affected => true,
+	# :unclassifiable.ne => true,
+	# :t_scores => nil
+	:handle => "EffinwitESH"
 
 ).limit(nil).sort(:tweet_count)
 
@@ -60,7 +61,9 @@ results.each_with_index do |user, index|
 	puts user.handle
 	puts "------------------"
 
-	user.get_and_store_clusters
+	#user.get_and_store_clusters
+
+	user.before_home_cluster = find_before_home(user.clusters_per_day)
 
 	user.issue = 1000
 
