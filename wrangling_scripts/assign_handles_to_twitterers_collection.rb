@@ -12,40 +12,28 @@ require 'mongo_mapper'
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
-
 #Static Setup
 MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo'
 
-user = Twitterer.where(:id_str => "40888536").first
+results = Twitterer.where(:handle => nil)
 
-user.handle = "JLawMiamiDoll"
+puts "Found #{results.count} users without handles"
 
-puts user.handle
+results.each_with_index do |user, i|
+	handles = []
+	begin
+		handles = user.tweets.collect{|tweet| tweet.handle}.uniq
+		user.handle = handles.join(', ')
+		user.save
 
-user.save
-
-# puts "Found #{results.count} users without handles"
-
-# results.each_with_index do |user, i|
-# 	puts user.id_str
-# 	handles = []
-# 	begin
-
-# 		puts handles
-		
-# 		user.handle = "JLawMiamiDoll"
-# 		user.save
-
-# 		puts user.handle
-
-# 		if (i%100).zero?
-# 			print "#{i}.."
-# 		end
-# 	rescue => e 
-# 		puts "Ahh!  An error occured with user: #{user.handle}"
-# 		puts $!
-# 		puts e.backtrace
-# 		next
-# 	end
-# end
+		if (i%10).zero?
+			print "#{i}.."
+		end
+		puts user.handle
+	rescue => e 
+		puts "Ahh!  An error occured with user: #{user.id_str}"
+		puts $!
+		puts e.backtrace
+	end
+end

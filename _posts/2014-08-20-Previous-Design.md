@@ -1,7 +1,8 @@
 ---
-layout: page
-title: Design
-permalink: /design/
+layout: post
+title: "Previous (triangles) Design"
+date:   2014-08-20 18:00:00
+permalink: /Previous-Design
 ---
 
 #User Shelter

@@ -1,7 +1,6 @@
 #
 # A separate set of functions strictly for processing temporal data
 #
-#
 
 require 'time'
 
@@ -21,23 +20,25 @@ def score_temporal_patterns(tweets)
 end
 
 
-#This function is a major workhorse and tries at every point to return a cop-out value.
-def find_temporal_pattern(clusters, t_scores)
-
+def sort_clusters_by_day(clusters)
 	clusters_by_day = {} #This will be a hash like this: 301=>1,2 302=>4, etc.
 
 	clusters.each do |cluster_id, tweets|
 		days = group_cluster_by_days(tweets)
 		
 		days.each do |day, tweets|
-			clusters_by_day[day] ||= []
-			clusters_by_day[day] << cluster_id unless t_scores[cluster_id] > 0.1 #Only want high quality zones
+			clusters_by_day[day.to_s] ||= []
+			clusters_by_day[day.to_s] << cluster_id # unless t_scores[cluster_id] > 0.1 #Only want high quality zones
 		end
 	end
+	return clusters_by_day
+end
 
-	t_scores.each do |k,v|
-		puts "cluster #{k} has t_score #{v}"
-	end
+
+#This function is a major workhorse and tries at every point to return a cop-out value.
+def find_temporal_pattern(clusters, t_scores)
+
+	clusters_by_day = sort_clusters_by_day(clusters)
 
 	clusters_by_day.delete_if{|k,v| v.empty?}
 
@@ -116,53 +117,133 @@ def find_temporal_pattern(clusters, t_scores)
 	# return shelter_zones.reverse!
 end
 
-def find_best_before_cluster(clusters, t_scores)
-	
-	clusters_by_day = {} #This will be a hash like this: 301=>1,2 302=>4, etc.
 
-		clusters.each do |cluster_id, tweets|
-			days = group_cluster_by_days(tweets)
-			
-			days.each do |day, tweets|
-				clusters_by_day[day] ||= []
-				clusters_by_day[day] << cluster_id unless t_scores[cluster_id] > 0.1 #Only want high quality zones
+
+
+def score_cluster_pattern(clusters, t_scores, before_home_cluster)
+
+	#Weights
+	distribution_weights = {
+		300 => 1,
+		301 => 1,
+		302 => 2,		#October 28, 2012
+		303 => 3,		#October 29, 2012
+		304 => 5,		#October 30, 2012
+		305 => 8,		#October 31, 2012
+		306 => 6,		#November 1, 2012
+		307 => 3,		#November 2, 2012
+		308 => 2,		#November 3, 2012	LynnCatherineX3 came back home 
+		309 => 1,		#November 4, 2012
+		310 => 1,
+		311 => 1,
+		312 => 1,
+		313 => 1,
+		314 => 1,
+	}
+
+	probable_before_locations = []
+	probable_evac_locations   = []
+	probable_after_locations  = []
+
+	clusters.sort_by{|k,v| k.to_i}.each do | day, clusters_that_day |
+
+		yday = day.to_i
+
+		clusters_that_day.each do |indiv_cluster|
+			unless t_scores[indiv_cluster] > 0.1
+				if yday < 303 
+				 	probable_before_locations << ([indiv_cluster] * distribution_weights[yday])
+				elsif yday > 308
+					probable_after_locations << ([indiv_cluster] * distribution_weights[yday])
+				else
+					# if probable_before_locations.include? indiv_cluster
+					probable_evac_locations << ([indiv_cluster] * distribution_weights[yday])
+					# else
+					# 	probable_evac_locations << ([indiv_cluster] * distribution_weights[yday] * 2)
+					# end
+				end
 			end
 		end
+	end
 
-		clusters_by_day.delete_if{|k,v| v.empty?}
+	return probable_before_locations.flatten, probable_evac_locations.flatten, probable_after_locations.flatten
 
-		clusters_by_day.delete_if{|k,v| k > 302 } #Get all points from before the Hurricane
-
-		return nil if clusters_by_day.keys.length.zero? 	#If there are no more valid keys, return 0
-
-		return mode(clusters_by_day.values)
-	
 end
 
+def find_before_home(clusters)
+	before_clusters = clusters.reject{|k,v| k.to_i > 302}
+	#puts before_clusters
+	unless before_clusters.empty?
+		return mode(before_clusters.values.flatten)
+	else
+		return nil
+	end
+end
 
-def find_best_after_cluster(clusters, t_scores)
-	clusters_by_day = {} #This will be a hash like this: 301=>1,2 302=>4, etc.
-
-		clusters.each do |cluster_id, tweets|
-			days = group_cluster_by_days(tweets)
-			
-			days.each do |day, tweets|
-				clusters_by_day[day] ||= []
-				clusters_by_day[day] << cluster_id unless t_scores[cluster_id] > 0.1 #Only want high quality zones
-			end
-		end
-		clusters_by_day.delete_if{|k,v| v.empty?}
-		clusters_by_day.delete_if{|k,v| k < 314 } #Get all points after the Hurricane
-		return nil if clusters_by_day.keys.length.zero? 	#If there are no more valid keys, return 0
-		return mode(clusters_by_day.values)
+def find_after_home(clusters)
+	after_clusters = clusters.reject{|k,v| k.to_i < 314}
+	#puts after_clusters
+	unless after_clusters.empty?
+		return mode(after_clusters.values.flatten)
+	else
+		return nil
+	end
 end
 
 
 def mode(array)
-	#http://stackoverflow.com/questions/412169/ruby-how-to-find-item-in-array-which-has-the-most-occurrences
-	array.group_by{|i| i}.max{|x,y| x[1].length <=> y[1].length}[0][0]
+	if array.empty? or array.nil?
+		return nil
+	else
+		#http://stackoverflow.com/questions/412169/ruby-how-to-find-item-in-array-which-has-the-most-occurrences
+		array.group_by{|i| i}.max{|x,y| x[1].length <=> y[1].length}[0]
+	end
 end
 
+
+
+'''Deprecated Code'''
+
+# def find_best_before_cluster(clusters, t_scores)
+	
+# 	clusters_by_day = {} #This will be a hash like this: 301=>1,2 302=>4, etc.
+
+# 		clusters.each do |cluster_id, tweets|
+# 			days = group_cluster_by_days(tweets)
+			
+# 			days.each do |day, tweets|
+# 				clusters_by_day[day] ||= []
+# 				clusters_by_day[day] << cluster_id unless t_scores[cluster_id] > 0.1 #Only want high quality zones
+# 			end
+# 		end
+
+# 		clusters_by_day.delete_if{|k,v| v.empty?}
+
+# 		clusters_by_day.delete_if{|k,v| k > 302 } #Get all points from before the Hurricane
+
+# 		return nil if clusters_by_day.keys.length.zero? 	#If there are no more valid keys, return 0
+
+# 		return mode(clusters_by_day.values)
+	
+# end
+
+
+# def find_best_after_cluster(clusters, t_scores)
+# 	clusters_by_day = {} #This will be a hash like this: 301=>1,2 302=>4, etc.
+
+# 		clusters.each do |cluster_id, tweets|
+# 			days = group_cluster_by_days(tweets)
+			
+# 			days.each do |day, tweets|
+# 				clusters_by_day[day] ||= []
+# 				clusters_by_day[day] << cluster_id unless t_scores[cluster_id] > 0.1 #Only want high quality zones
+# 			end
+# 		end
+# 		clusters_by_day.delete_if{|k,v| v.empty?}
+# 		clusters_by_day.delete_if{|k,v| k < 314 } #Get all points after the Hurricane
+# 		return nil if clusters_by_day.keys.length.zero? 	#If there are no more valid keys, return 0
+# 		return mode(clusters_by_day.values)
+# end
 
 
 

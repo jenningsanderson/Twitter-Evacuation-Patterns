@@ -17,6 +17,14 @@ layout: default
 
   <br>
   <hr>
+  
+  <h2><Top Pages>
+  <ul>
+   <li><a href-"{{site.baseurl}}/Latest Statistics"
+	<li><a href="{{site.baseurl}}/weaknesses">Known Weaknesses></li>
+  </ul>
+  
+  
   <h2>Contents</h2>
 
    <ul class="posts">

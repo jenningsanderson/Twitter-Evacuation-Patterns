@@ -9,7 +9,7 @@ require 'epic-geo'
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
-filename = "lisuhc"
+filename = "mariavalene"
 limit = 100
 
 #Prepare a KML file
@@ -44,7 +44,7 @@ time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
 results = Twitterer.where(
-                :handle => "lisuhc"
+                :handle => "mariavalene"
                 #:affected_level => 1,
                 #:before_after.lte=> 50,
                 #:isoceles_ratio.gte => 0.9,

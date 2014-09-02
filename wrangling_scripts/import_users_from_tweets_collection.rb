@@ -6,6 +6,10 @@
 # The "3" is quite arbitrary, but with any less than that, the process will throw them out
 # anyways.
 #
+# It will cap the user at 1300 Tweets, taking an even number off the beginning and the front.
+# More than 1300 tweets results in a stack overflow.
+#
+#
 
 require 'rubygems'
 require 'bundler/setup'
@@ -29,7 +33,6 @@ coll = db['geo_tweets']
 limit = 10000000 #Hopefully an arbitrarily high limit
 
 puts "Running the User Import for max (#{limit} )users"
-# sandy_tweets = SandyMongoClient.new(limit=limit)
 
 existing_ids = Twitterer.distinct("id_str")
 
@@ -37,7 +40,7 @@ puts "There are #{existing_ids.length} distinct users in the collection already"
 
 distinct_users = coll.distinct("user.id_str")
 
-puts "There are #{distinct_users.length} in the entire tweet collection"
+puts "There are #{distinct_users.length} in the entire geo_tweet collection"
 
 to_import = (distinct_users - existing_ids).sort
 
@@ -51,18 +54,37 @@ after_sandy  = Time.new(2012,11,03)
 import_count = 0
 failed_count = 0
 
+users_above_limit = 0
+
+trouble_users = []
+
 to_import.each_with_index do |uid, index|
 	begin
-	obj_tweets = []
-	valid_count = 0
-	user_tweets = coll.find({"user.id_str" => uid})
+		obj_tweets = []
+		valid_count = 0
+		user_tweets = coll.find(
+			selector = {"user.id_str" => uid}, 
+			opts	 = {:sort=> :asc}
+		)
 
-		user_tweets.each do |tweet|
-			this_tweet = Tweet.new( tweet )
-			if (this_tweet.date > before_sandy) and (this_tweet.date < after_sandy)
-				valid_count +=1
+		if user_tweets.count > 1200
+			puts "Trouble User: #{uid}"
+			trouble_users << uid
+			users_above_limit += 1
+			over = (((user_tweets.count)/ 1.1)).round
+			user_tweets.skip( over )
+		end
+
+		user_tweets.each_with_index do |tweet, index|
+			if index < 1200
+				this_tweet = Tweet.new( tweet )
+				if (this_tweet.date > before_sandy) and (this_tweet.date < after_sandy)
+					valid_count +=1
+				end
+				obj_tweets << this_tweet
+			else
+				break
 			end
-			obj_tweets << this_tweet
 		end
 
 		unless valid_count < 3
@@ -86,9 +108,8 @@ end
 
 puts "\n-----------\n"
 
-puts "Failed Count: #{failed_count}"
+puts "Failed to meet criteria count: #{failed_count}"
+puts "Had over 1200 tweets: #{users_above_limit}"
 puts "Imported: #{import_count}"
-puts "Original size: #{to_import.length}"
-puts "There are #{existing_ids.length} distinct Twitterers in the collection"
-puts "There are #{distinct_users.length} in the entire tweet collection"
 
+print trouble_users
