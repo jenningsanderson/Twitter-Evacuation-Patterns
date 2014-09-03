@@ -142,7 +142,9 @@ class Twitterer
 	end
 
 	#The new movement analysis -- will make calls to the time_processing script.
-	def movement_analysis
+	def movement_analysis (sip_weight, evac_weight)
+                # ML Features #
+                features = Array.new(17,0)
 
 		#There are now two scores, the winner takes all.
 		@sip_conf  = 0
@@ -150,29 +152,35 @@ class Twitterer
 
 		#Check that the user has locations...
 		clusters = clusters_per_day
-		pertinent_clusters = clusters_per_day.reject{|k,v| k.to_i > 314 or k.to_i < 300}
+                pertinent_clusters = clusters_per_day.reject{|k,v| k.to_i > 314 or k.to_i < 300}
 
+                features[0] = pertinent_clusters.keys.length
 		if pertinent_clusters.keys.length < 3 #Need at least 3 known clusters to classify
 			@unclassifiable = true
-			return
+                        #return
 		end
 
 		if pertinent_clusters.values.flatten.uniq.count == 1
+                        features[1] = 1
 			@shelter_in_place = true
 			@shelter_location = @cluster_locations[pertinent_clusters.values.flatten[0]]
 			
 			#Incrememnt @sip based on how many points we have.
-			@sip_conf += 50 + (50 * (pertinent_clusters.keys.length/14.to_f) )
-			return
+			@sip_conf += 1 + (1 * (pertinent_clusters.keys.length/14.to_f) ) #50
+			#return
 		end
 
 		#There was more than one cluster involved, so there is some level of movement.
 		before, during, after = score_cluster_pattern( pertinent_clusters, @t_scores )
 
+                features[2] = before.length
+                features[3] = during.length
+                features[4] = after.length
+
 		if during.empty?
 			#Need to know where they were DURING the event
 			@unclassifiable = true
-			return
+			#return
 		end
 
 		during_cluster = mode(during)
@@ -185,47 +193,84 @@ class Twitterer
 		end
 
 		if before_cluster == before_home_cluster
-			@sip_conf 	+= 20 #They get confidence boost for their known home to be their before storm home
-			@evac_conf 	+= 20
+                        features[5] = 1
+			@sip_conf 	+= 1 # 20 - They get confidence boost for their known home to be their before storm home
+			@evac_conf 	+= 1 # 20
 		
 		else #If they're not the same, check that they're not super close to eachother... the clustering may be off.
+                        #puts cluster_locations
 			p1 = GEOFACTORY.point(cluster_locations[before_cluster][0],cluster_locations[before_cluster][1])
 			p2 = GEOFACTORY.point(cluster_locations[before_home_cluster][0],cluster_locations[before_home_cluster][1])
 			
 			if ( ( p1.distance p2 ) < 100 )#If the two are less than 100 meters apart, then they should be the same cluster
 				if (during_cluster == before_cluster) or (during_cluster == before_home_cluster)
-					@sip_conf += 50
+					@sip_conf += 1 #50
 				else
-					@evac_conf += 50
+					@evac_conf += 1 #50
 				end
 			end
 		end
 
 		if during_cluster == before_cluster
-			@sip_conf	+= 50
+                        features[6] = 1
+			@sip_conf	+= 1 # 50
 			unless after_cluster.nil?
 				if after_cluster == during_cluster
-					@sip_conf += 30
+					@sip_conf += 1 # 30
+                                        features[7] = 1
 				end
 			end
 		elsif during_cluster == before_home_cluster
-			@sip_conf += 40
-
+			@sip_conf += 1 # 40
+                        features[8] = 1
 			#Welcome to evacuation territory...
 		else
-			@evac_conf += 30
+                        features[9] = 1
+			@evac_conf += 1 # 30
 			if during.uniq.count == 1
-				@evac_conf += 40 #They only went one place
+                                features[10] = 1
+				@evac_conf += 1 # 40 #They only went one place
 			elsif during.include? before_cluster or during.include? before_home_cluster
-				@sip_conf += 10
+				@sip_conf += 1 # 10
+                                features[11] = 1
 			end
 		end
 
-		return 0
-			
+                compressed_clusters = regularize([before_home_cluster, before_cluster, during_cluster, after_cluster, after_home_cluster])
+                #More features:#
+                features[12] = compressed_clusters[0]
+                features[13] = compressed_clusters[1]
+                features[14] = compressed_clusters[2]
+                features[15] = compressed_clusters[3]
+                features[16] = compressed_clusters[4]
+#                puts features
+
+                #Weight confidencenes:
+                @sip_conf *= sip_weight
+                @evac_conf *= evac_weight
+
+		return features			
 	end
 
 
+#------------------------ Regularizing cluster numbers ----------------------------------#
+
+        def regularize(clusters)
+          compression_map = Hash.new
+          index = 0
+          for c in clusters
+            if not compression_map.keys.include? c
+              compression_map[c] = index
+              index += 1
+            end
+          end
+         
+          new_clusters = Array.new
+          for c in clusters
+            new_clusters.push(compression_map[c])
+          end
+          return new_clusters
+        end
 
 #------------------------ Deprecated POI Functions -------------------------#
 
