@@ -237,15 +237,15 @@ class Twitterer
 		end
 
                 compressed_clusters = regularize([before_home_cluster, before_cluster, during_cluster, after_cluster, after_home_cluster])
+
                 #More features:#
                 features[12] = compressed_clusters[0]
                 features[13] = compressed_clusters[1]
                 features[14] = compressed_clusters[2]
                 features[15] = compressed_clusters[3]
                 features[16] = compressed_clusters[4]
-#                puts features
 
-                #Weight confidencenes:
+                #Weight confidences:
                 @sip_conf *= sip_weight
                 @evac_conf *= evac_weight
 
@@ -254,7 +254,7 @@ class Twitterer
 
 
 #------------------------ Regularizing cluster numbers ----------------------------------#
-
+        # Maps each cluster to the next available number : Before_home will always be 0, and up from there #
         def regularize(clusters)
           compression_map = Hash.new
           index = 0
