@@ -21,9 +21,10 @@ The working dataset includes **29,137 users** with **3,135,852 tweets**.  See th
 ##Geo-Based Filtering
 The first round of geo-based filtering is based on the following crude bounding box:
 
-![Original Geo bounding box]({{site.baseurl}}/img_exports/maps/ncar_bounding_box.png)
+<script src="https://gist.github.com/582f9f1033eb5f490609.js"></script>
 
-16,791 Twitterers in the collection are ignored because their path does not intersect with this bounding box.  The remaining users are classified as follows:
+<!-- 16,791 Twitterers in the collection are ignored because their path does not intersect with this bounding box.  The remaining users are classified as follows:
+ -->
 
 ####Intersecting Users (12,338):
 A user's path (the LineString constructed from each of their tweet points) intersects (or lies within) with this bounding box. 
