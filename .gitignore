@@ -10,6 +10,10 @@ data
 
 *.txt
 
+*.yml
+
+*_secret*
+
 exports/*
 
 #We need to ignore shapefiles
