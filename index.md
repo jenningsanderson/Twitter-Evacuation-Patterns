@@ -18,7 +18,7 @@ layout: default
   <br>
   <hr>
   
-  <h2><Top Pages</h2>
+  <h2>Top Pages</h2>
 
   <ul>
    <li><a href="{{site.baseurl}}/Statistics">Latest Statistics</a></li>
