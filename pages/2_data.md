@@ -35,6 +35,14 @@ A user's calculated _before_ shelter location lies within this bounding box.
 
 ![Highly Affected User]({{site.baseurl}}/img_exports/highly_impacted_users_example.png)
 
+
+
+####Affected Coastline
+
+<script src="https://gist.github.com/jenningsanderson/31b08d9c3d3d8a998e63.js"></script>
+
+
+
 ####Highly Impacted User (884):
 A user's calculated _before_ shelter location lies within a known evacuation zone.  NYC Evacuation Zones (A,B,C) pictured below:
 

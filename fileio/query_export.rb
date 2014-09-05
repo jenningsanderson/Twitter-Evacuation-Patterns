@@ -9,7 +9,7 @@ require 'epic-geo'
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
-filename = "mariavalene"
+filename = "NJ_Users"
 limit = 100
 
 #Prepare a KML file
@@ -23,7 +23,6 @@ write_3_bin_styles(kml_outfile.openfile)
 #Prepare an HTML File
 html_export = HTML_Writer.new("../exports/#{filename}.html")
 html_export.write_header('HTML Export of user search')
-
 
 
 #Static Setup
@@ -44,17 +43,7 @@ time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
 results = Twitterer.where(
-                :handle => "mariavalene"
-                #:affected_level => 1,
-                #:before_after.lte=> 50,
-                #:isoceles_ratio.gte => 0.9,
-                #:isoceles_ratio.lte => 1.1,
-                #:triangle_perimeter.gte=> 800,
-                #:triangle_perimeter.lte=> 500000,
-                #:triangle_perimeter.lte => 1000,
-                #:affected_level_before => 1,
-                #:affected_level_during => 1,
-                #:affected_level_after => 1
+                :hazard_level_before.lt => 100
               ).limit(limit).sort(:handle)
 
 puts "Query found #{results.count} users"
@@ -66,7 +55,7 @@ results.each do |user|
   binned_tweets = user.split_tweets_into_time_bins(sandy_dates)
 
   user_kml_folder = {
-    :name     => user.handle,
+    :name     => "#{user.handle} [#{user.sip_conf} | #{user.evac_conf}]",
     :folders => [],
     :features => [user.userpath_as_epic_kml]
   }
@@ -80,19 +69,14 @@ results.each do |user|
     #puts "In this folder: #{time_slice.length}"
 
     time_slice.each do |tweet|
-     folder[:features] << tweet.as_epic_kml(style=time)
+      folder[:features] << tweet.as_epic_kml(style=time)
     end
 
-    poi = user.instance_eval(time.to_s)
-
     user_kml_folder[:folders] << folder
-
-    user_kml_folder[:features] <<
-      user.point_as_epic_kml(time, poi[0],poi[1],time)
   end
 
   #Write user tweets to HTML
-  this_content = {:name=>user.handle, :content=>[]}
+  this_content = {:name=>"#{user.handle} [#{user.sip_conf.round} | #{user.evac_conf.round}]", :content=>[]}
 
   user.tweets.each do |tweet|
     this_content[:content] << {:date => tweet.date, :text => tweet.text}
