@@ -20,8 +20,8 @@ layout: default
   
   <h2><Top Pages>
   <ul>
-   <li><a href-"{{site.baseurl}}/Latest Statistics"
-	<li><a href="{{site.baseurl}}/weaknesses">Known Weaknesses></li>
+   <li><a href="{{site.baseurl}}/Statistics">Latest Statistics</a></li>
+	 <li><a href="{{site.baseurl}}/weaknesses">Known Weaknesses</a></li>
   </ul>
   
   
