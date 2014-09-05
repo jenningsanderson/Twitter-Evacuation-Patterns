@@ -18,11 +18,13 @@ layout: default
   <br>
   <hr>
   
-  <h2><Top Pages>
+  <h2><Top Pages</h2>
+
   <ul>
    <li><a href="{{site.baseurl}}/Statistics">Latest Statistics</a></li>
 	 <li><a href="{{site.baseurl}}/weaknesses">Known Weaknesses</a></li>
   </ul>
+  
   
   
   <h2>Contents</h2>

@@ -33,6 +33,8 @@ A user's calculated _before_ shelter location lies within this bounding box.  Of
 To get the best idea of which Twitterers faced a protective decision regarding their location, we buffered the coastline within the bounding box above by 1500 meters (1.5km).  This unit was chosen because it best captures the barrier islands of New Jersey as well as the New York City mandatory Evacuation Zones (Zone A), specifically for Manhattan and Rockaway Beach, areas that were hit very hard by the storm.
 <script src="https://gist.github.com/jenningsanderson/31b08d9c3d3d8a998e63.js"></script>
 
+<script src="https://gist.github.com/6ed30653512bcb860240.js"></script>
+
 For reference, the New York City Evacuation Zones are pictured below: (White = A, Light Purple = B, Dark Purple = C)
 
 ![NYC Evacuation Zones]({{site.baseurl}}/img_exports/NYC_evacuation_zones.png)
