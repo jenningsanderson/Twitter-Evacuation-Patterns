@@ -22,6 +22,23 @@ class Twitterer
 	#An RGeo Factory that is geospatially aware for all calculations
 	@@tweet_factory = RGeo::Geographic.simple_mercator_factory
 
+	@@ydays_to_string_date = {
+		300 => "October 26",
+		301 => "October 27",
+		302 => "October 28",
+		303 => "October 29",
+		304 => "October 30",
+		305 => "October 31",
+		306 => "November 1", 
+		307 => "November 2", 
+		308 => "November 3",  
+		309 => "November 4", 
+		310 => "November 5",
+		311 => "November 6",
+		312 => "November 7",
+		313 => "November 8",
+		314 => "November 9"}
+
 	#Enable access to points of interest
 	attr_reader :points, :sip_conf, :evac_conf
 
@@ -70,6 +87,11 @@ class Twitterer
 	before_save do
 		self.tweet_count = tweets.count #Update the local tweet_count variable.
 	end
+
+	def sanitized_handle
+		handle.gsub(/(\s+|,)/,"_")
+	end
+
 
 
 
@@ -365,6 +387,69 @@ class Twitterer
 		{ :name => name,
 			:style => style,
 		  :geometry => GeoRuby::SimpleFeatures::Point.from_coordinates([x,y]) }
+	end
+
+	# --------------------- GeoJSON Functions Part II ------------#
+	def point_to_geojson_hash(point, features=nil)
+		unless features.nil?
+			return {:type=>"Feature", 
+			:properties => features,
+			:geometry=>{:type=>"Point", :coordinates=>point}}
+		else
+			return {:type=>"Point", :coordinates=>point}
+		end
+	end
+
+	def points_to_geojson_linestring(points, features=nil)
+		unless features.nil?
+			return {:type=>"Feature", 
+			:properties => features,
+			:geometry=>{:type=>"LineString", :coordinates=>points}}
+		else
+			return {:type=>"LineString", :coordinates=>points}
+		end
+	end
+
+	def critical_points_to_json_hash
+		geojson_hash = {:type=>"FeatureCollection", :features=>[]}
+
+		if shelter_location == cluster_locations[:before_home]
+			geojson_hash[:features] << point_to_geojson_hash( shelter_location, {:Place=> "Shelter-In-Place Location"} )
+		else
+			geojson_hash[:features] << point_to_geojson_hash( cluster_locations[:before_home], {:Place=> "Before Home"} )
+			geojson_hash[:features] << point_to_geojson_hash( shelter_location, {:Place=> "Most Likely Shelter Location"} )
+		end
+
+		#Build the linestring from their cluster_pattern
+		#Get each cluster location by day (Only in the wanted window)
+		cluster_path = []
+		clusters_per_day.sort_by{|day,clusters| day.to_i}.each do |day, cluster_ids|
+			unless day.to_i < 300 or day.to_i > 314
+				cluster_ids.each do |cluster_id|
+					cluster_path << cluster_locations[cluster_id]
+				end
+			end
+		end
+
+		geojson_hash[:features] << points_to_geojson_linestring(cluster_path, {:desc=>"User Path: Oct 28 - Nov 9"})
+
+		return geojson_hash.to_json
+	end
+
+	def tweets_to_geojson(_start=nil, _end=nil)
+		geojson_hash = {:type=>"FeatureCollection", :features=>[]}
+		
+		tweets.each do |tweet|
+			if _start.nil?
+				geojson_hash[:features] << tweet.as_geojson
+			else
+				if tweet.date > _start and tweet.date < _end
+					geojson_hash[:features] << tweet.as_geojson
+				end
+			end
+		end
+
+		return geojson_hash.to_json
 	end
 
 end #End of Twitterer Class
