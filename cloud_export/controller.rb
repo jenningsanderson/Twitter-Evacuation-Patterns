@@ -40,11 +40,11 @@ _end   = Time.new(2012,11,14)
 
 if ARGV[0] == "contextual"
 	contextual_stream = FullContextualStreamRetriever.new(credentials["contextual_root_path"], _start, _end)
-	MongoMapper.connection = Mongo::Connection.new
+	MongoMapper.connection = Mongo::Connection.new(:timeout=>false)
 	MongoMapper.database = 'sandygeo'
 else
 	contextual_stream = nil
-	MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
+	MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu', :timeout=>false)
 	MongoMapper.database = 'sandygeo'
 end
 
@@ -56,7 +56,7 @@ results = Twitterer.where(
 
 	:handle.in => users,
 
-).limit(nil).timeout(:false).sort(:tweet_count).reverse
+).limit(nil).sort(:tweet_count).reverse
 
 puts "Found #{results.count} users" # => Status update
 
