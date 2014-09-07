@@ -66,8 +66,8 @@ class FullContextualStreamRetriever
 						end
 						tweet_count+=1
 						
-						tweet_data[:date] = date.to_s
-						tweet_data[:text] =tweet["text"]
+						tweet_data[:Date] = date.to_s
+						tweet_data[:Text] = tweet["text"]
 
 						tweets << tweet_data
 		          	end
@@ -79,7 +79,7 @@ class FullContextualStreamRetriever
 		    	puts "Stream may not have existed for: #{user}"
 		    end
 		    if tweets.length > 0
-				return tweets.sort_by{|tweet| tweet[:date]}
+				return tweets
 			else
 				puts "No tweets!"
 			end
