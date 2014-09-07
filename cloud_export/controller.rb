@@ -54,9 +54,9 @@ users = ["dogukanbiyik","kimdelcarmen","rchieB","fernanjos","nicolelmancini","Kr
 # Get the Users we want
 results = Twitterer.where(
 
-	:handle.in => users
+	:handle.in => users,
 
-).limit(nil).sort(:tweet_count).reverse
+).limit(nil).timeout(:false).sort(:tweet_count).reverse
 
 puts "Found #{results.count} users" # => Status update
 
