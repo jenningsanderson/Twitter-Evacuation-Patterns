@@ -39,6 +39,7 @@ class SingleSheet
 		@row_index += 1
 		@ws[@row_index, 1] = tweet[:Date]
 		@ws[@row_index, 2] = tweet[:Text]
+		@ws[@row_index, 3] = tweet[:Coordinates]
 		@ws.save
 		print "."
 	end
