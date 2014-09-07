@@ -14,6 +14,8 @@ data
 
 *_secret*
 
+*.lock
+
 exports/*
 
 #We need to ignore shapefiles
