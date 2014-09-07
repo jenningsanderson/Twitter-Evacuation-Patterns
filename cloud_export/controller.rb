@@ -40,11 +40,11 @@ _end   = Time.new(2012,11,14)
 
 if ARGV[0] == "contextual"
 	contextual_stream = FullContextualStreamRetriever.new(credentials["contextual_root_path"], _start, _end)
-	MongoMapper.connection = Mongo::Connection.new(:timeout=>200)
+	MongoMapper.connection = Mongo::Connection.new(:pool_timeout=>false)
 	MongoMapper.database = 'sandygeo'
 else
 	contextual_stream = nil
-	MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu', :timeout=>false)
+	MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu', :pool_timeout=>false)
 	MongoMapper.database = 'sandygeo'
 end
 
