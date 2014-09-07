@@ -64,8 +64,7 @@ results.each_with_index do |user, index|
 
 	user_content = {"Tweet Count" => user.tweet_count,
 					"Evacuation Confidence" => user.evac_conf.round, 
-					"Shelter In Place Conf" => user.sip_conf.round,
-					:tweets => []}
+					"Shelter In Place Conf" => user.sip_conf.round}
 
 	#If contextual_stream is defined, then it'll grab the contextual stream.
 	if contextual_stream.nil?
@@ -73,10 +72,10 @@ results.each_with_index do |user, index|
     		user_content[:tweets] << {:Date => tweet.date, :Text => tweet.text}
   		end
   	else
-		user_tweets = contextual_stream.get_full_stream(user.tweets[0].handle)
+		user_content[:tweets] = contextual_stream.get_full_stream(user.tweets[0].handle)
 	end
 	
-	if user_tweets #There's the chance it isn't found, which is bad.
+	if user_content[:tweets] #There's the chance it isn't found, which is bad.
 		#Add the user to a web archive for sharable, easy viewing
 		# =======================================================
 		web_archive.add_user_page(user.sanitized_handle, user_content)

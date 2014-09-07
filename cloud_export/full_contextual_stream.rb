@@ -12,7 +12,7 @@ class FullContextualStreamRetriever
 		puts "Contextual Stream Retriever Initialized:"
 		puts "\tBase Path: #{@root_path}"
 		puts "\tStart Date: #{@start_date}"
-		puts "\tEnd Date: #{@end_Date}"
+		puts "\tEnd Date: #{@end_date}"
 
 	end
 
