@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/jenningsanderson/epic-geo.git
-  revision: e1857424485394dba717c30d5c15f5952f618c05
+  revision: 426b5908308ca6cc83078bd9165d5bdcb3ed122f
   specs:
     epic-geo (0.1.0)
       json

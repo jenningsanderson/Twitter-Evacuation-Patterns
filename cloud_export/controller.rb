@@ -18,9 +18,6 @@ require_relative 'full_contextual_stream'
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
-# Base Configuration 
-MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
-MongoMapper.database = 'sandygeo'
 
 config,credentials = read_config
 print "Connecting to Google Drive..."
@@ -40,10 +37,15 @@ wb = SheetMaker.new(session, coll, 'Users To Code-1')
 # Create an instance of the contextual stream accessor
 _start = Time.new(2012,10,22)
 _end   = Time.new(2012,11,14)
-contextual_stream = nil
 
 if ARGV[0] == "contextual"
 	contextual_stream = FullContextualStreamRetriever.new(credentials[:contextual_root_path], _start, _end)
+	MongoMapper.connection = Mongo::Connection.new
+	MongoMapper.database = 'sandygeo'
+else
+	contextual_stream = nil
+	MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
+	MongoMapper.database = 'sandygeo'
 end
 
 # Get the Users we want
