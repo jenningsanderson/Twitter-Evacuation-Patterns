@@ -62,8 +62,9 @@ results.each_with_index do |user, index|
 
 	puts "\nProcessing: #{user.handle} with #{user.tweet_count} tweets"
 
-	user_content = {:evac_conf => user.evac_conf.round, 
-					:sip_conf => user.sip_conf.round,
+	user_content = {"Tweet Count" => user.tweet_count,
+					"Evacuation Confidence" => user.evac_conf.round, 
+					"Shelter In Place Conf" => user.sip_conf.round,
 					:tweets => []}
 
 	#If contextual_stream is defined, then it'll grab the contextual stream.
@@ -74,25 +75,26 @@ results.each_with_index do |user, index|
   	else
 		user_tweets = contextual_stream.get_full_stream(user.handle)
 	end
-
 	
-	#Add the user to a web archive for sharable, easy viewing
-	# =======================================================
-	web_archive.add_user_page(user.sanitized_handle, user_content)
-	
+	if user_tweets #There's the chance it isn't found, which is bad.
+		#Add the user to a web archive for sharable, easy viewing
+		# =======================================================
+		web_archive.add_user_page(user.sanitized_handle, user_content)
+		
 
-	# Add the user to the Google Spreadsheet
-	# ======================================
-	# user_sheet = wb.add_sheet(user.handle)
-	# user_content[:tweets].each_with_index do |tweet|
-	# 	user_sheet.add_tweet(tweet)
-	# end
+		# Add the user to the Google Spreadsheet
+		# ======================================
+		# user_sheet = wb.add_sheet(user.handle)
+		# user_content[:tweets].each_with_index do |tweet|
+		# 	user_sheet.add_tweet(tweet)
+		# end
 
-	# if ((index+1)%16).zero?
-	# 	puts "------Writing new Workbook------"
-	# 	sheets_count +=1
-	# 	wb = SheetMaker.new(session, coll, "Users To Code-#{sheets_count}")
-	# end
+		# if ((index+1)%16).zero?
+		# 	puts "------Writing new Workbook------"
+		# 	sheets_count +=1
+		# 	wb = SheetMaker.new(session, coll, "Users To Code-#{sheets_count}")
+		# end
+	end
 
 end
 
