@@ -1,3 +1,10 @@
+#Because it's meant to be run on the server
+require 'rubygems'
+require 'bundler/setup'
+require 'active_support'
+require 'active_support/deprecation'
+require 'mongo_mapper'
+
 #Requirements
 require 'google_drive'
 require 'time'
