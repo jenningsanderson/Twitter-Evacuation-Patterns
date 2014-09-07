@@ -1,10 +1,9 @@
 #Requirements
 require 'google_drive'
 require 'time'
-#require 'epic-geo'
+require 'epic-geo'
 
 #Eventually this will get published to epic-geo
-require_relative '/Users/jenningsanderson/Documents/epic-geo/lib/epic-geo'
 
 require_relative 'g_drive_functions'
 require_relative 'google_sheet'
