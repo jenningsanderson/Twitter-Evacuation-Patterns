@@ -62,7 +62,7 @@ class FullContextualStreamRetriever
 		        	
 						tweet_count+=1
 						
-						tweet_data[:Date] = date.to_s
+						tweet_data[:Date] = date
 						tweet_data[:Text] = tweet["text"]
 
 						if tweet['coordinates']

@@ -77,6 +77,8 @@ results.each_with_index do |user, index|
 	
 	unless user_content[:tweets].empty? #There's the chance it isn't found, which is bad.
 		
+		user_content[:tweets] = user_content[:tweets].order_by{|tweet| tweet.date}
+
 		user_content["Total Tweets Here"] = user_content[:tweets].count
 		#Add the user to a web archive for sharable, easy viewing
 		# =======================================================
