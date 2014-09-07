@@ -68,7 +68,7 @@ results.each_with_index do |user, index|
 	user_content = {"GeoCoded Tweet Count" => user.tweet_count,
 					"Evacuation Confidence" => user.evac_conf.round, 
 					"Shelter In Place Conf" => user.sip_conf.round,
-					"Unclassified Percentage" => user.unclassified_percentage
+					"Unclassified Percentage" => user.unclassified_percentage,
 					:tweets=>[]}
 
 	#If contextual_stream is defined, then it'll grab the contextual stream.
