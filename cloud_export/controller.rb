@@ -52,16 +52,10 @@ end
 users = ["dogukanbiyik","kimdelcarmen","rchieB","fernanjos","nicolelmancini","Krazysoto","ailishbot","CharisseCrammer","jericajazz","KD804","jesssgilligan","theJKinz","TheAwesomeMom","bjacksrevenge","jefflac","roobs83","jds2001","SimoMarms","NYCGreenmarkets","c3nki","MoazaMatar","KiiddPhenom","sandelestepan","tlal2","BeachyisPeachy","cyantifik","FrankKnuck","mattgunn","Max_Not_Mark","JaclynPatrice","Rigo7x","ajc6789","yagoSMASH","polinchock","indavewetrust","CillaCindaplc2B","Javy_Jaz","eric13000","becaubs","enriqueskincare","Rivkind","janelles__world","CoreyKelly","josalazas","CapponiWho","JohnBakalian1","valcristdk","forero29","BobGrotz","CodyRodrigu3z","CoastalArtists","VSindha"]
 
 # Get the Users we want
-results = Twitterer.where(
+users.each_with_index do |user_handle|
 
-	:handle.in => users,
-
-).limit(nil).sort(:tweet_count).reverse
-
-puts "Found #{results.count} users" # => Status update
-
-#Iterate over the results
-results.each_with_index do |user, index|
+	#Important taht we don't keep the cursor open because the timeout apparently doesn't work....
+	user = Twitterer.where(:handle=>user).first
 
 	puts "\nProcessing: #{user.handle} with #{user.tweet_count} geo coded tweets"
 
