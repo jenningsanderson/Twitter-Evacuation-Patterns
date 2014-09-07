@@ -35,8 +35,10 @@ wb = SheetMaker.new(session, coll, 'Users To Code-1')
 _start = Time.new(2012,10,22)
 _end   = Time.new(2012,11,14)
 contextual_stream = nil
-# contextual_stream = FullContextualStreamRetriever.new(credentials[:contextual_root_path], _start, _end)
 
+if ARGV[0] == "contextual"
+	contextual_stream = FullContextualStreamRetriever.new(credentials[:contextual_root_path], _start, _end)
+end
 
 # Get the Users we want
 results = Twitterer.where(
