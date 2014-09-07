@@ -61,9 +61,10 @@ class FullContextualStreamRetriever
 					if (date > @start_date) and (date < @end_date)
 		        	
 			        	if tweet['coordinates']
-							tweet_data[:coords] = tweet['coordinates']
+							tweet_data[:coords] = tweet['coordinates']['coordinates']
 							geo_count += 1
-						end
+						else
+							tweet_data[:Coords] = "--"
 						tweet_count+=1
 						
 						tweet_data[:Date] = date.to_s

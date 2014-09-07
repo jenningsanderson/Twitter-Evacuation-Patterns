@@ -62,7 +62,7 @@ results.each_with_index do |user, index|
 
 	puts "\nProcessing: #{user.handle} with #{user.tweet_count} geo coded tweets"
 
-	user_content = {"Tweet Count" => user.tweet_count,
+	user_content = {"GeoCoded Tweet Count" => user.tweet_count,
 					"Evacuation Confidence" => user.evac_conf.round, 
 					"Shelter In Place Conf" => user.sip_conf.round}
 
@@ -75,7 +75,9 @@ results.each_with_index do |user, index|
 		user_content[:tweets] = contextual_stream.get_full_stream(user.tweets[0].handle)
 	end
 	
-	if user_content[:tweets] #There's the chance it isn't found, which is bad.
+	unless user_content[:tweets].empty? #There's the chance it isn't found, which is bad.
+		
+		user_content["Total Tweets Here"] = user_content[:tweets].count
 		#Add the user to a web archive for sharable, easy viewing
 		# =======================================================
 		web_archive.add_user_page(user.sanitized_handle, user_content)
