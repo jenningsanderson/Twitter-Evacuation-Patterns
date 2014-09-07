@@ -48,12 +48,15 @@ else
 	MongoMapper.database = 'sandygeo'
 end
 
+#The first 52 Users:
+users = ["dogukanbiyik","kimdelcarmen","rchieB","fernanjos","nicolelmancini","Krazysoto","ailishbot","CharisseCrammer","jericajazz","KD804","jesssgilligan","theJKinz","TheAwesomeMom","bjacksrevenge","jefflac","roobs83","jds2001","SimoMarms","NYCGreenmarkets","c3nki","MoazaMatar","KiiddPhenom","sandelestepan","tlal2","BeachyisPeachy","cyantifik","FrankKnuck","mattgunn","Max_Not_Mark","JaclynPatrice","Rigo7x","ajc6789","yagoSMASH","polinchock","indavewetrust","CillaCindaplc2B","Javy_Jaz","eric13000","becaubs","enriqueskincare","Rivkind","janelles__world","CoreyKelly","josalazas","CapponiWho","JohnBakalian1","valcristdk","forero29","BobGrotz","CodyRodrigu3z","CoastalArtists","VSindha"]
+
 # Get the Users we want
 results = Twitterer.where(
 
-	:hazard_level_before => 36
+	:handle.in => users
 
-).limit(5).sort(:handle)
+).limit(nil).sort(:tweet_count).reverse
 
 puts "Found #{results.count} users" # => Status update
 
@@ -65,6 +68,7 @@ results.each_with_index do |user, index|
 	user_content = {"GeoCoded Tweet Count" => user.tweet_count,
 					"Evacuation Confidence" => user.evac_conf.round, 
 					"Shelter In Place Conf" => user.sip_conf.round,
+					"Unclassified Percentage" => user.unclassified_percentage
 					:tweets=>[]}
 
 	#If contextual_stream is defined, then it'll grab the contextual stream.
@@ -86,18 +90,18 @@ results.each_with_index do |user, index|
 		web_archive.add_user_page(user.sanitized_handle, user_content)
 		
 
-		# Add the user to the Google Spreadsheet
-		# ======================================
-		# user_sheet = wb.add_sheet(user.handle)
-		# user_content[:tweets].each_with_index do |tweet|
-		# 	user_sheet.add_tweet(tweet)
-		# end
+		# #Add the user to the Google Spreadsheet
+		# #======================================
+		user_sheet = wb.add_sheet(user.handle)
+		user_content[:tweets].each_with_index do |tweet|
+			user_sheet.add_tweet(tweet)
+		end
 
-		# if ((index+1)%16).zero?
-		# 	puts "------Writing new Workbook------"
-		# 	sheets_count +=1
-		# 	wb = SheetMaker.new(session, coll, "Users To Code-#{sheets_count}")
-		# end
+		if ((index+1)%16).zero?
+			puts "------Writing new Workbook------"
+			sheets_count +=1
+			wb = SheetMaker.new(session, coll, "Users To Code-#{sheets_count}")
+		end
 	end
 
 end

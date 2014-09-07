@@ -6,8 +6,8 @@ The Sheet maker -- perhaps the bed maker?  har har har...
 
 class SheetMaker
 
-	@@headers = ["Date", "Text", "Geo"]
-
+	@@headers = ["Date", "Text", "Geo", "Angry","Scared","Obstinate","Charging Batteries","Preparing Transport"]
+	
 	attr_reader :filename
 
 	def initialize(session, collection, filename)
