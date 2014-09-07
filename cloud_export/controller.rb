@@ -53,7 +53,7 @@ results = Twitterer.where(
 
 	:hazard_level_before => 36
 
-).limit(20).sort(:handle)
+).limit(5).sort(:handle)
 
 puts "Found #{results.count} users" # => Status update
 
