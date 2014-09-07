@@ -64,7 +64,8 @@ results.each_with_index do |user, index|
 
 	user_content = {"GeoCoded Tweet Count" => user.tweet_count,
 					"Evacuation Confidence" => user.evac_conf.round, 
-					"Shelter In Place Conf" => user.sip_conf.round}
+					"Shelter In Place Conf" => user.sip_conf.round,
+					:tweets=>[]}
 
 	#If contextual_stream is defined, then it'll grab the contextual stream.
 	if contextual_stream.nil?
@@ -77,7 +78,7 @@ results.each_with_index do |user, index|
 	
 	unless user_content[:tweets].empty? #There's the chance it isn't found, which is bad.
 		
-		user_content[:tweets] = user_content[:tweets].order_by{|tweet| tweet.date}
+		user_content[:tweets] = user_content[:tweets].sort_by{|tweet| tweet[:Date]}
 
 		user_content["Total Tweets Here"] = user_content[:tweets].count
 		#Add the user to a web archive for sharable, easy viewing
