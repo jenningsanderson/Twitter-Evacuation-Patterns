@@ -60,7 +60,7 @@ puts "Found #{results.count} users" # => Status update
 #Iterate over the results
 results.each_with_index do |user, index|
 
-	puts "\nProcessing: #{user.handle} with #{user.tweet_count} tweets"
+	puts "\nProcessing: #{user.handle} with #{user.tweet_count} geo coded tweets"
 
 	user_content = {"Tweet Count" => user.tweet_count,
 					"Evacuation Confidence" => user.evac_conf.round, 

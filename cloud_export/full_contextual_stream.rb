@@ -37,7 +37,6 @@ class FullContextualStreamRetriever
 		#Iterate through the root_path directory for the user's contextual file
 		(1..6).to_a.map!{|num| "geo#{num}"}.each do |section|
 			test_path = "#{@root_path}#{section}/user_data/#{alph}/#{user}-contextual.json"
-			puts test_path
 			if File.exists? test_path
 				file_path = test_path
 				in_stream  = File.open(file_path,'r')
@@ -65,7 +64,7 @@ class FullContextualStreamRetriever
 							tweet_data[:coords] = tweet['coordinates']
 							geo_count += 1
 						end
-						count+=1
+						tweet_count+=1
 						
 						tweet_data[:date] = date.to_s
 						tweet_data[:text] =tweet["text"]
