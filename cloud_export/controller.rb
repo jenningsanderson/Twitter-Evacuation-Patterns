@@ -39,7 +39,7 @@ _start = Time.new(2012,10,22)
 _end   = Time.new(2012,11,14)
 
 if ARGV[0] == "contextual"
-	contextual_stream = FullContextualStreamRetriever.new(credentials[:contextual_root_path], _start, _end)
+	contextual_stream = FullContextualStreamRetriever.new(credentials["contextual_root_path"], _start, _end)
 	MongoMapper.connection = Mongo::Connection.new
 	MongoMapper.database = 'sandygeo'
 else

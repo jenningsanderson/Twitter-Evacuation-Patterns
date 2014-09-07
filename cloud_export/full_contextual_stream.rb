@@ -6,9 +6,13 @@ class FullContextualStreamRetriever
 
 	def initialize(root_path, start_date, end_date)
 		@root_path = root_path
-
 		@start_date = start_date || Time.new(2012,07,01) #These are just defaults
 		@end_date   = end_date   || Time.new(2012,12,31)
+
+		puts "Contextual Stream Retriever Initialized:"
+		puts "\tBase Path: #{@root_path}"
+		puts "\tStart Date: #{@start_date}"
+		puts "\tEnd Date: #{@end_Date}"
 
 	end
 
