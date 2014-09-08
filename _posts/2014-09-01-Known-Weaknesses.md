@@ -12,3 +12,5 @@ Obviously this method of determining a user's movement behavior is not perfect, 
 
 
 
+###Cluster Sizes
+Since I am unsure of the actual accuracies of 

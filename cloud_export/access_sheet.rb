@@ -13,7 +13,7 @@ print "done\n"
 #Access the sheets:
 #ws = session.spreadsheet_by_key("pz7XtlQC-PYx-jrVMJErTcg").worksheets[0]
 
-new_columns = ["Sentiment", "Preparation", "Evacuation", "Shelter-In-Place","","","","","","",""]
+new_columns = ["Sentiment", "Preparation", "Evacuation", "Shelter-In-Place","Comments","","","","","",""]
 session.spreadsheets.each do |spreadsheet|
 	
 	#Specify which sheets we want (Don't be updating all of them)

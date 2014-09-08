@@ -26,7 +26,7 @@ results = Twitterer.where(
 	
 	:hazard_level_before => 36,
 	#:evac_conf.gt => 50,
-	:handle => "iKhoiBui"
+	:handle => "theJKinz"
 
 ).limit(10).each
 
