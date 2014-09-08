@@ -9,7 +9,7 @@ require 'epic-geo'
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
-filename = "NJ_Users"
+filename = "julinedelucci"
 limit = 100
 
 #Prepare a KML file
@@ -43,7 +43,7 @@ time_frames = ["before", "during", "after"]
 
 #Search the Twitterer collection
 results = Twitterer.where(
-                :hazard_level_before.lt => 100
+                :handle => "julinedelucci"
               ).limit(limit).sort(:handle)
 
 puts "Query found #{results.count} users"

@@ -71,4 +71,5 @@ Cluster 0 is the obvious choice for a **home location** in this example and clus
 ###Before & After Home (Shelter) Locations
 A user's ```before_home``` shelter location is determined by the most tweeted from location with the lowest ```t_score``` before October 28 (the day before landfall).  Similarly, the ```after_home``` location is determined by the most tweeted from location after November 8.
 
-In some cases, these values are not available due to lack of tweets.  In these cases, a user's first and last locations in their ```during_storm_movement```  cluster list is used, but the   confidence of these users' movement prediction is significantly reduced.
+Here a user's before home & their most likely during the storm shelter location:
+<script src="https://gist.github.com/jenningsanderson/353dcb5ebfd568dd1916.js"></script>

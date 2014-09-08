@@ -61,4 +61,8 @@ class Tweet
         #{@date}}
     }
   end
+
+  def as_geojson
+    {:type=>"Feature", :properties=>{:Time=>@date, :text=>@text},:geometry=>@coordinates}
+  end
 end

@@ -7,7 +7,6 @@ require 'active_support'
 require 'active_support/deprecation'
 require 'mongo_mapper'
 
-require 'mongo_mapper'
 
 require_relative '../models/twitterer'
 require_relative '../models/tweet'

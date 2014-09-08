@@ -30,8 +30,8 @@ A user's path (the LineString constructed from each of their tweet points) inter
 A user's calculated _before_ shelter location lies within this bounding box.  Of these users, however, only 5,936 contain enough information to be classified by the model.
 
 ####Affected Coastline (1,798):
-To get the best idea of which Twitterers faced a protective decision regarding their location, we buffered the coastline within the bounding box above by 1500 meters (1.5km).  This unit was chosen because it best captures the barrier islands of New Jersey as well as the New York City mandatory Evacuation Zones (Zone A), specifically for Manhattan and Rockaway Beach, areas that were hit very hard by the storm.
-<script src="https://gist.github.com/jenningsanderson/31b08d9c3d3d8a998e63.js"></script>
+To get the best idea of which Twitterers faced a protective decision regarding their location, we buffered the coastline within the bounding box above by 4000 meters (4km).  This unit was chosen because it best captures the barrier islands of New Jersey as well as all New York City evacuation zones (a,b,c), as well as specifically for Manhattan and Rockaway Beach, areas that were hit very hard by the storm.
+<script src="https://gist.github.com/fd2b7a8bcf179d7b724d.js"></script>
 
 <script src="https://gist.github.com/b6f044286f9bb1bc292f.js"></script>
 

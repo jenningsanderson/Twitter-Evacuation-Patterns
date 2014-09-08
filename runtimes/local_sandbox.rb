@@ -24,21 +24,23 @@ MongoMapper.database = 'sandygeo'
 
 results = Twitterer.where( 
 	
-	:path_affected => true,
-	:percentage_unclassified.gte => 0
-	:unclassifiable => nil
+	:hazard_level_before => 36,
+	#:evac_conf.gt => 50,
+	:handle => "iKhoiBui"
 
-).limit(nil).each do |user|
+).limit(10).each
 
 results.each_with_index do |user, index|
 
-	user.unclassifiable = false
-	user.save
+	puts user.sanitized_handle
+	puts user.critical_points_to_json_hash
+	puts "\n\n"
+	puts user.tweets_to_geojson(Time.new(2012,10,22), Time.new(2012,11,04))
 
-	if (index % 10).zero?
-		print "."
-	elsif (index%101).zero?
-		print "#{index}"
-	end
+	# if (index % 10).zero?
+	# 	print "."
+	# elsif (index%101).zero?
+	# 	print "#{index}"
+	# end
 
 end
