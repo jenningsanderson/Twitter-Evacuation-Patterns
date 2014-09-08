@@ -15,6 +15,6 @@ permalink: "/coding"
 | angry	  | physical    | reporting  | |
 | worried	  | food        | ordered    | | 
 | stubborn  | informative |   | |
-| coping	  |             |   | |
+| coping	  | rationing   |   | |
 | excited	  |             |   | |
 | relieved  |             |   | |
