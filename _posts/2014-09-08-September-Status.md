@@ -28,3 +28,5 @@ Tweets during this time period:
 1. Which users are we specifically interested in?  Precision vs. Recall.  The method is far from perfect, but that's not the goal, we're looking to cast a wide net and see who may have been forced to make a protective decision during the event.
 
 2. Qualitative Coding: [Coding Scheme]({{site.baseurl}}/coding)
+
+3. ...
