@@ -16,6 +16,8 @@ data
 
 *.lock
 
+cloud_export/users_to_code/*
+
 exports/*
 
 #We need to ignore shapefiles

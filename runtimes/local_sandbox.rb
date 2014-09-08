@@ -25,7 +25,8 @@ MongoMapper.database = 'sandygeo'
 results = Twitterer.where( 
 	
 	:hazard_level_before => 36,
-	:evac_conf.gt => 50
+	#:evac_conf.gt => 50,
+	:handle => "iKhoiBui"
 
 ).limit(10).each
 
