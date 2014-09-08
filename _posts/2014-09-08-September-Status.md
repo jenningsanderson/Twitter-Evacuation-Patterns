@@ -12,7 +12,7 @@ _Protective Decision Making_: Shelter in place or evacuate?
 
 2. No longer using the triangle method because a user's movement path should not be separated into the original time bins.
 	
-3. New Design: [Gather all of a user's clusters]({{site.baseurl}}/Design)
+3. New Design: [Gather all of a user's clusters]({{site.baseurl}}/design)
 	
 4. Look at a user's path between clusters:
 
