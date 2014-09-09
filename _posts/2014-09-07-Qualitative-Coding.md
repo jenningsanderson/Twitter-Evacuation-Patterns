@@ -9,7 +9,7 @@ permalink: "/coding"
 	
 | Sentiment | Preparation | Evacuation | Shelter-In-Place | Collective Information |
 |-------------------------------------------------------------------------------|
-| comedic	  | power4life  | leaves     | hunkering        | (yes | no)
+| comedic	  | power4life  | leaves     | hunkering        | (yes / no)
 | sarcastic | power4comm  | returns    | reporting        | 
 | angry	  | physical    | reporting  | |
 | worried	  | food        | ordered    | | 
