@@ -6,15 +6,14 @@ permalink: "/coding"
 ---
 
 ####Proposed Coding Scheme
-
 	
-| Sentiment | Preparation | Evacuation | Shelter-In-Place |
-|---------------------------------------------------------|
-| comedic	  | charging    | leaves     | hunkering        | 
-| sarcastic | transport   | returns    | reporting        |
+| Sentiment | Preparation | Evacuation | Shelter-In-Place | Collective Information |
+|-------------------------------------------------------------------------------|
+| comedic	  | power4life  | leaves     | hunkering        | (yes | no)
+| sarcastic | power4comm  | returns    | reporting        | 
 | angry	  | physical    | reporting  | |
 | worried	  | food        | ordered    | | 
-| stubborn  | informative |   | |
-| coping	  | rationing   |   | |
-| excited	  |             |   | |
-| relieved  |             |   | |
+| defiant   | water       |            | |
+| coping	  | informative |            | |
+| excited	  | rationing   |            | |
+| relieved  | transport   |            | |
