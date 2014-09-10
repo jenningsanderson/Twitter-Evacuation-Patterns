@@ -10,6 +10,8 @@ require 'google_drive'
 require 'time'
 require 'epic-geo'
 
+#require_relative '/Users/jenningsanderson/Documents/epic-geo/lib/epic-geo'
+
 #Eventually this will get published to epic-geo
 
 require_relative 'g_drive_functions'
@@ -95,7 +97,7 @@ users[0..5].each_with_index do |user_handle, index|
 		end
 	end
 
-	user_folder = {:name=>user.handle, :features=>[], :folders=> [tweets,points_of_interest]}
+	user_folder = {:name=>user.handle, :features=>[], :folders=> [tweets, points_of_interest]}
 
 	kml_outfile.write_folder(user_folder)
 	kml_outfile.write_footer
