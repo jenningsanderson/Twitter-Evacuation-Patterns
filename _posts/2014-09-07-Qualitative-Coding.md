@@ -8,20 +8,19 @@ permalink: "/coding"
 ####Coding Scheme
 	
 | Personal Sentiment (Not retweets)| Personal Preparation | Movement | Reporting on Environment  | Collective Orientation | 
-|-----------------------------------------------------------------------------------------|
-| comedic	  | power4life  | evac ordered| weather                | pass on information
-| sarcastic | power4comm  | leaves      | personal               | seek information
-| angry	  | physical ( windows, sandbags) | arrives     | assessment             | doing what others are doing
-| worried	  | food        | return home | what others are doing (social reporting) |
-| defiant   | water       | hunkering   |                        |
-| coping	  | informative |             |                        |
-| excited	  | rationing   |             |                        | 
-| relieved  | transport   |             |                        |
-| bored     | booze       |             |                        |
-|           | maintaining existing plans|
-|           | changing existing plans |
-|           | other supplies | | |
-
+|-------------------------------------------------------------------------------------------------------------------------|
+| comedic	                         | power4life           | evac ordered| weather                | pass on information    |
+| sarcastic                        | power4comm           | leaves      | personal               | seek information       |
+| angry	                         | physical ( windows, sandbags)| arrives  | assessment        | doing what others are doing |
+| worried	                         | food                 | return home | what others are doing (social reporting)        |
+| defiant                          | water                | hunkering   |                        |                        |
+| coping	                         | other supplies       |             |                        |                        |
+| excited	                         | rationing            |             |                        |                        |
+| relieved                         | transport            |             |                        |                        |
+| bored                            | booze                |             |                        |                        |
+|                                  | maintaining existing plans|        |                        |                        |
+|                                  | changing existing plans |          |                        |                        |
+|                                  | other supplies       |             |                        |                        |                         
 
 
 ###Summary
