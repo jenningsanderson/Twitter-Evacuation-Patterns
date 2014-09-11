@@ -12,7 +12,7 @@ permalink: "/coding"
 | comedic	  | power4life  | ordered    | weather   | pass on information
 | sarcastic | power4comm  | leaves     | personal  | seek information
 | angry	  | physical    | arrives    | assessment| doing what others are doing
-| worried	  | food        | returns    | what others are doing| 
+| worried	  | food        | returns    | what others are doing
 | defiant   | water       |            | |
 | coping	  | informative |            | |
 | excited	  | rationing   |            | |
