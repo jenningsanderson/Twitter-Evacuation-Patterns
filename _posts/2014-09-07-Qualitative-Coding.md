@@ -20,6 +20,7 @@ permalink: "/coding"
 | bored     | booze       |             |                        |
 |           | maintaining existing plans|
 |           | changing existing plans |
+|           | other supplies | | |
 
 
 
