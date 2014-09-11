@@ -7,7 +7,7 @@ permalink: "/coding"
 
 ####Coding Scheme
 	
-| Personal Sentiment (Not retweets)| Personal Preparation | Movement | Reporting on Environment  | Collective Orientation | 
+| Personal Sentiment (Not retweets)| Personal Preparation | Movement | Reporting on Environment (personal facing)  | Collective Orientation | 
 |-------------------------------------------------------------------------------------------------------------------------|
 | comedic	                         | power4life           | evac ordered| weather                | pass on information    |
 | sarcastic                        | power4comm           | leaves      | personal               | seek information       |
