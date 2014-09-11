@@ -80,7 +80,7 @@ users.each_with_index do |user_handle, index|
 	#Get the user's clusters:
 	points_of_interest = {:name=>"User Clusters", :features=>[]}
 	points_of_interest[:features] << user.point_as_epic_kml(
-		"Most Likely Shelter-In-Place Location",
+		"Most Likely Shelter Location",
 		user.shelter_location[0],
 		user.shelter_location[1],
 		style="during")
