@@ -12,9 +12,9 @@ permalink: "/coding"
 | comedic	                         | power4life           | evac ordered| weather                | pass on information    |
 | sarcastic                        | power4comm           | leaves      | personal               | seek information       |
 | angry	                         | physical ( windows, sandbags)| arrives  | assessment        | doing what others are doing |
-| worried	                         | food                 | return home | what others are doing (social reporting)        |
+| worried	                         | food                 | @home       | what others are doing (social reporting)        |
 | defiant                          | water                | hunkering   |                        |                        |
-| coping	                         | other supplies       |             |                        |                        |
+| coping	                         | other supplies       | return home (post storm) |                        |                        |
 | excited	                         | rationing            |             |                        |                        |
 | relieved                         | transport            |             |                        |                        |
 | bored                            | booze                |             |                        |                        |
