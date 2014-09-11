@@ -7,17 +7,17 @@ permalink: "/coding"
 
 ####Coding Scheme
 	
-| Sentiment | Preparation | Evacuation | Shelter-In-Place | Collective Information |
-|-------------------------------------------------------------------------------|
-| comedic	  | power4life  | leaves     | hunkering        | dispersing
-| sarcastic | power4comm  | returns    | reporting        | asking
-| angry	  | physical    | reporting  | |
-| worried	  | food        | ordered    | | 
+| Sentiment | Preparation | Movement | Reporting on Environment | Collective Orientation | 
+|-------------------------------------------------------------|
+| comedic	  | power4life  | ordered    | weather   | pass on information
+| sarcastic | power4comm  | leaves     | personal  | seek information
+| angry	  | physical    | arrives    | assessment| doing what others are doing
+| worried	  | food        | returns    | what others are doing| 
 | defiant   | water       |            | |
 | coping	  | informative |            | |
 | excited	  | rationing   |            | |
 | relieved  | transport   |            | |
-| bored     
+| bored     | booze       |            | |
 
 
 
