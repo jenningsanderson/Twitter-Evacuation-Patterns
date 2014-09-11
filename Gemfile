@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'georuby'
+gem 'mongo', '1.10.2'
 gem 'mongo_mapper'
 gem 'rgeo'
 gem 'rgeo-geojson'

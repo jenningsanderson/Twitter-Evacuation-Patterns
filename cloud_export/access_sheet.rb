@@ -1,6 +1,6 @@
 require 'google_drive'
 
-require_relative 'g_drive_functions' #I shoudl rename this
+require_relative 'g_drive_functions' #I should rename this
 
 #Login
 config,credentials = read_config
@@ -13,13 +13,11 @@ print "done\n"
 #Access the sheets:
 #ws = session.spreadsheet_by_key("pz7XtlQC-PYx-jrVMJErTcg").worksheets[0]
 
-new_columns = [	"JA Sentiment", "JA Preparation", "JA Evacuation", "JA Shelter-In-Place","JA Collective-Information", "JA Comments", "",
-				"KS Sentiment", "KS Preparation", "KS Evacuation", "KS Shelter-In-Place","KS Collective-Information", "KS Comments", "",
-				"MK Sentiment", "MK Preparation", "MK Evacuation", "MK Shelter-In-Place","MK Collective-Information", "MK Comments"]
+new_columns = [	"Sentiment", "Preparation", "Evacuation", "Shelter-In-Place","Collective-Information"]
 session.spreadsheets.each do |spreadsheet|
 	
 	#Specify which sheets we want (Don't be updating all of them)
-	if spreadsheet.title =~ /Users To Code-\d+/
+	if spreadsheet.title =~ /Aggregated_Coding_\d+/
 		
 		spreadsheet.worksheets.each do |worksheet|
 			
