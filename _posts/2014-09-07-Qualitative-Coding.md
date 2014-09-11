@@ -14,7 +14,7 @@ permalink: "/coding"
 | angry	  | physical    | arrives     | assessment             | doing what others are doing
 | worried	  | food        | return home | what others are doing  |
 | defiant   | water       | hunkering   |                        |
-| coping	  | informative |             |                        |
+| coping	  | informative | home      |                        |
 | excited	  | rationing   |             |                        | 
 | relieved  | transport   |             |                        |
 | bored     | booze       |             |                        |
