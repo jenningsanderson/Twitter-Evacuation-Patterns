@@ -18,7 +18,7 @@ permalink: "/coding"
 | excited	                         | rationing            |             |                        |                        |
 | relieved                         | transport            |             |                        |                        |
 | bored                            | booze                |             |                        |                        |
-|                                  | maintaining existing plans|        |                        |                        |
+| ready                            | maintaining existing plans|        |                        |                        |
 |                                  | changing existing plans |          |                        |                        |
 |                                  |                      |             |                        |                        |                         
 
