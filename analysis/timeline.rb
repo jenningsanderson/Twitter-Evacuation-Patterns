@@ -1,6 +1,8 @@
 '''
 This file connects to Google Drive and aggregates all of the coding data into csv
 files which are then easily ready by r for data analysis
+
+This file also connects to the Twitterer MongoDB to get information on the clusters
 '''
 
 require 'google_drive'
@@ -8,9 +10,19 @@ require 'time'
 require 'active_support'	#Not happy about having to use these two, but need the Time.change functionality
 require 'rails'
 require 'csv'
+require 'matrix'
+
+require 'mongo_mapper'
 
 require_relative '../cloud_export/g_drive_functions' #I should rename this
 require_relative '../cloud_export/google_sheet'   #Login
+require_relative '../processing/time_processing'
+
+require_relative '../models/Twitterer'
+require_relative '../models/Tweet'
+
+MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu', :pool_timeout=>false)
+MongoMapper.database = 'sandygeo'
 
 config,credentials = read_config
 print "Connecting to Google Drive..."
@@ -21,6 +33,8 @@ print "done\n"
 
 # This class can turn a user coded on Google Docs into a csv
 class TimeLineBuilder
+
+	attr_reader :user_timeline
 
 	#The names of the columns and their spreadsheet location
 	@@columns = {
@@ -95,6 +109,41 @@ class TimeLineBuilder
 		end
 	end
 
+	#Iterate through cluster data and normalize based on distance
+	def normalize_distances
+		all_clusters = @user_timeline.collect{|k,v| v[:cluster]}.compact
+
+		all_clusters.map!{|x| x.uniq[0].to_i}
+
+		base_cluster = mode(all_clusters)
+
+		all_clusters.uniq!
+
+		distances_from_mode = {}
+
+		tweeter = Twitterer.where(:handle => @sheet.title).first
+		cluster_locations = tweeter.cluster_locations
+
+		all_clusters.each do |cluster|
+			distances_from_mode[cluster] = get_distance_from_point_arrays(cluster_locations[base_cluster.to_s], cluster_locations[cluster.to_s])
+		end
+
+		max = distances_from_mode.values.max
+
+		distances_from_mode.each do |c,d|
+			distances_from_mode[c] =  ( (d / max) * 20).to_i
+		end
+		
+		#Now iterate over all of the values and reset!
+
+		@user_timeline.each do |k, v|
+			if v[:cluster] and !v[:cluster].nil?
+				val = v[:cluster].flatten.map{|x| x.to_i}.min
+				v[:cluster] = distances_from_mode[val]
+			end
+		end
+	end
+
 	def pretty_print_timeline
 
 		timeline = []
@@ -117,17 +166,23 @@ class TimeLineBuilder
 		row = ["","","","",""]
 
 		values.each do |key, val|
-			val.uniq!
-			if key == :cluster
-				val = [val.map{|x| x.to_i}.min]
+			if val.is_a? Array
+				val.uniq!
+				row[@@csv_array[key]] = val.join(",")
+			else
+				row[@@csv_array[key]] = val
 			end
-			row[@@csv_array[key]] = val.join(",") #Hopefully this doesn't happen
+
+			#if key == :cluster
+			#	val = [val.map{|x| x.to_i}.min]
+			#end
+			#row[@@csv_array[key]] = val.join(",") #Hopefully this doesn't happen
 		end
 		return row
 	end
 
 	def timeline_to_csv(rows, extension="")
-		CSV.open("exports_2/#{@sheet.title}_#{extension}.csv", "wb") do |csv|
+		CSV.open("exports_3/#{@sheet.title}_#{extension}.csv", "wb") do |csv|
   			
   			#Write the csv headers
   			csv << ["Time", "Sentiment", "Preparation","Movement","Environment","Collective Information","Cluster"]
@@ -156,6 +211,7 @@ end
 #Different users to test with
 #users = ["nicolelmancini","jericajazz","jefflac","SimoMarms","MoazaMatar","tlal2","BeachyIsPeachy","mattgunn","Max_Not_Mark","Rigo7x","ajc6789"]
 #users = ["mattgunn"]
+#users = ["Max_Not_Mark"]
 
 #Find the spreadsheets we're looking for
 session.spreadsheets.each do |spreadsheet|
@@ -165,8 +221,8 @@ session.spreadsheets.each do |spreadsheet|
 		
 		spreadsheet.worksheets.each do |worksheet|
 			begin
-				if true									# This is just for going back and forth between doing all users or just some
-				# if  users.include? worksheet.title 	# Probably a better way to do this
+				if true							# This is just for going back and forth between doing all users or just some
+			    #if  users.include? worksheet.title 	# Probably a better way to do this
 					
 					#Make a new Timeline for them
 					puts "Beginning TimeLine for #{worksheet.title}"
@@ -174,8 +230,12 @@ session.spreadsheets.each do |spreadsheet|
 					this_user.read
 					print "done..."
 
+					this_user.normalize_distances
+
+					#print this_user.user_timeline.collect{|k,v| v[:cluster]}
+
 					print "writing to csv..."
-					this_user.timeline_to_csv(15000, extension="minutes") #10 days
+					this_user.timeline_to_csv(15000, extension="norm_distances") #10 days
 					print "done\n\n"
 				end
 			rescue => e
