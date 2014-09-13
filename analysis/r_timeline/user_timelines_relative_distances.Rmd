@@ -58,69 +58,314 @@ get_ggplot <-function (user) {
 
 ```
 
-## ajc678
-```{r relative_dist_ajc678, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
-data = read.csv("../exports_3/ajc6789_norm_distances.csv", strip.white = TRUE)  # read csv file 
-get_ggplot(data)
-
-```
-
-## Matt Gunn
-```{r relative_dist_mattgunn, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
-data = read.csv("../exports_3/mattgunn_norm_distances.csv")  # read csv file 
+##dogukanbiyik
+```{r original_dogukanbiyik, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/dogukanbiyik_norm_distances.csv")
 get_ggplot(data)
 ```
 
-## SimoMarms
-```{r relative_dist_SimoMarms, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
-data = read.csv("../exports_3/SimoMarms_norm_distances.csv")  # read csv file 
+##kimdelcarmen
+```{r original_kimdelcarmen, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/kimdelcarmen_norm_distances.csv")
 get_ggplot(data)
 ```
 
-## jefflac
-```{r relative_dist_jefflac, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
-data = read.csv("../exports_3/jefflac_norm_distances.csv")  # read csv file 
+##rchieB
+```{r original_rchieB, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/rchieB_norm_distances.csv")
 get_ggplot(data)
 ```
 
-## jericajazz
-```{r relative_dist_jericajazz, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
-data = read.csv("../exports_3/jericajazz_norm_distances.csv")  # read csv file 
+##fernanjos
+```{r original_fernanjos, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/fernanjos_norm_distances.csv")
 get_ggplot(data)
 ```
 
-## nicolelmancini
-```{r relative_dist_nicolelmancini, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
-data = read.csv("../exports_3/nicolelmancini_norm_distances.csv")  # read csv file 
+##nicolelmancini
+```{r original_nicolelmancini, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/nicolelmancini_norm_distances.csv")
 get_ggplot(data)
 ```
 
-## tlal2
-```{r relative_dist_tlal2, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
-data = read.csv("../exports_3/tlal2_norm_distances.csv")  # read csv file 
+##Krazysoto
+```{r original_Krazysoto, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/Krazysoto_norm_distances.csv")
 get_ggplot(data)
 ```
 
-## BeachyIsPeachy
-```{r relative_dist_BeachyIsPeachy, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
-data = read.csv("../exports_3/BeachyIsPeachy_norm_distances.csv")  # read csv file 
+##alishbot
+```{r original_alishbot, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/alishbot_norm_distances.csv")
 get_ggplot(data)
 ```
 
-## Max_Not_Mark
-```{r relative_dist_Max_Not_Mark, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
-data = read.csv("../exports_3/Max_Not_Mark_norm_distances.csv")  # read csv file 
+##CharisseCrammer
+```{r original_CharisseCrammer, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/CharisseCrammer_norm_distances.csv")
 get_ggplot(data)
 ```
 
-## Rigo7x
-```{r relative_dist_Rigo7x, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
-data = read.csv("../exports_3/Rigo7x_norm_distances.csv")  # read csv file 
+##jericajazz
+```{r original_jericajazz, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/jericajazz_norm_distances.csv")
 get_ggplot(data)
 ```
 
-## MoazaMatar
-```{r relative_dist_MoazaMatar, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
-data = read.csv("../exports_3/MoazaMatar_norm_distances.csv", strip.white = TRUE)  # read csv file 
+##KD804
+```{r original_KD804, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/KD804_norm_distances.csv")
+get_ggplot(data)
+```
+
+##jesssgilligan
+```{r original_jesssgilligan, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/jesssgilligan_norm_distances.csv")
+get_ggplot(data)
+```
+
+##theJKinz
+```{r original_theJKinz, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/theJKinz_norm_distances.csv")
+get_ggplot(data)
+```
+
+##TheAwesomeMom
+```{r original_TheAwesomeMom, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/TheAwesomeMom_norm_distances.csv")
+get_ggplot(data)
+```
+
+##bjacksrevenge
+```{r original_bjacksrevenge, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/bjacksrevenge_norm_distances.csv")
+get_ggplot(data)
+```
+
+##jefflac
+```{r original_jefflac, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/jefflac_norm_distances.csv")
+get_ggplot(data)
+```
+
+##roobs83
+```{r original_roobs83, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/roobs83_norm_distances.csv")
+get_ggplot(data)
+```
+
+##jds2001
+```{r original_jds2001, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/jds2001_norm_distances.csv")
+get_ggplot(data)
+```
+
+##SimoMarms
+```{r original_SimoMarms, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/SimoMarms_norm_distances.csv")
+get_ggplot(data)
+```
+
+##NYCGreenmarkets
+```{r original_NYCGreenmarkets, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/NYCGreenmarkets_norm_distances.csv")
+get_ggplot(data)
+```
+
+##MoazaMatar
+```{r original_MoazaMatar, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/MoazaMatar_norm_distances.csv")
+get_ggplot(data)
+```
+
+##c3nki
+```{r original_c3nki, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/c3nki_norm_distances.csv")
+get_ggplot(data)
+```
+
+##KiiddPhenom
+```{r original_KiiddPhenom, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/KiiddPhenom_norm_distances.csv")
+get_ggplot(data)
+```
+
+##sandelestepan
+```{r original_sandelestepan, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/sandelestepan_norm_distances.csv")
+get_ggplot(data)
+```
+
+##tlal2
+```{r original_tlal2, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/tlal2_norm_distances.csv")
+get_ggplot(data)
+```
+
+##BeachyIsPeachy
+```{r original_BeachyIsPeachy, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/BeachyIsPeachy_norm_distances.csv")
+get_ggplot(data)
+```
+
+##cyantifik
+```{r original_cyantifik, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/cyantifik_norm_distances.csv")
+get_ggplot(data)
+```
+
+##FrankKnuck
+```{r original_FrankKnuck, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/FrankKnuck_norm_distances.csv")
+get_ggplot(data)
+```
+
+##mattgunn
+```{r original_mattgunn, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/mattgunn_norm_distances.csv")
+get_ggplot(data)
+```
+
+##Max_Not_Mark
+```{r original_Max_Not_Mark, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/Max_Not_Mark_norm_distances.csv")
+get_ggplot(data)
+```
+
+##JaclynPatrice
+```{r original_JaclynPatrice, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/JaclynPatrice_norm_distances.csv")
+get_ggplot(data)
+```
+
+##Rigo7x
+```{r original_Rigo7x, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/Rigo7x_norm_distances.csv")
+get_ggplot(data)
+```
+
+##ajc6789
+```{r original_ajc6789, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/ajc6789_norm_distances.csv")
+get_ggplot(data)
+```
+
+##yagoSMASH
+```{r original_yagoSMASH, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/yagoSMASH_norm_distances.csv")
+get_ggplot(data)
+```
+
+##polinchock
+```{r original_polinchock, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/polinchock_norm_distances.csv")
+get_ggplot(data)
+```
+
+##indavewetrust
+```{r original_indavewetrust, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/indavewetrust_norm_distances.csv")
+get_ggplot(data)
+```
+
+##CillaCindaplc2B
+```{r original_CillaCindaplc2B, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/CillaCindaplc2B_norm_distances.csv")
+get_ggplot(data)
+```
+
+##Javy_Jaz
+```{r original_Javy_Jaz, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/Javy_Jaz_norm_distances.csv")
+get_ggplot(data)
+```
+
+##eric13000
+```{r original_eric13000, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/eric13000_norm_distances.csv")
+get_ggplot(data)
+```
+
+##becaubs
+```{r original_becaubs, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/becaubs_norm_distances.csv")
+get_ggplot(data)
+```
+
+##enriqueskincare
+```{r original_enriqueskincare, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/enriqueskincare_norm_distances.csv")
+get_ggplot(data)
+```
+
+##Rivkind
+```{r original_Rivkind, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/Rivkind_norm_distances.csv")
+get_ggplot(data)
+```
+
+##janelles__world
+```{r original_janelles__world, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/janelles__world_norm_distances.csv")
+get_ggplot(data)
+```
+
+##CoreyKelly
+```{r original_CoreyKelly, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/CoreyKelly_norm_distances.csv")
+get_ggplot(data)
+```
+
+##josalazas
+```{r original_josalazas, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/josalazas_norm_distances.csv")
+get_ggplot(data)
+```
+
+##CapponiWho
+```{r original_CapponiWho, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/CapponiWho_norm_distances.csv")
+get_ggplot(data)
+```
+
+##JohnBakalian1
+```{r original_JohnBakalian1, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/JohnBakalian1_norm_distances.csv")
+get_ggplot(data)
+```
+
+##valcristdk
+```{r original_valcristdk, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/valcristdk_norm_distances.csv")
+get_ggplot(data)
+```
+
+##forero29
+```{r original_forero29, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/forero29_norm_distances.csv")
+get_ggplot(data)
+```
+
+##BobGrotz
+```{r original_BobGrotz, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/BobGrotz_norm_distances.csv")
+get_ggplot(data)
+```
+
+##CodyRodrigu3z
+```{r original_CodyRodrigu3z, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/CodyRodrigu3z_norm_distances.csv")
+get_ggplot(data)
+```
+
+##CoastalArtists
+```{r original_CoastalArtists, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/CoastalArtists_norm_distances.csv")
+get_ggplot(data)
+```
+
+##VSindha
+```{r original_VSindha, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
+data = read.csv("../exports_3/VSindha_norm_distances.csv")
 get_ggplot(data)
 ```
