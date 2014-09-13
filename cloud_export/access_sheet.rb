@@ -49,7 +49,7 @@ session.spreadsheets.each do |spreadsheet|
 				worksheet.save
 
 				# #Clear the existing codes
-				sheet = clear_codes(worksheet)
+				# sheet = clear_codes(worksheet)
 			rescue
 				puts "Something, somewhere went wrong"
 				puts $!

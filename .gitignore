@@ -28,3 +28,4 @@ exports/*
 
 #Also, Ignore anythign from QGS
 *.qgs
+.Rproj.user
