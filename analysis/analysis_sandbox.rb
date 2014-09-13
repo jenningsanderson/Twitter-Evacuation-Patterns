@@ -7,7 +7,7 @@ users = ["dogukanbiyik","kimdelcarmen","rchieB","fernanjos","nicolelmancini","Kr
 
 users.each do |user|
 
-	print %Q{###{user}
+	print %Q{#### #{user}
 ```{r original_#{user}, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8}
 data = read.csv("../exports_3/#{user}_norm_distances.csv")
 get_ggplot(data)
