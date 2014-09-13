@@ -117,8 +117,10 @@ class TimeLineBuilder
 		row = ["","","","",""]
 
 		values.each do |key, val|
-			#Clean the data
 			val.uniq!
+			if key == :cluster
+				val = [val.map{|x| x.to_i}.min]
+			end
 			row[@@csv_array[key]] = val.join(",") #Hopefully this doesn't happen
 		end
 		return row
@@ -129,11 +131,11 @@ class TimeLineBuilder
   			
   			#Write the csv headers
   			csv << ["Time", "Sentiment", "Preparation","Movement","Environment","Collective Information","Cluster"]
-  			
+  			##csv << [Time.new(2012,10,22),0,0,0,0,0,0]
   			#Make the timeline
 			timeline = []
 			rows.times do |index|
-				timeline << (Time.new(2012,10,22) + index*60) #It's rounded to the minute
+				timeline << (Time.new(2012,10,22) + (index)*60) #It's rounded to the minute
 			end
 
 			#Create the rows
