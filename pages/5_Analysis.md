@@ -18,7 +18,7 @@ Starting from the top, each main category from the [coding scheme](../coding) ha
 The _Geo Location_ row at the bottom tracks the user's actual movement between their location clusters (their contextual reported movement is the row above this).  Each row represents an arbitrary distance (normalized to [0,20]) between the clusters.  Therefore, consecutive dots on the same row mean each of the tweets were in the same location.  If consecutive dots go up or down rows between 0 and 20, then the user has moved to a new location.  The 20 line represents the mode (the cluster the user tweeted from the most during the event).
 
 **Example**
-Matt Gunn's activity exists mostly between Geo Location 0 and 20, discretely.  Before the evacuation order and for a few hours after, he tweets from location 0 (his home).  However, at the same time he tweets that he's arrived to his evacuation location, we see the following tweets are all coming from GeoLocation 20, meaning they are the farthest away from previous location (0) compared to any of his other geotagged tweets.
+"Matt_Gunn's activity exists mostly between Geo Location 0 and 20, discretely.  Before the evacuation order and for a few hours after, he tweets from location 0 (his home).  However, at the same time he tweets that he's arrived to his evacuation location, we see the following tweets are all coming from GeoLocation 20, meaning they are the farthest away from previous location (0) compared to any of his other geotagged tweets.
 
 
 ####Key Static Dates:
