@@ -131,7 +131,7 @@ class TimeLineBuilder
 		max = distances_from_mode.values.max
 
 		distances_from_mode.each do |c,d|
-			distances_from_mode[c] =  ( (d / max) * 20).to_i
+			distances_from_mode[c] = ( 20 - ( (d / max) * 20).to_i )
 		end
 		
 		#Now iterate over all of the values and reset!

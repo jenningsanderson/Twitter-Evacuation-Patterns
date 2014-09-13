@@ -1,7 +1,7 @@
 User Timeline Comparison: Compressed
 ========================================================
 
-```{r imports_and_custom_funcs, echo=FALSE, results=FALSE}
+```{r compressed_imports_and_custom_funcs, echo=FALSE, results=FALSE}
 library(ggplot2)
 library(scales)
 
@@ -58,58 +58,58 @@ get_ggplot <-function (user) {
 
 ```
 ajc678
-```{r ajc678, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
+```{r compressed_ajc678, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
 data = read.csv("../exports_2/ajc6789_minutes.csv", strip.white = TRUE)  # read csv file 
 get_ggplot(data)
 
 ```
 Matt Gunn
-```{r mattgunn, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
+```{r compressed_mattgunn, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
 data = read.csv("../exports_2/mattgunn_minutes.csv")  # read csv file 
 get_ggplot(data)
 ```
 SimoMarms
-```{r SimoMarms, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
+```{r compressed_SimoMarms, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
 data = read.csv("../exports_2/SimoMarms_minutes.csv")  # read csv file 
 get_ggplot(data)
 ```
 jefflac
-```{r jefflac, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
+```{r original_jefflac, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
 data = read.csv("../exports_2/jefflac_minutes.csv")  # read csv file 
 get_ggplot(data)
 ```
 jericajazz
-```{r jericajazz, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
+```{r compressed_jericajazz, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
 data = read.csv("../exports_2/jericajazz_minutes.csv")  # read csv file 
 get_ggplot(data)
 ```
 nicolelmancini
-```{r nicolelmancini, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
+```{r compressed_nicolelmancini, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
 data = read.csv("../exports_2/nicolelmancini_minutes.csv")  # read csv file 
 get_ggplot(data)
 ```
 tlal2
-```{r tlal2, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
+```{r compressed_tlal2, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
 data = read.csv("../exports_2/tlal2_minutes.csv")  # read csv file 
 get_ggplot(data)
 ```
 BeachyIsPeachy
-```{r BeachyIsPeachy, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
+```{r compressed_BeachyIsPeachy, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
 data = read.csv("../exports_2/BeachyIsPeachy_minutes.csv")  # read csv file 
 get_ggplot(data)
 ```
 Max_Not_Mark
-```{r Max_Not_Mark, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
+```{r compressed_Max_Not_Mark, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
 data = read.csv("../exports_2/Max_Not_Mark_minutes.csv")  # read csv file 
 get_ggplot(data)
 ```
 Rigo7x
-```{r Rigo7x, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
+```{r compressed_Rigo7x, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
 data = read.csv("../exports_2/Rigo7x_minutes.csv")  # read csv file 
 get_ggplot(data)
 ```
 MoazaMatar
-```{r MoazaMatar, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
+```{r compressed_MoazaMatar, echo=FALSE, warning=FALSE, fig.width=16, fig.height=5}
 data = read.csv("../exports_2/MoazaMatar_minutes.csv", strip.white = TRUE)  # read csv file 
 get_ggplot(data)
 ```

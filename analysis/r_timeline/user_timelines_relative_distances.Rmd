@@ -59,68 +59,68 @@ get_ggplot <-function (user) {
 ```
 
 ## ajc678
-```{r ajc678, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
+```{r relative_dist_ajc678, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
 data = read.csv("../exports_3/ajc6789_norm_distances.csv", strip.white = TRUE)  # read csv file 
 get_ggplot(data)
 
 ```
 
 ## Matt Gunn
-```{r mattgunn, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
+```{r relative_dist_mattgunn, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
 data = read.csv("../exports_3/mattgunn_norm_distances.csv")  # read csv file 
 get_ggplot(data)
 ```
 
 ## SimoMarms
-```{r SimoMarms, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
+```{r relative_dist_SimoMarms, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
 data = read.csv("../exports_3/SimoMarms_norm_distances.csv")  # read csv file 
 get_ggplot(data)
 ```
 
 ## jefflac
-```{r jefflac, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
+```{r relative_dist_jefflac, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
 data = read.csv("../exports_3/jefflac_norm_distances.csv")  # read csv file 
 get_ggplot(data)
 ```
 
 ## jericajazz
-```{r jericajazz, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
+```{r relative_dist_jericajazz, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
 data = read.csv("../exports_3/jericajazz_norm_distances.csv")  # read csv file 
 get_ggplot(data)
 ```
 
 ## nicolelmancini
-```{r nicolelmancini, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
+```{r relative_dist_nicolelmancini, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
 data = read.csv("../exports_3/nicolelmancini_norm_distances.csv")  # read csv file 
 get_ggplot(data)
 ```
 
 ## tlal2
-```{r tlal2, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
+```{r relative_dist_tlal2, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
 data = read.csv("../exports_3/tlal2_norm_distances.csv")  # read csv file 
 get_ggplot(data)
 ```
 
 ## BeachyIsPeachy
-```{r BeachyIsPeachy, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
+```{r relative_dist_BeachyIsPeachy, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
 data = read.csv("../exports_3/BeachyIsPeachy_norm_distances.csv")  # read csv file 
 get_ggplot(data)
 ```
 
 ## Max_Not_Mark
-```{r Max_Not_Mark, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
+```{r relative_dist_Max_Not_Mark, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
 data = read.csv("../exports_3/Max_Not_Mark_norm_distances.csv")  # read csv file 
 get_ggplot(data)
 ```
 
 ## Rigo7x
-```{r Rigo7x, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
+```{r relative_dist_Rigo7x, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
 data = read.csv("../exports_3/Rigo7x_norm_distances.csv")  # read csv file 
 get_ggplot(data)
 ```
 
 ## MoazaMatar
-```{r MoazaMatar, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
+```{r relative_dist_MoazaMatar, echo=FALSE, warning=FALSE, fig.width=16, fig.height=10}
 data = read.csv("../exports_3/MoazaMatar_norm_distances.csv", strip.white = TRUE)  # read csv file 
 get_ggplot(data)
 ```
