@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Design
+title: Method & Design
 permalink: /design/
 ---
 
