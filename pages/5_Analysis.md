@@ -11,7 +11,7 @@ The following links go to the R output for visual timeline analysis.  It should 
 <ul>
 	<li><a href="../analysis/r_timeline/user_timelines_relative_distances.html" target="_blank">Timeline with Relative Cluster Distances (0 - 20)</a></li>
 
-<ul>
+</ul>
 
 ###How to read this output
 The x-axis is time, beginning on the 22nd.
