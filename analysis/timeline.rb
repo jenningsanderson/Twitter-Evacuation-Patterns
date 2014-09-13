@@ -221,7 +221,7 @@ session.spreadsheets.each do |spreadsheet|
 		
 		spreadsheet.worksheets.each do |worksheet|
 			begin
-				if true							# This is just for going back and forth between doing all users or just some
+				if true	 # This is just for going back and forth between doing all users or just some
 			    #if  users.include? worksheet.title 	# Probably a better way to do this
 					
 					#Make a new Timeline for them
