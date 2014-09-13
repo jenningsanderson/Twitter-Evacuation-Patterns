@@ -122,3 +122,10 @@ def get_most_dense_cluster(tweet_clusters)
 	end
 	return most_dense
 end
+
+def get_distance_from_point_arrays(a1, a2)
+	p1 = GEOFACTORY.point(a1[0],a1[1])
+	p2 = GEOFACTORY.point(a2[0],a2[1])
+
+	return p1.distance(p2)
+end

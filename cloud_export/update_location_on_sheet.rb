@@ -19,7 +19,6 @@ require_relative 'full_contextual_stream'
 require_relative '../models/twitterer'
 require_relative '../models/tweet'
 
-
 config,credentials = read_config
 print "Connecting to Google Drive..."
 session = GoogleDrive.login(credentials['google_username'], credentials['google_password'])
