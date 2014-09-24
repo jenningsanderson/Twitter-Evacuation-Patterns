@@ -1,44 +1,26 @@
-# Tweet Model
+# Tweet Model for TwitterGeo
 #
-# The Tweet Model is an embedded document of the Twitterer Class.
+# This Tweet extends TweetBase and provides geo self-awareness
 #
 
-require 'mongo_mapper'
-require 'active_model'
-require 'georuby'
 require 'rgeo'
+require 'georuby' #This will be updated soon
 
-class Tweet
+require_relative 'TweetBase'
+
+class Tweet < TweetBase
 
   #A Tweet can be accessed as an RGEO point object as tweet.point
-  @@geo_factory = RGeo::Geographic.simple_mercator_factory
+  @@geo_factory = RGeo::Geographic.simple_mercator_factory #Is this best practice?
 
   #Used for DBScan Clustering
   attr_accessor :cluster, :visited
 
-  #Extend the MongoMapper EmbeddedDocument
-  include MongoMapper::EmbeddedDocument
-
-  #Variables to be saved to Mongo
-  key :id_str, 			String
-  key :text, 				String
-  key :user, 				String
-  key :handle, 			String
-  key :date, 				Time
-  key :coordinates, Hash
-
-  # Given a bson_tweet as returned from Mongo (or parsed via JSON),
-  # It creates a (basic) tweet object
-  def initialize(bson_tweet)
-    @id_str = bson_tweet["id_str"]
-    @text   = bson_tweet["text"]
-    @user   = bson_tweet["user"]["id_str"]
-    @handle = bson_tweet["user"]["screen_name"]
-    @date   = bson_tweet["created_at"]
-    @coordinates = bson_tweet["coordinates"]
+  def post_initialize(args)
+    point # => Force Tweet#point to be cast to a Point
   end
 
-  #In order to call the tweet.point instance, it must be defined
+  #In order to call the Tweet#point instance, it must be defined
   def point
     #Return point or define and then return point
     @point ||= @@geo_factory.point(
@@ -62,7 +44,12 @@ class Tweet
     }
   end
 
+  #Return this tweet as valid GeoJSON
   def as_geojson
-    {:type=>"Feature", :properties=>{:Time=>@date, :text=>@text},:geometry=>@coordinates}
+    {:type=>"Feature",
+     :properties=>{ :Time=>date,
+                    :text=>text,
+                    :handle=>handle},
+     :geometry=>coordinates}
   end
 end
