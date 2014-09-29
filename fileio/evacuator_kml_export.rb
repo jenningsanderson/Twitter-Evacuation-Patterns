@@ -58,7 +58,7 @@ puts "Number of results for this query: #{results.count}"
 
 results.each do |user|
 
-  print "Processing User: #{user.handle}..."
+  puts "Processing User: #{user.handle}..."
 
   binned_tweets = user.split_tweets_into_time_bins(sandy_dates)
 
