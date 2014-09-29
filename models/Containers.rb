@@ -8,13 +8,11 @@ require 'rgeo-geojson'
 
 class Container #Can I inherit geo methods here, or is that poor form?
 
+	attr_reader :factory
+
 	def initialize(args)
 		@name = args[:name]
 		post_initialize(args)
-	end
-
-	def post_initialize(args)
-		nil
 	end
 end
 
@@ -22,23 +20,30 @@ end
 
 class BoundingBox < Container
 
-	attr_reader :geo_json, :geometry
+	attr_reader :geojson, :geometry, :features, :factory
 
 	def initialize(args)
-		@geo_json = args[:geojson]
+		@geojson = args[:geojson]
+
+		@factory = RGeo::Geographic.simple_mercator_factory #Perhaps we'll use a smarter factory in a bit
 		super(args)
 	end
 
 	def post_initialize(args)
-		if geo_json
-			load(geojson(geojson))
-		end
-	end
 
-	def load_geojson(args)
-		geo_json = File.read('../GeoJSON/NCAR_BoundingBox.GeoJSON')
-		rgeo_geo = RGeo::GeoJSON.decode(geo_json, :json_parser => :json)
-		@geometry=rgeo_geo
+		if geojson
+			load_geojson(geojson)
+		end
+
+	end
+	
+	def load_geojson(geojson_file)
+		geo_json = File.read(geojson_file)
+		rgeo_geo = RGeo::GeoJSON.decode(geo_json, json_parser: :json)
+		
+		@features=rgeo_geo
+		
+		@geometry=factory.parse_wkt(features.first.geometry)
 	end
 end
 

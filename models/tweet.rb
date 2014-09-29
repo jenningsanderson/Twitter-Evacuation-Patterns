@@ -16,6 +16,9 @@ class Tweet < TweetBase
   #Used for DBScan Clustering
   attr_accessor :cluster, :visited
 
+  #Values for mongoid
+  field :cluster,   type: Integer
+
   def post_initialize(args)
     point # => Force Tweet#point to be cast to a Point
   end
