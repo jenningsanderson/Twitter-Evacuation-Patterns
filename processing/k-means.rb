@@ -4,7 +4,7 @@
 # Allows Tweets to be used as points for x-iterations of k clusters. 
 #
 # Adapted from: https://gist.github.com/cfdrake/995804
-#
+# Deprecated as clustering method for Tweets
 
 INFINITY = 1.0/0
 #

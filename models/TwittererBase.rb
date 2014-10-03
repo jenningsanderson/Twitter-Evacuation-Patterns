@@ -2,24 +2,24 @@
 #
 # This is the most basic Twitterer.  It strictly relates Users to Tweets
 
-require 'mongoid'
+require 'mongo_mapper'
 
-Mongoid.load("../config/mongoid.yml", :epicanalytics)
+require_relative 'tweet' #Require the tweet, which then requires TweetBase
 
 class TwittererBase
-
+  
   #Define as mongoid document with many tweets
-  include Mongoid::Document
-  embeds_many :tweets
+  include MongoMapper::Document
+  set_collection_name "twitterers"
+  
+  many :tweets
 
   #Define User fields
-  field :id_str, type: String
-  field :handle, type: String
-  field :account_created, type: Date
+  key :id_str,          String
+  key :handle,          String
+  key :account_created, Date
 
-  attr_reader :id_str, :tweets
-  attr_writer :tweets #Need to be able to write tweets as well.
-
+  attr_reader :id_str
 
   def initialize(args)
     @id_str          = args[:id_str]

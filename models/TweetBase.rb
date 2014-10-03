@@ -1,26 +1,23 @@
+#
 # TweetBase Model
 #
-# The basic superclass for all tweets
-#
-
-require 'mongoid'
 
 class TweetBase
 
   attr_reader :id_str, :text, :user_id_str, :handle, :created_at, :coordinates
 
-  alias_method :created_at, :date
-  #Setup as a MongoID document embedded in a Twitterer
-  include Mongoid::Document
-  embedded_in :Twitterer
+  alias_method :date, :created_at
+  
+  #The Tweet is an embedded document for a Twitterer
+  include MongoMapper::EmbeddedDocument
 
-  #Fields
-  field :id_str, 			type: String
-  field :text, 				type: String
-  field :user, 				type: String
-  field :handle, 			type: String
-  field :date, 				type: Time
-  field :coordinates, type: Hash
+  #Keys for MM
+  key :id_str, 			String
+  key :text, 			  String
+  key :user, 			  String
+  key :handle, 		  String
+  key :date, 			  Time
+  key :coordinates, Hash
 
   # Given a bson_tweet as returned from Mongo (or parsed via JSON),
   # It creates a (basic) tweet object (args is a bson object)
@@ -35,18 +32,14 @@ class TweetBase
     post_initialize(args)
   end
 
+  #Placeholder post_initialize function
   def post_initialize(args)
-    nil
+   nil
   end
 
   #To be implemented if there is an issue parsing data
   def ensure_proper_date(args)
     nil
-  end
-
-  #If a user has a handle with a space in it or a comma, just replace those with an underscore
-  def sanitized_handle
-    handle.gsub(/(\s+|,)/,"_")
   end
 
 end
