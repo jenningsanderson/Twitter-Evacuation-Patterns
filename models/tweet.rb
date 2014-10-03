@@ -10,7 +10,7 @@ class Tweet < TweetBase
   include EpicGeo::GeoTweet
 
   #Keys for MM
-  key :cluster,   Integer  
+  key :cluster,   Integer
 
   def post_initialize(args)
      point # => Force Tweet#point to be cast to a Point

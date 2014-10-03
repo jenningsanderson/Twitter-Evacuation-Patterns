@@ -1,25 +1,25 @@
+#
 # Twitterer Model
 #
-# Extending the TwittererBase, this model includes numerous modules to
-# allow for potential evacuation calculations
-#
+# Inherits from TwittererBase
+# => What are the downsides of this?
+# => The pros of this are obvious? Maybe not obvious enougH?
 
-require 'rgeo' 					# RGEO is stronger geo-processing
-require 'georuby'				# Georuby allows for easier point => KML
 
-#Load the geoprocessing algorithms
-require_relative '../processing/geoprocessing' #Is this actually necessary?
 require_relative '../modules/UserBehavior'
 
-#EpicGeo is getting completely refactored.
+#EpicGeo is getting completely refactored, but eventually this will just be require 'EpicGeo'
 require_relative '/Users/jenningsanderson/Documents/epic-geo/lib/epic_geo'
 
-require_relative 'TwittererBase'
+require_relative 'TwittererBase' #This too will could/should live elsewhere?
 
 class Twitterer < TwittererBase
 
 	#Get Geo functions for geotwitterer
 	include EpicGeo::GeoTwitterer
+
+	#Need geoprocessing functionality as well
+	include EpicGeo::GeoProcessing
 
 	#These should be required separately, if required.
 	#include UserBehavior::Evacuator
@@ -31,58 +31,72 @@ class Twitterer < TwittererBase
 	#Mostly for testing, but maybe need access to these
 	attr_reader :clusters, :unclassified_tweets
 
-	key :issue, 	Integer #A flag for keeping track of processing
+	key :issue, 	Integer #A flag for keeping track of processing -- in Mongo
+	key :flag,      String
 
-
+	key :cluster_locations, 		Hash
+	key :unclustered_percentage,	Integer
+	key :unclassifiable,    		Boolean
 
 
 
 # ----------------- Get Clusters from the User's Tweet Locations -------------------#
-	def process_user_clusters
+	def process_tweets_to_clusters
 
-		#Create a new instance of the DBScanner.
-		dbscanner = DBScanCluster.new(tweets, epsilon=50, min_pts=2) #This seems to work okay...
+		#Create a new instance of the DBScanner, set the parameters.
+		dbscanner = EpicGeo::Clustering::DBScan.new(tweets, epsilon=50, min_pts=2) #This seems to work okay...
 
 		# Run the db_scan algorithm
 	    clusters = dbscanner.run
-	    @clusters = {}
-	    @cluster_locations ||= {}
+	    
+	    clusters.each do |cluster_id, tweets|
+	    	tweets.each do |tweet|
+	    		tweet.cluster = cluster_id
+	    		tweet.save
+	    	end
+	    end
 
-	    #Set the instance clusters variable.  Note the keys are strings, not integers
+	    #Save the cluster locations (simple lon/lat arrays)
+	    @cluster_locations = {}
+
+	    #Go through the clusters and find the median locations
 	    clusters.keys.each do |key|
 	    	key_string = key.to_s
-	    	@clusters[key_string] = clusters[key]
 
 	    	#Set the cluster locations as well (for storage, we can plot tweets on these later...)!
 	    	unless key_string=="-1"
-	    		@cluster_locations[key_string] ||= find_median_point(@clusters[key_string].collect{|tweet| tweet["coordinates"]["coordinates"]})
+	    		@cluster_locations[key_string] ||= find_median_point(clusters[key].collect{|tweet| tweet["coordinates"]["coordinates"]})
 	    	end
 	    end
 
 	    #Throw away the unclassifiable cluster (Save them as a variable with the Twitterer for now)
-		@unclassified_tweets = @clusters.delete("-1")
-		@unclassified_percentage = (@unclassified_tweets.length.to_f / tweets.count*100).round
+		unclassified_tweets = clusters.delete(-1)
+		@unclustered_percentage = (unclassified_tweets.length.to_f / tweets.count*100).round
 
-		if @clusters.empty?
+		if clusters.empty?
 			@unclassifiable = true
-
-		else #Continue with the calculations because the user DOES have clusters
-
-			#Calculate T_scores
-			t_scores = {} #t_scores by cluster
-			#Sort the clusters by length (number of tweets is most important, as that's our indicator)
-			@clusters.sort_by{|k,v| v.length}.reverse.each do |id, cluster|
-				#The t_score is the spread, weighted by tweets.
-				t_scores[id] = score_temporal_patterns(cluster)
-				#puts "Cluster: #{id} has #{cluster.length} tweets with T_Score of #{t_scores[id]}"
-			end
-			@t_scores = t_scores #Save the t_scores for later access...
-
-			#Now save clusters_by_day for later access...
-			@clusters_per_day = sort_clusters_by_day(@clusters)
+		else
+			@unclassifiable = false
 		end
 	end
 
+
+
+	def prev_clustering_stuff
+
+		#Calculate T_scores
+		t_scores = {} #t_scores by cluster
+		#Sort the clusters by length (number of tweets is most important, as that's our indicator)
+		@clusters.sort_by{|k,v| v.length}.reverse.each do |id, cluster|
+			#The t_score is the spread, weighted by tweets.
+			t_scores[id] = score_temporal_patterns(cluster)
+			#puts "Cluster: #{id} has #{cluster.length} tweets with T_Score of #{t_scores[id]}"
+		end
+		@t_scores = t_scores #Save the t_scores for later access...
+
+		#Now save clusters_by_day for later access...
+		@clusters_per_day = sort_clusters_by_day(@clusters)
+	end
 
 
 
@@ -252,21 +266,5 @@ class Twitterer < TwittererBase
 		return binned_tweets
 	end
 
-
-
-	# --------------------- KML Functions -------------------------#
-
-	def userpath_as_epic_kml
-		linestring = GeoRuby::SimpleFeatures::LineString.from_coordinates(
-			tweets.collect{|tweet| tweet.coordinates["coordinates"]} )
-
-		{:name 			=> handle,
-		 :geometry => linestring,
-		}
-	end
-
-
-	# --------------------- GeoJSON Functions Part II ------------#
-	
 
 end #End of Twitterer Class

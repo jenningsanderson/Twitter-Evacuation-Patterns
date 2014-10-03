@@ -4,4 +4,4 @@
 
 require 'pp'
 
-require_relative '../models/twitterer'
+require_relative '../config.rb'
