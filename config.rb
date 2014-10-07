@@ -26,12 +26,12 @@ require_relative 'modules/functions'
 TIMES = {event: Date.new(2012,10,29) }
 
 RISK_LEVELS = {
-	10=> 	"NYC Zone A",
-	11=> 	"NYC Zone B",
-	12=> 	"NYC Zone C",
-	20=> 	"NJ Barrier Coast",
-	50=> 	"NCAR Bounding Box",
-	100=> 	"Outside NCAR Bounding Box"
+	10 	=> 	"NYC Zone A",
+	11 	=> 	"NYC Zone B",
+	12 	=> 	"NYC Zone C",
+	20 	=> 	"NJ Barrier Coast",
+	50 	=> 	"NCAR Bounding Box",
+	100 => 	"Outside NCAR Bounding Box"
 }
 
 #Connect to the database

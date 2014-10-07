@@ -6,38 +6,55 @@
 
 require_relative '../config.rb'
 
-#Areas
+#Write it out to a GeoJSON file
+filename = "CalcualtedAffectedAreas"
+include EpicGeo::Writers
+boundaries_file = EpicGeo::Writers::GeoJSONWriter.new("../GeoJSON/exports/#{filename}")
+boundaries_file.write_header
+
+#Load these areas (Big to small)
 risk_scores = {
-	"../GeoJSON/NYJ_Barrier_Coast.geojson" 	=> 20,
-	"../GeoJSON/NYC_ZoneA.geojson" 			=> 10,
-	"../GeoJSON/NYC_ZoneB.geojson" 			=> 11,
-	"../GeoJSON/NYC_ZoneC.geojson" 			=> 12
+	"../GeoJSON/NCAR_BoundingBox.GeoJSON"   => {risk: 50, name: "ncar"},
+	"../GeoJSON/NYJ_Barrier_Coast.geojson" 	=> {risk: 20, name: "nj_barrier"},
+	"../GeoJSON/NYC_ZoneC.geojson" 			=> {risk: 12, name: "ZoneC"},
+	"../GeoJSON/NYC_ZoneB.geojson" 			=> {risk: 11, name: "ZoneB"},
+	"../GeoJSON/NYC_ZoneA.geojson" 			=> {risk: 10, name: "ZoneA"}
 }
 
-risk_scores.each do |filepath, risk_value|
-	
-	#bbox.geometry is the geometry of the bounding box
-	bbox = EpicGeo::Container::BoundingBox.new(geojson: filepath)
+bboxes = {}
 
-	#Search the Twitterer collection
-	results = Twitterer.find_each
+risk_scores.each do |filepath, values|
+	puts "Loading #{filepath}"
+	bboxes[values[:name]] = {geometry: EpicGeo::Container::BoundingBox.new(geojson: filepath).geometry, risk_value: values[:risk]}
+end
 
-	results.each_with_index do |user, index|
+bboxes.each do |bbox, value|
+	boundaries_file.write_feature(value[:geometry], {name: bbox})
+end
 
-		base_point = user.base_cluster_point
+boundaries_file.write_footer
 
-		unless base_point.nil?
-			if base_point.within? bbox.geometry
-				user.base_cluster_risk = risk_value
+#Search the Twitterer collection
+results = Twitterer.find_each
+
+results.each_with_index do |user, index|
+
+	user.base_cluster_risk = 100 #Default
+
+	base_point = user.base_cluster_point
+
+	unless base_point.nil?
+		bboxes.each do |name, values|
+			if base_point.within? values[:geometry]
+				user.base_cluster_risk = values[:risk_value]
 			end
-		else
-			user.unclassifiable = true
 		end
-		user.flag = "before risk calculation 2"
-		user.save
+	end
 
-		if (index%100).zero?
-			puts "----#{index}----"
-		end
+	user.flag = "before risk calculation 3"
+	user.save
+
+	if (index%100).zero?
+		puts "----#{index}----"
 	end
 end
