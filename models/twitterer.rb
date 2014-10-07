@@ -39,6 +39,8 @@ class Twitterer < TwittererBase
 	key :base_cluster,				String
 	key :base_cluster_score,		Float
 
+	key :base_cluster_risk,			Integer
+
 
 
 	#Helper functions
@@ -46,6 +48,15 @@ class Twitterer < TwittererBase
 		tweet_clusters = tweets.group_by{ |tweet| tweet.cluster }
 		tweet_clusters.delete(-1)
 		return tweet_clusters
+	end
+
+	def base_cluster_point
+		p = cluster_locations[base_cluster.to_s]
+		unless p.nil?
+			return FACTORY.point(p[0],p[1])
+		else
+			return nil
+		end
 	end
 
 

@@ -10,10 +10,17 @@ describe TimeProcessing do
 	end
 
 	it "Can determine the Twitterer's regularity" do
-		user = Twitterer.first
+		user = Twitterer.where(:handle=> "mattgunn").first
 
 		user.clusters.each do |id, tweets|
-			puts "#{id} - #{tweets.length} - #{tweet_regularity(tweets)/user.tweet_count}"
+
+			#Check it with tweets just from before the event...
+			pert_tweets = tweets.select{ |tweet| tweet.date < Date.new(2012,10,29)}
+			
+			puts "#{id} - #{tweets.length} - #{tweet_regularity(tweets)}"
+
+			puts "#{id} - #{pert_tweets.length} - #{tweet_regularity(pert_tweets)}"
+
 		end
 	end
 end

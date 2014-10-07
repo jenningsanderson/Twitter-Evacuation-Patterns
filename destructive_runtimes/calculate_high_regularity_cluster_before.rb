@@ -1,9 +1,9 @@
 #
 # High Regularity Location Calculations
 #
-# => This runtime goes through the Twitterers collection and clusters a user's tweets.
-# => Importantly, it embeds the cluster into the tweet on save.
-#
+# Only calculates for those locations BEFORE the storm hit
+
+
 require_relative '../config.rb'
 
 include TimeProcessing
@@ -11,7 +11,7 @@ include TimeProcessing
 if __FILE__ == $0
 
 	
-	results = Twitterer.where(:tweet_count.gt => 1000, :flag.ne => "tweet regularity run 1")
+	results = Twitterer.find_each(:flag.ne => "tweet regularity before run 3")
 
 	count = results.count
 	puts "Found #{count} results" 
@@ -22,7 +22,11 @@ if __FILE__ == $0
 			base_cluster 	= nil
 
 			user.clusters.each do |cluster_id, tweets|
-				this_cluster_score = tweet_regularity(tweets)
+				
+				pert_tweets = tweets.select{ |tweet| tweet.date < Date.new(2012,10,29)}
+
+				this_cluster_score = tweet_regularity(pert_tweets)
+
 				if this_cluster_score > c_val
 					c_val = this_cluster_score
 					base_cluster = cluster_id.to_s
@@ -35,7 +39,7 @@ if __FILE__ == $0
 			else
 				user.unclassifiable = true
 			end
-			user.flag = "tweet regularity run 1"
+			user.flag = "tweet regularity before run 3"
 		rescue => e
 			puts "Error!"
 			puts e.backtrace
