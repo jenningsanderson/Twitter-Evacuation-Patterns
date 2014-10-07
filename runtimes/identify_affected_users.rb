@@ -6,11 +6,11 @@ require_relative '../config.rb'
 
 include EpicGeo::Writers
 
-results = Twitterer.where( :base_cluster_risk => 50 )
+results = Twitterer.where( :base_cluster_risk => 10 )
 count = results.count
 puts "Found #{count} users"
 
-filename = "in_ncar_box_low_risk"
+filename = "NYC_ZoneA"
 
 #Start a file
 geojson_file = EpicGeo::Writers::GeoJSONWriter.new("../GeoJSON/exports/#{filename}")
