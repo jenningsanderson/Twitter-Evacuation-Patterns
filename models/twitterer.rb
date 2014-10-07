@@ -6,10 +6,8 @@
 # => The pros of this are obvious? Maybe not obvious enougH?
 
 
+#Not implemented yet, but eventually
 require_relative '../modules/UserBehavior'
-
-#EpicGeo is getting completely refactored, but eventually this will just be require 'EpicGeo'
-require_relative '/Users/jenningsanderson/Documents/epic-geo/lib/epic_geo'
 
 require_relative 'TwittererBase' #This too will could/should live elsewhere?
 
@@ -29,7 +27,7 @@ class Twitterer < TwittererBase
 	attr_reader :sip_conf, :evac_conf
 
 	#Mostly for testing, but maybe need access to these
-	attr_reader :clusters, :unclassified_tweets
+	attr_reader :unclassified_tweets
 
 	key :issue, 	Integer #A flag for keeping track of processing -- in Mongo
 	key :flag,      String
@@ -37,6 +35,18 @@ class Twitterer < TwittererBase
 	key :cluster_locations, 		Hash
 	key :unclustered_percentage,	Integer
 	key :unclassifiable,    		Boolean
+
+	key :base_cluster,				String
+	key :base_cluster_score,		Float
+
+
+
+	#Helper functions
+	def clusters
+		tweet_clusters = tweets.group_by{ |tweet| tweet.cluster }
+		tweet_clusters.delete(-1)
+		return tweet_clusters
+	end
 
 
 

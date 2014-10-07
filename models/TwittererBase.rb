@@ -17,7 +17,7 @@ class TwittererBase
   #Define User fields
   key :id_str,          String
   key :handle,          String
-  key :account_created, Date
+  key :account_created, Time    #Currently not implemented
 
   attr_reader :id_str
 

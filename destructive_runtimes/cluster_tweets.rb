@@ -4,14 +4,15 @@
 # => This runtime goes through the Twitterers collection and clusters a user's tweets.
 # => Importantly, it embeds the cluster into the tweet on save.
 #
-
-#This is the default, this could be incorporated into a specific gem? config? something...
-
 require_relative '../config.rb'
+
+
+
+
 
 if __FILE__ == $0
 	
-	results = Twitterer.where(:tweet_count.lte => 500, :flag.ne => "newest cluster run")
+	results = Twitterer.find_each(:tweet_count.gt => 1000, :flag.ne => "newest cluster run")
 
 	count = results.count
 	puts "Found #{count} results" 

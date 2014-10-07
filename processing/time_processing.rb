@@ -2,7 +2,7 @@
 # A separate set of functions strictly for processing temporal data
 #
 
-require 'time'
+
 
 def group_cluster_by_days(tweets)
 	days = tweets.group_by{|tweet| tweet["date"].yday}.sort_by{|k,v| k}

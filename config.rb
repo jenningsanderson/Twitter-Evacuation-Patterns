@@ -10,9 +10,24 @@ require 'rgeo'
 FACTORY = RGeo::Geographic.simple_mercator_factory
 
 
+#Breaking these requirements out of Twitterer model and into the config:
+#EpicGeo is getting completely refactored, but eventually this will just be require 'EpicGeo'
+require_relative '/Users/jenningsanderson/Documents/epic-geo/lib/epic_geo'
+
 
 #This is our heavy lifter --- bad idea? maybe
 require_relative 'models/twitterer'
+
+require_relative 'modules/time_processing'
+# Include TimeProcessing
+
+require_relative 'modules/functions'
+# Include CustomFunctions
+
+TIMES = {event: Date.new(2012,10,29) }
+
+
+
 
 #Connect to the database
 MongoMapper.connection = Mongo::Connection.new# (Local)
