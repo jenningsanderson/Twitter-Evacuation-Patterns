@@ -1,8 +1,12 @@
 #
-# This should be the only file that is required for the rest of the program
+# To be run on the server
 #
+
 require 'rubygems'
 require 'bundler/setup'
+require 'active_support'
+require 'active_support/deprecation'
+require 'mongo_mapper'
 
 #Wile we're at it, lets just require rgeo and set a factory...
 require 'rgeo'

@@ -5,11 +5,6 @@ if ARGV[0] == "contextual"
 	#We're running on the server!  here we go!
 	require_relative '../server_config'
 	#Because it's meant to be run on the server
-	require 'rubygems'
-	require 'bundler/setup'
-	require 'active_support'
-	require 'active_support/deprecation'
-	require 'mongo_mapper'
 
 	contextual_stream = FullContextualStreamRetriever.new(
 		start_date:  _start,
