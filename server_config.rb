@@ -1,14 +1,13 @@
 #
 # This should be the only file that is required for the rest of the program
 #
+require 'rubygems'
+require 'bundler/setup'
+
 #Wile we're at it, lets just require rgeo and set a factory...
 require 'rgeo'
 require 'epic_geo'
 #The basic factory for web mercator data
-#FACTORY = RGeo::Geographic.simple_mercator_factory
-
-#Gives us more accurate calculations on data for New York & New Jersey
-FACTORY = RGeo::Geographic.projected_factory(projection_proj4: '+proj=utm +zone=18 +datum=NAD27 +units=m +no_defs ')
 
 
 #Breaking these requirements out of Twitterer model and into the config:

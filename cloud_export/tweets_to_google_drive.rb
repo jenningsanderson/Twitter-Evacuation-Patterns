@@ -1,34 +1,16 @@
-#Because it's meant to be run on the server
-require 'rubygems'
-require 'bundler/setup'
-require 'active_support'
-require 'active_support/deprecation'
-require 'mongo_mapper'
-
-require_relative '../config'
-
-
-include EpicGeo
-include EpicGeo::Writers
-
-
-#Make a web directory for the user (using Epic-Geo)
-web_archive = HTML::ArchiveMaker.new('NJ_UsersToCode')
-web_archive.add_style # => default stylesheet
-unless Dir.exists? 'NJ_UsersToCode/kml_files'
-	Dir.mkdir('NJ_UsersToCode/kml_files')
-end
-
-# Make a new Google Sheet
-sheets_count = 1
-wb = EpicGeo::Writers::GoogleDrive::SheetMaker.new(
-		collection: "HurricaneSandyEvacuationCoding",
-		name: 		"NJ_UsersToCode-#{sheets_count}"
-	)
 _start =  Time.new(2012,10,22)
 _end   =  Time.new(2012,11,14)
 
 if ARGV[0] == "contextual"
+	#We're running on the server!  here we go!
+	require_relative '../server_config'
+	#Because it's meant to be run on the server
+	require 'rubygems'
+	require 'bundler/setup'
+	require 'active_support'
+	require 'active_support/deprecation'
+	require 'mongo_mapper'
+
 	contextual_stream = FullContextualStreamRetriever.new(
 		start_date:  _start,
 		end_date:    _end,
@@ -38,10 +20,28 @@ if ARGV[0] == "contextual"
 	MongoMapper.database = 'sandygeo2'
 else
 	contextual_stream = nil
+	require_relative '../config'
 	MongoMapper.connection = Mongo::Connection.new#('epic-analytics.cs.colorado.edu', :pool_timeout=>false)
 	MongoMapper.database = 'sandygeo2'
 end
 
+include EpicGeo
+include EpicGeo::Writers
+
+
+# Make a new Google Sheet
+sheets_count = 1
+wb = EpicGeo::Writers::GoogleDrive::SheetMaker.new(
+		collection: "HurricaneSandyEvacuationCoding",
+		name: 		"NJ_UsersToCode-#{sheets_count}"
+	)
+
+#Make a web directory for the user (using Epic-Geo)
+web_archive = HTML::ArchiveMaker.new('NJ_UsersToCode')
+web_archive.add_style # => default stylesheet
+unless Dir.exists? 'NJ_UsersToCode/kml_files'
+	Dir.mkdir('NJ_UsersToCode/kml_files')
+end
 
 coding_sheet_headers = ["Date","Text","Geo",
 	"Sentiment 1","Preparation 1","Movement 1","Reporting on Environment 1","Collective-Information 1", "Comments 1", "Geo-Cluster",
