@@ -89,7 +89,7 @@ class FullContextualStreamRetriever
 			end
 		else
 			puts "Error, unable to find the stream"
-			return false
+			return []
 		end
 	end
 end

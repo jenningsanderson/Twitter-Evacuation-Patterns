@@ -70,7 +70,7 @@ users.each_with_index do |user_handle, index|
     		user_content[:tweets] << {:Date => tweet.date, :Text => tweet.text, :Coordinates=>tweet.coordinates["coordinates"]}
   		end
   	else
-		user_content[:tweets] = contextual_stream.get_full_stream(user.tweets[0].handle)
+		user_content[:tweets] = contextual_stream.get_full_stream(user.tweets.first.handle)
 	end
 	
 	unless user_content[:tweets].empty? #There's the chance it isn't found, which is bad.
