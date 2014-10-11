@@ -136,7 +136,7 @@ users.each_with_index do |user_handle, index|
 		if ((index+1)%16).zero?
 			puts "------Writing new Workbook------"
 			sheets_count +=1
-			wb = GoogleDrive::CloudAuthor::SheetMaker.new(
+			wb = EpicGeo::Writers::GoogleDrive::SheetMaker.new(
 				collection: "HurricaneSandyEvacuationCoding",
 				name: 		"NJ_UsersToCode-#{sheets_count}"
 			)
