@@ -50,9 +50,8 @@ coding_sheet_headers = ["Date","Text","Geo",
 
 #users = ["ellenmrose", "DJsonatra", "nicole_edwards4", "NickeyyDees"]
 
-#users = ["Tocororo1931","Leslie_reilly","kr3at","marietta_amato","haleighbethhh","morgandube","Nikki_DeMarco","rutgersguy92","aidenscott","RedJazz43","onacitaveoz","just_teevo","leah_zara","D_Train86","Kren9","DJsonatra","mynameisluissss","JL092479","Antman73","Caitles16","danielleleiner","ACPressLee","Scott_Gaffney","ericaNAZZARO","txcoonz","KaliPorteous","OMGItssJadee","jmnzzkr","AmberAAlonzo","DomC_","mnapoli765","BleedBlue0415","TayloorKirsch","Zach_Massari10","CluelessMaven","PainFresh6","Roze_316","DevenMcCarthy","Anathebartender","forero29","KBopf","b_mazzz","compa_tijero","Christie_Jenna","DDSethi","stevewax","JoeeSmith19","iKhoiBui","kcgirl2003","ColleenBegley","Haylee_young","Aram2323,reyli24","Sara_Persiano"]
+users = ["Tocororo1931","Leslie_reilly","kr3at","marietta_amato","haleighbethhh","morgandube","Nikki_DeMarco","rutgersguy92","aidenscott","RedJazz43","onacitaveoz","just_teevo","leah_zara","D_Train86","Kren9","DJsonatra","mynameisluissss","JL092479","Antman73","Caitles16","danielleleiner","ACPressLee","Scott_Gaffney","ericaNAZZARO","txcoonz","KaliPorteous","OMGItssJadee","jmnzzkr","AmberAAlonzo","DomC_","mnapoli765","BleedBlue0415","TayloorKirsch","Zach_Massari10","CluelessMaven","PainFresh6","Roze_316","DevenMcCarthy","Anathebartender","forero29","KBopf","b_mazzz","compa_tijero","Christie_Jenna","DDSethi","stevewax","JoeeSmith19","iKhoiBui","kcgirl2003","ColleenBegley","Haylee_young","Aram2323,reyli24","Sara_Persiano"]
 
-users = ["KimberlyAdiyia","Tocororo1931","Leslie_reilly","Aram2323","kr3at","marietta_amato","haleighbethhh","morgandube","Haylee_young","Nikki_DeMarco","aidenscott","RedJazz43","rutgersguy92","iKhoiBui","onacitaveoz","kcgirl2003","just_teevo","leah_zara","D_Train86","Kren9","DJsonatra","mynameisluissss","ColleenBegley","JL092479","ericaNAZZARO","Antman73","Caitles16","danielleleiner","Scott_Gaffney","ACPressLee","txcoonz","KaliPorteous","OMGItssJadee","jmnzzkr","AmberAAlonzo","DomC_","mnapoli765","BleedBlue0415","TayloorKirsch","Sara_Persiano","Zach_Massari10","CluelessMaven","PainFresh6","Roze_316","DevenMcCarthy","Anathebartender","forero29","KBopf","b_mazzz","compa_tijero","Christie_Jenna","DDSethi","stevewax","JoeeSmith19"]
 users.each_with_index do |user_handle, index|
 
 	#Important that we don't keep the cursor open because the timeout apparently doesn't work....
@@ -60,9 +59,10 @@ users.each_with_index do |user_handle, index|
 
 	puts "\nProcessing: #{user.handle} with #{user.tweet_count} geo coded tweets"
 
-	user_content = {"GeoCoded Tweet Count"    => user.tweet_count,
-					"Unclassified Percentage" => user.unclustered_percentage,
-					:tweets=>[]}
+	user_content = {	"GeoCoded Tweet Count"    => user.tweet_count,
+						"Unclassified Percentage" => user.unclustered_percentage,
+						:tweets=>[]
+					}
 
 
 	#If contextual_stream is defined, then it'll grab the contextual stream, otherwise just hit DB
@@ -113,7 +113,7 @@ users.each_with_index do |user_handle, index|
 			end
 		end
 
-		user_folder = {:name=>user.handle, :features=>[], :folders=> [tweets, points_of_interest]}
+		user_folder = {:name=>user.sanitized_handle, :features=>[], :folders=> [tweets, points_of_interest]}
 
 		kml_outfile.write_folder(user_folder)
 		kml_outfile.write_footer
