@@ -1,14 +1,12 @@
 #
 # This should be the only file that is required for the rest of the program
 #
-#
-#
-#
+require 'rubygems'
+require 'bundler/setup'
 
 #Wile we're at it, lets just require rgeo and set a factory...
 require 'rgeo'
-
-require 'epicgeo'
+require 'epic_geo'
 #The basic factory for web mercator data
 #FACTORY = RGeo::Geographic.simple_mercator_factory
 
