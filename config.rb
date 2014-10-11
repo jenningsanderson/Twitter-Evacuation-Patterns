@@ -13,7 +13,7 @@ FACTORY = RGeo::Geographic.projected_factory(projection_proj4: '+proj=utm +zone=
 
 #Breaking these requirements out of Twitterer model and into the config:
 #EpicGeo is getting completely refactored, but eventually this will just be require 'EpicGeo'
-#require_relative '/Users/jenningsanderson/Documents/epic-geo/lib/epic_geo'
+require_relative '/Users/jenningsanderson/Documents/epic-geo/lib/epic_geo'
 
 #This is our heavy lifter --- bad idea? maybe
 require_relative 'models/twitterer'
