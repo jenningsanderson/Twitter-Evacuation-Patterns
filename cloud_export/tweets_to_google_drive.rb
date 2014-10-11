@@ -35,11 +35,11 @@ if ARGV[0] == "contextual"
 		root_path:   config["contextual_root_path"] )
 	
 	MongoMapper.connection = Mongo::Connection.new(:pool_timeout=>false)
-	MongoMapper.database = 'sandygeo'
+	MongoMapper.database = 'sandygeo2'
 else
 	contextual_stream = nil
 	MongoMapper.connection = Mongo::Connection.new#('epic-analytics.cs.colorado.edu', :pool_timeout=>false)
-	MongoMapper.database = 'sandygeo'
+	MongoMapper.database = 'sandygeo2'
 end
 
 
@@ -56,7 +56,7 @@ coding_sheet_headers = ["Date","Text","Geo",
 
 users = ["Tocororo1931","Leslie_reilly","kr3at","marietta_amato","haleighbethhh","morgandube","Nikki_DeMarco","rutgersguy92","aidenscott","RedJazz43","onacitaveoz","just_teevo","leah_zara","D_Train86","Kren9","DJsonatra","mynameisluissss","JL092479","Antman73","Caitles16","danielleleiner","ACPressLee","Scott_Gaffney","ericaNAZZARO","txcoonz","KaliPorteous","OMGItssJadee","jmnzzkr","AmberAAlonzo","DomC_","mnapoli765","BleedBlue0415","TayloorKirsch","Zach_Massari10","CluelessMaven","PainFresh6","Roze_316","DevenMcCarthy","Anathebartender","forero29","KBopf","b_mazzz","compa_tijero","Christie_Jenna","DDSethi","stevewax","JoeeSmith19","iKhoiBui","kcgirl2003","ColleenBegley","Haylee_young","Aram2323,reyli24","Sara_Persiano"]
 
-users.first(10).each_with_index do |user_handle, index|
+users.each_with_index do |user_handle, index|
 
 	#Important that we don't keep the cursor open because the timeout apparently doesn't work....
 	user = Twitterer.where(:handle => user_handle).first
