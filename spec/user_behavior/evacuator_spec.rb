@@ -41,7 +41,7 @@ describe UserBehavior do
 		@users.each do |user|
 			if user.evacuated?
 				evacs +=1
-				puts user.handle
+				puts user.sanitized_handle
 				
 			else
 				sips += 1
