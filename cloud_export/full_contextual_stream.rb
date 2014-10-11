@@ -86,7 +86,7 @@ class FullContextualStreamRetriever
 				return tweets
 			else
 				puts "No tweets!"
-				reutrn []
+				return []
 			end
 		else
 			puts "Error, unable to find the stream"
