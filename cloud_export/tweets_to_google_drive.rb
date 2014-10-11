@@ -4,7 +4,7 @@ _end   =  Time.new(2012,11,14)
 if ARGV[0] == "contextual"
 	#We're running on the server!  here we go!
 	require_relative '../server_config'
-	require_relative '../full_contextual_stream'
+	require_relative 'full_contextual_stream'
 	#Because it's meant to be run on the server
 
 	contextual_stream = FullContextualStreamRetriever.new(
