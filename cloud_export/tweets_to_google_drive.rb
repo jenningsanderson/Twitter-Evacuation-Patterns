@@ -10,7 +10,7 @@ if ARGV[0] == "contextual"
 	contextual_stream = FullContextualStreamRetriever.new(
 		start_date:  _start,
 		end_date:    _end,
-		root_path:   config["contextual_root_path"] )
+		root_path:   "/home/kena/geo_user_collection/" )
 	
 	MongoMapper.connection = Mongo::Connection.new(:pool_timeout=>false)
 	MongoMapper.database = 'sandygeo2'
