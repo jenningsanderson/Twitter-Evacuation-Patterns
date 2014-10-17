@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Latest
+title: Latest Updates
 permalink: /latest/
 ---
 

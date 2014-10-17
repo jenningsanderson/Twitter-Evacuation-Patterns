@@ -5,28 +5,8 @@ require 'active_support'
 require 'active_support/deprecation'
 require 'mongo_mapper'
 
-#Requirements
-require 'google_drive'
-require 'time'
-require 'epic-geo'
 
-#require_relative '/Users/jenningsanderson/Documents/epic-geo/lib/epic-geo'
-
-#Eventually this will get published to epic-geo
-
-require_relative 'g_drive_functions'
-require_relative 'google_sheet'
-require_relative 'full_contextual_stream'
-require_relative '../models/twitterer'
-require_relative '../models/tweet'
-
-
-config,credentials = read_config
-# print "Connecting to Google Drive..."
-# session = GoogleDrive.login(credentials['google_username'], credentials['google_password'])
-# print "done \nConnecting to Collection..."
-# coll = session.collection_by_title("HurricaneSandyEvacuationCoding")
-# print "done\n"
+require_relative '../config'
 
 # Make a web directory for the user (using Epic-Geo)
 web_archive = HTMLArchiveMaker.new('users_to_code')
@@ -44,7 +24,11 @@ _start = Time.new(2012,10,22)
 _end   = Time.new(2012,11,14)
 
 if ARGV[0] == "contextual"
-	contextual_stream = FullContextualStreamRetriever.new(credentials["contextual_root_path"], _start, _end)
+	contextual_stream = FullContextualStreamRetriever.new(
+		start_date:  Time.new(2012,10,22) 
+		end_date:    Time.new(2012,11,14)
+		root_path:   config["contextual_root_path"] )
+	
 	MongoMapper.connection = Mongo::Connection.new(:pool_timeout=>false)
 	MongoMapper.database = 'sandygeo'
 else
@@ -53,10 +37,9 @@ else
 	MongoMapper.database = 'sandygeo'
 end
 
-#The first 52 Users:
-users = ["dogukanbiyik","kimdelcarmen","rchieB","fernanjos","nicolelmancini","Krazysoto","ailishbot","CharisseCrammer","jericajazz","KD804","jesssgilligan","theJKinz","TheAwesomeMom","bjacksrevenge","jefflac","roobs83","jds2001","SimoMarms","NYCGreenmarkets","c3nki","MoazaMatar","KiiddPhenom","sandelestepan","tlal2","BeachyisPeachy","cyantifik","FrankKnuck","mattgunn","Max_Not_Mark","JaclynPatrice","Rigo7x","ajc6789","yagoSMASH","polinchock","indavewetrust","CillaCindaplc2B","Javy_Jaz","eric13000","becaubs","enriqueskincare","Rivkind","janelles__world","CoreyKelly","josalazas","CapponiWho","JohnBakalian1","valcristdk","forero29","BobGrotz","CodyRodrigu3z","CoastalArtists","VSindha"]
-
 # Get the Users we want
+
+users = []
 
 users.each_with_index do |user_handle, index|
 

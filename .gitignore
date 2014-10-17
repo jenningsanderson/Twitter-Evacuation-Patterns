@@ -17,6 +17,7 @@ data
 *.lock
 
 cloud_export/users_to_code/*
+cloud_export/NJ_UsersToCode/*
 
 exports/*
 

@@ -4,16 +4,17 @@ require 'time'
 
 class FullContextualStreamRetriever
 
-	def initialize(root_path, start_date, end_date)
-		@root_path = root_path
-		@start_date = start_date || Time.new(2012,07,01) #These are just defaults
-		@end_date   = end_date   || Time.new(2012,12,31)
+	attr_reader :root_path, :start_date, :end_date
+
+	def initialize(args)
+		@root_path 	= args[:root_path]
+		@start_date = args[:start_date] || Time.new(2012,07,01)
+		@end_date   = args[:end_date]   || Time.new(2012,12,31)
 
 		puts "Contextual Stream Retriever Initialized:"
-		puts "\tBase Path: #{@root_path}"
-		puts "\tStart Date: #{@start_date}"
-		puts "\tEnd Date: #{@end_date}"
-
+		puts "\tBase Path:  #{root_path}"
+		puts "\tStart Date: #{start_date}"
+		puts "\tEnd Date:   #{end_date}"
 	end
 
 	#Find the document on the server
@@ -36,7 +37,7 @@ class FullContextualStreamRetriever
 
 		#Iterate through the root_path directory for the user's contextual file
 		(1..6).to_a.map!{|num| "geo#{num}"}.each do |section|
-			test_path = "#{@root_path}#{section}/user_data/#{alph}/#{user}-contextual.json"
+			test_path = "#{root_path}#{section}/user_data/#{alph}/#{user}-contextual.json"
 			if File.exists? test_path
 				file_path = test_path
 				in_stream  = File.open(file_path,'r')
@@ -58,7 +59,7 @@ class FullContextualStreamRetriever
 
 					date = Time.parse(tweet["created_at"])
 					
-					if (date > @start_date) and (date < @end_date)
+					if (date > start_date) and (date < end_date)
 		        	
 						tweet_count+=1
 						
@@ -85,10 +86,11 @@ class FullContextualStreamRetriever
 				return tweets
 			else
 				puts "No tweets!"
+				return []
 			end
 		else
 			puts "Error, unable to find the stream"
-			return false
+			return []
 		end
 	end
 end
