@@ -97,18 +97,18 @@ users_for_kevin.each_with_index do |user_handle, index|
 		base_cluster  = user.cluster_locations[user.base_cluster.to_s]
 		storm_cluster = user.cluster_locations[user.during_storm_cluster.to_s]
 		
-		points_of_interest = {:name=>"User Clusters", :features=>[]}
-		points_of_interest[:features] << point_as_epic_kml(
-			"Base Cluster",
-			base_cluster[0],
-			base_cluster[1],
-			style="before")
+		# points_of_interest = {:name=>"User Clusters", :features=>[]}
+		# points_of_interest[:features] << point_as_epic_kml(
+		# 	"Base Cluster",
+		# 	base_cluster[0],
+		# 	base_cluster[1],
+		# 	style="before")
 
-		points_of_interest[:features] << point_as_epic_kml(
-			"During Storm Cluster",
-			storm_cluster[0],
-			storm_cluster[1],
-			style="during")
+		# points_of_interest[:features] << point_as_epic_kml(
+		# 	"During Storm Cluster",
+		# 	storm_cluster[0],
+		# 	storm_cluster[1],
+		# 	style="during")
 
 		#Add all of their tweets
 		tweets = {:name=>"Tweets", :features=>[]}
@@ -118,7 +118,7 @@ users_for_kevin.each_with_index do |user_handle, index|
 			end
 		end
 
-		user_folder = {:name=>user.sanitized_handle, :features=>[], :folders=> [tweets, points_of_interest]}
+		user_folder = {:name=>user.sanitized_handle, :features=>[], :folders=> [tweets]}#, points_of_interest]}
 
 		kml_outfile.write_folder(user_folder)
 		kml_outfile.write_footer
