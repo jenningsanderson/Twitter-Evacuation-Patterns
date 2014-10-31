@@ -18,7 +18,6 @@ require_relative '/Users/jenningsanderson/Documents/epic-geo/lib/epic_geo'
 #This is our heavy lifter --- bad idea? maybe
 require_relative 'models/twitterer'
 
-
 require_relative 'modules/time_processing'
 # Include TimeProcessing
 
@@ -43,5 +42,5 @@ RISK_LEVELS = {
 }
 
 #Connect to the database
-MongoMapper.connection = Mongo::Connection.new# (Local)
+MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')# (Local)
 MongoMapper.database = 'sandygeo2'
