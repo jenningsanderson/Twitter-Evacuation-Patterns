@@ -17,6 +17,21 @@ write_directory  = "NJ_Exports"
 extension = ""
 rows      = 17280 #10 days
 
+coding_scheme = {:coding_scheme => ["comedic", "power4life", "evac ordered", "weather", "pass on",
+"sarcastic", "power4comm", "leaves", "personal", "seeking",
+"angry", "physical", "arrives", "assessment", "doing what others are doing", 
+"worried", "food", "@home", "doing what others are doing", "social reporting",
+"defiant", "water", "hunkering", "coping", "other supplies", "returns home", 
+"excited", "rationing", "relieved", "transport", "bored", "booze", "ready",
+"maintaining existing plans", "changing existing plans"],
+:common_subs => {
+"pass on information" => "pass on",
+"change existing plans" => "changing existing plans",
+"change in existing plans" => "changing existing plans",
+"scared" => "worried",
+"evacuates" => "leaves"	}
+}
+
 #Main runtime
 if __FILE__ == $0
 
@@ -37,7 +52,7 @@ if __FILE__ == $0
 					# Now that we have a worksheet -- let's make a TimeLine out of it.
 
 					# build a timeline,
-					timeline = TimeLineBuilder.new(worksheet: worksheet, write_directory: write_directory)
+					timeline = TimeLineBuilder.new(worksheet: worksheet, write_directory: write_directory, coding_scheme: coding_scheme)
 
 					#Read it
 					timeline.read

@@ -12,7 +12,7 @@ require 'csv'
 
 class TimeLineBuilder
 
-	attr_reader :user_timeline, :write_directory, :sheet
+	attr_reader :user_timeline, :write_directory, :sheet, :coding_scheme, :common_subs
 
 	# The names of the columns and their spreadsheet location
 	@@columns = {
@@ -20,7 +20,7 @@ class TimeLineBuilder
 		:Preparation  	=> 5, 
 		:Movement 		=> 6,
 		:Environment 	=> 7,
-		:Collective 	=> 8 }
+		:Collective 	=> 8}
 
 	# The array positions for the csv file (not columns)
 	@@csv_array = {
@@ -28,11 +28,16 @@ class TimeLineBuilder
 		:Preparation => 1, 
 		:Movement 	 => 2,
 		:Environment => 3,
-		:Collective  => 4 }
+		:Collective  => 4}
 
 	def initialize(args)
 		#Set the instance variable for sheet
 		@sheet = args[:worksheet]
+
+		scheme = args[:coding_scheme] || {}
+
+		@coding_scheme = scheme[:coding_scheme] || []
+		@common_subs   = scheme[:common_subs] || {}
 
 		@write_directory = args[:write_directory] || Time.new.to_s
 
@@ -57,10 +62,30 @@ class TimeLineBuilder
 	def get_cell(row, column)
 		val = @sheet[row, column]
 		unless val == ""
-			return val.split(',').collect{|x| x.strip}
+			to_validate = val.split(',').collect{|x| x.strip}
 		else
 			return nil
 		end
+
+		unless coding_scheme.empty?
+			validated = []
+			to_validate.each do |val|
+				if coding_scheme.include? val 
+					validated << val 
+				else 
+					begin
+						puts "Subbing: #{val} for #{common_subs[val]}"
+						validated << common_subs[val]
+					rescue
+						puts "---------------\nERROR: #{val}\n---------------------"
+					end
+				end
+			end
+			return validated
+		else
+			return to_validate
+		end
+
 	end
 
 
