@@ -150,10 +150,14 @@ class TimeLineBuilder
 	end
 
 	def timeline_to_csv(args)
-		rows 		= args[:rows]
-		extension	= args[:extension] || 17280
+		rows 		= args[:rows] || 17280
+		extension	= args[:extension] || ""
 
-		CSV.open("#{write_directory}/#{sheet.title}_#{extension}.csv", "wb") do |csv|
+		unless extension == ""
+			extension = "_"+extension
+		end
+
+		CSV.open("#{write_directory}/#{sheet.title}#{extension}.csv", "wb") do |csv|
   			
   			#Write the csv headers
   			csv << ["Time", "Sentiment", "Preparation","Movement","Environment","Collective Information"]
