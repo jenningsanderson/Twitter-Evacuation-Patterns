@@ -73,10 +73,10 @@ class TimeLineBuilder
 				if coding_scheme.include? val 
 					validated << val 
 				else 
-					begin
-						puts "Subbing: #{val} for #{common_subs[val]}"
+					unless common_subs[val].nil?
+						puts "#{val} => #{common_subs[val]}"
 						validated << common_subs[val]
-					rescue
+					else
 						puts "---------------\nERROR: #{val}\n---------------------"
 					end
 				end

@@ -26,10 +26,16 @@ coding_scheme = {:coding_scheme => ["comedic", "power4life", "evac ordered", "we
 "maintaining existing plans", "changing existing plans"],
 :common_subs => {
 "pass on information" => "pass on",
+"passing" => "pass on",
+"what others are doing" => "doing what others are doing",
+"seek information" => "seeking",
+"seek" => "seeking",
 "change existing plans" => "changing existing plans",
 "change in existing plans" => "changing existing plans",
 "scared" => "worried",
-"evacuates" => "leaves"	}
+"evacuates" => "leaves",
+"return home" => "returns home",
+"ordered" => "evac ordered"}
 }
 
 #Main runtime
