@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Object - RDoc Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">BasicObject
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="EpicGeo/Writers.html">EpicGeo::Writers</a>
+  
+  
+  
+    <li><a class="include" href="TimeProcessing.html">TimeProcessing</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-find_after_home">#find_after_home</a>
+    
+    <li ><a href="#method-i-find_before_home">#find_before_home</a>
+    
+    <li ><a href="#method-i-find_temporal_pattern">#find_temporal_pattern</a>
+    
+    <li ><a href="#method-i-group_cluster_by_days">#group_cluster_by_days</a>
+    
+    <li ><a href="#method-i-mode">#mode</a>
+    
+    <li ><a href="#method-i-score_cluster_pattern">#score_cluster_pattern</a>
+    
+    <li ><a href="#method-i-score_temporal_patterns">#score_temporal_patterns</a>
+    
+    <li ><a href="#method-i-sort_clusters_by_day">#sort_clusters_by_day</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Object">
+  <h1 id="class-Object" class="class">
+    class Object
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="FACTORY">FACTORY
+        
+        <dd><p>Give us more accurate calculations on data for New York &amp; New Jersey</p>
+        
+      
+        <dt id="RISK_LEVELS">RISK_LEVELS
+        
+        <dd>
+        
+      
+        <dt id="TIMES">TIMES
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-find_after_home" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_after_home</span><span
+            class="method-args">(clusters)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="find_after_home-source">
+            <pre><span class="ruby-comment"># File processing/time_processing.rb, line 183</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_after_home</span>(<span class="ruby-identifier">clusters</span>)
+        <span class="ruby-identifier">after_clusters</span> = <span class="ruby-identifier">clusters</span>.<span class="ruby-identifier">reject</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">314</span>}
+        <span class="ruby-comment">#puts after_clusters</span>
+        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">after_clusters</span>.<span class="ruby-identifier">empty?</span>
+                <span class="ruby-keyword">return</span> <span class="ruby-identifier">mode</span>(<span class="ruby-identifier">after_clusters</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">flatten</span>)
+        <span class="ruby-keyword">else</span>
+                <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-find_before_home" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_before_home</span><span
+            class="method-args">(clusters)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="find_before_home-source">
+            <pre><span class="ruby-comment"># File processing/time_processing.rb, line 173</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_before_home</span>(<span class="ruby-identifier">clusters</span>)
+        <span class="ruby-identifier">before_clusters</span> = <span class="ruby-identifier">clusters</span>.<span class="ruby-identifier">reject</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">302</span>}
+        <span class="ruby-comment">#puts before_clusters</span>
+        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">before_clusters</span>.<span class="ruby-identifier">empty?</span>
+                <span class="ruby-keyword">return</span> <span class="ruby-identifier">mode</span>(<span class="ruby-identifier">before_clusters</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">flatten</span>)
+        <span class="ruby-keyword">else</span>
+                <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-find_temporal_pattern" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_temporal_pattern</span><span
+            class="method-args">(clusters, t_scores)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This function is a major workhorse and tries at every point to return a
+cop-out value.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="find_temporal_pattern-source">
+            <pre><span class="ruby-comment"># File processing/time_processing.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_temporal_pattern</span>(<span class="ruby-identifier">clusters</span>, <span class="ruby-identifier">t_scores</span>)
+
+        <span class="ruby-identifier">clusters_by_day</span> = <span class="ruby-identifier">sort_clusters_by_day</span>(<span class="ruby-identifier">clusters</span>)
+
+        <span class="ruby-identifier">clusters_by_day</span>.<span class="ruby-identifier">delete_if</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">empty?</span>}
+
+        <span class="ruby-identifier">valid_keys</span> = <span class="ruby-identifier">clusters_by_day</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">reject</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> (<span class="ruby-identifier">x</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">295</span>) <span class="ruby-keyword">or</span> (<span class="ruby-identifier">x</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">314</span>)} <span class="ruby-comment">#Just look at the time surrounding the Hurricane</span>
+
+        <span class="ruby-keyword">return</span> <span class="ruby-value">0</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">valid_keys</span>.<span class="ruby-identifier">length</span>.<span class="ruby-identifier">zero?</span>    <span class="ruby-comment">#If there are no more valid keys, return 0</span>
+
+
+        <span class="ruby-identifier">valid_keys</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{key} =&gt; #{clusters_by_day[key]}&quot;</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-comment">#Else, lets continue with the analysis</span>
+        <span class="ruby-identifier">shelter_zones</span> = []
+        <span class="ruby-identifier">zone_scores</span> = {}
+
+        <span class="ruby-comment"># valid_keys.each_with_index do |day|</span>
+
+        <span class="ruby-comment">#      #If more than one zone per day, handle that separately</span>
+
+        <span class="ruby-comment">#      if clusters_by_day[day].length == 1</span>
+        <span class="ruby-comment">#              zone = clusters_by_day[day][0]</span>
+        <span class="ruby-comment">#              zone_scores[zone] ||=0</span>
+
+        <span class="ruby-comment">#              #Have to start somewhere, so put first zone(s) in</span>
+        <span class="ruby-comment">#              if shelter_zones.empty?</span>
+        <span class="ruby-comment">#                      #Push the first zone value(s) onto the stack, but do not score the value</span>
+        <span class="ruby-comment">#                      shelter_zones.unshift(zone)</span>
+                        
+        <span class="ruby-comment">#              else</span>
+        <span class="ruby-comment">#                      if shelter_zones.include? zone</span>
+        <span class="ruby-comment">#                              weight = shelter_zones.index(zone)+1 #This will determine where it is, relatively</span>
+        <span class="ruby-comment">#                              zone_scores[zone] += (1.to_f / weight)</span>
+        <span class="ruby-comment">#                      end</span>
+        <span class="ruby-comment">#                      shelter_zones.unshift(zone) #Add the zone to the front</span>
+        <span class="ruby-comment">#              end</span>
+        <span class="ruby-comment">#      else</span>
+        <span class="ruby-comment">#              #We have a day with multiple zones</span>
+        <span class="ruby-comment">#              if shelter_zones.empty?</span>
+                                
+        <span class="ruby-comment">#                      #Create the shelter_zones array with these datapoints</span>
+        <span class="ruby-comment">#                      shelter_zones = clusters_by_day[day] </span>
+        <span class="ruby-comment">#              else</span>
+        <span class="ruby-comment">#                      #Need to find the indexes and take the lower one, then push that value.</span>
+        <span class="ruby-comment">#                      prev_zone = clusters_by_day[day].shift #Pop the zone off the front</span>
+        <span class="ruby-comment">#                      zone_scores[prev_zone] ||=0</span>
+        <span class="ruby-comment">#                      prev_weight = 10000</span>
+        <span class="ruby-comment">#                      if shelter_zones.include? prev_zone</span>
+        <span class="ruby-comment">#                              prev_weight = shelter_zones.index(prev_zone)+1</span>
+        <span class="ruby-comment">#                      end</span>
+
+        <span class="ruby-comment">#                      until clusters_by_day[day].empty? do</span>
+        <span class="ruby-comment">#                              this_zone = clusters_by_day[day].shift</span>
+        <span class="ruby-comment">#                              zone_scores[this_zone] ||=0</span>
+        <span class="ruby-comment">#                              if shelter_zones.include? this_zone</span>
+        <span class="ruby-comment">#                                      this_weight = shelter_zones.index(this_zone)+1</span>
+                                                
+        <span class="ruby-comment">#                                      if this_weight &lt; prev_weight</span>
+        <span class="ruby-comment">#                                              prev_weight = this_weight</span>
+        <span class="ruby-comment">#                                              prev_zone = this_zone</span>
+        <span class="ruby-comment">#                                      end</span>
+        <span class="ruby-comment">#                              end</span>
+        <span class="ruby-comment">#                      end</span>
+        <span class="ruby-comment">#                      shelter_zones.unshift(prev_zone)</span>
+        <span class="ruby-comment">#                      unless prev_weight == 10000</span>
+        <span class="ruby-comment">#                              zone_scores[prev_zone] += (1.to_f / prev_weight)</span>
+        <span class="ruby-comment">#                      end</span>
+        <span class="ruby-comment">#              end</span>
+        <span class="ruby-comment">#      end</span>
+        <span class="ruby-comment"># end</span>
+
+        <span class="ruby-comment"># if shelter_zones.uniq.count==1</span>
+        <span class="ruby-comment">#      return shelter_zones.uniq</span>
+        <span class="ruby-comment"># end</span>
+
+        <span class="ruby-comment"># return shelter_zones.reverse!</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-group_cluster_by_days" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">group_cluster_by_days</span><span
+            class="method-args">(tweets)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="group_cluster_by_days-source">
+            <pre><span class="ruby-comment"># File processing/time_processing.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">group_cluster_by_days</span>(<span class="ruby-identifier">tweets</span>)
+        <span class="ruby-identifier">days</span> = <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">group_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tweet</span>[<span class="ruby-string">&quot;date&quot;</span>].<span class="ruby-identifier">yday</span>}.<span class="ruby-identifier">sort_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">k</span>}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-mode" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mode</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="mode-source">
+            <pre><span class="ruby-comment"># File processing/time_processing.rb, line 194</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">mode</span>(<span class="ruby-identifier">array</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">array</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">array</span>.<span class="ruby-identifier">nil?</span>
+                <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
+        <span class="ruby-keyword">else</span>
+                <span class="ruby-comment">#http://stackoverflow.com/questions/412169/ruby-how-to-find-item-in-array-which-has-the-most-occurrences</span>
+                <span class="ruby-identifier">array</span>.<span class="ruby-identifier">group_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>}.<span class="ruby-identifier">max</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">y</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">length</span>}[<span class="ruby-value">0</span>]
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-score_cluster_pattern" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">score_cluster_pattern</span><span
+            class="method-args">(clusters, t_scores, before_home_cluster)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="score_cluster_pattern-source">
+            <pre><span class="ruby-comment"># File processing/time_processing.rb, line 123</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">score_cluster_pattern</span>(<span class="ruby-identifier">clusters</span>, <span class="ruby-identifier">t_scores</span>, <span class="ruby-identifier">before_home_cluster</span>)
+
+        <span class="ruby-comment">#Weights</span>
+        <span class="ruby-identifier">distribution_weights</span> = {
+                <span class="ruby-value">300</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
+                <span class="ruby-value">301</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
+                <span class="ruby-value">302</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>,             <span class="ruby-comment">#October 28, 2012</span>
+                <span class="ruby-value">303</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">3</span>,             <span class="ruby-comment">#October 29, 2012</span>
+                <span class="ruby-value">304</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">5</span>,             <span class="ruby-comment">#October 30, 2012</span>
+                <span class="ruby-value">305</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">8</span>,             <span class="ruby-comment">#October 31, 2012</span>
+                <span class="ruby-value">306</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">6</span>,             <span class="ruby-comment">#November 1, 2012</span>
+                <span class="ruby-value">307</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">3</span>,             <span class="ruby-comment">#November 2, 2012</span>
+                <span class="ruby-value">308</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>,             <span class="ruby-comment">#November 3, 2012  LynnCatherineX3 came back home </span>
+                <span class="ruby-value">309</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,             <span class="ruby-comment">#November 4, 2012</span>
+                <span class="ruby-value">310</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
+                <span class="ruby-value">311</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
+                <span class="ruby-value">312</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
+                <span class="ruby-value">313</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
+                <span class="ruby-value">314</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
+        }
+
+        <span class="ruby-identifier">probable_before_locations</span> = []
+        <span class="ruby-identifier">probable_evac_locations</span>   = []
+        <span class="ruby-identifier">probable_after_locations</span>  = []
+
+        <span class="ruby-identifier">clusters</span>.<span class="ruby-identifier">sort_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_i</span>}.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">day</span>, <span class="ruby-identifier">clusters_that_day</span> <span class="ruby-operator">|</span>
+
+                <span class="ruby-identifier">yday</span> = <span class="ruby-identifier">day</span>.<span class="ruby-identifier">to_i</span>
+
+                <span class="ruby-identifier">clusters_that_day</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">indiv_cluster</span><span class="ruby-operator">|</span>
+                        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">t_scores</span>[<span class="ruby-identifier">indiv_cluster</span>] <span class="ruby-operator">&gt;</span> <span class="ruby-value">0.1</span>
+                                <span class="ruby-keyword">if</span> <span class="ruby-identifier">yday</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">303</span> 
+                                    <span class="ruby-identifier">probable_before_locations</span> <span class="ruby-operator">&lt;&lt;</span> ([<span class="ruby-identifier">indiv_cluster</span>] <span class="ruby-operator">*</span> <span class="ruby-identifier">distribution_weights</span>[<span class="ruby-identifier">yday</span>])
+                                <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">yday</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">308</span>
+                                        <span class="ruby-identifier">probable_after_locations</span> <span class="ruby-operator">&lt;&lt;</span> ([<span class="ruby-identifier">indiv_cluster</span>] <span class="ruby-operator">*</span> <span class="ruby-identifier">distribution_weights</span>[<span class="ruby-identifier">yday</span>])
+                                <span class="ruby-keyword">else</span>
+                                        <span class="ruby-comment"># if probable_before_locations.include? indiv_cluster</span>
+                                        <span class="ruby-identifier">probable_evac_locations</span> <span class="ruby-operator">&lt;&lt;</span> ([<span class="ruby-identifier">indiv_cluster</span>] <span class="ruby-operator">*</span> <span class="ruby-identifier">distribution_weights</span>[<span class="ruby-identifier">yday</span>])
+                                        <span class="ruby-comment"># else</span>
+                                        <span class="ruby-comment">#  probable_evac_locations &lt;&lt; ([indiv_cluster] * distribution_weights[yday] * 2)</span>
+                                        <span class="ruby-comment"># end</span>
+                                <span class="ruby-keyword">end</span>
+                        <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-keyword">return</span> <span class="ruby-identifier">probable_before_locations</span>.<span class="ruby-identifier">flatten</span>, <span class="ruby-identifier">probable_evac_locations</span>.<span class="ruby-identifier">flatten</span>, <span class="ruby-identifier">probable_after_locations</span>.<span class="ruby-identifier">flatten</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-score_temporal_patterns" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">score_temporal_patterns</span><span
+            class="method-args">(tweets)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="score_temporal_patterns-source">
+            <pre><span class="ruby-comment"># File processing/time_processing.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">score_temporal_patterns</span>(<span class="ruby-identifier">tweets</span>)
+        <span class="ruby-identifier">times</span> = <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tweet</span>[<span class="ruby-string">&quot;date&quot;</span>]}
+        <span class="ruby-identifier">blocks</span> = []
+        <span class="ruby-identifier">times</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">time</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">blocks</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">time</span>.<span class="ruby-identifier">hour</span><span class="ruby-operator">/</span><span class="ruby-value">3</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">blocks</span>.<span class="ruby-identifier">group_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">value</span>}.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">times</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">**</span><span class="ruby-value">2</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-comment"># =&gt; Essentially a measure of deviation</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-sort_clusters_by_day" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sort_clusters_by_day</span><span
+            class="method-args">(clusters)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="sort_clusters_by_day-source">
+            <pre><span class="ruby-comment"># File processing/time_processing.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sort_clusters_by_day</span>(<span class="ruby-identifier">clusters</span>)
+        <span class="ruby-identifier">clusters_by_day</span> = {} <span class="ruby-comment">#This will be a hash like this: 301=&gt;1,2 302=&gt;4, etc.</span>
+
+        <span class="ruby-identifier">clusters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cluster_id</span>, <span class="ruby-identifier">tweets</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">days</span> = <span class="ruby-identifier">group_cluster_by_days</span>(<span class="ruby-identifier">tweets</span>)
+                
+                <span class="ruby-identifier">days</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">day</span>, <span class="ruby-identifier">tweets</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">clusters_by_day</span>[<span class="ruby-identifier">day</span>.<span class="ruby-identifier">to_s</span>] <span class="ruby-operator">||=</span> []
+                        <span class="ruby-identifier">clusters_by_day</span>[<span class="ruby-identifier">day</span>.<span class="ruby-identifier">to_s</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">cluster_id</span> <span class="ruby-comment"># unless t_scores[cluster_id] &gt; 0.1 #Only want high quality zones</span>
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-identifier">clusters_by_day</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

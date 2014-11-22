@@ -1,11 +1,11 @@
-#
-# Various functions
-#
+# A custom modules function for storing useful functions which can be included when needed
 #
 #
-
+#
+#
 module CustomFunctions
 
+	#Returns the mode of an array of numbers, used in time processing
 	def mode(array)
 		if array.empty? or array.nil?
 			return nil

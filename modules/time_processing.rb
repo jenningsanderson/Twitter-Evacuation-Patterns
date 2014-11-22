@@ -1,12 +1,11 @@
 #
 # Moving time_processing functions to this module for clarity
 #
-
-
 module TimeProcessing
 	
 	require 'time'
 
+	#Returns a hash with day_of_year as keys and arrays of tweet objects as values
 	def group_tweets_by_day(tweets)
 		days = tweets.group_by{|tweet| tweet["date"].yday}.sort_by{|k,v| k}
 	end
@@ -47,9 +46,7 @@ module TimeProcessing
 		end
 	end
 
-
-
-
+	#
 	def sort_clusters_by_day(clusters)
 		clusters_by_day = {} #This will be a hash like this: 301=>1,2 302=>4, etc.
 
