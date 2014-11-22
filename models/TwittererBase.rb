@@ -4,7 +4,7 @@
 
 require 'mongo_mapper'
 
-require_relative 'tweet' #Require the tweet, which then requires TweetBase
+require 'models/tweet' #Require the tweet
 
 class TwittererBase
   

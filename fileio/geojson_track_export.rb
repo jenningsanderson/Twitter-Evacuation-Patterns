@@ -2,26 +2,21 @@
 #
 # => Also want the ability to grab a really good Tweet or two for visual wow!
 
-require 'mongo_mapper'
-require 'epic-geo'
+require 'config'
 
-require_relative '../models/twitterer'
-require_relative '../models/tweet'
+require 'models/twitterer'
+require 'models/tweet'
 
-filename = "perfect_evacuators"
+filename = "perfect_evacuators_2"
 limit = 5
 
 #Prepare a GeoJSON file
 
-geojson_outfile = GeoJSONWriter.new("../exports/#{filename}")
+geojson_outfile = EpicGeo::Writers::GeoJSONWriter.new("../exports/#{filename}")
 geojson_outfile.write_header
 
-#Static Setup
-MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
-MongoMapper.database = 'sandygeo'
 
-
-fav_users = ["nicolelmancini", "PhanieMoore", "mattgunn", "iKhoiBui", "LynnKatherinex3"]
+fav_users = ["PhanieMoore", "mattgunn", "iKhoiBui", "LynnKatherinex3"]
 
 results = Twitterer.where(
                 :handle.in => fav_users
@@ -35,12 +30,12 @@ results.each do |user|
 
   
   before_home = {:type => "Point", 
-  	          :coordinates => user.cluster_locations[:before_home]}
+  	          :coordinates => user.cluster_locations[user.base_cluster]}
 
   geojson_outfile.write_feature(before_home, {:handle=>user.handle, :type=>"Before Storm"})
   
   shelter_loc = {:type => "Point",
-  			  :coordinates => user.shelter_location}
+  			  :coordinates => user.cluster_locations[user.during_storm_cluster]}
 
   geojson_outfile.write_feature(shelter_loc, {:handle=>user.handle, :type=>"During Storm"})
 
@@ -48,12 +43,12 @@ results.each do |user|
   	geojson_outfile.write_feature(tweet.coordinates, {:handle => user.handle, :date=>tweet.date, :text=>tweet.text})
   end
   
-  #The user's "during storm movement"
-  geometry = {:type=>"LineString", :coordinates=>user.during_storm_movement}
-  properties = {:handle => user.handle, :tweets=>user.tweet_count}
+  # #The user's "during storm movement"
+  # geometry = {:type=>"LineString", :coordinates=>user.during_storm_movement}
+  # properties = {:handle => user.handle, :tweets=>user.tweet_count}
 
 
-  geojson_outfile.write_feature(geometry, properties)
+  # geojson_outfile.write_feature(geometry, properties)
 
 
 end

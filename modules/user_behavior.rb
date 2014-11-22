@@ -18,6 +18,12 @@ module UserBehavior
 		return storm_cluster
 	end
 
+	def during_storm_tweets(args ={})
+		start_date 	= args[:start_date] || TIMES[:event]
+		end_date   	= args[:end_date]   || TIMES[:two_days]
+		
+		tweets.select{ |tweet| tweet.date > start_date and tweet.date < end_date}
+	end
 
 	# Functions relevant to evacuation behavior
 	module Evacuator

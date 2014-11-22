@@ -1,17 +1,12 @@
+require 'modules/user_behavior'
+require 'modules/time_processing'
+
+require 'models/TwittererBase'
+
+#=Twitterer Active During Hurricane Sandy
 #
-# Twitterer Model
+#Inheriting basic Twitter User behavior and attributes from TwittererBase, this 
 #
-# Inherits from TwittererBase
-# => What are the downsides of this?
-# => The pros of this are obvious? Maybe not obvious enough?
-
-
-#Not implemented yet, but eventually
-require_relative '../modules/user_behavior'
-require_relative '../modules/time_processing'
-
-require_relative 'TwittererBase' #This too will could/should live elsewhere?
-
 class Twitterer < TwittererBase
 
 	#Get Geo functions for geotwitterer

@@ -1,30 +1,30 @@
 #
 # This should be the only file that is required for the rest of the program
 #
+
+#Add the directory to the loadpath
+$:.unshift File.dirname(__FILE__)
+
 #Wile we're at it, lets just require rgeo and set a factory...
 require 'rgeo'
-#require 'epic_geo'
-#The basic factory for web mercator data
-#FACTORY = RGeo::Geographic.simple_mercator_factory
-
-#Gives us more accurate calculations on data for New York & New Jersey
+#Give us more accurate calculations on data for New York & New Jersey
 FACTORY = RGeo::Geographic.projected_factory(projection_proj4: '+proj=utm +zone=18 +datum=NAD27 +units=m +no_defs ')
-
+#FACTORY = RGeo::Geographic.simple_mercator_factory #The basic factory for web mercator data
 
 #Breaking these requirements out of Twitterer model and into the config:
 #EpicGeo is getting completely refactored, but eventually this will just be require 'EpicGeo'
-require_relative '/Users/jenningsanderson/Documents/epic-geo/lib/epic_geo'
+require '/Users/jenningsanderson/Documents/epic-geo/lib/epic_geo'
 
 #This is our heavy lifter --- bad idea? maybe
-require_relative 'models/twitterer'
+require 'models/twitterer'
 
-require_relative 'modules/time_processing'
+require 'modules/time_processing'
 # Include TimeProcessing
 
-require_relative 'modules/functions'
+require 'modules/functions'
 # Include CustomFunctions
 
-require_relative 'modules/user_behavior'
+require 'modules/user_behavior'
 
 TIMES = {
 	event: 		Date.new(2012,10,29),
@@ -42,5 +42,5 @@ RISK_LEVELS = {
 }
 
 #Connect to the database
-MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')# (Local)
+MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo2'

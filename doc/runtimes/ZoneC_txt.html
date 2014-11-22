@@ -1,0 +1,4422 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>ZoneC - RDoc Documentation</title>
+
+<link href="../fonts.css" rel="stylesheet">
+<link href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/navigation.js"></script>
+<script src="../js/search_index.js"></script>
+<script src="../js/search.js"></script>
+<script src="../js/searcher.js"></script>
+<script src="../js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+    <li><a href="#label-"></a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../README_md.html">README</a>
+  
+    <li><a href="../runtimes/Evacuators_txt.html">Evacuators</a>
+  
+    <li><a href="../runtimes/Shelter-In-Place_txt.html">Shelter-In-Place</a>
+  
+    <li><a href="../runtimes/ZoneA_txt.html">ZoneA</a>
+  
+    <li><a href="../runtimes/ZoneB_txt.html">ZoneB</a>
+  
+    <li><a href="../runtimes/ZoneC_txt.html">ZoneC</a>
+  
+    <li><a href="../runtimes/in_bounding_box_txt.html">in_bounding_box</a>
+  
+    <li><a href="../wrangling_scripts/shelter_in_place_update.html">shelter_in_place_update</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page runtimes/ZoneC.txt">
+
+<p>Found 462 users AMDistinguished has 15 tweets; 80% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  304 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ARAGhandour has 33 tweets; 33% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 303 =&gt; [“0”] 313 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>AXTONFRICK has 15 tweets; 93% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>AbieT90 has 620 tweets; 37% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“0”] 302 =&gt;
+[“0”, “13”, “14”, “15”] 303 =&gt; [“0”] 304 =&gt; [“0”, “11”] 305 =&gt;
+[“0”] 306 =&gt; [“0”] 307 =&gt; [“0”] 308 =&gt; [“0”] 309 =&gt; [“0”] 310
+=&gt; [“0”] 311 =&gt; [“0”, “10”, “15”] 312 =&gt; [“0”] 313 =&gt; [“0”] 314
+=&gt; [“0”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>AdventureofDomo has 123 tweets; 27% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“0”] 303 =&gt;
+[“0”] 304 =&gt; [“0”] 305 =&gt; [“0”] 306 =&gt; [“0”] 307 =&gt; [“0”] 308
+=&gt; [“0”] 309 =&gt; [“0”] 310 =&gt; [“0”] 311 =&gt; [“0”] SIP:
+89.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Aescano has 333 tweets; 15% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“0”] 303 =&gt;
+[“0”] 304 =&gt; [“0”] 305 =&gt; [“0”] 306 =&gt; [“0”] 307 =&gt; [“0”] 308
+=&gt; [“0”] 309 =&gt; [“0”] 310 =&gt; [“0”] 311 =&gt; [“0”] 312 =&gt; [“0”]
+313 =&gt; [“0”] 314 =&gt; [“0”] SIP: 100.0 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Ahooms has 54 tweets; 83% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 304 =&gt; [“0”] 308 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>AiviloStm has 34 tweets; 0% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“0”] 302 =&gt;
+[“0”] 304 =&gt; [“0”] 308 =&gt; [“0”] 309 =&gt; [“0”] 310 =&gt; [“0”] SIP:
+75.0 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Amandahurn has 67 tweets; 28% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“1”] 304 =&gt;
+[“0”] 305 =&gt; [“0”] 306 =&gt; [“0”] 308 =&gt; [“0”] 312 =&gt; [“0”] SIP:
+100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>AndreaMariana has 531 tweets; 13% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 303 =&gt; [“0”] 312 =&gt; [“0”] 313 =&gt; [“0”,
+“1”] 314 =&gt; [“0”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>AndrewVanSant has 12 tweets; 75% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  304 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Andrew_Brooklyn has 361 tweets; 27% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 2 300 =&gt; [“2”, “5”, “6”, “16”] 301 =&gt;
+[“0”, “3”, “10”, “13”, “17”] 303 =&gt; [“2”, “18”, “19”] 304 =&gt; [“0”,
+“3”, “4”, “6”, “13”, “14”, “19”] 305 =&gt; [“2”, “4”] 307 =&gt; [“2”] 308
+=&gt; [“10”] 309 =&gt; [“0”] 310 =&gt; [“2”, “3”] 311 =&gt; [“11”] 312
+=&gt; [“15”] 313 =&gt; [“2”] 314 =&gt; [“2”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>AngelEduardoC has 323 tweets; 18% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 0 300 =&gt; [“1”] 301 =&gt; [“1”] 302 =&gt;
+[“1”] 303 =&gt; [“0”, “1”] 304 =&gt; [“0”, “1”, “3”] 305 =&gt; [“0”, “1”]
+306 =&gt; [“0”] 307 =&gt; [“0”] 308 =&gt; [“1”] 309 =&gt; [“0”, “1”, “4”]
+311 =&gt; [“0”, “4”] 312 =&gt; [“0”, “1”] 313 =&gt; [“3”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Anjelika_Kour has 179 tweets; 61% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 304 =&gt; [“0”] 308 =&gt; [“0”] 309 =&gt;
+[“0”] 312 =&gt; [“1”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Apalmer21 has 23 tweets; 48% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 305 =&gt; [“0”] 308 =&gt; [“0”] 309 =&gt; [“0”]
+312 =&gt; [“0”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>AshVickery has 43 tweets; 70% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 302 =&gt; [“1”] 303 =&gt;
+[“1”] 306 =&gt; [“2”] 307 =&gt; [“2”] 312 =&gt; [“1”] SIP: 130 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>BQnguyen has 29 tweets; 86% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>B_ronimo has 120 tweets; 71% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 302 =&gt; [“1”] 303 =&gt; [“1”] 306 =&gt;
+[“1”] 314 =&gt; [“2”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Baksissa has 62 tweets; 55% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 300 =&gt; [“1”] 301 =&gt; [“1”] 313 =&gt;
+[“1”] SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>BenAmanna has 15 tweets; 73% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 313 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>BennyBangBang has 250 tweets; 4% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“0”] 303 =&gt;
+[“0”] 304 =&gt; [“0”] 306 =&gt; [“0”] 309 =&gt; [“0”] 311 =&gt; [“0”] 312
+=&gt; [“0”] 313 =&gt; [“0”] 314 =&gt; [“0”] SIP: 85.71428571428572 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>BibsonKhan has 501 tweets; 9% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“1”] 302 =&gt; [“0”, “3”] 303 =&gt;
+[“0”] 305 =&gt; [“1”] 306 =&gt; [“1”] 307 =&gt; [“1”] 311 =&gt; [“1”] 312
+=&gt; [“0”] 314 =&gt; [“1”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>BigLouBruno has 131 tweets; 17% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“4”] 302 =&gt; [“0”, “1”, “2”, “5”]
+303 =&gt; [“0”, “1”, “2”, “5”] 304 =&gt; [“0”, “1”, “2”] 305 =&gt; [“0”,
+“2”, “6”] 306 =&gt; [“1”, “2”] 307 =&gt; [“2”, “3”] 308 =&gt; [“2”] 309
+=&gt; [“2”] 310 =&gt; [“2”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>BityLouHoo has 57 tweets; 30% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 2 302 =&gt; [“0”] 303 =&gt; [“1”] 304 =&gt;
+[“0”, “1”, “2”] 305 =&gt; [“1”, “2”] 307 =&gt; [“0”] 312 =&gt; [“2”] SIP:
+30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>BradenBert has 467 tweets; 32% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 0 300 =&gt; [“2”, “17”] 302 =&gt; [“1”, “2”,
+“3”, “8”] 303 =&gt; [“0”, “1”] 307 =&gt; [“6”] 309 =&gt; [“6”] 311 =&gt;
+[“0”] 312 =&gt; [“3”, “5”, “9”] 313 =&gt; [“0”, “10”, “11”] 314 =&gt; [“0”,
+“10”] SIP: 20 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Brandykaystarr has 83 tweets; 54% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 301 =&gt; [“1”] 303 =&gt; [“1”] 307 =&gt;
+[“1”] 308 =&gt; [“1”] 311 =&gt; [“3”] 312 =&gt; [“1”, “4”] SIP: 80 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>BreezeThroughIt has 237 tweets; 22% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“0”] 302 =&gt;
+[“0”] 303 =&gt; [“0”] 306 =&gt; [“3”] 309 =&gt; [“3”] 310 =&gt; [“3”] 311
+=&gt; [“3”] 312 =&gt; [“0”, “1”] 313 =&gt; [“0”] 314 =&gt; [“0”] SIP: 30
+Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Brettabelle has 62 tweets; 31% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 302 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ButterfieldNYC has 288 tweets; 0% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 3 301 =&gt; [“0”, “1”] 303 =&gt; [“0”, “1”] 305
+=&gt; [“1”, “2”] 306 =&gt; [“2”] 307 =&gt; [“0”] 308 =&gt; [“0”, “2”] 309
+=&gt; [“0”] 310 =&gt; [“0”, “1”, “2”] 311 =&gt; [“0”] 312 =&gt; [“0”] 313
+=&gt; [“0”] 314 =&gt; [“3”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>BxMixPapii90 has 539 tweets; 3% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“0”] 301 =&gt; [“0”] 302 =&gt; [“0”]
+303 =&gt; [“0”, “2”, “3”, “4”] 304 =&gt; [“0”, “4”, “5”, “6”] 305 =&gt;
+[“0”, “4”, “5”, “6”] 306 =&gt; [“0”, “5”, “6”, “7”, “8”] 307 =&gt; [“4”,
+“5”, “6”, “8”] 308 =&gt; [“6”, “9”, “10”] 309 =&gt; [“0”, “9”, “10”, “11”,
+“12”] 310 =&gt; [“0”] 311 =&gt; [“0”, “13”] 312 =&gt; [“0”, “13”] SIP: 30
+Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>CGlush has 44 tweets; 93% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 310 =&gt; [“0”] 311 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>CJ_GIST has 137 tweets; 21% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 2 303 =&gt; [“2”, “3”] 304 =&gt; [“2”] 305 =&gt;
+[“2”] 306 =&gt; [“2”] 307 =&gt; [“2”] 308 =&gt; [“2”] 309 =&gt; [“2”] 310
+=&gt; [“5”] 311 =&gt; [“2”] SIP: 20 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>CSalas98 has 25 tweets; 88% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 310 =&gt; [“0”] 313 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Caits1221 has 69 tweets; 78% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] 308 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>CarolinaPhilips has 562 tweets; 0% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 2 303 =&gt; [“0”] 304 =&gt; [“0”] 305 =&gt;
+[“0”, “1”] 307 =&gt; [“0”] 308 =&gt; [“0”] 310 =&gt; [“1”] SIP: 20 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Carolsommers727 has 17 tweets; 0% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  301 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt; [“0”]
+304 =&gt; [“0”] 308 =&gt; [“0”] SIP: 67.85714285714286 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>CathrynSalamone has 33 tweets; 88% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 304 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ChANtiWaa has 84 tweets; 63% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 2 302 =&gt; [“0”] 303 =&gt; [“0”] 309 =&gt;
+[“0”] 310 =&gt; [“2”] 312 =&gt; [“2”] 314 =&gt; [“1”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ChelseaSantana has 52 tweets; 67% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 0 300 =&gt; [“1”] 304 =&gt; [“2”] 305 =&gt;
+[“2”] 307 =&gt; [“2”] 309 =&gt; [“2”] 310 =&gt; [“1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Chris_OTF has 61 tweets; 66% are non-cluster</p>
+<hr>
+
+<p>Before home: 3 After home:  302 =&gt; [“3”] 303 =&gt; [“1”] 309 =&gt; [“2”]
+310 =&gt; [“1”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Christhiansh has 53 tweets; 25% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 5 300 =&gt; [“1”] 302 =&gt; [“0”, “1”] 303 =&gt;
+[“0”] 304 =&gt; [“0”] 311 =&gt; [“2”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Coles916 has 44 tweets; 70% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 303 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>CrabappleNYC has 67 tweets; 67% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“1”, “2”] 304 =&gt; [“2”] 305 =&gt;
+[“0”] 314 =&gt; [“2”] SIP: 40 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>DHAltman has 9 tweets; 22% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  307 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>DJBEJAYROSE has 30 tweets; 63% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“0”] 306 =&gt;
+[“0”] SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>DanielWelden has 26 tweets; 35% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 304 =&gt; [“0”] 311 =&gt; [“0”] 314 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>DanielleModnaya has 267 tweets; 10% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 2 301 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt;
+[“0”] 304 =&gt; [“0”, “1”] 305 =&gt; [“1”] 307 =&gt; [“1”] 308 =&gt; [“1”]
+309 =&gt; [“1”] 310 =&gt; [“1”] 311 =&gt; [“1”] 312 =&gt; [“2”] 313 =&gt;
+[“2”] 314 =&gt; [“2”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>DbLeonor has 172 tweets; 34% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“1”] 304 =&gt;
+[“2”] 305 =&gt; [“2”] 306 =&gt; [“2”] 307 =&gt; [“2”] 308 =&gt; [“2”, “3”]
+309 =&gt; [“3”] 310 =&gt; [“1”, “3”, “4”] 311 =&gt; [“2”, “3”] 312 =&gt;
+[“2”, “3”, “4”] 313 =&gt; [“2”, “4”, “5”] 314 =&gt; [“2”, “4”, “5”] SIP: 20
+Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>DelfinAlmonte has 172 tweets; 61% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 4 303 =&gt; [“10”] 304 =&gt; [“6”] 308 =&gt;
+[“11”] 309 =&gt; [“9”] 310 =&gt; [“5”] 313 =&gt; [“7”] 314 =&gt; [“6”]
+Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>DeltaWillis has 93 tweets; 48% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] 304 =&gt; [“0”] 305 =&gt;
+[“0”] 308 =&gt; [“0”] 312 =&gt; [“0”, “2”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>DenisGorman has 17 tweets; 47% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“0”] 302 =&gt; [“0”] 304 =&gt;
+[“0”] 305 =&gt; [“0”] 307 =&gt; [“0”] 313 =&gt; [“0”] SIP:
+71.42857142857143 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Deputydre128 has 14 tweets; 79% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>DoLLaRs170 has 137 tweets; 55% are non-cluster</p>
+<hr>
+
+<p>Before home: 5 After home: 7 305 =&gt; [“4”, “6”] 306 =&gt; [“6”] 308 =&gt;
+[“1”] 309 =&gt; [“4”, “6”] 310 =&gt; [“4”] 311 =&gt; [“7”] 312 =&gt; [“7”]
+313 =&gt; [“7”] 314 =&gt; [“6”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Dougrand has 51 tweets; 73% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 303 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>DroCutz has 261 tweets; 38% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 300 =&gt; [“1”, “2”] 301 =&gt; [“1”] 302 =&gt;
+[“1”] 303 =&gt; [“2”] 304 =&gt; [“1”, “2”] 305 =&gt; [“2”] 306 =&gt; [“1”,
+“2”] 309 =&gt; [“4”] 311 =&gt; [“0”] 312 =&gt; [“1”, “2”] 313 =&gt; [“1”,
+“4”] 314 =&gt; [“1”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ECava has 63 tweets; 73% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 2 302 =&gt; [“2”] 307 =&gt; [“2”] 309 =&gt;
+[“0”, “2”] 310 =&gt; [“0”] 312 =&gt; [“2”] SIP: 80 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>EDRISSAYS has 133 tweets; 37% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“0”] 303 =&gt;
+[“0”] 305 =&gt; [“4”] 306 =&gt; [“4”] 309 =&gt; [“5”] 310 =&gt; [“0”] 312
+=&gt; [“0”] 313 =&gt; [“0”, “2”] 314 =&gt; [“2”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ELREYSOYYO_ has 44 tweets; 9% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“0”] 304 =&gt;
+[“0”] 312 =&gt; [“0”] 314 =&gt; [“0”] SIP: 67.85714285714286 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>EMulvz has 180 tweets; 64% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 2 300 =&gt; [“5”] 301 =&gt; [“2”] 303 =&gt;
+[“2”] 304 =&gt; [“2”] 305 =&gt; [“5”] 306 =&gt; [“3”, “6”] 307 =&gt; [“2”,
+“3”] 309 =&gt; [“2”] 311 =&gt; [“1”, “5”] 312 =&gt; [“0”, “2”] 313 =&gt;
+[“0”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ElArabeMrHabibi has 21 tweets; 86% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 309 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ElCrupi has 706 tweets; 8% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>EricCarvin has 14 tweets; 57% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] 304 =&gt; [“0”] 311 =&gt;
+[“0”] SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Ez2bnicee has 275 tweets; 58% are non-cluster</p>
+<hr>
+
+<p>Before home: 4 After home: 16 301 =&gt; [“4”] 302 =&gt; [“13”] 303 =&gt;
+[“4”, “15”] 304 =&gt; [“3”, “15”] 305 =&gt; [“15”, “17”] 306 =&gt; [“15”,
+“17”] 307 =&gt; [“2”] 308 =&gt; [“10”] 309 =&gt; [“3”, “4”, “11”, “12”,
+“16”, “18”] 311 =&gt; [“19”] 312 =&gt; [“7”] 313 =&gt; [“7”] SIP: 30 Evac:
+50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>FTADesignCo has 42 tweets; 48% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 309 =&gt; [“1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>F_CariCortes_J has 52 tweets; 6% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt;
+[“0”] 304 =&gt; [“0”] 305 =&gt; [“0”] 307 =&gt; [“0”] 309 =&gt; [“0”] 310
+=&gt; [“0”] 313 =&gt; [“0”] 314 =&gt; [“0”] SIP: 85.71428571428572 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>FrancesOjalvo has 64 tweets; 16% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 304 =&gt; [“0”] 305 =&gt;
+[“0”] 307 =&gt; [“0”] 309 =&gt; [“1”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>GChase has 115 tweets; 46% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] 311 =&gt; [“1”] 312 =&gt;
+[“0”] 313 =&gt; [“1”, “5”] 314 =&gt; [“4”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>GRphotography has 16 tweets; 31% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  304 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Gavinluvbeyonce has 465 tweets; 21% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 2 300 =&gt; [“0”] 302 =&gt; [“2”] 303 =&gt;
+[“2”] 304 =&gt; [“2”] 305 =&gt; [“2”] 306 =&gt; [“3”] 308 =&gt; [“2”] 309
+=&gt; [“2”] 310 =&gt; [“2”] 311 =&gt; [“2”] 312 =&gt; [“2”, “4”, “5”, “6”]
+313 =&gt; [“2”, “3”, “4”, “5”] 314 =&gt; [“2”, “3”, “5”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>GeneDv has 4 tweets; 25% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] 306 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>GraceLabartino has 11 tweets; 9% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”] 303 =&gt; [“0”] 307 =&gt; [“0”]
+309 =&gt; [“0”] 310 =&gt; [“0”] SIP: 67.85714285714286 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>GregMason82 has 253 tweets; 34% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“1”] 304 =&gt; [“0”] 307 =&gt;
+[“0”] 308 =&gt; [“0”, “2”] 310 =&gt; [“0”] 312 =&gt; [“0”] 313 =&gt; [“0”]
+SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>GreyEraVintage has 299 tweets; 9% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“0”] 308 =&gt;
+[“0”] 310 =&gt; [“0”] 312 =&gt; [“0”] 313 =&gt; [“0”] 314 =&gt; [“0”] SIP:
+75.0 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Harmonimages has 33 tweets; 82% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt; [“0”]
+304 =&gt; [“0”] 305 =&gt; [“0”] SIP: 67.85714285714286 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>HauteTalk has 61 tweets; 15% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 302 =&gt; [“1”] 303 =&gt; [“1”] 305 =&gt;
+[“1”] 306 =&gt; [“1”] 308 =&gt; [“1”] 310 =&gt; [“1”] 312 =&gt; [“1”] 314
+=&gt; [“1”] SIP: 78.57142857142857 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>HaydeeCastillo5 has 17 tweets; 0% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] 304 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>HeatherMangal has 93 tweets; 39% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“0”] 304 =&gt;
+[“0”] 306 =&gt; [“0”, “1”] 307 =&gt; [“0”] 308 =&gt; [“0”] 309 =&gt; [“0”]
+311 =&gt; [“0”] 312 =&gt; [“0”] 313 =&gt; [“0”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Hel3ni has 17 tweets; 12% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  301 =&gt; [“0”] 302 =&gt; [“0”] 304 =&gt; [“0”]
+307 =&gt; [“0”] 308 =&gt; [“0”] 311 =&gt; [“0”] SIP: 71.42857142857143
+Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>HisHeartLight has 14 tweets; 21% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 304 =&gt; [“0”] 309 =&gt;
+[“0”] SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Hughley45 has 91 tweets; 47% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 307 =&gt; [“1”, “2”] 309 =&gt; [“0”] 311 =&gt;
+[“0”] 312 =&gt; [“0”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>I_L_G has 224 tweets; 17% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“3”] 303 =&gt; [“0”] 304 =&gt;
+[“0”] 305 =&gt; [“0”] 306 =&gt; [“0”] 307 =&gt; [“0”] 308 =&gt; [“0”] 309
+=&gt; [“0”, “4”, “5”] 312 =&gt; [“0”] 313 =&gt; [“0”] SIP: 40 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ImperatorMagnus has 48 tweets; 10% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt;
+[“0”] 304 =&gt; [“0”] 305 =&gt; [“0”] 306 =&gt; [“0”] 307 =&gt; [“0”] 309
+=&gt; [“1”] 310 =&gt; [“0”] 312 =&gt; [“0”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Improssario has 13 tweets; 54% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] 304 =&gt; [“0”] 305 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Ironicironnie has 15 tweets; 47% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 307 =&gt; [“0”] 312 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>JMC_PGH has 38 tweets; 61% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 300 =&gt; [“0”, “1”] 312 =&gt; [“1”]
+Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>JMHollister has 133 tweets; 60% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 300 =&gt; [“1”] 302 =&gt; [“0”, “1”] 303 =&gt;
+[“4”] 308 =&gt; [“1”, “2”] 309 =&gt; [“3”] 310 =&gt; [“3”] 311 =&gt; [“0”]
+312 =&gt; [“1”, “3”] 314 =&gt; [“1”] SIP: 100 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>JSovs has 240 tweets; 50% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 8 300 =&gt; [“2”, “5”, “11”] 302 =&gt; [“7”,
+“12”] 304 =&gt; [“7”, “10”] 305 =&gt; [“8”] 306 =&gt; [“12”] 307 =&gt;
+[“8”] 309 =&gt; [“8”] 311 =&gt; [“7”, “12”, “13”] 312 =&gt; [“7”, “13”,
+“14”] 313 =&gt; [“0”, “5”, “7”] 314 =&gt; [“8”] SIP: 10 Evac: 30</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>JaeSelle has 155 tweets; 56% are non-cluster</p>
+<hr>
+
+<p>Before home: 4 After home: 1 301 =&gt; [“4”] 302 =&gt; [“7”] 303 =&gt;
+[“5”, “8”] 309 =&gt; [“9”] 310 =&gt; [“1”, “5”] 311 =&gt; [“1”, “5”] 312
+=&gt; [“2”, “3”, “5”] 313 =&gt; [“2”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>JamaicanmasterT has 98 tweets; 19% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“2”] 303 =&gt; [“0”, “2”] 307 =&gt;
+[“0”] 308 =&gt; [“0”] 312 =&gt; [“0”] SIP: 40 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>JandRjr has 71 tweets; 18% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 4 301 =&gt; [“1”] 302 =&gt; [“2”] 303 =&gt;
+[“2”] 310 =&gt; [“2”] SIP: 80 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>JaniesKitchen has 28 tweets; 71% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] 310 =&gt; [“0”] 313 =&gt;
+[“0”] SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Jay_Fiasco has 85 tweets; 47% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  301 =&gt; [“1”] 302 =&gt; [“2”, “3”]
+Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>JeSuisJaymeee has 205 tweets; 54% are non-cluster</p>
+<hr>
+
+<p>Before home: 5 After home: 5 300 =&gt; [“5”, “6”] 301 =&gt; [“5”, “9”] 302
+=&gt; [“10”, “11”] 303 =&gt; [“11”] 304 =&gt; [“11”] 305 =&gt; [“11”] 307
+=&gt; [“11”] 308 =&gt; [“11”] 309 =&gt; [“11”] 311 =&gt; [“5”] 312 =&gt;
+[“5”] 313 =&gt; [“5”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>JeanAracena has 157 tweets; 42% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 309 =&gt; [“0”] 312 =&gt;
+[“0”] SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Jeancarlos809 has 7 tweets; 43% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  304 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>JeffreyBinney has 30 tweets; 30% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“2”] 303 =&gt; [“0”] 304 =&gt;
+[“0”] 305 =&gt; [“0”] 312 =&gt; [“0”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>JennyMorrone has 29 tweets; 66% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“0”] 303 =&gt; [“0”] 305 =&gt;
+[“0”] 306 =&gt; [“0”] 313 =&gt; [“0”] SIP: 67.85714285714286 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Jerry_Sandoval has 162 tweets; 44% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 11 300 =&gt; [“2”, “3”] 302 =&gt; [“2”] 303
+=&gt; [“2”, “3”] 305 =&gt; [“8”, “9”] 306 =&gt; [“8”] 307 =&gt; [“1”, “8”]
+308 =&gt; [“1”, “9”] 309 =&gt; [“0”, “9”, “10”] 311 =&gt; [“1”, “6”] 313
+=&gt; [“1”] 314 =&gt; [“1”] SIP: 10 Evac: 80</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>JessicaDHughes has 29 tweets; 86% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”] 303 =&gt; [“0”] 304 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>JoeSchiappa has 46 tweets; 24% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] 305 =&gt; [“1”] 306 =&gt;
+[“1”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>JoelMYA has 118 tweets; 49% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 2 300 =&gt; [“1”] 302 =&gt; [“4”, “7”] 303 =&gt;
+[“1”, “3”] 305 =&gt; [“4”] 306 =&gt; [“7”] 307 =&gt; [“1”] 308 =&gt; [“4”]
+311 =&gt; [“0”, “4”] 313 =&gt; [“1”] 314 =&gt; [“0”] SIP: 50 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Josephbenhaim has 23 tweets; 30% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Jrfarina has 163 tweets; 44% are non-cluster</p>
+<hr>
+
+<p>Before home: 10 After home: 4 300 =&gt; [“6”, “10”] 301 =&gt; [“4”, “10”]
+302 =&gt; [“4”, “9”, “10”] 303 =&gt; [“8”, “9”] 304 =&gt; [“3”, “8”] 305
+=&gt; [“4”] 308 =&gt; [“11”] 311 =&gt; [“1”] 312 =&gt; [“10”] 313 =&gt;
+[“10”] 314 =&gt; [“5”] SIP: 20 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>JulieBean13 has 118 tweets; 31% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 2 301 =&gt; [“2”] 302 =&gt; [“3”] 309 =&gt;
+[“3”] 310 =&gt; [“0”] 313 =&gt; [“2”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>JulienNakache has 23 tweets; 78% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>JupiraOficial has 94 tweets; 9% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“0”] 301 =&gt; [“2”, “3”] 302 =&gt;
+[“2”, “3”] 303 =&gt; [“2”, “4”] 304 =&gt; [“2”] 305 =&gt; [“2”, “4”] 306
+=&gt; [“0”, “2”] 307 =&gt; [“0”] 308 =&gt; [“0”, “1”] 309 =&gt; [“0”] 310
+=&gt; [“5”] SIP: 50 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>KBModel has 101 tweets; 28% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 6 300 =&gt; [“0”] 301 =&gt; [“0”, “2”] 302 =&gt;
+[“0”] 304 =&gt; [“0”] 306 =&gt; [“0”] 307 =&gt; [“0”] 309 =&gt; [“0”] 310
+=&gt; [“0”] 314 =&gt; [“2”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>KHarveynyc has 142 tweets; 35% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 300 =&gt; [“1”] 301 =&gt; [“1”] 303 =&gt;
+[“1”] 304 =&gt; [“1”] 305 =&gt; [“1”] 306 =&gt; [“1”] 308 =&gt; [“1”] 309
+=&gt; [“1”] 311 =&gt; [“1”, “4”] 312 =&gt; [“1”, “3”] 313 =&gt; [“4”] 314
+=&gt; [“4”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>KadeySisselman has 38 tweets; 13% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 302 =&gt; [“1”] 303 =&gt; [“1”] 304 =&gt;
+[“1”] 305 =&gt; [“1”] 306 =&gt; [“1”] 308 =&gt; [“1”] 310 =&gt; [“0”] 311
+=&gt; [“0”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>KaeMitch has 43 tweets; 35% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“1”] 302 =&gt; [“0”] 303 =&gt;
+[“0”] 304 =&gt; [“0”] 305 =&gt; [“0”] 308 =&gt; [“0”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>KatieLusso has 48 tweets; 63% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“3”] 304 =&gt;
+[“2”, “3”] 309 =&gt; [“0”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Kharan1 has 105 tweets; 20% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt;
+[“0”] 305 =&gt; [“1”] 307 =&gt; [“1”] 308 =&gt; [“0”] 309 =&gt; [“0”] 310
+=&gt; [“0”] 311 =&gt; [“0”, “1”] 312 =&gt; [“0”, “1”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Kimmypooh_ has 5 tweets; 40% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  301 =&gt; [“0”] 302 =&gt; [“0”] 305 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Kr1stine_ has 284 tweets; 64% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 9 300 =&gt; [“1”] 303 =&gt; [“9”] 304 =&gt;
+[“9”] 305 =&gt; [“10”] 306 =&gt; [“9”] 308 =&gt; [“9”] 312 =&gt; [“9”] 314
+=&gt; [“4”, “11”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Krlanham has 40 tweets; 63% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 302 =&gt; [“2”] 303 =&gt; [“2”] 308 =&gt;
+[“1”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>LBL4Life1 has 420 tweets; 0% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“0”, “2”, “3”] 301 =&gt; [“0”, “2”]
+302 =&gt; [“0”, “1”] 303 =&gt; [“0”, “1”, “3”] 304 =&gt; [“0”, “2”] 305
+=&gt; [“0”, “2”] 306 =&gt; [“0”, “1”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>LaModernaNYC has 214 tweets; 33% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 2 300 =&gt; [“4”, “9”, “12”, “13”] 301 =&gt;
+[“9”] 302 =&gt; [“4”, “12”, “13”] 303 =&gt; [“4”, “13”] 304 =&gt; [“4”] 309
+=&gt; [“0”, “4”] 310 =&gt; [“3”] 312 =&gt; [“0”] 313 =&gt; [“3”, “4”, “7”]
+314 =&gt; [“4”, “7”] SIP: 130 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>LauViviTo has 12 tweets; 50% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] 304 =&gt; [“0”] 307 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>LeannMJarvis has 31 tweets; 55% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“1”] 313 =&gt;
+[“0”] 314 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>LeannMarieM has 10 tweets; 40% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  304 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Lifewickedfast has 393 tweets; 26% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“6”, “9”] 301 =&gt; [“0”, “1”] 302
+=&gt; [“0”, “1”, “2”] 304 =&gt; [“0”] 309 =&gt; [“10”] 311 =&gt; [“0”] 312
+=&gt; [“0”] 313 =&gt; [“0”] 314 =&gt; [“0”, “11”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>LinaFedirko has 46 tweets; 78% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”, “1”] 303 =&gt; [“0”]
+Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>LindseySnell has 187 tweets; 78% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 3 301 =&gt; [“2”] 302 =&gt; [“1”, “2”, “3”] 303
+=&gt; [“2”, “4”] 304 =&gt; [“4”, “5”] 305 =&gt; [“1”] 309 =&gt; [“2”] 310
+=&gt; [“5”] 311 =&gt; [“4”] 312 =&gt; [“4”, “5”] 313 =&gt; [“4”] SIP: 30
+Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Littlebethell has 194 tweets; 32% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 302 =&gt; [“2”] 303 =&gt;
+[“2”] 304 =&gt; [“2”] 305 =&gt; [“2”] 306 =&gt; [“2”] 307 =&gt; [“0”, “2”]
+308 =&gt; [“0”] 309 =&gt; [“1”] 310 =&gt; [“0”] 311 =&gt; [“0”, “2”] 312
+=&gt; [“2”, “3”] 314 =&gt; [“0”] SIP: 50 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>LivinMyDREAMS_ has 5 tweets; 0% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”] 304 =&gt; [“0”] 305 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Lizzyb9oLover has 200 tweets; 10% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”, “1”, “3”, “4”, “6”, “7”] 304
+=&gt; [“1”, “7”] 308 =&gt; [“0”, “1”, “3”, “6”, “8”] 310 =&gt; [“5”, “7”,
+“9”] 311 =&gt; [“0”, “1”] 313 =&gt; [“9”] 314 =&gt; [“3”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>LoLewis has 45 tweets; 82% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 302 =&gt; [“1”] 311 =&gt; [“1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Lord_Horatio has 38 tweets; 50% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 300 =&gt; [“3”] 303 =&gt; [“0”] 305 =&gt;
+[“2”] 310 =&gt; [“3”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>LoriSadel has 261 tweets; 48% are non-cluster</p>
+<hr>
+
+<p>Before home: 3 After home: 1 300 =&gt; [“3”] 301 =&gt; [“3”] 302 =&gt;
+[“3”, “5”] 303 =&gt; [“3”] 304 =&gt; [“3”, “6”] 305 =&gt; [“3”, “7”, “8”]
+306 =&gt; [“7”, “9”] 307 =&gt; [“2”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>LovesVanita has 173 tweets; 53% are non-cluster</p>
+<hr>
+
+<p>Before home: 3 After home: 9 300 =&gt; [“3”, “4”] 311 =&gt; [“3”, “5”] 312
+=&gt; [“7”] 313 =&gt; [“7”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>LuLiviero has 88 tweets; 42% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 303 =&gt; [“1”, “2”] 304 =&gt; [“1”, “2”] 306
+=&gt; [“1”] 308 =&gt; [“2”] 309 =&gt; [“1”] 312 =&gt; [“1”] SIP: 100 Evac:
+20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MIVenuto has 351 tweets; 30% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 2 300 =&gt; [“2”] 303 =&gt; [“5”] 306 =&gt;
+[“2”, “6”] 307 =&gt; [“2”, “6”] 308 =&gt; [“2”, “3”] 309 =&gt; [“2”, “3”]
+310 =&gt; [“2”] 311 =&gt; [“2”] 312 =&gt; [“2”] 313 =&gt; [“2”] 314 =&gt;
+[“0”, “2”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MJ79 has 290 tweets; 55% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 303 =&gt; [“7”] 304 =&gt; [“7”] 305 =&gt;
+[“1”, “7”] 306 =&gt; [“1”, “2”, “3”, “5”] 308 =&gt; [“8”] 309 =&gt; [“1”,
+“6”, “9”] 310 =&gt; [“1”] 311 =&gt; [“1”] 312 =&gt; [“1”, “10”] 314 =&gt;
+[“1”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MMinority has 159 tweets; 43% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 3 300 =&gt; [“2”] 301 =&gt; [“2”] 302 =&gt;
+[“1”, “3”] 303 =&gt; [“1”] 305 =&gt; [“3”] 306 =&gt; [“1”] 307 =&gt; [“0”,
+“3”] 308 =&gt; [“5”] 310 =&gt; [“5”] 311 =&gt; [“3”] 312 =&gt; [“1”] 314
+=&gt; [“6”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MaLe_AuLC has 50 tweets; 58% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 303 =&gt; [“0”] 304 =&gt; [“0”] 305 =&gt;
+[“0”] 312 =&gt; [“1”] 313 =&gt; [“1”] 314 =&gt; [“1”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ManhattanzElite has 27 tweets; 37% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  301 =&gt; [“0”] 303 =&gt; [“0”] 304 =&gt; [“0”]
+305 =&gt; [“0”] 307 =&gt; [“0”] 310 =&gt; [“0”] SIP: 71.42857142857143
+Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MarieDugo has 197 tweets; 29% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 300 =&gt; [“0”] 301 =&gt; [“0”, “2”] 302 =&gt;
+[“0”] 303 =&gt; [“0”] 304 =&gt; [“0”] 305 =&gt; [“0”, “1”] 306 =&gt; [“0”]
+307 =&gt; [“0”] 308 =&gt; [“0”] 309 =&gt; [“0”] 310 =&gt; [“1”, “3”] 311
+=&gt; [“1”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MashaProtasova has 28 tweets; 43% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 304 =&gt; [“0”] 312 =&gt;
+[“1”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Matsumuray has 53 tweets; 83% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 307 =&gt; [“1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MauriceMichael has 59 tweets; 15% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“0”] 301 =&gt; [“0”] 302 =&gt; [“0”]
+303 =&gt; [“0”] 304 =&gt; [“0”] 305 =&gt; [“0”] 306 =&gt; [“0”] 307 =&gt;
+[“0”] 308 =&gt; [“0”] 309 =&gt; [“0”] 310 =&gt; [“0”] SIP:
+89.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>McPhridric has 12 tweets; 58% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] 306 =&gt; [“0”] 307 =&gt; [“0”]
+308 =&gt; [“0”] 313 =&gt; [“0”] SIP: 67.85714285714286 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MeatPackingNY has 45 tweets; 47% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 304 =&gt; [“0”] 306 =&gt;
+[“2”] 307 =&gt; [“2”] 313 =&gt; [“0”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MedicPig has 37 tweets; 27% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 303 =&gt; [“0”, “1”] 304 =&gt; [“1”]
+Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MegMontgoris has 69 tweets; 36% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] 304 =&gt; [“0”] 310 =&gt;
+[“0”] 312 =&gt; [“1”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Meg_Casserly has 16 tweets; 81% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MexSunrise has 458 tweets; 10% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 2 300 =&gt; [“0”, “2”] 301 =&gt; [“0”, “2”] 302
+=&gt; [“2”] 303 =&gt; [“2”] 304 =&gt; [“2”] 305 =&gt; [“2”] 306 =&gt; [“2”]
+307 =&gt; [“0”, “2”, “3”] 308 =&gt; [“0”, “2”] 309 =&gt; [“2”] 310 =&gt;
+[“2”] 311 =&gt; [“2”] 312 =&gt; [“2”] 314 =&gt; [“2”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MichMConnelly has 93 tweets; 43% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 309 =&gt; [“2”] 310 =&gt;
+[“0”] 311 =&gt; [“0”] 312 =&gt; [“0”] 313 =&gt; [“0”] 314 =&gt; [“0”]
+Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MidtownHandyman has 12 tweets; 0% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] 309 =&gt; [“1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MikeAdelson13 has 258 tweets; 16% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] 304 =&gt; [“0”] 305 =&gt;
+[“0”] 307 =&gt; [“0”] 308 =&gt; [“0”] 309 =&gt; [“0”] 310 =&gt; [“0”] 311
+=&gt; [“0”] 312 =&gt; [“0”] 313 =&gt; [“0”] 314 =&gt; [“0”] SIP:
+89.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MikeDosPhoto has 84 tweets; 49% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”, “1”] 301 =&gt; [“0”, “2”] 302
+=&gt; [“0”] 303 =&gt; [“0”, “1”] 304 =&gt; [“0”] 305 =&gt; [“0”, “1”] 306
+=&gt; [“0”, “1”] 311 =&gt; [“0”] 314 =&gt; [“0”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MikePitsikoulis has 114 tweets; 42% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 310 =&gt; [“0”] 312 =&gt;
+[“0”] SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Miss_AngieLove has 145 tweets; 76% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 309 =&gt; [“1”] 310 =&gt; [“1”, “4”]
+Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MoeSalama has 23 tweets; 83% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 305 =&gt; [“0”] 313 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MrAgard has 61 tweets; 28% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 4 300 =&gt; [“5”] 303 =&gt; [“3”, “5”] 308 =&gt;
+[“2”] 310 =&gt; [“1”] 311 =&gt; [“1”] 312 =&gt; [“4”] 314 =&gt; [“4”] SIP:
+20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>MurrayDweck has 126 tweets; 23% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“0”] 306 =&gt;
+[“0”] 309 =&gt; [“0”] 310 =&gt; [“0”] 311 =&gt; [“0”] 312 =&gt; [“0”] 313
+=&gt; [“0”] 314 =&gt; [“0”] SIP: 82.14285714285714 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>NYFashionGirl has 29 tweets; 72% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 303 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>NathanArndt has 75 tweets; 85% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  301 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt; [“0”]
+305 =&gt; [“0”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Nayeli_God has 15 tweets; 93% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”] 303 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>NellieAbigail has 67 tweets; 75% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 308 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>NoahXArts has 160 tweets; 78% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 3 Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>PL3SS has 5 tweets; 40% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] 308 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>PearLuvs1D has 6 tweets; 17% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”] 303 =&gt; [“0”] 304 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Pequody has 76 tweets; 64% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 3 307 =&gt; [“2”] 312 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>PeterRahbar has 28 tweets; 82% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>PinsiLei has 103 tweets; 51% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] 308 =&gt; [“2”] 310 =&gt;
+[“0”] 312 =&gt; [“0”] 313 =&gt; [“0”] 314 =&gt; [“0”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>RO1112 has 104 tweets; 64% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 300 =&gt; [“0”] 302 =&gt; [“1”] 303 =&gt;
+[“1”] 308 =&gt; [“1”] SIP: 100 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>RSonee has 487 tweets; 29% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 307 =&gt; [“0”] 308 =&gt; [“1”] 310 =&gt;
+[“1”, “2”, “3”] 311 =&gt; [“2”] 312 =&gt; [“1”, “2”, “4”] 313 =&gt; [“1”,
+“2”] 314 =&gt; [“1”, “3”, “4”, “5”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>RaashiBhalla has 83 tweets; 95% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 305 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>RachSimunovich has 150 tweets; 35% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“0”] 304 =&gt;
+[“0”] 305 =&gt; [“0”] 307 =&gt; [“0”] 308 =&gt; [“0”] 309 =&gt; [“0”] 310
+=&gt; [“0”] 311 =&gt; [“0”] 312 =&gt; [“0”] 313 =&gt; [“0”] 314 =&gt; [“0”]
+SIP: 92.85714285714286 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>RafaelDiazNYC has 166 tweets; 24% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 306 =&gt; [“5”] 307 =&gt;
+[“5”] 310 =&gt; [“0”] 311 =&gt; [“0”] 312 =&gt; [“1”] 313 =&gt; [“0”, “1”]
+314 =&gt; [“0”, “1”, “4”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Rah_UniQue has 83 tweets; 42% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 313 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>RealPedroRivera has 80 tweets; 41% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“3”] 301 =&gt; [“0”, “4”] 302 =&gt;
+[“1”, “2”, “4”] 303 =&gt; [“1”, “2”, “4”, “5”] 304 =&gt; [“5”] SIP: 10
+Evac: 80</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Rivkind has 142 tweets; 50% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“2”] 301 =&gt; [“0”, “2”, “3”] 303
+=&gt; [“3”] 304 =&gt; [“3”, “5”] 305 =&gt; [“3”] 306 =&gt; [“5”] 307 =&gt;
+[“3”, “5”] 308 =&gt; [“6”] 310 =&gt; [“3”] 312 =&gt; [“2”] SIP: 0 Evac: 70</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>RodolfoRobles has 44 tweets; 48% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home:  300 =&gt; [“2”, “3”] 302 =&gt; [“2”] 303 =&gt;
+[“2”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>RoeBasile has 219 tweets; 5% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt;
+[“0”] 304 =&gt; [“0”] 305 =&gt; [“0”] 307 =&gt; [“0”] 312 =&gt; [“0”] SIP:
+75.0 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>RogNyc77 has 177 tweets; 11% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 2 302 =&gt; [“2”] 303 =&gt; [“2”] 304 =&gt;
+[“2”] 305 =&gt; [“2”, “3”] 306 =&gt; [“2”] 307 =&gt; [“2”, “4”] 308 =&gt;
+[“2”] 309 =&gt; [“2”] 311 =&gt; [“2”] 313 =&gt; [“5”] SIP: 130 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>SEMEnsemble has 16 tweets; 56% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 302 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>SIMAZSEN has 16 tweets; 63% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”] 304 =&gt; [“0”] 305 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>SOBRENATURAL7 has 476 tweets; 7% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“11”] 301 =&gt; [“0”, “1”, “13”]
+302 =&gt; [“0”] 303 =&gt; [“3”, “4”] 307 =&gt; [“3”, “4”] 310 =&gt; [“0”,
+“1”, “3”, “4”, “5”, “10”] 311 =&gt; [“0”, “4”, “10”] 312 =&gt; [“3”, “4”]
+313 =&gt; [“0”, “3”, “4”, “5”, “10”, “13”] SIP: 20 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>SWEETnLU has 274 tweets; 24% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 302 =&gt; [“5”] 303 =&gt; [“1”, “3”, “4”, “6”]
+304 =&gt; [“1”, “4”, “6”, “7”] 306 =&gt; [“1”] 307 =&gt; [“1”, “4”] 308
+=&gt; [“1”, “3”, “4”, “6”] 309 =&gt; [“1”] 310 =&gt; [“1”] 311 =&gt; [“1”]
+312 =&gt; [“1”, “2”] 313 =&gt; [“1”, “2”] 314 =&gt; [“5”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>SaganSabri has 186 tweets; 14% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“1”] 301 =&gt; [“0”, “1”] 302 =&gt;
+[“0”, “2”] 303 =&gt; [“0”] 304 =&gt; [“0”] 306 =&gt; [“0”] 307 =&gt; [“0”]
+308 =&gt; [“0”] 309 =&gt; [“0”] 310 =&gt; [“0”] 311 =&gt; [“0”] 312 =&gt;
+[“3”] 313 =&gt; [“1”] 314 =&gt; [“0”, “1”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>SamAntar has 137 tweets; 31% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 308 =&gt; [“0”] 309 =&gt; [“0”] 310 =&gt; [“0”]
+312 =&gt; [“0”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>SamanVestal has 71 tweets; 62% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 2 301 =&gt; [“1”] 303 =&gt; [“0”] 306 =&gt;
+[“0”, “1”, “2”] 307 =&gt; [“2”] 308 =&gt; [“0”] 310 =&gt; [“0”] SIP: 40
+Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>SandraRipert has 35 tweets; 91% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>SarahLuttinger has 92 tweets; 68% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 1 301 =&gt; [“2”] 303 =&gt; [“0”] 312 =&gt;
+[“3”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ScandalousQV has 160 tweets; 69% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 303 =&gt; [“0”, “2”] 310 =&gt; [“1”] 311 =&gt;
+[“0”, “3”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Sebz14 has 36 tweets; 44% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 301 =&gt; [“1”] 302 =&gt; [“1”] 303 =&gt;
+[“1”] 308 =&gt; [“1”] 312 =&gt; [“0”] 314 =&gt; [“1”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Sharpguys has 30 tweets; 57% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 303 =&gt; [“0”] 304 =&gt; [“0”] 309 =&gt;
+[“0”] SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ShaunLeeLewis has 29 tweets; 59% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“0”] 312 =&gt;
+[“0”] SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>SimonHova has 30 tweets; 77% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”] 303 =&gt; [“0”] 309 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>SincerelyFatima has 191 tweets; 29% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”, “1”] 301 =&gt; [“1”, “6”] 306
+=&gt; [“0”] 307 =&gt; [“0”] 308 =&gt; [“1”] 309 =&gt; [“0”] 310 =&gt; [“0”]
+312 =&gt; [“0”] 313 =&gt; [“0”] 314 =&gt; [“0”] SIP: 40 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Smashlosays has 201 tweets; 53% are non-cluster</p>
+<hr>
+
+<p>Before home: 3 After home: 11 300 =&gt; [“3”] 302 =&gt; [“2”, “3”] 303
+=&gt; [“0”, “3”, “4”] 305 =&gt; [“0”, “3”] 306 =&gt; [“0”, “5”] 307 =&gt;
+[“3”] 308 =&gt; [“0”, “6”] 309 =&gt; [“3”] 310 =&gt; [“3”] 312 =&gt; [“0”,
+“3”, “4”] 313 =&gt; [“0”, “4”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Sp3cial_Ed has 24 tweets; 88% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Spinsterlicious has 146 tweets; 18% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt;
+[“0”] 305 =&gt; [“2”] 306 =&gt; [“2”] 307 =&gt; [“2”] 310 =&gt; [“0”] 312
+=&gt; [“0”, “3”] 313 =&gt; [“0”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Steph_M_Rod has 144 tweets; 20% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“0”] 302 =&gt;
+[“0”, “1”] 303 =&gt; [“0”] 304 =&gt; [“0”] 306 =&gt; [“0”] 307 =&gt; [“0”]
+308 =&gt; [“0”] 310 =&gt; [“0”] 311 =&gt; [“0”] 312 =&gt; [“0”] 313 =&gt;
+[“0”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>StephanieBorak has 174 tweets; 39% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“3”] 302 =&gt; [“0”] 303 =&gt;
+[“0”] 304 =&gt; [“0”] 306 =&gt; [“0”] 307 =&gt; [“0”] 308 =&gt; [“0”] 309
+=&gt; [“2”] 310 =&gt; [“3”] 311 =&gt; [“0”, “3”] 312 =&gt; [“0”, “3”] SIP:
+70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>SwatchUS has 112 tweets; 25% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt;
+[“0”] 305 =&gt; [“0”] 308 =&gt; [“0”] 309 =&gt; [“0”] 312 =&gt; [“3”] 313
+=&gt; [“3”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>TH3R3ALKILLAKEV has 38 tweets; 34% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“0”] 304 =&gt;
+[“0”] SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>THEMISSHAPES has 96 tweets; 65% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 303 =&gt; [“1”] 304 =&gt; [“2”] 308 =&gt;
+[“1”] 309 =&gt; [“1”] 310 =&gt; [“1”] 312 =&gt; [“1”, “2”] 313 =&gt; [“1”]
+SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>TKOblog has 31 tweets; 58% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>TMekuli has 234 tweets; 23% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] 306 =&gt; [“1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>TREVnyc has 266 tweets; 54% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 4 301 =&gt; [“13”] 302 =&gt; [“13”, “14”] 303
+=&gt; [“0”, “15”] 304 =&gt; [“16”] 305 =&gt; [“4”, “12”] 306 =&gt; [“1”,
+“4”] 307 =&gt; [“0”] 308 =&gt; [“13”] 309 =&gt; [“9”, “13”] 310 =&gt; [“0”,
+“2”, “11”, “15”, “17”] 311 =&gt; [“11”] 312 =&gt; [“11”] 313 =&gt; [“1”,
+“5”] SIP: 10 Evac: 30</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>TTrainers has 48 tweets; 35% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“0”] 304 =&gt;
+[“0”] 305 =&gt; [“0”] 307 =&gt; [“0”] 311 =&gt; [“0”] 312 =&gt; [“0”] 314
+=&gt; [“0”] SIP: 78.57142857142857 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>TheBigYek has 106 tweets; 43% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 2 302 =&gt; [“1”] 303 =&gt; [“1”, “2”] 306 =&gt;
+[“1”] 309 =&gt; [“1”, “4”] 310 =&gt; [“1”] 312 =&gt; [“0”] 313 =&gt; [“5”]
+314 =&gt; [“0”, “2”, “5”] SIP: 50 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>TheFamousMrE has 9 tweets; 67% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  304 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>TheGrooveRadio has 115 tweets; 18% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 300 =&gt; [“2”] 301 =&gt; [“1”] 302 =&gt;
+[“1”] 303 =&gt; [“0”] 313 =&gt; [“2”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>TheGyroHero has 41 tweets; 10% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt; [“0”]
+304 =&gt; [“0”] 306 =&gt; [“0”] 307 =&gt; [“0”] 308 =&gt; [“0”] 309 =&gt;
+[“0”] 310 =&gt; [“0”] 311 =&gt; [“0”] 312 =&gt; [“0”] SIP:
+89.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>TheNewStyleUES has 316 tweets; 48% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 300 =&gt; [“2”] 301 =&gt; [“1”] 303 =&gt;
+[“1”] 304 =&gt; [“1”] 305 =&gt; [“1”] 306 =&gt; [“1”, “14”] 307 =&gt;
+[“15”] 308 =&gt; [“1”, “15”] 309 =&gt; [“16”] 310 =&gt; [“2”, “10”] 311
+=&gt; [“2”] 313 =&gt; [“2”, “17”] 314 =&gt; [“2”, “10”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Tiffers002 has 153 tweets; 67% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt;
+[“0”] 304 =&gt; [“0”] 306 =&gt; [“0”] 308 =&gt; [“0”] 309 =&gt; [“0”, “1”,
+“2”] 310 =&gt; [“0”] 311 =&gt; [“0”] 312 =&gt; [“0”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>TilxDead has 93 tweets; 59% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 2 301 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt;
+[“1”, “2”] 304 =&gt; [“2”, “3”] 307 =&gt; [“2”] 309 =&gt; [“2”] 310 =&gt;
+[“2”] 313 =&gt; [“2”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>TimForde has 11 tweets; 0% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] 304 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ToastSolo has 225 tweets; 17% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“0”] 301 =&gt; [“0”] 302 =&gt; [“0”,
+“5”] 303 =&gt; [“0”, “5”] 304 =&gt; [“0”, “3”] 305 =&gt; [“0”] 307 =&gt;
+[“0”, “4”] 310 =&gt; [“0”, “3”] 311 =&gt; [“0”] 312 =&gt; [“0”] SIP: 100
+Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Tokyo_Gaijin has 47 tweets; 72% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 304 =&gt; [“0”] 311 =&gt; [“1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Tommy91 has 9 tweets; 44% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  304 =&gt; [“0”] 306 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>TonySaunders, tonysaunders has 11 tweets; 18% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] 304 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Trevleupagus has 7 tweets; 0% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  304 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>USAir320 has 278 tweets; 50% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 11 300 =&gt; [“9”] 301 =&gt; [“2”] 302 =&gt;
+[“10”] 303 =&gt; [“2”, “10”] 309 =&gt; [“5”, “8”] 311 =&gt; [“11”, “12”]
+312 =&gt; [“13”] 314 =&gt; [“14”, “15”, “16”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>UsherCoolOff has 6 tweets; 17% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  305 =&gt; [“0”] 310 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>VonMichaelnNYC has 19 tweets; 5% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 304 =&gt; [“0”] 306 =&gt;
+[“0”] 307 =&gt; [“0”] 309 =&gt; [“0”] 311 =&gt; [“0”] 312 =&gt; [“0”] SIP:
+75.0 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Wear3y0ung has 11 tweets; 0% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] 304 =&gt; [“0”] 309 =&gt; [“0”]
+310 =&gt; [“0”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>WhatsAllyDoing has 78 tweets; 92% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  312 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>XavierLeal18 has 104 tweets; 16% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 5 302 =&gt; [“0”] 303 =&gt; [“0”] 304 =&gt;
+[“0”] 305 =&gt; [“0”] 306 =&gt; [“0”] 309 =&gt; [“0”] 310 =&gt; [“0”] 312
+=&gt; [“1”] 313 =&gt; [“1”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>YungRecklessFun has 315 tweets; 10% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“0”] 303 =&gt;
+[“0”] 304 =&gt; [“0”] 305 =&gt; [“0”] 311 =&gt; [“0”] 312 =&gt; [“0”] 313
+=&gt; [“0”] 314 =&gt; [“0”] SIP: 82.14285714285714 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>_Born_Trini has 41 tweets; 2% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“1”] 303 =&gt; [“0”, “1”]
+Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>_dbourret has 82 tweets; 34% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“2”] 303 =&gt; [“2”] 305 =&gt; [“3”]
+306 =&gt; [“4”] 307 =&gt; [“3”, “4”] 308 =&gt; [“3”, “4”] 309 =&gt; [“3”,
+“4”] 310 =&gt; [“1”] 311 =&gt; [“0”] 312 =&gt; [“0”] SIP: 10 Evac: 30</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>_dignacio has 180 tweets; 38% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 5 300 =&gt; [“0”, “1”] 302 =&gt; [“0”] 303 =&gt;
+[“0”] 304 =&gt; [“0”] 305 =&gt; [“0”, “3”] 306 =&gt; [“0”] 307 =&gt; [“0”]
+308 =&gt; [“0”] 309 =&gt; [“0”] 310 =&gt; [“0”] 312 =&gt; [“0”] 313 =&gt;
+[“0”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>a0k has 42 tweets; 69% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 1 303 =&gt; [“0”] 305 =&gt; [“0”] 313 =&gt; [“1”]
+SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>aaroncoook has 90 tweets; 52% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 302 =&gt; [“2”] 303 =&gt;
+[“0”, “2”] 304 =&gt; [“3”] 307 =&gt; [“4”] 309 =&gt; [“0”] 310 =&gt; [“0”]
+312 =&gt; [“2”] 314 =&gt; [“2”] SIP: 40 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ad454 has 88 tweets; 50% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“0”] 302 =&gt; [“3”] 303 =&gt;
+[“2”, “3”] 306 =&gt; [“2”, “3”] 308 =&gt; [“3”] 309 =&gt; [“0”, “3”] 310
+=&gt; [“3”] 313 =&gt; [“0”] 314 =&gt; [“0”] SIP: 50 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ahil23 has 43 tweets; 30% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“0”] 302 =&gt; [“0”] 304 =&gt;
+[“0”] 306 =&gt; [“0”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>alcdp has 123 tweets; 54% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 303 =&gt; [“0”] 304 =&gt;
+[“0”] 305 =&gt; [“0”] 312 =&gt; [“0”] 313 =&gt; [“0”] 314 =&gt; [“4”] SIP:
+100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>aleczopf has 24 tweets; 71% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 303 =&gt; [“0”] 304 =&gt; [“0”] 313 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>alexaizenberg has 313 tweets; 40% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 303 =&gt; [“1”, “2”] 304 =&gt; [“2”] 305 =&gt;
+[“2”] 309 =&gt; [“2”] 310 =&gt; [“7”] 314 =&gt; [“2”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>alexmoseman has 17 tweets; 53% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”] 303 =&gt; [“0”] 304 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>amirkaz has 21 tweets; 14% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 305 =&gt; [“0”] 308 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>amp_ersand has 35 tweets; 89% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] 304 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>amstel89 has 107 tweets; 50% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 307 =&gt; [“0”] 313 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>andersramsay has 34 tweets; 71% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>andrewsrowe has 21 tweets; 33% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“0”] 307 =&gt;
+[“0”] 308 =&gt; [“0”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>angel_4eva has 395 tweets; 48% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 15 301 =&gt; [“1”, “8”] 302 =&gt; [“0”, “1”] 303
+=&gt; [“1”] 304 =&gt; [“1”] 305 =&gt; [“1”] 306 =&gt; [“1”] 307 =&gt; [“1”]
+308 =&gt; [“1”] 309 =&gt; [“1”, “9”] 310 =&gt; [“1”, “7”, “10”] 311 =&gt;
+[“1”] 312 =&gt; [“0”, “1”, “11”, “12”] 313 =&gt; [“1”, “3”] 314 =&gt; [“1”]
+SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>animalmatter has 27 tweets; 22% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“0”] 308 =&gt;
+[“0”] 312 =&gt; [“0”] 314 =&gt; [“0”] SIP: 67.85714285714286 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>arrejuan has 17 tweets; 94% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] 307 =&gt; [“0”] 308 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>athenahoya has 30 tweets; 90% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  309 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>axterix7 has 43 tweets; 58% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”] 304 =&gt; [“0”] 305 =&gt; [“0”]
+306 =&gt; [“0”] 307 =&gt; [“0”] 308 =&gt; [“0”] 311 =&gt; [“0”] SIP: 75.0
+Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>beccc has 37 tweets; 46% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 312 =&gt; [“1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>berrytori has 82 tweets; 10% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“0”] 305 =&gt;
+[“0”] 306 =&gt; [“0”] 308 =&gt; [“0”] 309 =&gt; [“0”] 310 =&gt; [“0”] 311
+=&gt; [“0”] 312 =&gt; [“0”] 313 =&gt; [“0”] 314 =&gt; [“0”] SIP:
+89.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>bia_mur has 30 tweets; 33% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home:  300 =&gt; [“1”] 302 =&gt; [“1”, “2”] 304 =&gt;
+[“1”] 306 =&gt; [“1”] 309 =&gt; [“1”] 312 =&gt; [“1”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>bigtye2012 has 10 tweets; 40% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”] 303 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>billyboulia has 142 tweets; 49% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 301 =&gt; [“1”, “5”] 303 =&gt; [“1”, “3”] 311
+=&gt; [“1”, “2”] 313 =&gt; [“1”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>bjacksrevenge has 60 tweets; 53% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  301 =&gt; [“0”, “1”, “2”] 303 =&gt; [“3”] 304
+=&gt; [“3”] 305 =&gt; [“3”] 312 =&gt; [“4”] SIP: 0 Evac: 70</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>blancobeboostin has 79 tweets; 73% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”, “1”] 310 =&gt; [“0”] 312 =&gt;
+[“0”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>bluemarblebk has 40 tweets; 50% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] 306 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>bobalcus has 125 tweets; 26% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“1”] 302 =&gt;
+[“0”] 303 =&gt; [“0”] 306 =&gt; [“2”] 307 =&gt; [“2”] 308 =&gt; [“2”] 311
+=&gt; [“0”] 312 =&gt; [“0”, “1”] 313 =&gt; [“0”] 314 =&gt; [“0”, “1”] SIP:
+30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>bobbyberk has 266 tweets; 56% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 12 302 =&gt; [“0”, “10”] 309 =&gt; [“0”] 312
+=&gt; [“2”, “9”, “11”] 313 =&gt; [“11”] 314 =&gt; [“11”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>bornreddy has 40 tweets; 63% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 301 =&gt; [“0”] 303 =&gt; [“0”] 311 =&gt;
+[“1”] 312 =&gt; [“1”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>brandontonio has 123 tweets; 77% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 311 =&gt; [“0”] 312 =&gt;
+[“0”] 313 =&gt; [“0”] 314 =&gt; [“0”] SIP: 67.85714285714286 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>brekkefletch has 137 tweets; 26% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 304 =&gt; [“0”] 305 =&gt;
+[“0”] 306 =&gt; [“0”] 308 =&gt; [“0”] 309 =&gt; [“0”] 310 =&gt; [“0”] 311
+=&gt; [“0”] 312 =&gt; [“0”] 314 =&gt; [“0”] SIP: 85.71428571428572 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>brett_lindsey has 39 tweets; 46% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 2 303 =&gt; [“1”] 306 =&gt; [“2”] 309 =&gt;
+[“2”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>brizzling has 49 tweets; 27% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 300 =&gt; [“1”] 301 =&gt; [“1”] 303 =&gt;
+[“1”] 311 =&gt; [“1”] 312 =&gt; [“1”] SIP: 67.85714285714286 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>brooklynivystar has 126 tweets; 28% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 300 =&gt; [“0”] 301 =&gt; [“1”] 302 =&gt;
+[“1”] 303 =&gt; [“1”] 306 =&gt; [“1”] 307 =&gt; [“1”] 313 =&gt; [“1”] SIP:
+100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>btreglio has 44 tweets; 14% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“3”] 302 =&gt; [“3”, “4”] 303 =&gt;
+[“3”, “4”] 305 =&gt; [“0”] 307 =&gt; [“4”] 308 =&gt; [“2”, “5”] 311 =&gt;
+[“5”] 312 =&gt; [“5”] 313 =&gt; [“0”] SIP: 40 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>byronbates has 133 tweets; 14% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“2”] 303 =&gt;
+[“2”] 304 =&gt; [“2”] 305 =&gt; [“2”] 307 =&gt; [“2”] 308 =&gt; [“0”, “2”]
+310 =&gt; [“0”] 311 =&gt; [“0”] 312 =&gt; [“0”] 313 =&gt; [“0”, “2”] 314
+=&gt; [“0”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>caitlynlacorata has 29 tweets; 62% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 0 304 =&gt; [“0”] 305 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>carlipereyra has 15 tweets; 73% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] 309 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>carlossguzman has 144 tweets; 24% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 300 =&gt; [“1”] 302 =&gt; [“1”] 306 =&gt;
+[“1”] 307 =&gt; [“1”] 308 =&gt; [“1”] 309 =&gt; [“1”] 310 =&gt; [“1”] 311
+=&gt; [“1”] 312 =&gt; [“1”] 313 =&gt; [“1”] 314 =&gt; [“1”] SIP:
+89.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>cassanova13 has 88 tweets; 13% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“1”] 308 =&gt; [“0”] 309 =&gt;
+[“2”] 310 =&gt; [“1”] 311 =&gt; [“0”] 312 =&gt; [“2”] 314 =&gt; [“0”] SIP:
+30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>chaino_xin has 197 tweets; 29% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“5”] 302 =&gt;
+[“5”] 303 =&gt; [“0”] 304 =&gt; [“0”, “4”] 305 =&gt; [“0”] 308 =&gt; [“2”,
+“6”, “7”] 309 =&gt; [“2”, “5”] 310 =&gt; [“0”] 312 =&gt; [“0”] SIP: 100
+Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>charcarey has 147 tweets; 37% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 2 300 =&gt; [“3”] 302 =&gt; [“2”, “4”] 303 =&gt;
+[“2”] 308 =&gt; [“2”] 309 =&gt; [“2”, “5”] 312 =&gt; [“6”] 313 =&gt; [“6”]
+SIP: 50 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>charlotteacklin has 65 tweets; 32% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home:  Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>cherrypielove86 has 6 tweets; 0% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  304 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>chibej has 17 tweets; 41% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] 304 =&gt; [“0”] 306 =&gt; [“0”]
+307 =&gt; [“0”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>claraleopard has 49 tweets; 94% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>contentmode has 52 tweets; 88% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>cvmusic has 20 tweets; 45% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  303 =&gt; [“1”] 307 =&gt; [“1”] 310 =&gt; [“0”]
+311 =&gt; [“0”, “1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>dN0t has 124 tweets; 73% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>dakillabee13 has 16 tweets; 75% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>dancinfeet83 has 144 tweets; 40% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 8 302 =&gt; [“2”] 304 =&gt; [“3”] 305 =&gt;
+[“3”] 307 =&gt; [“3”] 310 =&gt; [“0”] 313 =&gt; [“4”] 314 =&gt; [“5”, “6”]
+SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>dangaba has 172 tweets; 58% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 2 301 =&gt; [“1”] 304 =&gt; [“4”] 305 =&gt;
+[“3”] 306 =&gt; [“5”, “6”] 307 =&gt; [“2”, “3”] 312 =&gt; [“3”] 313 =&gt;
+[“2”] SIP: 20 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>de_stijlist has 133 tweets; 56% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“0”] 303 =&gt; [“0”] 304 =&gt;
+[“0”] 305 =&gt; [“0”] 308 =&gt; [“1”] 312 =&gt; [“0”] 313 =&gt; [“0”] SIP:
+100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>derrickc82 has 66 tweets; 83% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“1”, “2”] 303 =&gt; [“0”] 304 =&gt;
+[“0”, “1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>dev_thompson495 has 742 tweets; 12% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>diyaj has 49 tweets; 73% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“2”] 309 =&gt; [“3”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>drone__p has 23 tweets; 57% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  303 =&gt; [“0”] 307 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>egfinnell has 62 tweets; 90% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>emjags has 134 tweets; 30% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”, “1”] 304 =&gt; [“0”] 305 =&gt;
+[“0”, “2”] 307 =&gt; [“0”] 310 =&gt; [“0”] 311 =&gt; [“0”] 313 =&gt; [“0”]
+SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>emmalarkins has 145 tweets; 52% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 300 =&gt; [“3”] 301 =&gt; [“1”] 304 =&gt;
+[“0”] 305 =&gt; [“1”] 307 =&gt; [“4”] 312 =&gt; [“4”] 313 =&gt; [“1”] 314
+=&gt; [“1”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>erincallihan has 72 tweets; 79% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home:  302 =&gt; [“1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>filanagee has 104 tweets; 45% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“0”] 306 =&gt;
+[“3”] 307 =&gt; [“3”] 308 =&gt; [“3”] 312 =&gt; [“0”, “2”] SIP: 100 Evac:
+20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>filmfac has 26 tweets; 77% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“0”] 309 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>fuglyslaut has 242 tweets; 32% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 300 =&gt; [“1”] 301 =&gt; [“2”] 302 =&gt;
+[“1”] 303 =&gt; [“1”] 305 =&gt; [“1”] 310 =&gt; [“1”] 311 =&gt; [“6”] 312
+=&gt; [“1”] 313 =&gt; [“1”, “3”] 314 =&gt; [“1”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>fyrikaos has 28 tweets; 89% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>gdgbkdds has 32 tweets; 38% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 306 =&gt; [“0”, “1”] 307 =&gt;
+[“0”] 308 =&gt; [“0”, “1”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>gmanzueta24 has 597 tweets; 19% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 4 300 =&gt; [“0”, “5”] 301 =&gt; [“0”] 302 =&gt;
+[“0”, “2”, “8”] 303 =&gt; [“4”] 304 =&gt; [“4”] 305 =&gt; [“4”] 306 =&gt;
+[“4”] 307 =&gt; [“4”] 308 =&gt; [“4”] 309 =&gt; [“4”, “9”] 310 =&gt; [“0”,
+“1”, “2”, “3”, “7”] 311 =&gt; [“0”, “2”, “3”] 312 =&gt; [“0”, “1”] 313
+=&gt; [“0”, “1”] 314 =&gt; [“0”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>gob has 222 tweets; 42% are non-cluster</p>
+<hr>
+
+<p>Before home: 6 After home: 6 300 =&gt; [“6”] 302 =&gt; [“6”, “8”] 303 =&gt;
+[“6”, “9”] 304 =&gt; [“0”, “6”, “9”] 306 =&gt; [“10”, “11”] 307 =&gt;
+[“11”] 308 =&gt; [“1”, “6”] 309 =&gt; [“6”] 311 =&gt; [“6”] 312 =&gt; [“1”,
+“5”, “6”, “7”] 313 =&gt; [“11”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>goto10 has 96 tweets; 56% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 5 300 =&gt; [“0”, “1”] 303 =&gt; [“0”] 304 =&gt;
+[“0”] 308 =&gt; [“0”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>gregchopp has 115 tweets; 51% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 9 302 =&gt; [“6”] 303 =&gt; [“7”] 308 =&gt;
+[“0”, “6”] 311 =&gt; [“8”] 313 =&gt; [“2”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>griffithworks has 17 tweets; 65% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>gypsieeyez35 has 49 tweets; 22% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“0”] 302 =&gt;
+[“0”] 303 =&gt; [“0”, “1”] 307 =&gt; [“1”] 310 =&gt; [“2”] 311 =&gt; [“0”]
+312 =&gt; [“1”] 314 =&gt; [“0”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>hananaahh has 39 tweets; 56% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 305 =&gt; [“2”] 313 =&gt; [“1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>harlanvaughn has 248 tweets; 35% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt;
+[“0”] 304 =&gt; [“0”, “4”] 305 =&gt; [“0”] 306 =&gt; [“0”, “1”] 307 =&gt;
+[“0”] 308 =&gt; [“0”] 311 =&gt; [“0”] 312 =&gt; [“0”] 314 =&gt; [“0”] SIP:
+100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>helijah97 has 53 tweets; 17% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt;
+[“0”] 314 =&gt; [“0”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>heyguey has 263 tweets; 54% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 2 300 =&gt; [“2”, “5”, “7”] 302 =&gt; [“2”, “3”]
+303 =&gt; [“2”] 304 =&gt; [“0”, “2”] 305 =&gt; [“1”, “2”] 307 =&gt; [“2”]
+309 =&gt; [“2”] 310 =&gt; [“2”] 311 =&gt; [“2”] 312 =&gt; [“2”] 313 =&gt;
+[“7”] 314 =&gt; [“1”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>hiren1012 has 149 tweets; 30% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 308 =&gt; [“3”] 309 =&gt;
+[“3”] 310 =&gt; [“3”] 311 =&gt; [“0”] 312 =&gt; [“0”] 313 =&gt; [“0”] SIP:
+20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>hollville has 36 tweets; 89% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>hunterjanoff has 23 tweets; 43% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home:  300 =&gt; [“1”] 302 =&gt; [“1”] 306 =&gt; [“1”]
+307 =&gt; [“1”] 312 =&gt; [“1”] SIP: 67.85714285714286 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>hyevinkim has 446 tweets; 29% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“9”, “20”] 301 =&gt; [“21”] 303
+=&gt; [“1”, “21”] 305 =&gt; [“8”] 306 =&gt; [“8”] 307 =&gt; [“8”] 308 =&gt;
+[“8”, “15”] 309 =&gt; [“8”] 310 =&gt; [“8”] 312 =&gt; [“0”, “14”] 313 =&gt;
+[“0”, “22”] 314 =&gt; [“22”] SIP: 10 Evac: 30</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>iamashleajade has 13 tweets; 62% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  301 =&gt; [“0”] 302 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ishellvaughan has 210 tweets; 57% are non-cluster</p>
+<hr>
+
+<p>Before home: 6 After home: 10 301 =&gt; [“6”, “10”] 303 =&gt; [“11”] 305
+=&gt; [“10”] 306 =&gt; [“11”] 311 =&gt; [“12”] 313 =&gt; [“11”] 314 =&gt;
+[“12”] SIP: 50 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>itsAdam has 156 tweets; 58% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“0”] 304 =&gt; [“0”, “3”] 308 =&gt;
+[“4”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>iwill_i has 142 tweets; 48% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 11 300 =&gt; [“2”, “3”] 302 =&gt; [“1”] 303
+=&gt; [“1”] 304 =&gt; [“4”] 305 =&gt; [“5”] 308 =&gt; [“1”] 310 =&gt; [“1”]
+311 =&gt; [“1”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>j2martinez has 62 tweets; 76% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 3 309 =&gt; [“2”] 312 =&gt; [“2”] 313 =&gt;
+[“2”] SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>jaclyn_romano has 43 tweets; 42% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home:  301 =&gt; [“1”] 302 =&gt; [“1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>jameela13 has 13 tweets; 54% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] 309 =&gt; [“0”] 310 =&gt;
+[“0”] SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>jamiebhernandez has 177 tweets; 30% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 12 300 =&gt; [“1”, “2”] 301 =&gt; [“0”, “1”,
+“5”] 302 =&gt; [“0”, “1”, “7”] 303 =&gt; [“0”, “1”, “4”] 304 =&gt; [“4”,
+“8”] 305 =&gt; [“9”, “10”] 306 =&gt; [“1”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>jcbrillant has 75 tweets; 69% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  301 =&gt; [“1”] 303 =&gt; [“5”] 304 =&gt; [“2”]
+Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>jcm_mejia91 has 324 tweets; 33% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“4”] 301 =&gt; [“0”] 302 =&gt;
+[“0”] 303 =&gt; [“0”, “12”] 304 =&gt; [“0”] 305 =&gt; [“0”, “5”] 306 =&gt;
+[“6”] 307 =&gt; [“7”] 308 =&gt; [“0”] 309 =&gt; [“0”] 310 =&gt; [“0”] 311
+=&gt; [“0”] 313 =&gt; [“0”] 314 =&gt; [“0”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>jedi_jjo has 395 tweets; 35% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 12 300 =&gt; [“3”] 301 =&gt; [“0”] 302 =&gt;
+[“7”] 303 =&gt; [“0”, “1”] 304 =&gt; [“0”] 305 =&gt; [“0”] 306 =&gt; [“0”]
+310 =&gt; [“5”] 311 =&gt; [“7”] 314 =&gt; [“2”, “3”] SIP: 40 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>jenny_bombs has 7 tweets; 57% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  304 =&gt; [“0”] 306 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>jennydeluxe has 141 tweets; 62% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 6 301 =&gt; [“1”] 302 =&gt; [“1”, “3”, “4”] 303
+=&gt; [“1”] 304 =&gt; [“1”, “2”] 305 =&gt; [“1”] 306 =&gt; [“4”] 307 =&gt;
+[“5”] 310 =&gt; [“6”] 312 =&gt; [“7”] 314 =&gt; [“8”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>jennyjmuller has 226 tweets; 64% are non-cluster</p>
+<hr>
+
+<p>Before home: 3 After home: 6 300 =&gt; [“7”] 301 =&gt; [“5”] 302 =&gt;
+[“2”, “8”] 303 =&gt; [“2”] 304 =&gt; [“1”] 306 =&gt; [“2”] 307 =&gt; [“4”]
+308 =&gt; [“4”] 309 =&gt; [“5”] 310 =&gt; [“6”] 311 =&gt; [“1”, “6”] 313
+=&gt; [“5”] 314 =&gt; [“3”, “5”, “6”] SIP: 10 Evac: 30</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>joliecantina has 64 tweets; 14% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 2 301 =&gt; [“0”] 305 =&gt; [“0”] 308 =&gt;
+[“0”, “1”] 309 =&gt; [“0”] 310 =&gt; [“0”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>jorgiecakes has 724 tweets; 40% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>joshbarone has 43 tweets; 74% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“0”] 303 =&gt; [“0”, “1”] 306 =&gt;
+[“1”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ka1il has 5 tweets; 40% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>kalabin_a has 212 tweets; 42% are non-cluster</p>
+<hr>
+
+<p>Before home: 5 After home: 7 301 =&gt; [“10”] 302 =&gt; [“2”, “5”, “7”] 304
+=&gt; [“11”] 308 =&gt; [“2”] 310 =&gt; [“8”] 314 =&gt; [“7”] SIP: 50 Evac:
+0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>kate_hammond has 83 tweets; 36% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 301 =&gt; [“1”] 304 =&gt; [“2”] 310 =&gt;
+[“3”] 311 =&gt; [“2”] 312 =&gt; [“1”] 314 =&gt; [“3”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>katehable has 115 tweets; 24% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  301 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt; [“0”]
+304 =&gt; [“6”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>kayglEE has 168 tweets; 70% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 314 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>kemofxckz has 975 tweets; 17% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>kevin_davey has 15 tweets; 73% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] 304 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>kevsall has 171 tweets; 70% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 306 =&gt; [“4”] 307 =&gt; [“4”] 311 =&gt;
+[“0”] 312 =&gt; [“1”, “5”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>king_rill has 17 tweets; 76% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”] 303 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>kitteneyez2011 has 11 tweets; 0% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  307 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>kristophermaz has 11 tweets; 73% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>kristrange has 208 tweets; 76% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 305 =&gt; [“0”] 308 =&gt;
+[“3”] 312 =&gt; [“0”] 313 =&gt; [“0”] 314 =&gt; [“1”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>kybernhardt has 28 tweets; 57% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 305 =&gt; [“1”] 312 =&gt; [“1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>kyle_petreycik has 47 tweets; 55% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 0 303 =&gt; [“1”] 306 =&gt; [“2”] 311 =&gt;
+[“2”] 312 =&gt; [“2”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>lahappybelle has 180 tweets; 53% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 7 300 =&gt; [“0”] 301 =&gt; [“5”] 302 =&gt;
+[“5”, “6”] 311 =&gt; [“7”, “8”] 312 =&gt; [“7”, “8”] 313 =&gt; [“3”]
+Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>laslugocki has 203 tweets; 19% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“1”] 302 =&gt; [“0”, “1”] 303 =&gt;
+[“1”] 304 =&gt; [“1”] 305 =&gt; [“0”, “1”] 306 =&gt; [“1”] 307 =&gt; [“1”]
+308 =&gt; [“1”] 309 =&gt; [“1”] 310 =&gt; [“0”] 311 =&gt; [“0”] 312 =&gt;
+[“0”] 313 =&gt; [“0”] 314 =&gt; [“0”, “2”] SIP: 100 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>legsfordaysss has 50 tweets; 38% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 301 =&gt; [“1”] 302 =&gt; [“1”] 303 =&gt;
+[“1”] 304 =&gt; [“5”] 308 =&gt; [“3”] 313 =&gt; [“3”] 314 =&gt; [“1”] SIP:
+100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>lexigoodman has 93 tweets; 51% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 302 =&gt; [“0”, “1”] 303 =&gt;
+[“0”] 304 =&gt; [“1”] 309 =&gt; [“0”] 312 =&gt; [“0”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>lianawrightmark has 115 tweets; 57% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 3 301 =&gt; [“4”] 305 =&gt; [“3”] 307 =&gt;
+[“3”] 308 =&gt; [“3”] 310 =&gt; [“3”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>lindsaykos has 216 tweets; 69% are non-cluster</p>
+<hr>
+
+<p>Before home: 4 After home: 4 300 =&gt; [“4”] 301 =&gt; [“8”] 310 =&gt;
+[“0”] 312 =&gt; [“0”] 313 =&gt; [“4”] 314 =&gt; [“1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>livinbreezy has 339 tweets; 40% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”, “11”] 301 =&gt; [“1”] 302
+=&gt; [“9”] 303 =&gt; [“9”] 304 =&gt; [“9”] 305 =&gt; [“9”] 307 =&gt; [“9”]
+308 =&gt; [“9”] 310 =&gt; [“0”] 311 =&gt; [“0”] 312 =&gt; [“0”] 313 =&gt;
+[“0”, “12”] 314 =&gt; [“0”, “2”] SIP: 50 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>lizageduldig has 57 tweets; 28% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“0”] 303 =&gt; [“0”] 312 =&gt;
+[“0”] 313 =&gt; [“0”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>lizsetton has 48 tweets; 40% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”, “1”] 303 =&gt; [“0”, “1”] 304
+=&gt; [“0”] 305 =&gt; [“2”] 306 =&gt; [“0”, “2”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>lsmael has 77 tweets; 83% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 2 300 =&gt; [“2”] 302 =&gt; [“2”] 309 =&gt;
+[“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>lulunyc has 44 tweets; 82% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 314 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>mabardi has 26 tweets; 88% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 311 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>madgouz has 105 tweets; 63% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 311 =&gt; [“1”] 312 =&gt; [“1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>majollata has 33 tweets; 61% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 309 =&gt; [“0”] 311 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>manna has 34 tweets; 91% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] 309 =&gt; [“0”] 312 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>marianne237 has 183 tweets; 43% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 3 300 =&gt; [“0”, “3”] 301 =&gt; [“3”] 302 =&gt;
+[“3”] 303 =&gt; [“0”, “3”] 304 =&gt; [“0”] 305 =&gt; [“1”] 306 =&gt; [“1”]
+307 =&gt; [“0”, “3”] 309 =&gt; [“3”] 310 =&gt; [“1”, “3”] 311 =&gt; [“3”]
+312 =&gt; [“0”] SIP: 40 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>marioachamorro has 117 tweets; 42% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 300 =&gt; [“2”] 301 =&gt; [“2”] 302 =&gt;
+[“3”] 303 =&gt; [“1”] 307 =&gt; [“1”] 309 =&gt; [“1”] 312 =&gt; [“1”] 313
+=&gt; [“1”] 314 =&gt; [“4”] SIP: 90 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>marko0318 has 228 tweets; 48% are non-cluster</p>
+<hr>
+
+<p>Before home: 3 After home: 3 300 =&gt; [“7”] 301 =&gt; [“3”, “6”, “15”] 302
+=&gt; [“0”, “9”] 304 =&gt; [“3”, “11”, “15”] 305 =&gt; [“3”, “13”, “16”]
+306 =&gt; [“3”] 307 =&gt; [“3”, “10”] 308 =&gt; [“9”, “16”, “17”] 309 =&gt;
+[“3”, “10”, “12”, “15”, “18”, “19”] 310 =&gt; [“3”] 311 =&gt; [“3”, “4”]
+312 =&gt; [“11”] 313 =&gt; [“20”] 314 =&gt; [“3”, “10”] SIP: 40 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>marysecondo has 169 tweets; 27% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“0”] 302 =&gt;
+[“0”] 303 =&gt; [“0”] 304 =&gt; [“0”] 306 =&gt; [“1”] 307 =&gt; [“1”] 309
+=&gt; [“1”] 312 =&gt; [“0”] 313 =&gt; [“0”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>masmith2010 has 124 tweets; 72% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 300 =&gt; [“1”, “2”] 301 =&gt; [“1”] 302 =&gt;
+[“1”] 304 =&gt; [“0”] 308 =&gt; [“0”] 310 =&gt; [“1”] 311 =&gt; [“0”] SIP:
+20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>mbytz has 262 tweets; 33% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 2 300 =&gt; [“2”, “4”, “5”, “10”] 301 =&gt;
+[“2”, “9”] 303 =&gt; [“2”, “3”, “8”] 304 =&gt; [“11”] 306 =&gt; [“12”] 307
+=&gt; [“12”] 308 =&gt; [“9”] 309 =&gt; [“2”] 310 =&gt; [“2”] 311 =&gt;
+[“1”] 312 =&gt; [“2”] 314 =&gt; [“2”, “5”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>meaganpreyes has 146 tweets; 51% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 302 =&gt; [“1”] 307 =&gt; [“3”] 308 =&gt;
+[“1”, “3”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>meboudin has 110 tweets; 37% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 6 312 =&gt; [“2”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>meganbe has 86 tweets; 50% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 5 300 =&gt; [“2”] 303 =&gt; [“1”] 304 =&gt;
+[“1”, “3”, “4”] 308 =&gt; [“0”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>metalchopstick has 44 tweets; 86% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>miamanhattan has 196 tweets; 36% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 300 =&gt; [“1”, “2”, “7”] 302 =&gt; [“1”, “7”]
+303 =&gt; [“1”, “7”] 304 =&gt; [“1”, “6”, “7”] 307 =&gt; [“1”] 308 =&gt;
+[“1”] 310 =&gt; [“1”] 311 =&gt; [“1”] 312 =&gt; [“1”] 314 =&gt; [“7”] SIP:
+100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>midwood97 has 25 tweets; 88% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  304 =&gt; [“0”] 305 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>miissnessax3 has 7 tweets; 29% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  301 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>milkshakecoma has 104 tweets; 46% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“0”, “3”] 302 =&gt;
+[“0”] 303 =&gt; [“0”] 305 =&gt; [“0”] 306 =&gt; [“0”, “3”] 307 =&gt; [“0”]
+308 =&gt; [“0”] 310 =&gt; [“4”] 311 =&gt; [“4”] 313 =&gt; [“4”] SIP: 70
+Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>misszeesantos has 17 tweets; 0% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 304 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>mjdwarner has 35 tweets; 40% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“0”] 303 =&gt; [“0”] 305 =&gt;
+[“0”] 306 =&gt; [“0”] 312 =&gt; [“0”] SIP: 67.85714285714286 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>morrissued has 44 tweets; 43% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“0”] 305 =&gt; [“0”] 307 =&gt;
+[“0”] 309 =&gt; [“0”] 311 =&gt; [“0”] 312 =&gt; [“0”] 313 =&gt; [“0”] 314
+=&gt; [“0”] SIP: 78.57142857142857 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>mpc100 has 65 tweets; 11% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 1 303 =&gt; [“0”] 304 =&gt; [“0”, “2”] 306 =&gt;
+[“0”] 307 =&gt; [“0”, “3”] 308 =&gt; [“3”, “4”] 312 =&gt; [“0”, “5”] 313
+=&gt; [“0”, “5”] 314 =&gt; [“0”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>mvncnt has 141 tweets; 52% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 2 301 =&gt; [“2”] 302 =&gt; [“4”] 308 =&gt;
+[“5”] 310 =&gt; [“2”] 311 =&gt; [“0”, “2”] 313 =&gt; [“0”] 314 =&gt; [“2”]
+Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>n1k0laay has 22 tweets; 86% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>natalie_olsen has 87 tweets; 72% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 301 =&gt; [“0”, “2”] 302 =&gt; [“0”, “2”] 303
+=&gt; [“0”] 304 =&gt; [“1”] 308 =&gt; [“3”] 309 =&gt; [“3”] 310 =&gt; [“3”]
+SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>nataliecantell has 112 tweets; 63% are non-cluster</p>
+<hr>
+
+<p>Before home: 3 After home: 3 300 =&gt; [“3”] 302 =&gt; [“3”] 303 =&gt;
+[“3”, “5”] 304 =&gt; [“3”] 307 =&gt; [“1”] 310 =&gt; [“4”] 311 =&gt; [“3”]
+312 =&gt; [“4”] 313 =&gt; [“6”] 314 =&gt; [“6”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>natefrench18 has 174 tweets; 43% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“1”] 302 =&gt; [“0”] 303 =&gt;
+[“0”] 304 =&gt; [“0”] 305 =&gt; [“0”, “2”] 307 =&gt; [“0”] 309 =&gt; [“0”]
+SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ncebenko has 78 tweets; 81% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 309 =&gt; [“0”] 313 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>nealrs has 145 tweets; 49% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 5 303 =&gt; [“6”] 304 =&gt; [“6”] 308 =&gt;
+[“7”] 309 =&gt; [“7”] 313 =&gt; [“7”] 314 =&gt; [“8”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>nefeligeorgala has 132 tweets; 55% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 312 =&gt; [“0”] 313 =&gt; [“1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>nickzilla has 283 tweets; 46% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“2”] 301 =&gt; [“0”, “2”] 303 =&gt;
+[“2”, “6”] 305 =&gt; [“7”] 308 =&gt; [“0”, “2”, “7”] 309 =&gt; [“0”] 310
+=&gt; [“0”, “1”, “2”] 311 =&gt; [“0”] 312 =&gt; [“2”] 314 =&gt; [“1”] SIP:
+10 Evac: 80</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>nicolelmancini has 513 tweets; 50% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 13 300 =&gt; [“0”, “13”] 301 =&gt; [“13”] 302
+=&gt; [“4”] 303 =&gt; [“15”] 304 =&gt; [“15”] 306 =&gt; [“4”] 308 =&gt;
+[“15”] 310 =&gt; [“10”, “13”] 311 =&gt; [“0”, “13”] 312 =&gt; [“0”, “12”,
+“13”] 313 =&gt; [“0”, “12”, “13”] 314 =&gt; [“0”, “13”] SIP: 0 Evac: 120</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>nkneessy has 185 tweets; 31% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt; [“0”]
+304 =&gt; [“0”] 305 =&gt; [“3”] 307 =&gt; [“1”] 308 =&gt; [“1”] 309 =&gt;
+[“1”] 310 =&gt; [“1”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>nnebeluk has 191 tweets; 68% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 2 308 =&gt; [“5”] 310 =&gt; [“8”] 312 =&gt;
+[“1”, “2”, “7”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>norachogan has 155 tweets; 64% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 302 =&gt; [“1”] 303 =&gt; [“6”] 304 =&gt;
+[“6”] 305 =&gt; [“2”] 307 =&gt; [“6”, “7”] 311 =&gt; [“8”] 312 =&gt; [“0”]
+313 =&gt; [“1”] SIP: 20 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>nwoods222 has 9 tweets; 0% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  307 =&gt; [“0”] 308 =&gt; [“0”] 309 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>nyc10016 has 89 tweets; 74% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 4 302 =&gt; [“0”, “2”] 303 =&gt; [“0”] 304 =&gt;
+[“1”, “2”, “3”] 305 =&gt; [“1”, “3”] 306 =&gt; [“2”, “3”] 307 =&gt; [“4”]
+308 =&gt; [“5”] 310 =&gt; [“5”] SIP: 20 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>olaforsstrom has 349 tweets; 19% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 301 =&gt; [“0”] 302 =&gt;
+[“0”] 303 =&gt; [“0”] 304 =&gt; [“0”, “2”, “6”, “8”, “9”, “11”, “12”, “13”,
+“14”] 305 =&gt; [“15”, “16”] 306 =&gt; [“15”, “17”] 307 =&gt; [“15”, “16”,
+“17”] 308 =&gt; [“0”, “7”] 309 =&gt; [“0”, “8”] 310 =&gt; [“7”, “8”] 311
+=&gt; [“0”] 312 =&gt; [“0”] 313 =&gt; [“0”] 314 =&gt; [“0”] SIP: 100 Evac:
+20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>oliviawhatsup has 44 tweets; 36% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“0”] 305 =&gt; [“1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>oscarurbano3 has 14 tweets; 7% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 305 =&gt; [“0”] 313 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>p00nie has 283 tweets; 39% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“10”] 301 =&gt; [“10”] 302 =&gt;
+[“0”, “2”, “7”] 303 =&gt; [“0”, “11”] 305 =&gt; [“12”] 306 =&gt; [“4”,
+“12”] 307 =&gt; [“12”] 308 =&gt; [“0”, “12”] 309 =&gt; [“0”] 310 =&gt;
+[“0”] 311 =&gt; [“0”] 312 =&gt; [“0”] 313 =&gt; [“0”, “11”] 314 =&gt; [“0”]
+SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>patrickwesonga has 71 tweets; 21% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] 310 =&gt; [“0”] 311 =&gt;
+[“0”] 312 =&gt; [“0”, “1”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>paulschlacter has 10 tweets; 50% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“0”] 305 =&gt;
+[“0”] SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>paytonismissing has 7 tweets; 0% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt; [“0”]
+304 =&gt; [“0”] 305 =&gt; [“0”] SIP: 67.85714285714286 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>plastic_bear has 145 tweets; 35% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 6 300 =&gt; [“0”, “6”] 301 =&gt; [“0”, “6”] 303
+=&gt; [“0”] 304 =&gt; [“0”] 305 =&gt; [“0”] 306 =&gt; [“0”, “6”] 307 =&gt;
+[“0”] 308 =&gt; [“6”, “8”] 309 =&gt; [“0”] 310 =&gt; [“6”] 311 =&gt; [“0”,
+“6”] 312 =&gt; [“6”] 313 =&gt; [“0”] 314 =&gt; [“6”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>plingyplang has 171 tweets; 64% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 306 =&gt; [“0”] 307 =&gt; [“0”] 309 =&gt;
+[“0”] 314 =&gt; [“2”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>plrodriguez has 126 tweets; 56% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 4 302 =&gt; [“2”] 303 =&gt; [“1”] 311 =&gt;
+[“2”] 313 =&gt; [“0”, “2”] 314 =&gt; [“0”, “1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>racchhhh has 33 tweets; 82% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 307 =&gt; [“0”] 308 =&gt; [“0”] 311 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>rachelmcjackson has 290 tweets; 35% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 2 301 =&gt; [“7”, “8”] 302 =&gt; [“2”] 303 =&gt;
+[“2”, “8”] 304 =&gt; [“9”] 305 =&gt; [“10”] 308 =&gt; [“2”] 309 =&gt; [“2”]
+310 =&gt; [“2”, “9”] 311 =&gt; [“2”] 312 =&gt; [“2”] 314 =&gt; [“2”] SIP:
+30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>regalosmargot has 88 tweets; 52% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 300 =&gt; [“0”, “1”] 303 =&gt; [“1”, “6”] 314
+=&gt; [“6”] SIP: 90 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>renderale has 44 tweets; 52% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“0”] 301 =&gt; [“0”] 302 =&gt; [“0”,
+“1”] 304 =&gt; [“0”, “2”] 305 =&gt; [“2”] 306 =&gt; [“2”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>reubenhernandez has 238 tweets; 66% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 300 =&gt; [“2”] 301 =&gt; [“5”] 302 =&gt;
+[“3”] 303 =&gt; [“5”] 304 =&gt; [“1”, “2”] 305 =&gt; [“2”] 309 =&gt; [“1”]
+314 =&gt; [“3”] SIP: 50 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>richzerbo has 66 tweets; 26% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt; [“0”]
+304 =&gt; [“0”] 305 =&gt; [“0”] SIP: 67.85714285714286 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>robertnmurray has 21 tweets; 67% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] 304 =&gt; [“0”] 308 =&gt; [“0”]
+309 =&gt; [“0”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>rollingturtle has 54 tweets; 43% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“0”] 303 =&gt; [“0”] 304 =&gt; [“0”,
+“1”] 305 =&gt; [“2”] 308 =&gt; [“0”] 309 =&gt; [“0”] 311 =&gt; [“0”] 312
+=&gt; [“0”] 313 =&gt; [“0”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ronakdaya has 65 tweets; 94% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 310 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>rorydale has 141 tweets; 23% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 300 =&gt; [“0”, “1”] 301 =&gt; [“0”, “1”] 302
+=&gt; [“1”] 303 =&gt; [“1”] 304 =&gt; [“1”] 305 =&gt; [“1”] 306 =&gt; [“1”]
+308 =&gt; [“1”] 311 =&gt; [“0”] 312 =&gt; [“1”] 314 =&gt; [“1”] SIP: 100
+Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ruben5400 has 233 tweets; 10% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 300 =&gt; [“1”, “2”, “4”] 302 =&gt; [“3”, “5”,
+“6”] 303 =&gt; [“5”, “6”] 304 =&gt; [“3”, “6”] 313 =&gt; [“1”, “4”] SIP: 10
+Evac: 30</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>rudyinnyc has 475 tweets; 61% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 2 300 =&gt; [“2”, “6”, “10”] 302 =&gt; [“3”,
+“12”] 303 =&gt; [“2”, “3”] 304 =&gt; [“2”] 305 =&gt; [“10”, “13”, “14”] 306
+=&gt; [“13”, “14”] 307 =&gt; [“14”] 308 =&gt; [“2”, “4”] 309 =&gt; [“2”,
+“12”] 310 =&gt; [“10”] 311 =&gt; [“2”] 312 =&gt; [“2”, “6”, “10”] 313 =&gt;
+[“11”, “15”] 314 =&gt; [“16”, “17”] SIP: 40 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>salvadorsorian5 has 420 tweets; 19% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“0”] 304 =&gt;
+[“0”] 305 =&gt; [“0”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>sarahbachmann has 66 tweets; 12% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“0”] 303 =&gt; [“0”, “1”] 304 =&gt;
+[“0”] 307 =&gt; [“2”] 310 =&gt; [“0”] 311 =&gt; [“0”] 312 =&gt; [“0”, “1”]
+SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>sarahsarahowen has 5 tweets; 20% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  304 =&gt; [“0”] 308 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>sarancoco has 55 tweets; 60% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] 306 =&gt; [“0”] 309 =&gt;
+[“0”] 311 =&gt; [“1”] 312 =&gt; [“0”] 313 =&gt; [“0”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>schenwow has 383 tweets; 51% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”, “1”, “5”] 301 =&gt; [“0”] 303
+=&gt; [“0”] 304 =&gt; [“0”, “4”] 305 =&gt; [“0”] 306 =&gt; [“0”] 307 =&gt;
+[“0”] 308 =&gt; [“0”] 309 =&gt; [“0”, “6”] 311 =&gt; [“7”] 312 =&gt; [“3”]
+SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>sdadich has 62 tweets; 39% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 0 300 =&gt; [“3”] 301 =&gt; [“1”] 302 =&gt;
+[“1”] 303 =&gt; [“0”, “1”] 307 =&gt; [“4”] 312 =&gt; [“0”, “3”] 313 =&gt;
+[“1”] SIP: 30 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>sdavar has 17 tweets; 65% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”] 308 =&gt; [“0”] 312 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>sebasanjuan has 24 tweets; 67% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”] 312 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>serdarkaragoz has 19 tweets; 58% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] 304 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>shaneeseee has 182 tweets; 43% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 5 300 =&gt; [“1”] 301 =&gt; [“1”, “3”] 303 =&gt;
+[“9”] 304 =&gt; [“9”] 306 =&gt; [“9”, “10”, “11”] 307 =&gt; [“12”] 309
+=&gt; [“12”] 312 =&gt; [“13”] SIP: 20 Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>sharlit_always has 65 tweets; 65% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 300 =&gt; [“1”] 302 =&gt; [“1”] 309 =&gt;
+[“1”] SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>shefindsjulie has 117 tweets; 64% are non-cluster</p>
+<hr>
+
+<p>Before home: 2 After home: 2 302 =&gt; [“2”, “4”, “5”] 303 =&gt; [“2”] 305
+=&gt; [“3”] 310 =&gt; [“3”, “5”] 311 =&gt; [“2”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>shitcharleysays has 142 tweets; 73% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“1”, “3”] 301 =&gt; [“0”] 304 =&gt;
+[“3”] 307 =&gt; [“4”] 314 =&gt; [“6”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>silkenevening has 9 tweets; 44% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>skipslut has 27 tweets; 63% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”, “1”] 303 =&gt; [“1”] 304 =&gt;
+[“1”] 306 =&gt; [“1”] SIP: 50 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>snoozebox has 29 tweets; 86% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>songadaymann has 71 tweets; 62% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>sophiagurule has 172 tweets; 62% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“2”, “3”, “10”] 305 =&gt; [“0”] 308
+=&gt; [“4”] 311 =&gt; [“0”] 312 =&gt; [“10”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>soulellis has 156 tweets; 56% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] 304 =&gt; [“0”, “2”] 305 =&gt;
+[“0”, “2”] 306 =&gt; [“0”] 307 =&gt; [“3”] 308 =&gt; [“0”, “4”] 309 =&gt;
+[“0”] 310 =&gt; [“0”] 312 =&gt; [“0”, “5”] 313 =&gt; [“5”] SIP: 100 Evac:
+20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>stacy_volkov has 43 tweets; 93% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  301 =&gt; [“0”] 302 =&gt; [“0”] 304 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>sterlingaclay has 50 tweets; 50% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“1”] 305 =&gt; [“1”] 308 =&gt;
+[“1”] 311 =&gt; [“1”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>stfuindy has 14 tweets; 21% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  302 =&gt; [“0”, “1”] 303 =&gt; [“1”] 304 =&gt;
+[“0”, “1”] 305 =&gt; [“0”, “1”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>sullybronxny has 50 tweets; 18% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“0”] 309 =&gt;
+[“0”] 310 =&gt; [“0”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>sweetnycangel has 486 tweets; 21% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 2 300 =&gt; [“2”, “8”] 301 =&gt; [“2”] 302 =&gt;
+[“2”] 306 =&gt; [“0”, “2”, “4”, “6”, “9”] 307 =&gt; [“2”, “6”] 308 =&gt;
+[“2”, “6”, “10”, “11”] 309 =&gt; [“2”] 310 =&gt; [“1”, “12”] 311 =&gt;
+[“1”, “2”] 312 =&gt; [“12”] 313 =&gt; [“2”] 314 =&gt; [“10”, “11”] SIP: 80
+Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>taaramariie has 37 tweets; 68% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  303 =&gt; [“0”] 305 =&gt; [“0”] 306 =&gt; [“0”]
+SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>teaforpaige has 66 tweets; 71% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 303 =&gt; [“0”] 304 =&gt;
+[“0”] SIP: 60.714285714285715 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>tennisjun has 11 tweets; 73% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>tensafefrogs has 20 tweets; 50% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 303 =&gt; [“0”] 304 =&gt;
+[“0”] 313 =&gt; [“0”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>tessa has 61 tweets; 74% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 2 300 =&gt; [“0”] 301 =&gt; [“0”] 302 =&gt;
+[“0”] 304 =&gt; [“0”, “1”] 306 =&gt; [“1”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>tessypie has 7 tweets; 57% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  305 =&gt; [“0”] 306 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>tgeisenheimer has 10 tweets; 70% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] 304 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>thedantaylor has 124 tweets; 73% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 1 309 =&gt; [“0”] 312 =&gt; [“1”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>thedrink87 has 38 tweets; 82% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  310 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>thejackamo has 242 tweets; 34% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“0”, “3”] 305 =&gt;
+[“4”] 307 =&gt; [“1”] 308 =&gt; [“1”] 309 =&gt; [“0”] 310 =&gt; [“0”] 312
+=&gt; [“0”, “2”, “5”, “6”] 313 =&gt; [“0”] 314 =&gt; [“0”, “1”] SIP: 30
+Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>themidwestgirl has 53 tweets; 57% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 303 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>thomaskaplan has 14 tweets; 79% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home: 0 Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>tomoconnorNYC has 15 tweets; 40% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 302 =&gt; [“0”] 303 =&gt; [“0”] 305 =&gt;
+[“0”] 310 =&gt; [“0”] 312 =&gt; [“0”] 313 =&gt; [“0”] 314 =&gt; [“0”] SIP:
+75.0 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>totivaldez has 631 tweets; 18% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 14 300 =&gt; [“0”, “1”] 301 =&gt; [“0”, “1”,
+“2”] 302 =&gt; [“0”, “1”] 303 =&gt; [“0”, “2”] 304 =&gt; [“0”, “5”] 305
+=&gt; [“0”, “3”, “5”] 306 =&gt; [“0”] 307 =&gt; [“0”, “1”] 308 =&gt; [“0”]
+309 =&gt; [“0”, “6”] 310 =&gt; [“1”, “7”] 311 =&gt; [“1”] 312 =&gt; [“7”,
+“8”] 313 =&gt; [“8”, “9”] 314 =&gt; [“6”, “8”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>tylr has 57 tweets; 28% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 2 302 =&gt; [“0”] 303 =&gt; [“0”] 304 =&gt;
+[“0”] 305 =&gt; [“0”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>val_molina has 166 tweets; 42% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt;
+[“0”, “1”] 304 =&gt; [“3”] 305 =&gt; [“0”] 308 =&gt; [“0”] 310 =&gt; [“0”]
+311 =&gt; [“1”] 312 =&gt; [“0”] 313 =&gt; [“0”, “1”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>valerysmallwood has 6 tweets; 0% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  304 =&gt; [“0”] 306 =&gt; [“0”] 307 =&gt; [“0”]
+308 =&gt; [“0”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>vcmcmullen has 128 tweets; 52% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”, “3”, “4”] 301 =&gt; [“2”, “6”]
+302 =&gt; [“7”] 308 =&gt; [“2”] 311 =&gt; [“1”] 312 =&gt; [“0”, “1”] 314
+=&gt; [“0”, “4”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>vic_taylor has 11 tweets; 73% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  303 =&gt; [“0”] 304 =&gt; [“0”] Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>vivalaglam7 has 170 tweets; 46% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 4 301 =&gt; [“0”] 302 =&gt; [“0”] 303 =&gt;
+[“4”, “6”] 304 =&gt; [“7”] 305 =&gt; [“1”] SIP: 20 Evac: 90</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>waptryteam has 12 tweets; 67% are non-cluster</p>
+<hr>
+
+<p>Before home:  After home:  306 =&gt; [“0”] 307 =&gt; [“0”] 308 =&gt; [“0”]
+313 =&gt; [“0”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>waynegblum has 167 tweets; 50% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 2 302 =&gt; [“2”] 303 =&gt; [“2”] 304 =&gt;
+[“2”] 305 =&gt; [“3”] 306 =&gt; [“3”] 307 =&gt; [“3”] 308 =&gt; [“4”] 309
+=&gt; [“2”, “4”] 312 =&gt; [“0”, “5”] 313 =&gt; [“0”] 314 =&gt; [“2”] SIP:
+10 Evac: 80</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>willySOsilly has 30 tweets; 90% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 Unclassifiable</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>wjshin_photo has 70 tweets; 16% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”, “1”] 301 =&gt; [“0”] 303 =&gt;
+[“0”] 304 =&gt; [“0”] 306 =&gt; [“0”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>xiehan has 44 tweets; 43% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  301 =&gt; [“0”] 303 =&gt; [“0”] 304 =&gt; [“0”]
+312 =&gt; [“0”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>yawetse has 147 tweets; 48% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 7 301 =&gt; [“1”] 302 =&gt; [“1”] 304 =&gt;
+[“2”, “3”] 305 =&gt; [“3”] 306 =&gt; [“2”] 308 =&gt; [“4”] 309 =&gt; [“2”,
+“4”] 310 =&gt; [“0”, “5”] 312 =&gt; [“4”] 313 =&gt; [“2”, “4”, “5”] SIP: 20
+Evac: 50</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>yokevin has 189 tweets; 58% are non-cluster</p>
+<hr>
+
+<p>Before home: 1 After home: 8 301 =&gt; [“2”] 302 =&gt; [“1”] 303 =&gt;
+[“1”] 304 =&gt; [“1”] 308 =&gt; [“0”, “1”, “3”] 309 =&gt; [“1”] 310 =&gt;
+[“1”] 311 =&gt; [“1”] 313 =&gt; [“1”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>yourlordjason has 34 tweets; 56% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home:  300 =&gt; [“0”] 301 =&gt; [“0”] 302 =&gt; [“0”]
+303 =&gt; [“0”] 309 =&gt; [“1”] SIP: 70 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>ys_huamani has 81 tweets; 75% are non-cluster</p>
+<hr>
+
+<p>Before home: 3 After home: 1 302 =&gt; [“3”] 310 =&gt; [“3”] 311 =&gt;
+[“3”] 314 =&gt; [“3”] SIP: 64.28571428571428 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>z4three has 55 tweets; 27% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“1”] 301 =&gt; [“0”] 302 =&gt;
+[“0”] 303 =&gt; [“0”] 304 =&gt; [“0”] 307 =&gt; [“0”] 311 =&gt; [“0”] 312
+=&gt; [“0”] SIP: 100 Evac: 20</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>zabackj has 40 tweets; 35% are non-cluster</p>
+<hr>
+
+<p>Before home: 0 After home: 0 300 =&gt; [“0”] 302 =&gt; [“0”] 304 =&gt;
+[“0”] 305 =&gt; [“0”] 306 =&gt; [“0”] 307 =&gt; [“0”] 309 =&gt; [“0”] 313
+=&gt; [“0”] SIP: 78.57142857142857 Evac: 0</p>
+
+<h6 id="label-"><span><a href="#label-">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Found 462 Users. Found 81 <a href="Evacuators_txt.html">Evacuators</a>.
+Found 234 Shelter In Placers. Unclassified: 147.</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
