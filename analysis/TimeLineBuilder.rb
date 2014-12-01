@@ -2,33 +2,56 @@
 # Given a worksheet from Google Drive, this will build a timeline on a per-user basis.
 #
 # What it Does:
-# => Sanitization for multiple Values #TODO
+# => Sanitization for multiple Values
 # => Writes the spreadsheets down to CSV by minute
 #
 
 require 'csv'
 
-#require 'matrix'
-
 class TimeLineBuilder
 
-	attr_reader :user_timeline, :write_directory, :sheet, :coding_scheme, :common_subs
-
-	# The names of the columns and their spreadsheet location
+	#The names of the columns and their spreadsheet location
 	@@columns = {
 		:Sentiment		=> 4,
 		:Preparation  	=> 5, 
 		:Movement 		=> 6,
 		:Environment 	=> 7,
-		:Collective 	=> 8}
+		:Collective 	=> 8	
+	}
 
-	# The array positions for the csv file (not columns)
+	#The array positions for the csv file (not columns)
 	@@csv_array = {
 		:Sentiment	 => 0,
 		:Preparation => 1, 
 		:Movement 	 => 2,
 		:Environment => 3,
-		:Collective  => 4}
+		:Collective  => 4	
+	}
+
+	#Class Variables: Coding Schemes & Common Substitutes
+	@@coding_scheme = ["comedic", "power4life", "evac ordered", "weather", "pass on",
+		"sarcastic", "power4comm", "leaves", "personal", "seeking",
+		"angry", "physical", "arrives", "assessment", "doing what others are doing", 
+		"worried", "food", "@home", "doing what others are doing", "social reporting",
+		"defiant", "water", "hunkering", "coping", "other supplies", "returns home", 
+		"excited", "rationing", "relieved", "transport", "bored", "booze", "ready",
+		"maintaining existing plans", "changing existing plans"]
+
+	@@common_subs = {
+		"pass on information" => "pass on",
+		"passing" => "pass on",
+		"what others are doing" => "doing what others are doing",
+		"seek information" => "seeking",
+		"seek" => "seeking",
+		"change existing plans" => "changing existing plans",
+		"change in existing plans" => "changing existing plans",
+		"scared" => "worried",
+		"evacuates" => "leaves",
+		"return home" => "returns home",
+		"ordered" => "evac ordered"
+	}
+
+	attr_reader :user_timeline, :write_directory, :sheet
 
 	def initialize(args)
 		#Set the instance variable for sheet
@@ -36,14 +59,7 @@ class TimeLineBuilder
 
 		scheme = args[:coding_scheme] || {}
 
-		@coding_scheme = scheme[:coding_scheme] || []
-		@common_subs   = scheme[:common_subs] || {}
-
 		@write_directory = args[:write_directory] || Time.new.to_s
-
-		unless Dir.exists? write_directory
-			Dir.mkdir write_directory
-		end
 
 		#Define an empty timeline hash
 		@user_timeline = {}
@@ -57,10 +73,17 @@ class TimeLineBuilder
 		@@columns
 	end
 
+	def coding_scheme
+		@@coding_scheme
+	end
+
+	def common_subs
+		@@common_subs
+	end
 
 	#Wrapper on Worksheet[] to handle empty cells easier
 	def get_cell(row, column)
-		val = @sheet[row, column]
+		val = sheet[row, column]
 		unless val == ""
 			to_validate = val.split(',').collect{|x| x.strip}
 		else
@@ -74,7 +97,7 @@ class TimeLineBuilder
 					validated << val 
 				else 
 					unless common_subs[val].nil?
-						puts "#{val} => #{common_subs[val]}"
+						#puts "#{val} => #{common_subs[val]}"
 						validated << common_subs[val]
 					else
 						puts "---------------\nERROR: #{val}\n---------------------"
@@ -85,16 +108,14 @@ class TimeLineBuilder
 		else
 			return to_validate
 		end
-
 	end
-
 
 	#Read the entire worksheet
 	def read
 		#Iterate over each row (Starting after headers)
-		(2..(@sheet.num_rows)).each do |row|
+		(2..(sheet.num_rows)).each do |row|
 			row #Set this as a class variable so that we can use it later too
-			time = Time.parse( @sheet[row, 1] )
+			time = Time.parse( sheet[row, 1] )
 
 			#Round the time to the nearest minute for the spreadsheet
 			round_time = time.change(:sec => 0)
@@ -175,6 +196,11 @@ class TimeLineBuilder
 	end
 
 	def timeline_to_csv(args)
+
+		unless Dir.exists? write_directory
+			Dir.mkdir write_directory
+		end
+
 		rows 		= args[:rows] || 17280
 		extension	= args[:extension] || ""
 
@@ -194,7 +220,6 @@ class TimeLineBuilder
 
 			#Create the rows
 			timeline.each do |time|
-
 				row_to_write = [time]
 
 				if user_timeline.has_key? time

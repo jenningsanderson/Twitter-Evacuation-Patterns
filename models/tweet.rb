@@ -14,6 +14,7 @@ class Tweet
   #Extend the MongoMapper EmbeddedDocument
   include MongoMapper::EmbeddedDocument
 
+  #Make the Tweet GeoAware
   include EpicGeo::GeoTweet
 
   #Variables to be saved to Mongo
@@ -23,6 +24,10 @@ class Tweet
   key :handle, 			String
   key :date, 				Time
   key :coordinates, Hash
+
+
+  #For Qualitative Coding
+  key :coding,      Hash
 
   # Given a bson_tweet as returned from Mongo (or parsed via JSON),
   # It creates a (basic) tweet object

@@ -18,6 +18,7 @@ module UserBehavior
 		return storm_cluster
 	end
 
+	#Get a user's tweets from a specific time range
 	def during_storm_tweets(args ={})
 		start_date 	= args[:start_date] || TIMES[:event]
 		end_date   	= args[:end_date]   || TIMES[:two_days]
@@ -25,7 +26,9 @@ module UserBehavior
 		tweets.select{ |tweet| tweet.date > start_date and tweet.date < end_date}
 	end
 
-	# Functions relevant to evacuation behavior
+	#Functions relevant to evacuation behavior
+	#
+	#TODO: Make this less crude
 	module Evacuator
 		def evacuated?
 			during_storm_p = cluster_as_point(during_storm_cluster)
@@ -39,6 +42,8 @@ module UserBehavior
 
 
 	#Functions relevant to users who sheltered in place
+	#
+	#TODO: Make this less crude
 	module ShelterInPlace
 		def sheltered_in_place?
 			during_storm_p = cluster_as_point(during_storm_cluster)

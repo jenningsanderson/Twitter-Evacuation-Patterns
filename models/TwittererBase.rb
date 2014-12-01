@@ -1,11 +1,9 @@
-# Basic Twitterer Model
-#
-# This is the most basic Twitterer.  It strictly relates Users to Tweets
-
 require 'mongo_mapper'
+require 'models/tweet'
 
-require 'models/tweet' #Require the tweet
-
+#=Basic Twitterer Model
+#
+#This is the most basic Twitterer.  It strictly relates Users to Tweets
 class TwittererBase
   
   #Define as mongoid document with many tweets
@@ -36,12 +34,12 @@ class TwittererBase
     nil
   end
 
+  #Helper function 
   def handle
-    if @handle
-      return @handle
-    else
-      return process_handle
+    unless @handle.nil?
+      process_handle
     end
+    @handle
   end
 
   #A very basic handle processing function.  Ideally a user's first handle
@@ -56,18 +54,22 @@ class TwittererBase
     @handle
   end
 
+  #If a user has multiple handles, return just the handle used in their first tweet
   def sanitized_handle
     return tweets.first.handle
   end
 
+  #Returns the number of tweets
   def tweet_count
     tweets.count
   end
 
+  #Add a tweet object to this Twitterer's tweets collection
   def add_tweet(tweet)
     tweets << tweet
   end
 
+  #Set & return a user's tweets to be sorted by the Tweet#created_at function
   def sort_tweets_by_date
     tweets = @tweets.sort_by{|tweet| tweet.created_at}
   end

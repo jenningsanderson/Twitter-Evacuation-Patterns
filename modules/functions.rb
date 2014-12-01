@@ -1,6 +1,6 @@
-# A custom modules function for storing useful functions which can be included when needed
-#
-#
+#=Custom Functions
+# 
+#A custom modules function for storing useful functions which can be included when needed
 #
 #
 module CustomFunctions

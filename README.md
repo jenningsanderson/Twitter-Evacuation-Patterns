@@ -1,31 +1,28 @@
 Evacuation & Migration Prediction through Twitter Analysis
-==============================================
+==========================================================
 
-Jennings Anderson @ [Project EPIC](http://epic.cs.colorado.edu)
+Jennings Anderson, Marina Kogan, Kevin Stowe @ [Project EPIC](http://epic.cs.colorado.edu)
 
-_This is a continuation of a project for GIS3 in Spring 2014 at CU Boulder by Jennings Anderson, Andrew Hardin, Ellie Falletta_
+_This is the continuation of a project first started in GIS3 in Spring 2014 at CU Boulder by Jennings Anderson, Andrew Hardin, Ellie Falletta_
 
 ##Motivation
 Somewhere on order of 1% of tweets are geo-tagged.  What can be learned about a Twitterer's movement behavior during Hurricane Sandy?
 
-##Dependencies
-Ruby Requirements
-````
-gem install georuby
-gem install rgeo-shapefile
-gem install bson
-gem install mongo
-gem install bson_ext
-````
+##Ruby Dependencies
+	gem install georuby
+	gem install rgeo-shapefile
+	gem install bson
+	gem install mongo
+	gem install bson_ext
+
 
 ### Epic-Geo
 Most of the functions developed for the original project have been moved to a separate gem called epic-geo, a generic FileI/O and visualization tool I'm currently writing for all project EPIC GeoHCI related projects.
 
 The best way to stay up to do date with epic-geo is by using the bundler and pulling source from Github with the following line in your _Gemfile_
-````
-gem 'epic-geo', github: 'jenningsanderson/epic-geo'
 
-````
+	gem 'epic-geo', github: 'jenningsanderson/epic-geo'
+
 _Note: Many of the dependencies for epic-geo are listed above, but not necessarily all, I am trying to keep this updated_
 
 ####Mongo Connection
@@ -72,48 +69,3 @@ Requires the ````write_geojson.rb```` script to generate a folder containing val
 
 #####tweet_shape.rb
 Uses the ````georuby```` library to create shapefiles from Tweets.  This functionality is deprecated because creating shapefiles for viewing the data is less convenient than KML or GeoJSON files.
-
-###mongo/
-#####linestring_reduce.js
-Map reduce function to generate the ````usertracks```` collection from the ````edited_tweets```` collection.
-
-
-###extract_scripts/
-#####tracks.rb
-Write two shapefiles from the collection, one of linestrings for each user, representing their path and one of just the the tweets as points.
-
-#####geo_bounded_tracks.rb
-Performs the same task as tracks.rb, but allows for geo-sensitive queries.
-
-#####mongo_extractor.rb
-A very simple Mongo --> Shapefile script for quick visualizations of data.
-
-#####find_users_within_area.rb
-A cleaner, more robust version of geo_bounded_tracks.rb, built for a bounding box of any shape polygon.
-
-###parsers/
-#####extract_geo_json.rb
-Line by line parsing of a text file of JSON tweets delimitated by newlines.  Identifies tweets which are geotagged and writes them to a separate text file of the same format (JSON tweets separated by \n character)
-
-#####get_geo_contextual.rb
-Parses contextual stream text file, extrating geo-tagged tweets and inserting them into a Mongo collection.  The filepaths to the contextual streams are built dynamically based on the username that the script collects.
-
-#####reformat_date.rb
-A small helper function to reformat the string date to an ISOdate so that Mongo recognizes it.  Should be built into import -- otherwise, it's deprecated.  A javascript loop in the Mongo shell is more convenient.
-
-#####user_indiv_path.rb
-Creates a new collection where each document represents a single user and their tweet coordinates are stored as line strings to observe their movement path.
-
-#####user_indiv_tweet.rb
-Creates a new collection where each document represents a single user.  Their tweet coordinates are stored as points.
-
-#####user_node_collection.rb
-(Unfinished) Store a user's tweets in 3 timebins: before, during, after
-
-#####user_track_parser.rb
-(Deprecated) Performs similar function to ````user_indiv_path.rb````
-
-
-###analysis/
-#####Twitter_In_Evac.py
-A python script that uses ArcPy to parse a CSV of before, during, and after locations for a particular user and perform comparisons of these locations to known evacuation zones.  Performs set intersect operations on lists of users to determine who sheltered in place in an evacuation zone.

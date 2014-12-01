@@ -88,6 +88,8 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-add_user_cluster_to_kml">#add_user_cluster_to_kml</a>
+    
     <li ><a href="#method-i-find_after_home">#find_after_home</a>
     
     <li ><a href="#method-i-find_before_home">#find_before_home</a>
@@ -95,8 +97,6 @@
     <li ><a href="#method-i-find_temporal_pattern">#find_temporal_pattern</a>
     
     <li ><a href="#method-i-group_cluster_by_days">#group_cluster_by_days</a>
-    
-    <li ><a href="#method-i-mode">#mode</a>
     
     <li ><a href="#method-i-score_cluster_pattern">#score_cluster_pattern</a>
     
@@ -160,6 +160,60 @@
        <header>
          <h3>Public Instance Methods</h3>
        </header>
+
+    
+      <div id="method-i-add_user_cluster_to_kml" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_user_cluster_to_kml</span><span
+            class="method-args">(user, kml_file)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Lets also write a KML file for visualizing this information</p>
+
+<pre>kml_outfile = KMLAuthor.new(&quot;../exports/#{filename}.kml&quot;)
+kml_outfile.write_header(&quot;KML Output of Specific Users&quot;)
+generate_random_styles(kml_outfile.openfile, 30)
+write_3_bin_styles(kml_outfile.openfile)</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="add_user_cluster_to_kml-source">
+            <pre><span class="ruby-comment"># File runtimes/movement_analysis.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">add_user_cluster_to_kml</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">kml_file</span>)
+
+        <span class="ruby-identifier">user_folder</span> = {<span class="ruby-value">:name=</span><span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">handle</span>, <span class="ruby-value">:folders=</span><span class="ruby-operator">&gt;</span>[], <span class="ruby-value">:features=</span><span class="ruby-operator">&gt;</span>[]}
+
+        <span class="ruby-identifier">unclassified</span> = {<span class="ruby-value">:name=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;Unclassified&quot;</span>, <span class="ruby-value">:features=</span><span class="ruby-operator">&gt;</span>[]}
+        <span class="ruby-identifier">user</span>.<span class="ruby-identifier">unclassified_tweets</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">unclassified</span>[<span class="ruby-value">:features</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">as_epic_kml</span>(<span class="ruby-identifier">style</span>=<span class="ruby-string">&quot;after&quot;</span>)
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">user_folder</span>[<span class="ruby-value">:folders</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">unclassified</span>
+
+        <span class="ruby-identifier">user</span>.<span class="ruby-identifier">clusters</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">this_folder</span> = {<span class="ruby-value">:name=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">k</span>, <span class="ruby-value">:features=</span><span class="ruby-operator">&gt;</span>[]}
+                <span class="ruby-identifier">user</span>.<span class="ruby-identifier">clusters</span>[<span class="ruby-identifier">k</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">this_folder</span>[<span class="ruby-value">:features</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">as_epic_kml</span>(<span class="ruby-identifier">style</span>=<span class="ruby-node">&quot;r_style_#{index+1}&quot;</span>)
+                <span class="ruby-keyword">end</span>
+                <span class="ruby-identifier">user_folder</span>[<span class="ruby-value">:folders</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">this_folder</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">kml_file</span>.<span class="ruby-identifier">write_folder</span>(<span class="ruby-identifier">user_folder</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
 
     
       <div id="method-i-find_after_home" class="method-detail ">
@@ -373,44 +427,6 @@ cop-out value.</p>
             <pre><span class="ruby-comment"># File processing/time_processing.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">group_cluster_by_days</span>(<span class="ruby-identifier">tweets</span>)
         <span class="ruby-identifier">days</span> = <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">group_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tweet</span>[<span class="ruby-string">&quot;date&quot;</span>].<span class="ruby-identifier">yday</span>}.<span class="ruby-identifier">sort_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">k</span>}
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-mode" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">mode</span><span
-            class="method-args">(array)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="mode-source">
-            <pre><span class="ruby-comment"># File processing/time_processing.rb, line 194</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">mode</span>(<span class="ruby-identifier">array</span>)
-        <span class="ruby-keyword">if</span> <span class="ruby-identifier">array</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">array</span>.<span class="ruby-identifier">nil?</span>
-                <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
-        <span class="ruby-keyword">else</span>
-                <span class="ruby-comment">#http://stackoverflow.com/questions/412169/ruby-how-to-find-item-in-array-which-has-the-most-occurrences</span>
-                <span class="ruby-identifier">array</span>.<span class="ruby-identifier">group_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>}.<span class="ruby-identifier">max</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">y</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">length</span>}[<span class="ruby-value">0</span>]
-        <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

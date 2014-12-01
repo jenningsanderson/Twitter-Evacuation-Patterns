@@ -1,9 +1,4 @@
 #
-# Do I still need to use the require if I'm using the bundler?
-#
-#
-# KML Export
-#
 # Write a KML file of Users and their tweets from the Twitterers collection
 #
 

@@ -235,7 +235,7 @@ href="TwittererBase.html">TwittererBase</a>, this</p>
 
           
           <div class="method-source-code" id="base_cluster_point-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 52</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">base_cluster_point</span>
         <span class="ruby-identifier">p</span> = <span class="ruby-identifier">cluster_locations</span>[<span class="ruby-identifier">base_cluster</span>.<span class="ruby-identifier">to_s</span>]
         <span class="ruby-keyword">unless</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">nil?</span>
@@ -273,7 +273,7 @@ href="TwittererBase.html">TwittererBase</a>, this</p>
 
           
           <div class="method-source-code" id="build_evac_triangle-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 284</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 282</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">build_evac_triangle</span>
         <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@before</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@during</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@after</span>.<span class="ruby-identifier">nil?</span>
                 <span class="ruby-identifier">before</span> = <span class="ruby-identifier">@@tweet_factory</span>.<span class="ruby-identifier">point</span>(<span class="ruby-ivar">@before</span>[<span class="ruby-value">0</span>], <span class="ruby-ivar">@before</span>[<span class="ruby-value">1</span>])
@@ -323,7 +323,7 @@ href="TwittererBase.html">TwittererBase</a>, this</p>
 
           
           <div class="method-source-code" id="cluster_as_point-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 61</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cluster_as_point</span>(<span class="ruby-identifier">cluster</span>)
         <span class="ruby-identifier">p</span> = <span class="ruby-identifier">cluster_locations</span>[<span class="ruby-identifier">cluster</span>.<span class="ruby-identifier">to_s</span>]
         <span class="ruby-keyword">unless</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">nil?</span>
@@ -361,7 +361,7 @@ href="TwittererBase.html">TwittererBase</a>, this</p>
 
           
           <div class="method-source-code" id="clusters-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 46</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clusters</span>
         <span class="ruby-identifier">tweet_clusters</span> = <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">group_by</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">cluster</span> }
         <span class="ruby-identifier">tweet_clusters</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">-1</span>)
@@ -400,7 +400,7 @@ href="TwittererBase.html">TwittererBase</a>, this</p>
 
           
           <div class="method-source-code" id="get_weighted_poi_from_clusters-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 245</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 243</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_weighted_poi_from_clusters</span>(<span class="ruby-identifier">tweet_clusters</span>)
 
         <span class="ruby-comment">#A metric for confidence</span>
@@ -457,7 +457,7 @@ href="TwittererBase.html">TwittererBase</a>, this</p>
 
           
           <div class="method-source-code" id="movement_analysis-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 155</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 153</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">movement_analysis</span>
 
         <span class="ruby-comment">#There are now two scores, the winner takes all.</span>
@@ -569,7 +569,7 @@ href="TwittererBase.html">TwittererBase</a>, this</p>
 
           
           <div class="method-source-code" id="prev_clustering_stuff-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 134</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 132</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">prev_clustering_stuff</span>
 
         <span class="ruby-comment">#Calculate T_scores</span>
@@ -615,7 +615,7 @@ Locations ——————-#</p>
 
           
           <div class="method-source-code" id="process_tweets_to_clusters-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 93</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 91</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">process_tweets_to_clusters</span>
 
         <span class="ruby-comment">#Create a new instance of the DBScanner, set the parameters.</span>
@@ -684,7 +684,7 @@ Locations ——————-#</p>
 
           
           <div class="method-source-code" id="set_poi-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 277</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 275</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_poi</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">coords</span>)
         <span class="ruby-keyword">unless</span> <span class="ruby-identifier">coords</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">nil?</span>
                 <span class="ruby-identifier">instance_eval</span> <span class="ruby-node">&quot;@#{type} = #{coords}&quot;</span>
@@ -719,7 +719,7 @@ Locations ——————-#</p>
 
           
           <div class="method-source-code" id="split_tweets_into_time_bins-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 306</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 304</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">split_tweets_into_time_bins</span>(<span class="ruby-identifier">time_bins</span>)
         <span class="ruby-identifier">binned_tweets</span> = []
 
@@ -760,7 +760,7 @@ Locations ——————-#</p>
 
           
           <div class="method-source-code" id="two_days_tweets-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 74</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">two_days_tweets</span>
         <span class="ruby-keyword">return</span> <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">date</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">TIMES</span>[<span class="ruby-value">:event</span>] <span class="ruby-keyword">and</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">date</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">TIMES</span>[<span class="ruby-value">:two_days</span>]}
 <span class="ruby-keyword">end</span></pre>
@@ -793,7 +793,7 @@ Locations ——————-#</p>
 
           
           <div class="method-source-code" id="week_one_linestring-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 78</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">week_one_linestring</span>
         <span class="ruby-identifier">points</span> = []
         <span class="ruby-identifier">week_one_tweets</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
@@ -832,7 +832,7 @@ Locations ——————-#</p>
 
           
           <div class="method-source-code" id="week_one_tweets-source">
-            <pre><span class="ruby-comment"># File models/twitterer.rb, line 70</span>
+            <pre><span class="ruby-comment"># File models/twitterer.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">week_one_tweets</span>
         <span class="ruby-keyword">return</span> <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">date</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">TIMES</span>[<span class="ruby-value">:event</span>] <span class="ruby-keyword">and</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">date</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">TIMES</span>[<span class="ruby-value">:one_week</span>]}
 <span class="ruby-keyword">end</span></pre>

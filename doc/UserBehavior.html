@@ -164,13 +164,13 @@
 
         <div class="method-description">
           
-          
+          <p>Get a user&#39;s tweets from a specific time range</p>
           
           
 
           
           <div class="method-source-code" id="during_storm_tweets-source">
-            <pre><span class="ruby-comment"># File modules/user_behavior.rb, line 21</span>
+            <pre><span class="ruby-comment"># File modules/user_behavior.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">during_storm_tweets</span>(<span class="ruby-identifier">args</span> ={})
         <span class="ruby-identifier">start_date</span>    = <span class="ruby-identifier">args</span>[<span class="ruby-value">:start_date</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">TIMES</span>[<span class="ruby-value">:event</span>]
         <span class="ruby-identifier">end_date</span>      = <span class="ruby-identifier">args</span>[<span class="ruby-value">:end_date</span>]   <span class="ruby-operator">||</span> <span class="ruby-constant">TIMES</span>[<span class="ruby-value">:two_days</span>]
