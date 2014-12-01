@@ -113,6 +113,11 @@
 
   <section class="description">
     
+<h1 id="class-TwittererBase-label-Basic+Twitterer+Model">Basic <a href="Twitterer.html">Twitterer</a> Model<span><a href="#class-TwittererBase-label-Basic+Twitterer+Model">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
+
+<p>This is the most basic <a href="Twitterer.html">Twitterer</a>.  It strictly
+relates Users to Tweets</p>
+
   </section>
 
   
@@ -174,7 +179,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File models/TwittererBase.rb, line 24</span>
+            <pre><span class="ruby-comment"># File models/TwittererBase.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">args</span>)
   <span class="ruby-ivar">@id_str</span>          = <span class="ruby-identifier">args</span>[<span class="ruby-value">:id_str</span>]
   <span class="ruby-ivar">@account_created</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:account_created</span>]
@@ -216,13 +221,13 @@
 
         <div class="method-description">
           
-          
+          <p>Add a tweet object to this Twitterer&#39;s tweets collection</p>
           
           
 
           
           <div class="method-source-code" id="add_tweet-source">
-            <pre><span class="ruby-comment"># File models/TwittererBase.rb, line 67</span>
+            <pre><span class="ruby-comment"># File models/TwittererBase.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_tweet</span>(<span class="ruby-identifier">tweet</span>)
   <span class="ruby-identifier">tweets</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">tweet</span>
 <span class="ruby-keyword">end</span></pre>
@@ -249,19 +254,18 @@
 
         <div class="method-description">
           
-          
+          <p>Helper function</p>
           
           
 
           
           <div class="method-source-code" id="handle-source">
-            <pre><span class="ruby-comment"># File models/TwittererBase.rb, line 39</span>
+            <pre><span class="ruby-comment"># File models/TwittererBase.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">handle</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@handle</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-ivar">@handle</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">process_handle</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@handle</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">process_handle</span>
   <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@handle</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -292,7 +296,7 @@
 
           
           <div class="method-source-code" id="post_initialize-source">
-            <pre><span class="ruby-comment"># File models/TwittererBase.rb, line 35</span>
+            <pre><span class="ruby-comment"># File models/TwittererBase.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">post_initialize</span>(<span class="ruby-identifier">args</span>)
   <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
@@ -328,7 +332,7 @@ concatenate the two handles and call it good.</pre>
 
           
           <div class="method-source-code" id="process_handle-source">
-            <pre><span class="ruby-comment"># File models/TwittererBase.rb, line 50</span>
+            <pre><span class="ruby-comment"># File models/TwittererBase.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">process_handle</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">handle</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">handle</span>
     <span class="ruby-ivar">@handle</span> = <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">handle</span>
@@ -360,13 +364,14 @@ concatenate the two handles and call it good.</pre>
 
         <div class="method-description">
           
-          
+          <p>If a user has multiple handles, return just the handle used in their first
+tweet</p>
           
           
 
           
           <div class="method-source-code" id="sanitized_handle-source">
-            <pre><span class="ruby-comment"># File models/TwittererBase.rb, line 59</span>
+            <pre><span class="ruby-comment"># File models/TwittererBase.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">sanitized_handle</span>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">handle</span>
 <span class="ruby-keyword">end</span></pre>
@@ -393,13 +398,14 @@ concatenate the two handles and call it good.</pre>
 
         <div class="method-description">
           
-          
+          <p>Set &amp; return a user&#39;s tweets to be sorted by the Tweet#created_at
+function</p>
           
           
 
           
           <div class="method-source-code" id="sort_tweets_by_date-source">
-            <pre><span class="ruby-comment"># File models/TwittererBase.rb, line 71</span>
+            <pre><span class="ruby-comment"># File models/TwittererBase.rb, line 73</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">sort_tweets_by_date</span>
   <span class="ruby-identifier">tweets</span> = <span class="ruby-ivar">@tweets</span>.<span class="ruby-identifier">sort_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">created_at</span>}
 <span class="ruby-keyword">end</span></pre>
@@ -426,7 +432,7 @@ concatenate the two handles and call it good.</pre>
 
         <div class="method-description">
           
-          
+          <p>Returns the number of tweets</p>
           
           
 

@@ -83,6 +83,8 @@
     
 <p>Functions relevant to users who sheltered in place</p>
 
+<p>TODO: Make this less crude</p>
+
   </section>
 
   
@@ -123,7 +125,7 @@
 
           
           <div class="method-source-code" id="sheltered_in_place-3F-source">
-            <pre><span class="ruby-comment"># File modules/user_behavior.rb, line 43</span>
+            <pre><span class="ruby-comment"># File modules/user_behavior.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">sheltered_in_place?</span>
         <span class="ruby-identifier">during_storm_p</span> = <span class="ruby-identifier">cluster_as_point</span>(<span class="ruby-identifier">during_storm_cluster</span>)
         <span class="ruby-keyword">unless</span> <span class="ruby-identifier">during_storm_p</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">base_cluster_point</span>.<span class="ruby-identifier">nil?</span>

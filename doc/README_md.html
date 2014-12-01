@@ -60,7 +60,7 @@
   <ul class="link-list" role="directory">
     <li><a href="#label-Evacuation+%26+Migration+Prediction+through+Twitter+Analysis">Evacuation &amp; Migration Prediction through Twitter Analysis</a>
     <li><a href="#label-Motivation">Motivation</a>
-    <li><a href="#label-Dependencies">Dependencies</a>
+    <li><a href="#label-Ruby+Dependencies">Ruby Dependencies</a>
     <li><a href="#label-Epic-Geo">Epic-Geo</a>
     <li><a href="#label-Mongo+Connection">Mongo Connection</a>
     <li><a href="#label-Project+Conventions">Project Conventions</a>
@@ -72,23 +72,6 @@
     <li><a href="#label-write_geojson.rb">write_geojson.rb</a>
     <li><a href="#label-write_user_tweets_geojson.rb">write_user_tweets_geojson.rb</a>
     <li><a href="#label-tweet_shape.rb">tweet_shape.rb</a>
-    <li><a href="#label-mongo%2F">mongo/</a>
-    <li><a href="#label-linestring_reduce.js">linestring_reduce.js</a>
-    <li><a href="#label-extract_scripts%2F">extract_scripts/</a>
-    <li><a href="#label-tracks.rb">tracks.rb</a>
-    <li><a href="#label-geo_bounded_tracks.rb">geo_bounded_tracks.rb</a>
-    <li><a href="#label-mongo_extractor.rb">mongo_extractor.rb</a>
-    <li><a href="#label-find_users_within_area.rb">find_users_within_area.rb</a>
-    <li><a href="#label-parsers%2F">parsers/</a>
-    <li><a href="#label-extract_geo_json.rb">extract_geo_json.rb</a>
-    <li><a href="#label-get_geo_contextual.rb">get_geo_contextual.rb</a>
-    <li><a href="#label-reformat_date.rb">reformat_date.rb</a>
-    <li><a href="#label-user_indiv_path.rb">user_indiv_path.rb</a>
-    <li><a href="#label-user_indiv_tweet.rb">user_indiv_tweet.rb</a>
-    <li><a href="#label-user_node_collection.rb">user_node_collection.rb</a>
-    <li><a href="#label-user_track_parser.rb">user_track_parser.rb</a>
-    <li><a href="#label-analysis%2F">analysis/</a>
-    <li><a href="#label-Twitter_In_Evac.py">Twitter_In_Evac.py</a>
   </ul>
 </div>
 
@@ -100,18 +83,6 @@
   <ul class="link-list">
   
     <li><a href="./README_md.html">README</a>
-  
-    <li><a href="./runtimes/Evacuators_txt.html">Evacuators</a>
-  
-    <li><a href="./runtimes/Shelter-In-Place_txt.html">Shelter-In-Place</a>
-  
-    <li><a href="./runtimes/ZoneA_txt.html">ZoneA</a>
-  
-    <li><a href="./runtimes/ZoneB_txt.html">ZoneB</a>
-  
-    <li><a href="./runtimes/ZoneC_txt.html">ZoneC</a>
-  
-    <li><a href="./runtimes/in_bounding_box_txt.html">in_bounding_box</a>
   
     <li><a href="./wrangling_scripts/shelter_in_place_update.html">shelter_in_place_update</a>
   
@@ -125,20 +96,24 @@
 
 <h1 id="label-Evacuation+%26+Migration+Prediction+through+Twitter+Analysis">Evacuation &amp; Migration Prediction through Twitter Analysis<span><a href="#label-Evacuation+%26+Migration+Prediction+through+Twitter+Analysis">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
 
-<p>Jennings Anderson @ <a href="http://epic.cs.colorado.edu">Project EPIC</a></p>
+<p>Jennings Anderson, Marina Kogan, Kevin Stowe @ <a
+href="http://epic.cs.colorado.edu">Project EPIC</a></p>
 
-<p><em>This is a continuation of a project for GIS3 in Spring 2014 at CU
-Boulder by Jennings Anderson, Andrew Hardin, Ellie Falletta</em></p>
+<p><em>This is the continuation of a project first started in GIS3 in Spring
+2014 at CU Boulder by Jennings Anderson, Andrew Hardin, Ellie Falletta</em></p>
 
 <h2 id="label-Motivation">Motivation<span><a href="#label-Motivation">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>Somewhere on order of 1% of tweets are geo-tagged. What can be learned
 about a Twitterer&#39;s movement behavior during Hurricane Sandy?</p>
 
-<h2 id="label-Dependencies">Dependencies<span><a href="#label-Dependencies">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2 id="label-Ruby+Dependencies">Ruby Dependencies<span><a href="#label-Ruby+Dependencies">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
-<p>Ruby Requirements <code> gem install georuby gem install rgeo-shapefile gem
-install bson gem install mongo gem install bson_ext </code></p>
+<pre>    gem install georuby
+    gem install rgeo-shapefile
+    gem install bson
+    gem install mongo
+    gem install bson_ext</pre>
 
 <h3 id="label-Epic-Geo">Epic-Geo<span><a href="#label-Epic-Geo">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
@@ -148,11 +123,12 @@ I&#39;m currently writing for all project EPIC GeoHCI related projects.</p>
 
 <p>The best way to stay up to do date with epic-geo is by using the bundler
 and pulling source from Github with the following line in your
-<em>Gemfile</em> ““ gem &#39;epic-geo&#39;, github:
-&#39;jenningsanderson/epic-geo&#39;</p>
+<em>Gemfile</em></p>
 
-<p>““ <em>Note: Many of the dependencies for epic-geo are listed above, but
-not necessarily all, I am trying to keep this updated</em></p>
+<pre>    gem &#39;epic-geo&#39;, github: &#39;jenningsanderson/epic-geo&#39;</pre>
+
+<p><em>Note: Many of the dependencies for epic-geo are listed above, but not
+necessarily all, I am trying to keep this updated</em></p>
 
 <h4 id="label-Mongo+Connection">Mongo Connection<span><a href="#label-Mongo+Connection">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
 
@@ -233,83 +209,6 @@ containing valid geojson objects for each user&#39;s tweets.</p>
 <p>Uses the <code>georuby</code> library to create shapefiles from Tweets.
 This functionality is deprecated because creating shapefiles for viewing
 the data is less convenient than KML or GeoJSON files.</p>
-
-<h3 id="label-mongo%2F">mongo/<span><a href="#label-mongo%2F">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
-
-<h5 id="label-linestring_reduce.js">linestring_reduce.js<span><a href="#label-linestring_reduce.js">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
-
-<p>Map reduce function to generate the <code>usertracks</code> collection from
-the <code>edited_tweets</code> collection.</p>
-
-<h3 id="label-extract_scripts%2F">extract_scripts/<span><a href="#label-extract_scripts%2F">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
-
-<h5 id="label-tracks.rb">tracks.rb<span><a href="#label-tracks.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
-
-<p>Write two shapefiles from the collection, one of linestrings for each user,
-representing their path and one of just the the tweets as points.</p>
-
-<h5 id="label-geo_bounded_tracks.rb">geo_bounded_tracks.rb<span><a href="#label-geo_bounded_tracks.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
-
-<p>Performs the same task as tracks.rb, but allows for geo-sensitive queries.</p>
-
-<h5 id="label-mongo_extractor.rb">mongo_extractor.rb<span><a href="#label-mongo_extractor.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
-
-<p>A very simple Mongo –&gt; Shapefile script for quick visualizations of
-data.</p>
-
-<h5 id="label-find_users_within_area.rb">find_users_within_area.rb<span><a href="#label-find_users_within_area.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
-
-<p>A cleaner, more robust version of geo_bounded_tracks.rb, built for a
-bounding box of any shape polygon.</p>
-
-<h3 id="label-parsers%2F">parsers/<span><a href="#label-parsers%2F">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
-
-<h5 id="label-extract_geo_json.rb">extract_geo_json.rb<span><a href="#label-extract_geo_json.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
-
-<p>Line by line parsing of a text file of JSON tweets delimitated by newlines.
-Identifies tweets which are geotagged and writes them to a separate text
-file of the same format (JSON tweets separated by n character)</p>
-
-<h5 id="label-get_geo_contextual.rb">get_geo_contextual.rb<span><a href="#label-get_geo_contextual.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
-
-<p>Parses contextual stream text file, extrating geo-tagged tweets and
-inserting them into a Mongo collection. The filepaths to the contextual
-streams are built dynamically based on the username that the script
-collects.</p>
-
-<h5 id="label-reformat_date.rb">reformat_date.rb<span><a href="#label-reformat_date.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
-
-<p>A small helper function to reformat the string date to an ISOdate so that
-Mongo recognizes it. Should be built into import – otherwise, it&#39;s
-deprecated. A javascript loop in the Mongo shell is more convenient.</p>
-
-<h5 id="label-user_indiv_path.rb">user_indiv_path.rb<span><a href="#label-user_indiv_path.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
-
-<p>Creates a new collection where each document represents a single user and
-their tweet coordinates are stored as line strings to observe their
-movement path.</p>
-
-<h5 id="label-user_indiv_tweet.rb">user_indiv_tweet.rb<span><a href="#label-user_indiv_tweet.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
-
-<p>Creates a new collection where each document represents a single user.
-Their tweet coordinates are stored as points.</p>
-
-<h5 id="label-user_node_collection.rb">user_node_collection.rb<span><a href="#label-user_node_collection.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
-
-<p>(Unfinished) Store a user&#39;s tweets in 3 timebins: before, during, after</p>
-
-<h5 id="label-user_track_parser.rb">user_track_parser.rb<span><a href="#label-user_track_parser.rb">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
-
-<p>(Deprecated) Performs similar function to <code>user_indiv_path.rb</code></p>
-
-<h3 id="label-analysis%2F">analysis/<span><a href="#label-analysis%2F">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
-
-<h5 id="label-Twitter_In_Evac.py">Twitter_In_Evac.py<span><a href="#label-Twitter_In_Evac.py">&para;</a> <a href="#documentation">&uarr;</a></span></h5>
-
-<p>A python script that uses ArcPy to parse a CSV of before, during, and after
-locations for a particular user and perform comparisons of these locations
-to known evacuation zones. Performs set intersect operations on lists of
-users to determine who sheltered in place in an evacuation zone.</p>
 </main>
 
 

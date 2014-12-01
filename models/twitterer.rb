@@ -40,8 +40,6 @@ class Twitterer < TwittererBase
 
 	key :base_cluster_risk,			Integer
 
-
-
 	#Helper functions
 	def clusters
 		tweet_clusters = tweets.group_by{ |tweet| tweet.cluster }

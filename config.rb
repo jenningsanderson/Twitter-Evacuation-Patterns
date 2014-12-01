@@ -42,5 +42,5 @@ RISK_LEVELS = {
 }
 
 #Connect to the database
-MongoMapper.connection = Mongo::Connection.new('epic-analytics.cs.colorado.edu')
+MongoMapper.connection = Mongo::Connection.new#('epic-analytics.cs.colorado.edu')
 MongoMapper.database = 'sandygeo2'

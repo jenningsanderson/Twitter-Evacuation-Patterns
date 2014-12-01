@@ -52,18 +52,18 @@ The O tweets, however, have a temporal spread of 5, meaning that the 9 tweets in
 
 Each cluster then gets a normalized ```t_score```, which represents the temporal spread.  Here is an extreme example for a particular user:
 
-	Cluster: 0 has 967 tweets with T_Score of 8.555335374493764e-06
-	Cluster: 4 has 56 tweets with T_Score of 0.00031887755102040814
-	Cluster: 3 has 49 tweets with T_Score of 0.001665972511453561
-	Cluster: 8 has 20 tweets with T_Score of 0.0025
-	Cluster: 2 has 15 tweets with T_Score of 0.0044444444444444444
-	Cluster: 11 has 9 tweets with T_Score of 0.012345679012345678
-	Cluster: 9 has 9 tweets with T_Score of 0.012345679012345678
-	Cluster: 7 has 6 tweets with T_Score of 0.027777777777777776
-	Cluster: 5 has 4 tweets with T_Score of 0.0625
-	Cluster: 1 has 4 tweets with T_Score of 0.0625
-	Cluster: 10 has 3 tweets with T_Score of 0.1111111111111111
-	Cluster: 6 has 3 tweets with T_Score of 0.1111111111111111
+	Cluster: 0  has 967 tweets with T_Score of 8.555335374493764e-06
+	Cluster: 4  has 56  tweets with T_Score of 0.00031887755102040814
+	Cluster: 3  has 49  tweets with T_Score of 0.001665972511453561
+	Cluster: 8  has 20  tweets with T_Score of 0.0025
+	Cluster: 2  has 15  tweets with T_Score of 0.0044444444444444444
+	Cluster: 11 has 9   tweets with T_Score of 0.012345679012345678
+	Cluster: 9  has 9   tweets with T_Score of 0.012345679012345678
+	Cluster: 7  has 6   tweets with T_Score of 0.027777777777777776
+	Cluster: 5  has 4   tweets with T_Score of 0.0625
+	Cluster: 1  has 4   tweets with T_Score of 0.0625
+	Cluster: 10 has 3   tweets with T_Score of 0.1111111111111111
+	Cluster: 6  has 3   tweets with T_Score of 0.1111111111111111
 
 Cluster 0 is the obvious choice for a **home location** in this example and clusters 3 and 4 are very interesting as well.  In the event a user tweeted from multiple clusters in a day, the cluster with the lowest ```t_score``` will be favored as the dominant location for that day.  In searching for an evacuation, finding multiple days during the storm where this user did not tweet from location 0 would be a high indicator.
 
@@ -71,5 +71,5 @@ Cluster 0 is the obvious choice for a **home location** in this example and clus
 ###Before & After Home (Shelter) Locations
 A user's ```before_home``` shelter location is determined by the most tweeted from location with the lowest ```t_score``` before October 28 (the day before landfall).  Similarly, the ```after_home``` location is determined by the most tweeted from location after November 8.
 
-Here a user's before home & their most likely during the storm shelter location:
+Here are a user's before home & their most likely during the storm shelter location:
 <script src="https://gist.github.com/jenningsanderson/353dcb5ebfd568dd1916.js"></script>
