@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class TimeLineBuilder - RDoc Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-columns">#columns</a>
+    
+    <li ><a href="#method-i-csv_array">#csv_array</a>
+    
+    <li ><a href="#method-i-get_cell">#get_cell</a>
+    
+    <li ><a href="#method-i-normalize_distances">#normalize_distances</a>
+    
+    <li ><a href="#method-i-read">#read</a>
+    
+    <li ><a href="#method-i-timeline_to_csv">#timeline_to_csv</a>
+    
+    <li ><a href="#method-i-vals_to_csv_array">#vals_to_csv_array</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-TimeLineBuilder">
+  <h1 id="class-TimeLineBuilder" class="class">
+    class TimeLineBuilder
+  </h1>
+
+  <section class="description">
+    
+<p>require &#39;matrix&#39;</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-coding_scheme" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">coding_scheme</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-common_subs" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">common_subs</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-sheet" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">sheet</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-user_timeline" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">user_timeline</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-write_directory" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">write_directory</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File analysis/TimeLineBuilder.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">args</span>)
+        <span class="ruby-comment">#Set the instance variable for sheet</span>
+        <span class="ruby-ivar">@sheet</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:worksheet</span>]
+
+        <span class="ruby-identifier">scheme</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:coding_scheme</span>] <span class="ruby-operator">||</span> {}
+
+        <span class="ruby-ivar">@coding_scheme</span> = <span class="ruby-identifier">scheme</span>[<span class="ruby-value">:coding_scheme</span>] <span class="ruby-operator">||</span> []
+        <span class="ruby-ivar">@common_subs</span>   = <span class="ruby-identifier">scheme</span>[<span class="ruby-value">:common_subs</span>] <span class="ruby-operator">||</span> {}
+
+        <span class="ruby-ivar">@write_directory</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:write_directory</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">to_s</span>
+
+        <span class="ruby-keyword">unless</span> <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">exists?</span> <span class="ruby-identifier">write_directory</span>
+                <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span> <span class="ruby-identifier">write_directory</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-comment">#Define an empty timeline hash</span>
+        <span class="ruby-ivar">@user_timeline</span> = {}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-columns" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">columns</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="columns-source">
+            <pre><span class="ruby-comment"># File analysis/TimeLineBuilder.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">columns</span>
+        <span class="ruby-identifier">@@columns</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-csv_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">csv_array</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="csv_array-source">
+            <pre><span class="ruby-comment"># File analysis/TimeLineBuilder.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">csv_array</span>
+        <span class="ruby-identifier">@@csv_array</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_cell" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_cell</span><span
+            class="method-args">(row, column)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Wrapper on Worksheet[] to handle empty cells easier</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_cell-source">
+            <pre><span class="ruby-comment"># File analysis/TimeLineBuilder.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_cell</span>(<span class="ruby-identifier">row</span>, <span class="ruby-identifier">column</span>)
+        <span class="ruby-identifier">val</span> = <span class="ruby-ivar">@sheet</span>[<span class="ruby-identifier">row</span>, <span class="ruby-identifier">column</span>]
+        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;&quot;</span>
+                <span class="ruby-identifier">to_validate</span> = <span class="ruby-identifier">val</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;,&#39;</span>).<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">strip</span>}
+        <span class="ruby-keyword">else</span>
+                <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">coding_scheme</span>.<span class="ruby-identifier">empty?</span>
+                <span class="ruby-identifier">validated</span> = []
+                <span class="ruby-identifier">to_validate</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+                        <span class="ruby-keyword">if</span> <span class="ruby-identifier">coding_scheme</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">val</span> 
+                                <span class="ruby-identifier">validated</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">val</span> 
+                        <span class="ruby-keyword">else</span> 
+                                <span class="ruby-keyword">unless</span> <span class="ruby-identifier">common_subs</span>[<span class="ruby-identifier">val</span>].<span class="ruby-identifier">nil?</span>
+                                        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{val} =&gt; #{common_subs[val]}&quot;</span>
+                                        <span class="ruby-identifier">validated</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">common_subs</span>[<span class="ruby-identifier">val</span>]
+                                <span class="ruby-keyword">else</span>
+                                        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;---------------\nERROR: #{val}\n---------------------&quot;</span>
+                                <span class="ruby-keyword">end</span>
+                        <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">return</span> <span class="ruby-identifier">validated</span>
+        <span class="ruby-keyword">else</span>
+                <span class="ruby-keyword">return</span> <span class="ruby-identifier">to_validate</span>
+        <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-normalize_distances" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">normalize_distances</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterate through cluster data and normalize based on distance</p>
+          
+          
+
+          
+          <div class="method-source-code" id="normalize_distances-source">
+            <pre><span class="ruby-comment"># File analysis/TimeLineBuilder.rb, line 129</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">normalize_distances</span>
+        <span class="ruby-identifier">all_clusters</span> = <span class="ruby-ivar">@user_timeline</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>[<span class="ruby-value">:cluster</span>]}.<span class="ruby-identifier">compact</span>
+
+        <span class="ruby-identifier">all_clusters</span>.<span class="ruby-identifier">map!</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">uniq</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">to_i</span>}
+
+        <span class="ruby-identifier">base_cluster</span> = <span class="ruby-identifier">mode</span>(<span class="ruby-identifier">all_clusters</span>)
+
+        <span class="ruby-identifier">all_clusters</span>.<span class="ruby-identifier">uniq!</span>
+
+        <span class="ruby-identifier">distances_from_mode</span> = {}
+
+        <span class="ruby-identifier">tweeter</span> = <span class="ruby-constant">Twitterer</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:handle</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@sheet</span>.<span class="ruby-identifier">title</span>).<span class="ruby-identifier">first</span>
+        <span class="ruby-identifier">cluster_locations</span> = <span class="ruby-identifier">tweeter</span>.<span class="ruby-identifier">cluster_locations</span>
+
+        <span class="ruby-identifier">all_clusters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cluster</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">distances_from_mode</span>[<span class="ruby-identifier">cluster</span>] = <span class="ruby-identifier">get_distance_from_point_arrays</span>(<span class="ruby-identifier">cluster_locations</span>[<span class="ruby-identifier">base_cluster</span>.<span class="ruby-identifier">to_s</span>], <span class="ruby-identifier">cluster_locations</span>[<span class="ruby-identifier">cluster</span>.<span class="ruby-identifier">to_s</span>])
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">max</span> = <span class="ruby-identifier">distances_from_mode</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">max</span>
+
+        <span class="ruby-identifier">distances_from_mode</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">d</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">distances_from_mode</span>[<span class="ruby-identifier">c</span>] = ( <span class="ruby-value">20</span> <span class="ruby-operator">-</span> ( (<span class="ruby-identifier">d</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">max</span>) <span class="ruby-operator">*</span> <span class="ruby-value">20</span>).<span class="ruby-identifier">to_i</span> )
+        <span class="ruby-keyword">end</span>
+        
+        <span class="ruby-comment">#Now iterate over all of the values and reset!</span>
+
+        <span class="ruby-ivar">@user_timeline</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>[<span class="ruby-value">:cluster</span>] <span class="ruby-keyword">and</span> <span class="ruby-operator">!</span><span class="ruby-identifier">v</span>[<span class="ruby-value">:cluster</span>].<span class="ruby-identifier">nil?</span>
+                        <span class="ruby-identifier">val</span> = <span class="ruby-identifier">v</span>[<span class="ruby-value">:cluster</span>].<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_i</span>}.<span class="ruby-identifier">min</span>
+                        <span class="ruby-identifier">v</span>[<span class="ruby-value">:cluster</span>] = <span class="ruby-identifier">distances_from_mode</span>[<span class="ruby-identifier">val</span>]
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-read" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">read</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Read the entire worksheet</p>
+          
+          
+
+          
+          <div class="method-source-code" id="read-source">
+            <pre><span class="ruby-comment"># File analysis/TimeLineBuilder.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">read</span>
+        <span class="ruby-comment">#Iterate over each row (Starting after headers)</span>
+        (<span class="ruby-value">2</span><span class="ruby-operator">..</span>(<span class="ruby-ivar">@sheet</span>.<span class="ruby-identifier">num_rows</span>)).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">row</span> <span class="ruby-comment">#Set this as a class variable so that we can use it later too</span>
+                <span class="ruby-identifier">time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>( <span class="ruby-ivar">@sheet</span>[<span class="ruby-identifier">row</span>, <span class="ruby-value">1</span>] )
+
+                <span class="ruby-comment">#Round the time to the nearest minute for the spreadsheet</span>
+                <span class="ruby-identifier">round_time</span> = <span class="ruby-identifier">time</span>.<span class="ruby-identifier">change</span>(<span class="ruby-value">:sec</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
+
+                <span class="ruby-comment">#Give the user a hash for this time</span>
+                <span class="ruby-ivar">@user_timeline</span>[<span class="ruby-identifier">round_time</span>] <span class="ruby-operator">||=</span> {}
+
+                <span class="ruby-comment">#For each row, iterate over the columns</span>
+                <span class="ruby-identifier">columns</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">column</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+                        
+                        <span class="ruby-comment">#Read the value, if it&#39;s empty, get back nil</span>
+                        <span class="ruby-identifier">cell_val</span> = <span class="ruby-identifier">get_cell</span>(<span class="ruby-identifier">row</span>, <span class="ruby-identifier">value</span>)
+                        
+                        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">cell_val</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-comment">#If nil, do nothing</span>
+                                <span class="ruby-comment">#If a value already exists for this minute, then just concatenate</span>
+                                <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user_timeline</span>[<span class="ruby-identifier">round_time</span>][<span class="ruby-identifier">column</span>]
+                                        <span class="ruby-ivar">@user_timeline</span>[<span class="ruby-identifier">round_time</span>][<span class="ruby-identifier">column</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">cell_val</span>
+                                <span class="ruby-keyword">else</span>
+                                        <span class="ruby-ivar">@user_timeline</span>[<span class="ruby-identifier">round_time</span>][<span class="ruby-identifier">column</span>] = [<span class="ruby-identifier">cell_val</span>]
+                                <span class="ruby-keyword">end</span>
+                        <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+
+                <span class="ruby-comment">#We don&#39;t need to have a huge empty hash sitting around...</span>
+                <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user_timeline</span>[<span class="ruby-identifier">round_time</span>].<span class="ruby-identifier">empty?</span>
+                        <span class="ruby-ivar">@user_timeline</span>.<span class="ruby-identifier">delete</span> <span class="ruby-identifier">round_time</span>
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-timeline_to_csv" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">timeline_to_csv</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="timeline_to_csv-source">
+            <pre><span class="ruby-comment"># File analysis/TimeLineBuilder.rb, line 177</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">timeline_to_csv</span>(<span class="ruby-identifier">args</span>)
+        <span class="ruby-identifier">rows</span>          = <span class="ruby-identifier">args</span>[<span class="ruby-value">:rows</span>] <span class="ruby-operator">||</span> <span class="ruby-value">17280</span>
+        <span class="ruby-identifier">extension</span>     = <span class="ruby-identifier">args</span>[<span class="ruby-value">:extension</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&quot;&quot;</span>
+
+        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">extension</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;&quot;</span>
+                <span class="ruby-identifier">extension</span> = <span class="ruby-string">&quot;_&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">extension</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-constant">CSV</span>.<span class="ruby-identifier">open</span>(<span class="ruby-node">&quot;#{write_directory}/#{sheet.title}#{extension}.csv&quot;</span>, <span class="ruby-string">&quot;wb&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">csv</span><span class="ruby-operator">|</span>
+                
+                <span class="ruby-comment">#Write the csv headers</span>
+                <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-string">&quot;Time&quot;</span>, <span class="ruby-string">&quot;Sentiment&quot;</span>, <span class="ruby-string">&quot;Preparation&quot;</span>,<span class="ruby-string">&quot;Movement&quot;</span>,<span class="ruby-string">&quot;Environment&quot;</span>,<span class="ruby-string">&quot;Collective Information&quot;</span>]
+                
+                <span class="ruby-identifier">timeline</span> = []
+                <span class="ruby-identifier">rows</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">timeline</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">2012</span>,<span class="ruby-value">10</span>,<span class="ruby-value">22</span>) <span class="ruby-operator">+</span> (<span class="ruby-identifier">index</span>)<span class="ruby-operator">*</span><span class="ruby-value">60</span>) <span class="ruby-comment">#It&#39;s rounded to the minute</span>
+                <span class="ruby-keyword">end</span>
+
+                <span class="ruby-comment">#Create the rows</span>
+                <span class="ruby-identifier">timeline</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">time</span><span class="ruby-operator">|</span>
+
+                        <span class="ruby-identifier">row_to_write</span> = [<span class="ruby-identifier">time</span>]
+
+                        <span class="ruby-keyword">if</span> <span class="ruby-identifier">user_timeline</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-identifier">time</span>
+                                <span class="ruby-identifier">add_values</span> = <span class="ruby-identifier">vals_to_csv_array</span>( <span class="ruby-identifier">user_timeline</span>[<span class="ruby-identifier">time</span>] )
+                                <span class="ruby-identifier">row_to_write</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">add_values</span>
+                        <span class="ruby-keyword">end</span>
+                        <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">row_to_write</span>
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span> <span class="ruby-comment">#Close the CSV</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-vals_to_csv_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">vals_to_csv_array</span><span
+            class="method-args">(values)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Prepare a row of coded data for a csv export</p>
+          
+          
+
+          
+          <div class="method-source-code" id="vals_to_csv_array-source">
+            <pre><span class="ruby-comment"># File analysis/TimeLineBuilder.rb, line 164</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">vals_to_csv_array</span>(<span class="ruby-identifier">values</span>)
+        <span class="ruby-comment">#Initialize empty row</span>
+        <span class="ruby-identifier">row</span> = [<span class="ruby-string">&quot;&quot;</span>,<span class="ruby-string">&quot;&quot;</span>,<span class="ruby-string">&quot;&quot;</span>,<span class="ruby-string">&quot;&quot;</span>,<span class="ruby-string">&quot;&quot;</span>]
+
+        <span class="ruby-identifier">values</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Array</span>
+                        <span class="ruby-identifier">val</span>.<span class="ruby-identifier">uniq!</span>
+                        <span class="ruby-identifier">row</span>[<span class="ruby-identifier">csv_array</span>[<span class="ruby-identifier">key</span>]] = <span class="ruby-identifier">val</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;, &quot;</span>)
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-identifier">row</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
