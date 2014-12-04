@@ -158,7 +158,7 @@ if __FILE__ == $0
 
 			#ep.match_points
 
-			ep.movement_profile(distance: 100)
+			ep.movement_profile(distance: 0.1)
 
 			# puts "First Tweet: #{user.tweets.first.date.inspect}"
 		rescue => e
