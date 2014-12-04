@@ -25,9 +25,7 @@ class Tweet
   key :date, 				Time
   key :coordinates, Hash
 
-
-  #For Qualitative Coding
-  key :coding,      Hash
+  attr_accessor :coding
 
   # Given a bson_tweet as returned from Mongo (or parsed via JSON),
   # It creates a (basic) tweet object
@@ -64,6 +62,6 @@ class Tweet
 
   #Return the tweet as a hash in valid geojson for storing as a complete feature in a GeoJSON file.
   def as_geojson
-    {:type=>"Feature", :properties=>{:Time=>date, :text=>text},:geometry=>coordinates}
+    {:type=>"Feature", :properties=>{:time=>date.iso8601, :text=>text},:geometry=>coordinates}
   end
 end
