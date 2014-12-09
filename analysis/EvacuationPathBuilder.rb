@@ -103,7 +103,10 @@ class EvacuationPath
 		tweets.each do |t|
 
 			if prev_point.point.distance(t.point) > min_dist
-				outfile.add_tweet(t, get_nearest_coding_data(t.date))
+				data = get_nearest_coding_data(t.date)
+				unless data[:coding].empty?
+					outfile.add_tweet(t, data)
+				end
 			end
 			
 			prev_point = t
