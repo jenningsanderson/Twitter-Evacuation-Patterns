@@ -13,7 +13,7 @@ gem 'jekyll'
 
 gem 'mini_portile', '0.6.0'
 
-gem 'google_drive', '1.0.0.pre'
+gem 'google_drive', '1.0.0.pre1'
 
 
 gem 'json',   '~> 1.4'
