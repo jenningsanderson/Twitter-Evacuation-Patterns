@@ -12,7 +12,7 @@ class TweetWriter
 
 		@write_directory = args[:write_directory] || "../exports/"
 
-		@geojson_outfile = EpicGeo::Writers::GeoJSONWriter.new("#{write_directory}#{filename}")
+		@geojson_outfile = EpicGeo::Writers::GeoJSONWriter.new(filename: "#{write_directory}#{filename}", extension: "json")
 		geojson_outfile.write_header
 
 		@tweets = []
