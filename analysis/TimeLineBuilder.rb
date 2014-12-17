@@ -1,13 +1,8 @@
+# = Timeline Builder
+# 
+# Concstruct a timeline of user information based on the data pulled from Google Drive
 #
-# Given a worksheet from Google Drive, this will build a timeline on a per-user basis.
 #
-# What it Does:
-# => Sanitization for multiple Values
-# => Writes the spreadsheets down to CSV by minute
-#
-
-require 'csv'
-
 class TimeLineBuilder
 
 	#The names of the columns and their spreadsheet location
@@ -196,6 +191,7 @@ class TimeLineBuilder
 	end
 
 	def timeline_to_csv(args)
+		require 'csv'
 
 		unless Dir.exists? write_directory
 			Dir.mkdir write_directory

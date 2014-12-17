@@ -9,6 +9,7 @@ gem 'bson_ext'
 gem 'debugger'
 gem 'activesupport'
 gem 'rails'
+gem 'jekyll'
 
 
 gem 'json',   '~> 1.4'

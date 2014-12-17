@@ -44,7 +44,7 @@ class QualitativeCoding
 	#Fall back on the TimeLineBuilder to do the heavy lifting and parsing
 	#including the substitutions
 	def parse_sheet
-		timeline = TimeLineBuilder.new(worksheet: sheet)
+		timeline = TimeLineBuilder.new(write_directory: '../data', worksheet: sheet)
 		timeline.read
 		@qual_data = timeline.user_timeline
 	end
@@ -90,7 +90,7 @@ class EvacuationPath
 
 		min_dist = args[:distance] || 1000 #Set a default minimum distance (1km)
 
-		outfile = TweetWriter.new(filename: user.handle, write_directory: "../assets/qual_maps/") #Initialize an export file for visualizing
+		outfile = TweetWriter.new(filename: user.handle, write_directory: "../data/qualmaps/") #Initialize an export file for visualizing
 
 		outfile.add_point(coords_as_geojson( user.cluster_locations[ user.base_cluster ] ), {location: 'base'}) #Add the base location
 
