@@ -43,8 +43,6 @@ Here is a proposed new collapsed coding scheme based on hierarchical collapsing 
 | Move Away | Leaves, Evacuates, Example: "And with that we evacuate to higher ground" |
 | Move Back | Comes home  |
 | Stationary| Discussion of Hunkering or not moving |
-| Prepared/Settled      | Feeling ready for the storm
-| Bored                 | Stuck at home, nothing to do, typically seen as "I'm sooooo bored" |
 
 | Reporting on Environment | |
 |:----------|----------------------------| 

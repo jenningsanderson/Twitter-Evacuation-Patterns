@@ -1,0 +1,98 @@
+body{
+	text-align: center;
+	font-family: "Ubuntu", Helvetica, Arial, sans-serif!important;
+	font-weight: 200;
+	line-height: 1.1em;
+}
+
+a#back_button{
+	display: block;
+	float: left;
+	width: 50px;
+	margin: 10px;
+}
+
+h1{
+	margin-top: 10px;
+	clear: both;
+}
+
+h5{
+	text-align: left;
+	margin: 5px;
+	padding: 2px;
+}
+
+#map3d{
+	margin: 10px auto;
+	width: 1000px;
+	height: 600px;
+}
+
+ul.navigation{
+	list-style-type: none;
+	float: left;
+	text-align: left;
+	margin-left: 20px;
+}
+
+ul.navigation li{
+	margin: 3px;
+}
+
+#nav_div{
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	overflow-y: scroll;
+	padding-right: 20px;
+}
+
+#nav_div ul{
+	list-style-type: none;
+}
+
+#content {
+	margin-left: 150px;	
+	list-style-type: none;
+}
+
+#content li {
+	list-style-type: none;
+}
+
+table{
+	text-align: left;
+	margin-bottom: 50px;
+	padding-top: 10px;
+	border-top: 2px solid #888;
+	margin-top: 20px;
+}
+
+th{
+	border-bottom: 2px solid #222;
+}
+
+td{
+	padding-left:;
+}
+
+tr.table_row_1 {
+	background-color: #DDD
+}
+
+tr.table_row_2 {
+	background-color: #EEE
+}
+
+tr.highlight{
+	backgorund-color: yellow;
+}
+
+footer{
+	clear: both;
+	background-color: #777;
+	color: #EEE;
+	padding: 25px;
+}

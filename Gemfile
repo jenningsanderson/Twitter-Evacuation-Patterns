@@ -11,6 +11,8 @@ gem 'activesupport'
 gem 'rails'
 gem 'jekyll'
 
+gem 'retryable'
+
 gem 'mini_portile', '0.6.0'
 
 gem 'google_drive', '1.0.0.pre1'

@@ -47,12 +47,8 @@ $(document).ready(function(){
   
   // var filters = document.getElementById('filters'); //List of filters
 
-  //Load the GeoJSON
-  var userdata = $.getJSON("/Twitter-Evacuation-Patterns/assets/qual_maps/"+user+".geojson")
-
   //create layers based on this data, then add them individually
-
-  $.getJSON("/Twitter-Evacuation-Patterns/data/qualmaps/"+user+".json", function(data) {
+  $.getJSON("/Twitter-Evacuation-Patterns/datasets/qualmaps/"+user+".json", function(data) {
     
     for (item in data){
       console.log(item)
@@ -60,9 +56,6 @@ $(document).ready(function(){
   });
 
   //The draw function
-  
-
-
   function drawMap() {
     
     // Run through each checkbox and record whether it is checked. If it is,
@@ -72,7 +65,7 @@ $(document).ready(function(){
     // }
 
     //Load the GeoJSON + add to geojson layer
-    $.getJSON("/Twitter-Evacuation-Patterns/assets/qual_maps/"+user+".geojson", function(data) {
+    $.getJSON("/Twitter-Evacuation-Patterns/datasets/qualmaps/"+user+".json", function(data) {
       var geojson = L.geoJson(data, {
         onEachFeature: function (feature, layer) {
           layer.bindPopup(feature.properties['time'] + " : " + feature.properties.text);
@@ -112,6 +105,16 @@ $(document).ready(function(){
         layer: geojson,
         range: true
       });
+
+      var baseMaps = {"Basemap": tiles};
+      var overlayMaps = {"Points" : geojson, 
+        "Sentiment"  : sentiment,
+        "Preparation": preparation,
+        "Movement"   : movement,
+        "Assessment" : assessment};
+
+      //Add layers control
+      L.control.layers(baseMaps, overlayMaps).addTo(map);
 
       //Make sure to add the slider to the map ;-)
       map.addControl(sliderControl);
