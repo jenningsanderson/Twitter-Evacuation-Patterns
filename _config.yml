@@ -5,7 +5,7 @@ description: "2014 Research project with Project EPIC and the National Center fo
 baseurl: "/Twitter-Evacuation-Patterns"
 url: "jenningsanderson.github.io"
 
-data_source: 'data'
+data_source: 'datasets'
 
 # Build settings
 # markdown: redcarpet
