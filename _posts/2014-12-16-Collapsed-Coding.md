@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "New Hierarchical Coding Scheme"
-date:   2014-09-10 9:42:00
+date:   2014-12-16 18:00:00
 permalink: "/new_coding"
 ---
 
