@@ -1,16 +1,17 @@
 _site/*
 *.pages/
 *.DS_Store
-*.gitignore
 *.pdf
+
+#Data
+# - Include The datasets
+!datasets/**
+
+# - Exclude JSON, other data and stuff
 *.json
-*data/*/*/*
-data
+*data/**
 *.kml
-
 *.txt
-
-*.yml
 
 *_secret*
 
@@ -29,4 +30,4 @@ exports/*
 
 #Also, Ignore anythign from QGS
 *.qgs
-.Rproj.user
+*.Rproj.user
