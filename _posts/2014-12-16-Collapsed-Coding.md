@@ -5,6 +5,8 @@ date:   2014-12-16 18:00:00
 permalink: "/new_coding"
 ---
 
+Here is a proposed new collapsed coding scheme based on hierarchical collapsing of the [previous coding scheme]({{site.baseurl}}/coding)
+
 ###Coding Scheme
 	
 | Personal Sentiment    |  Preparation | Movement  | Reporting on Environment  | Collective Orientation | 
