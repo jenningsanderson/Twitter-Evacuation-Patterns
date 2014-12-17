@@ -39,7 +39,7 @@ unless Dir.exists? 'CollapsedCodingSample/kml_files'
 	Dir.mkdir('CollapsedCodingSample/kml_files')
 end
 
-coding_sheet_headers = ["Date","Text","Geo",
+coding_sheet_headers = ["Date","Geo","Text",
 	"Sentiment","Preparation","Movement","Reporting on Environment","Collective-Information", "Comments", "Geo-Cluster",
 	"Sentiment 2","Preparation 2","Movement 2","Reporting on Environment 2","Collective-Information 2", "Comments 2",
 	"Sentiment 2","Preparation 3","Movement 3","Reporting on Environment 3","Collective-Information 3", "Comments 3",
