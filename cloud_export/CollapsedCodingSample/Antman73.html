@@ -1,0 +1,88 @@
+<html>
+				<head>
+					<title>Antman73</title>
+					<link rel="stylesheet" type="text/css" href="css/styles.css" /> <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+				</head>
+				<body><a id="back_button" href="index.html"><< Back</a>
+					<h1>Antman73</h1><a class="link" href="kml_files/Antman73.kml">KML File</a><script type="text/javascript">
+				    	var ge;
+				    	google.load("earth", "1", {"other_params":"sensor=false"});
+
+				    	function init() {
+				      		google.earth.createInstance('map3d', initCB, failureCB);
+				    	}
+
+				    	function getKML(link_in){
+							var parent_dir = document.URL.substr(0,document.URL.lastIndexOf('/'))
+							return parent_dir + "/" + link_in
+				    	}
+
+				    	function initCB(instance) {
+				      		ge = instance;
+			         		ge.getWindow().setVisibility(true);
+
+			         		ge.getTime().getControl().setVisibility(ge.VISIBILITY_SHOW);
+
+				      		var networkLink = ge.createNetworkLink('');
+
+			        		var link = ge.createLink('');
+							var href = getKML("kml_files/Antman73.kml");
+
+							link.setHref(href);
+
+							networkLink.set(link, true, true); // Sets the link, refreshVisibility, and flyToView
+
+							ge.getFeatures().appendChild(networkLink);
+
+
+			      		}
+
+			      		function failureCB(errorCode) {
+			      		}
+
+			      		google.setOnLoadCallback(init);
+			  		</script>
+
+			  		<div id="map3d"></div>
+									<h5>GeoCoded Tweet Count: 15</h5>
+									
+									<h5>Unclassified Percentage: 7</h5>
+									
+<table class="tweets">
+<tr><th>Date</th><th>Text</th><th>Coordinates</th></tr><tr class="table_row_0">
+<td>2012-10-26 08:40:07 -0600</td><td>It looks like this giant storm is heading right to my doorstep.</td><td>[-74.50946428, 39.3281058]</td></tr>
+<tr class="table_row_1">
+<td>2012-10-26 11:32:09 -0600</td><td>Cement truck driver at our job said his company just had a truck flip and spill 10 yards of concrete on the road. D'oh!</td><td>[-74.50928715, 39.32821197]</td></tr>
+<tr class="table_row_0">
+<td>2012-10-26 12:09:36 -0600</td><td>I still don't get that Harmon wrong size rebar deal. We had an inspector here for 20 minutes going over ours and this is just a house.</td><td>[-74.5093646, 39.32832303]</td></tr>
+<tr class="table_row_1">
+<td>2012-10-26 12:10:17 -0600</td><td>@detroit1051 Great, thanks. I just have to grout the marble and ill post a picture.</td><td>[-74.50940735, 39.32815627]</td></tr>
+<tr class="table_row_0">
+<td>2012-10-26 18:00:48 -0600</td><td>People are starting to freak out already. Cars were 5 deep at the gas station #Frankenstorm</td><td>[-74.61723739, 39.37202603]</td></tr>
+<tr class="table_row_1">
+<td>2012-10-28 17:51:09 -0600</td><td>I think we will be fine through this storm, as long as that tree in my back yard stays up #sandy</td><td>[-74.61728974, 39.37181218]</td></tr>
+<tr class="table_row_0">
+<td>2012-10-28 20:40:19 -0600</td><td>Sounds like the wind and rain is starting to pick up out there. #sandy</td><td>[-74.6171723, 39.37190209]</td></tr>
+<tr class="table_row_1">
+<td>2012-10-28 21:05:13 -0600</td><td>I'm listening to the Atlantic City police scanner app. Nothing storm related going on, but there was just a false fire alarm at ACHS</td><td>[-74.61705529, 39.37173978]</td></tr>
+<tr class="table_row_0">
+<td>2012-10-29 07:22:13 -0600</td><td>The wind and rain was pretty bad last night but its a little better now. I guess the worst is still to come #sandy</td><td>[-74.61717457, 39.3720186]</td></tr>
+<tr class="table_row_1">
+<td>2012-10-29 11:08:48 -0600</td><td>All the pictures I'm seeing from the local islands are bad. Streets flooded already. #sandy</td><td>[-74.6173365, 39.3717852]</td></tr>
+<tr class="table_row_0">
+<td>2012-10-29 16:12:57 -0600</td><td>Great. Just great. #sandy http://t.co/KaE7gHkM</td><td>[-74.62144229, 39.36055696]</td></tr>
+<tr class="table_row_1">
+<td>2012-10-29 19:56:44 -0600</td><td>And now I lost power</td><td>[-74.61730977, 39.37198218]</td></tr>
+<tr class="table_row_0">
+<td>2012-10-30 11:32:43 -0600</td><td>@unlvgaming  If I find out ill let you know EHT has travel restrictions. I can't get on the road even around town.</td><td>[-74.61711371, 39.37197011]</td></tr>
+<tr class="table_row_1">
+<td>2012-11-02 07:08:06 -0600</td><td>Waited 45 minutes to try and get in to #Margate and the police started turning people away again</td><td>[-74.61708287, 39.37182548]</td></tr>
+<tr class="table_row_0">
+<td>2012-11-05 17:50:44 -0600</td><td>Nj is celebrating Halloween tonight because of the storm. Feels like Santa coming on the 29th</td><td>[-74.61751062, 39.37157411]</td></tr>
+</table>
+
+									<h5>Total Tweets Here: 15</h5>
+									
+				</body>
+				<footer><p>Well, we're trying something very new here</p></footer>
+			</html>

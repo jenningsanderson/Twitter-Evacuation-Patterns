@@ -8,10 +8,10 @@ include EpicGeo
 COLLECTION = "HurricaneSandyEvacuationCoding"
 PREFIX = /NJ_UsersToCode-\d+/
 
-#=Qualitative Coding Class
+# = Qualitative Coding Class
 #
-#Holds a GoogleDrive connection in order to write GeoJSON evacuation
-#paths to visualize the appropriate coding schemes
+# Holds a GoogleDrive connection in order to write GeoJSON evacuation
+# paths to visualize the appropriate coding schemes
 class QualitativeCoding
 
 	attr_reader :user, :sheet, :qual_data
@@ -161,7 +161,7 @@ if __FILE__ == $0
 
 			#ep.match_points
 
-			ep.movement_profile(distance: 0.1)
+			#ep.movement_profile(distance: 0.1)
 
 			# puts "First Tweet: #{user.tweets.first.date.inspect}"
 		rescue => e

@@ -1,0 +1,96 @@
+<html>
+				<head>
+					<title>Anathebartender</title>
+					<link rel="stylesheet" type="text/css" href="css/styles.css" /> <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+				</head>
+				<body><a id="back_button" href="index.html"><< Back</a>
+					<h1>Anathebartender</h1><a class="link" href="kml_files/Anathebartender.kml">KML File</a><script type="text/javascript">
+				    	var ge;
+				    	google.load("earth", "1", {"other_params":"sensor=false"});
+
+				    	function init() {
+				      		google.earth.createInstance('map3d', initCB, failureCB);
+				    	}
+
+				    	function getKML(link_in){
+							var parent_dir = document.URL.substr(0,document.URL.lastIndexOf('/'))
+							return parent_dir + "/" + link_in
+				    	}
+
+				    	function initCB(instance) {
+				      		ge = instance;
+			         		ge.getWindow().setVisibility(true);
+
+			         		ge.getTime().getControl().setVisibility(ge.VISIBILITY_SHOW);
+
+				      		var networkLink = ge.createNetworkLink('');
+
+			        		var link = ge.createLink('');
+							var href = getKML("kml_files/Anathebartender.kml");
+
+							link.setHref(href);
+
+							networkLink.set(link, true, true); // Sets the link, refreshVisibility, and flyToView
+
+							ge.getFeatures().appendChild(networkLink);
+
+
+			      		}
+
+			      		function failureCB(errorCode) {
+			      		}
+
+			      		google.setOnLoadCallback(init);
+			  		</script>
+
+			  		<div id="map3d"></div>
+									<h5>GeoCoded Tweet Count: 19</h5>
+									
+									<h5>Unclassified Percentage: 32</h5>
+									
+<table class="tweets">
+<tr><th>Date</th><th>Text</th><th>Coordinates</th></tr><tr class="table_row_0">
+<td>2012-10-26 10:25:57 -0600</td><td>Sick mix @DeejayTORO great star to my weekend @923NowFM .. http://t.co/xJzu0pHn</td><td>[-74.05109395, 40.7856591]</td></tr>
+<tr class="table_row_1">
+<td>2012-10-27 10:42:07 -0600</td><td>Moms send me pic, u can do ur party @djais. don't stay down there! #birthday  #djais #hurricanesandy #can't stop us http://t.co/nCjv9ciO</td><td>[-74.05713159, 40.75140636]</td></tr>
+<tr class="table_row_0">
+<td>2012-10-27 20:51:16 -0600</td><td>Rocking out at @djais Whoo hoo #cantstop  now !! http://t.co/dKhlzk0o</td><td>[-74.01619549, 40.17031934]</td></tr>
+<tr class="table_row_1">
+<td>2012-10-27 21:44:44 -0600</td><td>Loving it @djais http://t.co/ICXYYD5M</td><td>[-74.01612617, 40.17042803]</td></tr>
+<tr class="table_row_0">
+<td>2012-10-27 21:55:06 -0600</td><td>It's all I needed !!!! @djais  to release the stress from school http://t.co/zi7kHn54</td><td>[-74.01610712, 40.17040695]</td></tr>
+<tr class="table_row_1">
+<td>2012-10-29 12:28:07 -0600</td><td>Praying for those people that remain in seaside heights !</td><td>[-74.05732345, 40.75131437]</td></tr>
+<tr class="table_row_0">
+<td>2012-10-29 12:28:45 -0600</td><td>God please give me the strength to keep my son and I safe ! The winds are so strong !!</td><td>[-74.05732345, 40.75131437]</td></tr>
+<tr class="table_row_1">
+<td>2012-10-29 12:29:27 -0600</td><td>The trees are beginning to fall by me !</td><td>[-74.05732345, 40.75131437]</td></tr>
+<tr class="table_row_0">
+<td>2012-10-29 22:56:04 -0600</td><td>@DJ_JRS yes !!!</td><td>[-74.05725941, 40.75135741]</td></tr>
+<tr class="table_row_1">
+<td>2012-11-01 00:34:59 -0600</td><td>@djais happy to see djais still standing !! We should have a fundraising party to raise money to help the shore !</td><td>[-73.99628767, 40.82455992]</td></tr>
+<tr class="table_row_0">
+<td>2012-11-01 15:48:40 -0600</td><td>Stay strong jersey ! We will overcome this :) !</td><td>[-74.05715019, 40.75153381]</td></tr>
+<tr class="table_row_1">
+<td>2012-11-01 15:52:53 -0600</td><td>So angry when I hear people complain about having no power ! Be thankful !! There's people that only have left the clothes they are wearing!</td><td>[-74.05640004, 40.75047949]</td></tr>
+<tr class="table_row_0">
+<td>2012-11-01 15:54:40 -0600</td><td>Thank you god for keeping us safe! And Thank you @923NowFM for keeping us informed !! During difficult times ! http://t.co/aDDH1npb</td><td>[-74.0573527, 40.75137824]</td></tr>
+<tr class="table_row_1">
+<td>2012-11-02 20:22:47 -0600</td><td>After crashing my car, and this horrible week I can say I'm thankful and @DeejayTORO mix is making night ! Rocking out on @923NowFM #blessed</td><td>[-74.05834545, 40.8968263]</td></tr>
+<tr class="table_row_0">
+<td>2012-11-03 20:11:53 -0600</td><td>@djais when are we cleaning up ???</td><td>[-74.00873932, 40.83500797]</td></tr>
+<tr class="table_row_1">
+<td>2012-11-04 00:21:28 -0600</td><td>#SandyNJ there's gas outside by the holland tunnel 20 minutes ! #blessed</td><td>[-74.0572057, 40.75138141]</td></tr>
+<tr class="table_row_0">
+<td>2012-11-04 00:22:35 -0600</td><td>Praying for my dearest aunt Nina fighting lung cancer begging for a miracle, she never harm anyone !</td><td>[-74.05723144, 40.751414]</td></tr>
+<tr class="table_row_1">
+<td>2012-11-06 11:59:27 -0600</td><td>@SIRREAL718 she past on Sunday :/ ...</td><td>[-74.05718825, 40.75134903]</td></tr>
+<tr class="table_row_0">
+<td>2012-11-06 21:22:27 -0600</td><td>@SIRREAL718 thank you, how did #sandy treat you ?</td><td>[-74.04193168, 40.77377305]</td></tr>
+</table>
+
+									<h5>Total Tweets Here: 19</h5>
+									
+				</body>
+				<footer><p>Well, we're trying something very new here</p></footer>
+			</html>
