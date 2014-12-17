@@ -3,12 +3,10 @@ _site/*
 *.DS_Store
 *.pdf
 
-#Data
-# - Include The datasets
+#Datasets for Visualizations
 !datasets/**
 
-# - Exclude JSON, other data and stuff
-*.json
+#Datasets for Local use
 *data/**
 *.kml
 *.txt
