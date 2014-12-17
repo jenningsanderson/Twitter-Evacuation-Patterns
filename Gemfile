@@ -11,6 +11,8 @@ gem 'activesupport'
 gem 'rails'
 gem 'jekyll'
 
+gem 'mini_portile', '0.6.0'
+
 
 gem 'json',   '~> 1.4'
 gem 'aws-sdk'
