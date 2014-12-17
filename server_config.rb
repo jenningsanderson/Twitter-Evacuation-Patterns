@@ -2,6 +2,9 @@
 # To be run on the server
 #
 
+#Add the directory to the loadpath
+$:.unshift File.dirname(__FILE__)
+
 require 'rubygems'
 require 'bundler/setup'
 require 'active_support'
@@ -21,14 +24,11 @@ require 'epic_geo'
 #This is our heavy lifter --- bad idea? maybe
 require_relative 'models/twitterer'
 
-
 require_relative 'modules/time_processing'
 # Include TimeProcessing
 
 require_relative 'modules/functions'
 # Include CustomFunctions
-
-require_relative 'modules/user_behavior'
 
 TIMES = {
 	event: 		Date.new(2012,10,29),
