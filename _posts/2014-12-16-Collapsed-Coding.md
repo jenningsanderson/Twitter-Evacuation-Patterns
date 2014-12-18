@@ -15,7 +15,7 @@ Here is a proposed new collapsed coding scheme based on hierarchical collapsing 
 | Angry/Dark/Dismissive | Supplies     | Move Back | Immediate Personal Environment | Seek Information  |
 | Anxious/Frustrated    | Physical     | Stationary| Other Built Environment   | What Others are Doing  |
 | Prepared/Settled      | Transport    |           |                           |                        |
-| Water                 | Booze        |           |                           |                        |
+| Bored                 | Booze        |           |                           |                        |
 |                       | Plans        |           |                           |                        |
 
 ##Coding Scheme Explained
