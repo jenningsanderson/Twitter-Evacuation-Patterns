@@ -1,20 +1,20 @@
+// Leaflet & JQuery have already been loaded
+//
+//
+//
+//
+
 $(document).ready(function(){
 
   //Get the query variable...
-  function getQueryVariable(variable)
-  {
-         var query = window.location.search.substring(1);
-         var vars = query.split("&");
-         for (var i=0;i<vars.length;i++) {
-                 var pair = vars[i].split("=");
-                 if(pair[0] == variable){return pair[1];}
-         }
-         return(false);
-  }
-
-  //http://stackoverflow.com/questions/1960473/unique-values-in-an-array
-  function onlyUnique(value, index, self) { 
-    return self.indexOf(value) === index
+  function getQueryVariable(variable){
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+      var pair = vars[i].split("=");
+      if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
   }
 
   // add an OpenStreetMap tile layer
@@ -94,7 +94,9 @@ $(document).ready(function(){
       "autoResize": false,
       "style": "box",
       "axisOnTop": true,
-      "showCustomTime":true
+      "showCustomTime":true,
+      "max" : new Date(2012,10,10),
+      "min" : new Date(2012,9,20)
     };
 
     // Setup timeline
@@ -103,13 +105,34 @@ $(document).ready(function(){
     // Set custom time marker (blue)
     timeline.setCustomTime(new Date(2012,9,29));
 
-    function updateTimeRange (properties) {
-      console.log(properties);
+    hidden_layers = []
 
-      //Go through the layers and filter whether they are to be shown or not:
-      map.featureLayer.setFilter(function(f) {
-            return f.properties['marker-symbol'] === 'fast-food';
-        });
+    function updateTimeRange (time_range) {
+    //I'll have to loop through ALL the layers, not just those that are visible on the map.
+
+      for (index in map._layers){
+        layer = map._layers[index]
+        
+        if (layer.feature != undefined){
+          if (layer.feature.hasOwnProperty('properties')){
+            if (layer.feature.properties.hasOwnProperty('time')){
+              time = new Date(layer.feature.properties.time)
+              if ((time > time_range.start) & (time < time_range.end)){
+                map.addLayer(layer);
+              }else{
+                hidden_layers.push(layer)
+                map.removeLayer(layer)
+              }
+            }
+          }
+        }
+        for (index in hidden_layers){
+          time = new Date(hidden_layers[index].feature.properties.time)
+          if ((time > time_range.start) & (time < time_range.end)){
+            map.addLayer(hidden_layers.splice(index, 1)[0])
+          }
+        }
+      }
     }
 
     // add event listener
