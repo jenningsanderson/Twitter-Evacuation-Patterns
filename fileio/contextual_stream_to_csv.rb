@@ -1,6 +1,3 @@
-include EpicGeo
-include EpicGeo::Writers
-
 _start =  Time.new(2012,10,22)
 _end   =  Time.new(2012,11,14)
 
@@ -8,6 +5,9 @@ _end   =  Time.new(2012,11,14)
 require_relative '../server_config'
 require_relative '../cloud_export/full_contextual_stream'
 #Because it's meant to be run on the server
+
+include EpicGeo
+include EpicGeo::Writers
 
 contextual_stream = FullContextualStreamRetriever.new(
 	start_date:  _start,
