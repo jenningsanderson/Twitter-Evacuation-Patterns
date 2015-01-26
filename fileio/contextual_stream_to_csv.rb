@@ -23,7 +23,7 @@ users.each do |handle|
 
 	File.open(write_directory+handle+'.csv', "w") do |file|  
 		tweets.each do |tweet|
-			file.write "#{tweet.date}, #{tweet.text}"
+			file.write "#{tweet['created_at']}, #{tweet['text']}"
 		end
 	end
 end
