@@ -20,7 +20,7 @@ users = ['iKhoiBui']
 users.each do |handle|
 
 	tweets = contextual_stream.get_full_stream(handle)
+	puts "Total tweets: #{tweets.length}"
 
 end
 
-puts "Total tweets: #{tweets.length}"
