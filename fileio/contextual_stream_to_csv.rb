@@ -25,7 +25,6 @@ users.each do |handle|
 		tweets.each do |tweet|
 			file.write "#{tweet.date}, #{tweet.text}"
 		end
-	}
-
+	end
 end
 
