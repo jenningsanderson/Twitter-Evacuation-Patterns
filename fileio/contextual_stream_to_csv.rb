@@ -1,6 +1,8 @@
 _start =  Time.new(2012,10,22)
 _end   =  Time.new(2012,11,14)
 
+require 'csv'
+
 #We're running on the server!  here we go!
 require_relative '../server_config'
 require_relative '../cloud_export/full_contextual_stream'
@@ -21,10 +23,9 @@ users.each do |handle|
 	tweets = contextual_stream.get_full_stream(handle)
 	puts "Total tweets: #{tweets.length}"
 
-	File.open(write_directory+handle+'.csv', "w") do |file|  
+	CSV.open(write_directory+handle+'.csv', "w") do |csv|  
 		tweets.each do |tweet|
-			file.write "#{tweet[:Date]}, #{tweet[:Text]}\n"
+			csv << [ tweet[:Date], tweet[:Text] ]
 		end
 	end
 end
-
