@@ -22,7 +22,7 @@ users.each do |handle|
 	puts "Total tweets: #{tweets.length}"
 
 	File.open(write_directory+handle+'.csv', "w") do |file|  
-		tweets.first(10).each do |tweet|
+		tweets.each do |tweet|
 			file.write "#{tweet[:Date]}, #{tweet[:Text]}"
 		end
 	end
