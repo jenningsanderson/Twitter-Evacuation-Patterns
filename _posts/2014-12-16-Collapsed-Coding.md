@@ -13,18 +13,18 @@ Here is a proposed new collapsed coding scheme based on hierarchical collapsing 
 |-------------------------------------------------------------------------------------------------------|
 | Lighter-Hearted       | Power        | Move Away | Weather                   | Pass On Information    |
 | Angry/Dark/Dismissive | Supplies     | Move Back | Immediate Personal Environment | Seek Information  |
-| Anxious/Frustrated    | Physical     | Stationary| Other Built Environment   | What Others are Doing  |
+| Anxious/Worried       | Physical     | Stationary| Other Built Environment   | What Others are Doing  |
 | Prepared/Settled      | Transport    |           |                           |                        |
-| Water                 | Booze        |           |                           |                        |
+| Bored                 | Booze        |           |                           |                        |
 |                       | Plans        |           |                           |                        |
 
 ##Coding Scheme Explained
 
 | Sentiment | |
 |:----------|----------------------------| 
-| Lighter-Hearted | Light-hearted comedy about the storm, not dark humor |
+| Lighter-Hearted | Light-hearted comedy about the storm, not dark humor, excited, relieved |
 | Angry/Dark/Dismissive | Angry, Defiant, dark humor, negative sarcasm   |
-| Anxious/Frustrated    | Worried, anxious, frustrated at not knowing information on their hometown, etc |
+| Anxious/Worried       | Worried, anxious, frustrated at not knowing information on their hometown, etc |
 | Prepared/Settled      | Feeling ready for the storm
 | Bored                 | Stuck at home, nothing to do, typically seen as "I'm sooooo bored" |
 

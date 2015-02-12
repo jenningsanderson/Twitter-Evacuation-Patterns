@@ -7,7 +7,7 @@ permalink: /mapanalysis
 
 #Mapping Our Qualitative Data
 
-<div id="user_list" style="display:inline-block; width:14%; text-align:left">
+<div id="user_list" style="float: left; width:14%; text-align:left">
 <ul style="list-style-type:none;">
 {% for user in site.data.qualmaps %}
 	<li><a href="{{site.baseurl}}/mapanalysis?user={{ user[0] }}">{{user[0]}}</a></li>
