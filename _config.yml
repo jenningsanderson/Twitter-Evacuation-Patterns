@@ -11,5 +11,5 @@ data_source: 'datasets'
 # markdown: redcarpet
 # extensions: [fenced_code_blocks]
 
-twitter: "JenningsAtCU"
-github: "jenningsanderson"
+#twitter: "JenningsAtCU"
+#github: "jenningsanderson"
