@@ -58,13 +58,14 @@ class FullContextualStreamRetriever
 					tweet_data = {}
 
 					date = Time.parse(tweet["created_at"])
-					
+
 					if (date > start_date) and (date < end_date)
-		        	
+
 						tweet_count+=1
-						
+
 						tweet_data[:Date] = date
 						tweet_data[:Text] = tweet["text"]
+						tweet_data[:Id]   = tweet["id_str"]
 
 						if tweet['coordinates']
 							tweet_data[:Coordinates] = tweet['coordinates']['coordinates']

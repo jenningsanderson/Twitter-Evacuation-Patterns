@@ -33,7 +33,7 @@ results.each do |user|
 
 	CSV.open(write_directory+handle+'.csv', "w") do |csv|
 		tweets.each do |tweet|
-			csv << [ tweet[:Date], tweet[:Text] ]
+			csv << [ tweet[:Id], tweet[:Date], tweet[:Text] ]
 		end
 	end
 end
