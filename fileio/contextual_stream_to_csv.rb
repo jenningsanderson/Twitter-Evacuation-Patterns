@@ -22,6 +22,8 @@ results = Twitterer.where(
                 :base_cluster_risk.lt => 100
 								)
 
+puts "found #{results.count} users"
+
 results.each do |user|
 
 	handle = user.handle
