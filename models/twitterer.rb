@@ -5,7 +5,7 @@ require 'models/TwittererBase'
 
 #=Twitterer Active During Hurricane Sandy
 #
-#Inheriting basic Twitter User behavior and attributes from TwittererBase, this 
+#Inheriting basic Twitter User behavior and attributes from TwittererBase, this
 #
 class Twitterer < TwittererBase
 
@@ -73,6 +73,10 @@ class Twitterer < TwittererBase
 		return tweets.select{|t| t.date > TIMES[:event] and t.date < TIMES[:two_days]}
 	end
 
+	def tweets_in_time_range(start_time, end_time)
+		return tweets.select{|t| t.date > start_time and t.date < end_time}
+	end
+
 	def week_one_linestring
 		points = []
 		week_one_tweets.each do |t|
@@ -95,7 +99,7 @@ class Twitterer < TwittererBase
 
 		# Run the db_scan algorithm
 	    clusters = dbscanner.run
-	    
+
 	    clusters.each do |cluster_id, tweets|
 	    	tweets.each do |tweet|
 	    		tweet.cluster = cluster_id
