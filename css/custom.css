@@ -17,3 +17,27 @@ img{
   padding: 5px;
   max-width: 100%;
 }
+
+/* D3 */
+.chart rect {
+  fill: steelblue;
+}
+
+.chart text {
+  fill: black;
+  font: 10px sans-serif;
+  text-anchor: left;
+}
+
+.chart{
+  border: 1px dotted blue;
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.y.axis line, .y.axis path {
+  fill: none;
+  stroke: #000;
+}
