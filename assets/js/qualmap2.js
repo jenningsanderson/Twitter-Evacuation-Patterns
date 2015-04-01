@@ -30,6 +30,14 @@ $(document).ready(function(){
 
   var data_for_timeline = []
 
+  colors = {
+    "Sentiment"   : 'blue',
+    "Preparation" : 'red',
+    "Action"      : 'black',
+    "Reporting"   : 'green',
+    "Information" : 'orange'
+  }
+
   // add an OpenStreetMap tile layer
   var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -53,7 +61,7 @@ $(document).ready(function(){
   }
 
   //Load the annotated tweets
-  $.getJSON("/Twitter-Evacuation-Patterns/datasets/gold_sample.json", function(data, err){
+  $.getJSON("/Twitter-Evacuation-Patterns/datasets/gold_anns_sample_2.json", function(data, err){
     Object.keys(data).forEach(function (key) {
       var tweet = data[key]
 
@@ -64,7 +72,13 @@ $(document).ready(function(){
           category = code.substring(0,code.indexOf('-'))
           value    = code.substring(code.indexOf('-')+1,code.length)
 
-          data_for_timeline.push({start: tweet.date, content: value, type: "point"})
+          data_for_timeline.push({
+            start: tweet.date,
+            content: value,
+            type: "point",
+            style: "color: "+colors[category],
+            title: tweet.text
+          })
 
           var coeff = 1000 * 60 * 24;
           var trunk_time = new Date(Math.round(Date.parse(tweet.date) / coeff) * coeff)
