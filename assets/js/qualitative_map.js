@@ -24,7 +24,7 @@ $(document).ready(function(){
 
   var user = getQueryVariable("user");
 
-  //Prepare hash 
+  //Prepare hash
   var codes = {
     "Sentiment"   : [],
     "Preparation" : [],
@@ -38,6 +38,7 @@ $(document).ready(function(){
 
   data_for_timeline = []
 
+
   //Load the GeoJSON and make different layers
   $.getJSON("/Twitter-Evacuation-Patterns/datasets/qualmaps/"+user+".json", function(data) {
 
@@ -50,7 +51,7 @@ $(document).ready(function(){
     }
 
     var all_points = L.geoJson(data, {
-      
+
       onEachFeature: function (feature, layer) {
 
         if (feature.geometry['type'] == "LineString"){
@@ -66,7 +67,7 @@ $(document).ready(function(){
 
           //Check if coding is available for this layer
           if (feature.coding != undefined){
-            
+
             for (var code in codes){
               if (feature.coding[code] != undefined){
                 layer.setIcon(L.icon({
@@ -101,7 +102,7 @@ $(document).ready(function(){
 
     // Setup timeline
     var timeline = new vis.Timeline(document.getElementById('timeline'), timelineData, timelineOptions);
-        
+
     // Set custom time marker (blue)
     timeline.setCustomTime(new Date(2012,9,29));
 
@@ -112,7 +113,7 @@ $(document).ready(function(){
 
       for (index in map._layers){
         layer = map._layers[index]
-        
+
         if (layer.feature != undefined){
           if (layer.feature.hasOwnProperty('properties')){
             if (layer.feature.properties.hasOwnProperty('time')){
@@ -171,7 +172,7 @@ $(document).ready(function(){
 
     // //Make sure to add the slider to the map ;-)
     // map.addControl(sliderControl);
-    
+
     // //And initialize the slider
     // sliderControl.startSlider();
   });
