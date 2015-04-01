@@ -5,7 +5,7 @@ x = JSON.parse(File.read('./gold_sample.json'))
 
 columns = ["Sentiment", "Reporting", "Movement","Actions","Information"]
 
-CSV.open('output.csv', 'wb') do |csv|
+CSV.open('gold_sample_out.csv', 'wb') do |csv|
 	csv << ['date']+columns
 	x.each do |tweet|
 		date = tweet[1]["date"]
