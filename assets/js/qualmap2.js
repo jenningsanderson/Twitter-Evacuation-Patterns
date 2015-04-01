@@ -77,7 +77,8 @@ $(document).ready(function(){
             content: value,
             type: "point",
             style: "color: "+colors[category],
-            title: tweet.text
+            title: tweet.text,
+            id: tweet.geo_coordinates
           })
 
           var coeff = 1000 * 60 * 24;
@@ -119,8 +120,15 @@ $(document).ready(function(){
       "min" : new Date(2012,9,20)
     };
 
+    function onSelect (properties) {
+      console.log(properties);
+    }
+
+
     // Setup timeline
     var timeline = new vis.Timeline(document.getElementById('timeline'), timelineData, timelineOptions);
+
+    timeline.on('select', onSelect);
 
     // Set custom time marker (blue)
     timeline.setCustomTime(new Date(2012,9,29));
