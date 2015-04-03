@@ -3,7 +3,7 @@ require 'csv'
 
 x = JSON.parse(File.read('./gold_sample.json'))
 
-columns = ["Sentiment", "Reporting", "Movement","Actions","Information"]
+columns = ["Sentiment", "Reporting", "Movement","Actions","Information","Miscellaneous","Preparation","Other"]
 
 CSV.open('gold_sample_out.csv', 'wb') do |csv|
 	csv << ['date']+columns

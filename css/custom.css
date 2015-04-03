@@ -18,6 +18,34 @@ img{
   max-width: 100%;
 }
 
+/* Vis.js Over-rides */
+.vis.timeline .item {
+  position: absolute;
+  color: #1A1A1A;
+  border-color: #97B0F8;
+  border-width: 1px;
+  background-color: #D5DDF6;
+  display: inline-block;
+  padding: 1px;
+  margin: 0px;
+  font-size: 8px;
+}
+
+.viz.timeline .item .point:hover{
+  cursor: pointer;
+}
+
+.viz.timeline .item .point{
+}
+
+.viz.timeline .item .point .selected{
+  background-color: "yellow";
+}
+
+/* .vis.timeline .labelset .vlabel .inner {
+  font-size: 10px;
+} */
+
 /* D3 */
 .chart rect {
   fill: steelblue;

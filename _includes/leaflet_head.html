@@ -6,12 +6,8 @@
     <meta name="description" content="{{ site.description }}">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-    <link rel="stylesheet" href="{{ "/css/custom.css" | prepend: site.baseurl}}">
-
     <!-- JQUERY -->
-	<script src="{{ site.baseurl }}/assets/js/jquery-1.10.2.min.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/jquery-1.10.2.min.js"></script>
     <script src="{{ site.baseurl }}/assets/js/jquery-ui.js"></script>
     <script src="{{ site.baseurl }}/assets/js/jquery.ui.touch-punch.min.js"></script>
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/jquery-ui.css" type="text/css">
@@ -21,7 +17,6 @@
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 
     <script src="{{ site.baseurl }}/assets/js/leaflet.ajax.min.js"></script>
-
 
     <!--Clustering -->
     <script src="{{ site.baseurl }}/assets/js/leaflet.markercluster.js"></script>
@@ -38,6 +33,10 @@
     <!--D3-->
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="{{site.baseurl}}/assets/js/charts.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
+    <link rel="stylesheet" href="{{ "/css/custom.css" | prepend: site.baseurl}}">
 
     <style type="text/css">
         img{
