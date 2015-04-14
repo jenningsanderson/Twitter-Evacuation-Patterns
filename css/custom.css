@@ -29,6 +29,15 @@ img{
   padding: 1px;
   margin: 0px;
   font-size: 8px;
+  /* Safari */
+  -webkit-transform: rotate(30deg);
+  /* Firefox */
+  -moz-transform: rotate(30deg);
+  /* IE */
+  -ms-transform: rotate(30deg);
+  /* Opera */
+  -o-transform: rotate(30deg);
+
 }
 
 .viz.timeline .item .point:hover{
@@ -68,4 +77,8 @@ img{
 .y.axis line, .y.axis path {
   fill: none;
   stroke: #000;
+}
+
+hr.separator{
+  margin: 10px;
 }
