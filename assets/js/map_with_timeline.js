@@ -6,7 +6,7 @@ $(document).ready(function(){
   var tweets = {noCode:[]}
   var chart_colors = {}
   var users = {}
-  var thisUserForMap = null
+  var thisUserForMap = undefined
   var tweetIds = {}
 
   //Populate these
@@ -33,7 +33,7 @@ $(document).ready(function(){
   //
 
   function updateMap(tweets, start_date, end_date){
-    if (thisUserForMap != null){ map.removeLayer(thisUserForMap) }
+    if (thisUserForMap != undefined){ map.removeLayer(thisUserForMap) }
     thisUser = {type: "FeatureCollection", features:[]}
     tweets.forEach(function(tweet){
       if ( (Date.parse(tweet.date) < end_date) & (Date.parse(tweet.date) > start_date) ){
@@ -55,11 +55,11 @@ $(document).ready(function(){
     });
 
     thisUserForMap.addTo(map)
-    map.fitBounds(thisUserForMap.getBounds());
+    if (thisUserForMap != undefined){ map.fitBounds(thisUserForMap.getBounds());}
   }
 
   // Add baselayer
-  // tiles.addTo(map);
+  tiles.addTo(map);
 
 
   //Load the annotated tweets
@@ -84,7 +84,7 @@ $(document).ready(function(){
 
           tweets[category].push(
             {start: tweet.date,
-             content: value,
+             content: '<p class="rotate">'+value+'</p>',
              type: "point",
              style: "color: "+chart_colors[category],
              title: tweet.text,
@@ -153,7 +153,7 @@ $(document).ready(function(){
       "showCustomTime":true,
       "max" : new Date(2012,10,10),
       "min" : new Date(2012,9,20),
-      margin: { item: 1},
+      margin: { item: '8px'},
       clickToUse: true,
       template: template
     };
