@@ -2,7 +2,7 @@
 layout: map
 title:  "Mapping Qualitative Data"
 date:   2014-12-01 11:00:00
-permalink: /mapanalysis
+permalink: /mapanalysis1
 ---
 
 #Mapping Our Qualitative Data

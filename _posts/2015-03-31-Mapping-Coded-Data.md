@@ -1,8 +1,8 @@
 ---
-layout: map
-title:  "Mapping Qualitative Data"
-date:   2015-03-31 11:00:00
-permalink: /mapanalysis
+layout: map_with_timeline
+title:  "Mapping Qualitative Data with Timeline"
+date:   2015-04-14 16:00:00
+permalink: /timelineanalysis
 ---
 
 <!-- #Counts -->
@@ -13,12 +13,19 @@ permalink: /mapanalysis
 <svg id="miscellaneous_chart" class="chart"></svg> -->
 
 <!-- ---------------------------------------------- -->
+<div id="title">
+  <h1>Timeline</h1>
+  <p>Click to Activate, then click and drag to move up/down (different users), side-to-side for time, scroll to zoom in/out</p>
+  <p>Double Click to show a user's tweets on the below map</p>
+</div>
 
-#Timeline
 <div id="timeline" style="margin-top: 10px; width: 80%; display:inline-block; vertical-align: top; height:600px"></div>
 
+<hr class="separator">
 
-#Annotations over Time
-<svg id="sentiment_linechart" class="linechart"> </svg>
+<div id="map" style="width:100%; height:500px; margin: 0 auto; text-align: center;"></div>
+
+
+<!-- <svg id="sentiment_linechart" class="linechart"> </svg> -->
 
 <script src="{{site.baseurl}}/assets/js/map_with_timeline.js"></script>
