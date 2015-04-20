@@ -63,7 +63,7 @@ $(document).ready(function(){
 
 
   //Load the annotated tweets
-  $.getJSON("/Twitter-Evacuation-Patterns/datasets/gold_anns_with_names.json", function(data, err){
+  $.getJSON("/Twitter-Evacuation-Patterns/datasets/dataset1.json", function(data, err){
     Object.keys(data).forEach(function(key, idx) {
       //Tweets exist in a giant hash by tweet_id
       var tweet = data[key]
