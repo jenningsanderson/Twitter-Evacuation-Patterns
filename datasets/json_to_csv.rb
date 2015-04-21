@@ -39,7 +39,7 @@ JSON.parse(File.read('./dataset0.json')).first(5).each do |id, tweet|
 	tweet["date"] = found_tweet[:Date]
 	coords = found_tweet[:Coordinates]
 	puts coords
-	if coords = '----'
+	if coords == '----'
 		tweet["geo_coords"] = []
 	else
 		tweet["geo_coords"] = coords
