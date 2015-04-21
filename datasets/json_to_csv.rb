@@ -44,12 +44,12 @@ JSON.parse(File.read('./dataset0.json')).first(5).each do |id, tweet|
 		tweet["geo_coords"] = []
 	else
 		tweet["geo_coords"] = coords
+	end
 
 	all_tweets << tweet
 end
 
 sorted = all_tweets.sort_by{|tweet| tweet["user"]}
-
 
 CSV.open('all_output.csv', 'wb') do |csv|
 	csv << default_columns+coding_categories
@@ -62,6 +62,7 @@ CSV.open('all_output.csv', 'wb') do |csv|
 			end
 		end
 		row = [tweet["handle"], tweet["id"], tweet["date"], tweet["text"], tweet["geo"]]
+		
 		coding_categories.each do |column|
 			if annotations[column].nil?
 				row << ''
