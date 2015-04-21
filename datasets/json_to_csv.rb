@@ -37,16 +37,18 @@ JSON.parse(File.read('./dataset0.json')).each do |id, tweet|
 
 	found_tweet = tweets_by_user[user].select{|tweet| tweet[:Id] == id}.first
 
-	tweet["date"] = found_tweet[:Date]
-	coords = found_tweet[:Coordinates]
-	puts coords
-	if coords == "------"
-		tweet["geo_coords"] = []
+	if found_tweet.nil?
+		puts "ERROR!: #{id}"
 	else
-		tweet["geo_coords"] = coords
+		tweet["date"] = found_tweet[:Date]
+		coords = found_tweet[:Coordinates]
+		if coords == "------"
+			tweet["geo_coords"] = []
+		else
+			tweet["geo_coords"] = coords
+		end
+		all_tweets << tweet
 	end
-
-	all_tweets << tweet
 end
 
 sorted = all_tweets.sort_by{|tweet| tweet["user"]}
