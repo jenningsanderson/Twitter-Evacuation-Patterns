@@ -30,7 +30,7 @@ end
 tweets_by_user = {}
 tweet_ids = []
 
-JSON.parse(File.read('./dataset0.json')).first(5).each do |id, tweet|
+JSON.parse(File.read('./dataset0.json')).each do |id, tweet|
 	user = tweet["user"].scan(/sandy_nj_\d+_(.*)/)[0][0]
 	tweet["user"] = user
 	tweets_by_user[user] ||= contextual_stream.get_full_stream(user)
@@ -61,7 +61,7 @@ CSV.open('all_output.csv', 'wb') do |csv|
 				annotations[ann.split('-')[0]]=ann.split('-')[1]
 			end
 		end
-		row = [tweet["handle"], tweet["id"], tweet["date"], tweet["text"], tweet["geo"]]
+		row = [tweet["user"], tweet["id"], tweet["date"], tweet["text"], tweet["geo"]]
 		
 		coding_categories.each do |column|
 			if annotations[column].nil?
