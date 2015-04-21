@@ -35,7 +35,7 @@ JSON.parse(File.read('./dataset0.json')).first(5).each do |id, tweet|
 	tweet["user"] = user
 	tweets_by_user[user] ||= contextual_stream.get_full_stream(user)
 
-	found_tweet = tweets_by_user[user].select{|tweet| tweet[:Id] == id}
+	found_tweet = tweets_by_user[user].select{|tweet| tweet[:Id] == id}.first
 
 	tweet["date"] = found_tweet[:Date]
 	coords = found_tweet[:Coordinates]
