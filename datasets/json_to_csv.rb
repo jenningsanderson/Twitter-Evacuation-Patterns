@@ -35,74 +35,40 @@ JSON.parse(File.read('./dataset0.json')).first(5).each do |id, tweet|
 	tweet["user"] = user
 	tweets_by_user[user] ||= contextual_stream.get_full_stream(user)
 
-	found_tweet = tweets_by_user[user].collect{|tweet| tweet[:Id] == id}[0]
+	found_tweet = tweets_by_user[user].select{|tweet| tweet[:Id] == id}
 
 	tweet["date"] = found_tweet[:Date]
 	coords = found_tweet[:Coordinates]
 	puts coords
-	if coords == '----'
+	if coords == "------"
 		tweet["geo_coords"] = []
 	else
 		tweet["geo_coords"] = coords
 
-	puts tweet
+	all_tweets << tweet
 end
 
+sorted = all_tweets.sort_by{|tweet| tweet["user"]}
 
 
+CSV.open('all_output.csv', 'wb') do |csv|
+	csv << default_columns+coding_categories
 	
-
-	# begin
-	# 	from_twitter = client.status.show? :id=>tweet["id"]
-	# 	# tweet["date"] =  from_twitter.created_at
-	# 	puts tweet
-	# rescue => e
-	# 	puts e
-	# 	puts "Nope, error on tweet http://twitter.com/#{tweet["user"]}/statuses/#{id}"
-	# 	# tweet["geo_coords"] = 
-	# end
-	
-	# puts tweet
+	sorted.each do |tweet|
+		annotations = {}
+		tweet["annotations"].each do |ann|
+			unless ann == "None"
+				annotations[ann.split('-')[0]]=ann.split('-')[1]
+			end
+		end
+		row = [tweet["handle"], tweet["id"], tweet["date"], tweet["text"], tweet["geo"]
+		coding_categories.each do |column|
+			if annotations[column].nil?
+				row << ''
+			else
+				row << annotations[column]
+			end
+		end
+		csv << row
+	end
 end
-
-
-# puts all_tweets.first
-
-# y.each do |id, tweet|
-# 	puts id
-# end
-
-
-
-
-
-
-
-# tweet = client.statuses.show? :id => 262249120994037760
-
-# puts tweet.created_at
-# puts tweet.user.screen_name
-
-
-# CSV.open('all_output.csv', 'wb') do |csv|
-# 	csv << default_columns+coding_categories
-	
-# 	all_tweets.each do |tweet|
-# 		date = tweet[1]["date"]
-# 		annotations = {}
-# 		tweet[1]["annotations"].each do |ann|
-# 			unless ann == "None"
-# 				annotations[ann.split('-')[0]]=ann.split('-')[1]
-# 			end
-# 		end
-# 		row = [date]
-# 		columns.each do |column|
-# 			if annotations[column].nil?
-# 				row << ''
-# 			else
-# 				row << annotations[column]
-# 			end
-# 		end
-# 		csv << row
-# 	end
-# end
