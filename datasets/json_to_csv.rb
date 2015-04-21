@@ -61,7 +61,7 @@ CSV.open('all_output.csv', 'wb') do |csv|
 				annotations[ann.split('-')[0]]=ann.split('-')[1]
 			end
 		end
-		row = [tweet["user"], tweet["id"], tweet["date"], tweet["text"], tweet["geo"]]
+		row = [tweet["user"], tweet["id"], tweet["date"], tweet["text"], tweet["geo_coords"]]
 		
 		coding_categories.each do |column|
 			if annotations[column].nil?
