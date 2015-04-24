@@ -51,7 +51,7 @@ JSON.parse(File.read('./dataset0.json')).each do |id, tweet|
 	end
 end
 
-sorted_date = all_tweets.sortBy{ sort_by{|tweet| Date.new(tweet["date"])} }
+sorted_date = all_tweets.sortBy{|tweet| Date.new(tweet["date"]) }
 
 sorted = sorted_date.sortBy{|tweet| tweet["user"]}
 
