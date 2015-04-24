@@ -59,7 +59,7 @@ CSV.open('all_output.csv', 'wb') do |csv|
 	grouped.each do |user, tweets|
 		CSV.open('individual_users/'+user+'.csv', 'wb') do |indiv_csv|
 			indiv_csv << default_columns+coding_categories
-			tweets.sort_by{|tweet| DateTime.parse(tweet["date"])}.each do |tweet|
+			tweets.sort_by{|tweet| tweet["date"] }.each do |tweet|
 				annotations = {}
 				tweet["annotations"].each do |ann|
 					unless ann == "None"
