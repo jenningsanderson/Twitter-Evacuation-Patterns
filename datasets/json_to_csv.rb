@@ -51,9 +51,9 @@ JSON.parse(File.read('./dataset0.json')).each do |id, tweet|
 	end
 end
 
-sorted_date = all_tweets.sort_by{ sort_by{|tweet| Date.new(tweet["date"])} }
+sorted_date = all_tweets.sortBy{ sort_by{|tweet| Date.new(tweet["date"])} }
 
-sorted = sorted_date.sort_by{|tweet| tweet["user"]}
+sorted = sorted_date.sortBy{|tweet| tweet["user"]}
 
 CSV.open('all_output.csv', 'wb') do |csv|
 	csv << default_columns+coding_categories
