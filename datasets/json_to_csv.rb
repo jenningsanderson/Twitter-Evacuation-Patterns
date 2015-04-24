@@ -51,29 +51,33 @@ JSON.parse(File.read('./dataset0.json')).each do |id, tweet|
 	end
 end
 
-sorted_date = all_tweets.sort_by{|tweet| Date.new(tweet["date"]) }
-
-sorted = sorted_date.sort_by{|tweet| tweet["user"]}
+grouped = all_tweets.group_by{ |tweet| tweet["user"] }
 
 CSV.open('all_output.csv', 'wb') do |csv|
 	csv << default_columns+coding_categories
 	
-	sorted.each do |tweet|
-		annotations = {}
-		tweet["annotations"].each do |ann|
-			unless ann == "None"
-				annotations[ann.split('-')[0]]=ann.split('-')[1]
+	grouped.each do |user, tweets|
+		CSV.open('individual_users/'+user+'.csv', 'wb') do |indiv_csv|
+			indiv_csv << default_columns+coding_categories
+			tweets.sort_by{|tweet| DateTime.parse(tweet["date"])}.each do |tweet|
+				annotations = {}
+				tweet["annotations"].each do |ann|
+					unless ann == "None"
+						annotations[ann.split('-')[0]]=ann.split('-')[1]
+					end
+				end
+				row = [tweet["user"], tweet["id"], tweet["date"], tweet["text"], tweet["geo_coords"]]
+				
+				coding_categories.each do |column|
+					if annotations[column].nil?
+						row << ''
+					else
+						row << annotations[column]
+					end
+				end
+				csv << row
+				indiv_csv << row
 			end
 		end
-		row = [tweet["user"], tweet["id"], tweet["date"], tweet["text"], tweet["geo_coords"]]
-		
-		coding_categories.each do |column|
-			if annotations[column].nil?
-				row << ''
-			else
-				row << annotations[column]
-			end
-		end
-		csv << row
 	end
 end
