@@ -63,7 +63,8 @@ CSV.open('all_output.csv', 'wb') do |csv|
 				annotations = {}
 				tweet["annotations"].each do |ann|
 					unless ann == "None"
-						annotations[ann.split('-')[0]]=ann.split('-')[1..-1].join(',')
+						annotations[ann.split('-')[0]] ||= []
+						annotations[ann.split('-')[0]] << ann.split('-')[1]
 					end
 				end
 				row = [tweet["user"], tweet["id"], tweet["date"], tweet["text"], tweet["geo_coords"]]
@@ -72,7 +73,7 @@ CSV.open('all_output.csv', 'wb') do |csv|
 					if annotations[column].nil?
 						row << ''
 					else
-						row << annotations[column]
+						row << annotations[column].join(',')
 					end
 				end
 				csv << row
