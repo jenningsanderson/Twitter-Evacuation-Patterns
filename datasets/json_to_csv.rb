@@ -23,7 +23,7 @@ default_columns = ['handle', 'id', 'date', 'text', 'geo']
 
 all_tweets = []
 
-JSON.parse(File.read('./dataset1.json')).each do |id, tweet|
+JSON.parse(File.read('./gold_anns.json')).each do |id, tweet|
 	all_tweets << tweet
 end
 
@@ -73,7 +73,7 @@ CSV.open('all_output.csv', 'wb') do |csv|
 					if annotations[column].nil?
 						row << ''
 					else
-						row << annotations[column].join(',')
+						row << annotations[column].join(', ')
 					end
 				end
 				csv << row
