@@ -23,7 +23,7 @@ default_columns = ['handle', 'id', 'date', 'text', 'geo']
 
 all_tweets = []
 
-JSON.parse(File.read('./gold_anns.json')).each do |id, tweet|
+JSON.parse(File.read('./gold_anns_newest.json')).each do |id, tweet|
 	all_tweets << tweet
 end
 
@@ -53,11 +53,11 @@ end
 
 grouped = all_tweets.group_by{ |tweet| tweet["user"] }
 
-CSV.open('all_output.csv', 'wb') do |csv|
+CSV.open('all_output_05-28.csv', 'wb') do |csv|
 	csv << default_columns+coding_categories
 	
 	grouped.each do |user, tweets|
-		CSV.open('individual_users/'+user+'.csv', 'wb') do |indiv_csv|
+		CSV.open('individual_users-05-28/'+user+'.csv', 'wb') do |indiv_csv|
 			indiv_csv << default_columns+coding_categories
 			tweets.sort_by{|tweet| tweet["date"] }.each do |tweet|
 				annotations = {}
