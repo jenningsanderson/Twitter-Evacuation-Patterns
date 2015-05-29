@@ -24,32 +24,33 @@ default_columns = ['handle', 'id', 'date', 'text', 'geo']
 all_tweets = []
 
 JSON.parse(File.read('./gold_anns_newest.json')).each do |id, tweet|
-	all_tweets << tweet
+	#Error checking: if the date is wrong, then fix it:
+	# 2012-11-04 15:28:00
+	unless tweet["date"] =~ /^\d{4}-\d{2}-\d{2}/
+		user = tweet["user"].scan(/sandy_nj_\d+_(.*)/)[0][0]
+		tweet["user"] = user
+		tweets_by_user[user] ||= contextual_stream.get_full_stream(user)
+		found_tweet = tweets_by_user[user].select{|tweet| tweet[:Id] == id}.first
+
+		if found_tweet.nil?
+			puts "ERROR!: #{id}"
+		else
+			tweet["date"] = found_tweet[:Date]
+			coords = found_tweet[:Coordinates]
+			if coords == "------"
+				tweet["geo_coords"] = []
+			else
+				tweet["geo_coords"] = coords
+			end
+			all_tweets << tweet
+		end
+	else
+		all_tweets << tweet
+	end
 end
 
 tweets_by_user = {}
 tweet_ids = []
-
-JSON.parse(File.read('./dataset0.json')).each do |id, tweet|
-	user = tweet["user"].scan(/sandy_nj_\d+_(.*)/)[0][0]
-	tweet["user"] = user
-	tweets_by_user[user] ||= contextual_stream.get_full_stream(user)
-
-	found_tweet = tweets_by_user[user].select{|tweet| tweet[:Id] == id}.first
-
-	if found_tweet.nil?
-		puts "ERROR!: #{id}"
-	else
-		tweet["date"] = found_tweet[:Date]
-		coords = found_tweet[:Coordinates]
-		if coords == "------"
-			tweet["geo_coords"] = []
-		else
-			tweet["geo_coords"] = coords
-		end
-		all_tweets << tweet
-	end
-end
 
 grouped = all_tweets.group_by{ |tweet| tweet["user"] }
 
