@@ -20,7 +20,7 @@ default_columns = ['handle', 'id', 'date', 'text', 'geo']
 
 
 #Processing
-
+tweets_by_user = {}
 all_tweets = []
 
 JSON.parse(File.read('./gold_anns_newest.json')).each do |id, tweet|
@@ -48,9 +48,6 @@ JSON.parse(File.read('./gold_anns_newest.json')).each do |id, tweet|
 		all_tweets << tweet
 	end
 end
-
-tweets_by_user = {}
-tweet_ids = []
 
 grouped = all_tweets.group_by{ |tweet| tweet["user"] }
 
