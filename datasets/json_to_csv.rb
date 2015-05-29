@@ -37,6 +37,7 @@ JSON.parse(File.read('./gold_anns_newest.json')).each do |id, tweet|
 		else
 			tweet["date"] = found_tweet[:Date]
 			coords = found_tweet[:Coordinates]
+			tweet["text"] = found_tweet[:Text]
 			if coords == "------"
 				tweet["geo_coords"] = []
 			else
