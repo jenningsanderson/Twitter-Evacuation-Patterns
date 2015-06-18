@@ -28,17 +28,18 @@ class Twitterer < TwittererBase
 	#Mostly for testing, but maybe need access to these
 	attr_reader :unclassified_tweets
 
-	key :issue, 	Integer #A flag for keeping track of processing -- in Mongo
+	key :issue, 		Integer #A flag for keeping track of processing -- in Mongo
 	key :flag,      String
 
-	key :cluster_locations, 		Hash
+	key :cluster_locations, 			Hash
 	key :unclustered_percentage,	Integer
-	key :unclassifiable,    		Boolean
+	key :unclassifiable,    			Boolean
 
-	key :base_cluster,				String
-	key :base_cluster_score,		Float
+	key :base_cluster,						String
+	key :base_cluster_score,			Float
+	key :base_cluster_location,   Array
 
-	key :base_cluster_risk,			Integer
+	key :base_cluster_risk,				Integer
 
 	#Helper functions
 	def clusters
@@ -87,14 +88,29 @@ class Twitterer < TwittererBase
 		FACTORY.line_string(points)
 	end
 
+	def get_base_cluster
+		prev_val = 0
+		c = nil
+		clusters.each do |cluster_id, tweets|
+			new_val = tweet_regularity(tweets.reject{ |t| t["date"] > TIMES[:event] })
+			# puts "#{cluster_id}: #{new_val}"
+			if new_val > prev_val
+				prev_val = new_val
+				c = cluster_id
+			end
+		end
+		return c
+	end
 
 
-
-
-# ----------------- Get Clusters from the User's Tweet Locations -------------------#
+	# =Get Clusters from the User's Tweet Loctions
+	#
+	#
+	#
 	def process_tweets_to_clusters
 
 		#Create a new instance of the DBScanner, set the parameters.
+		#Passes an array of Tweet Objects, which have their own distance function
 		dbscanner = EpicGeo::Clustering::DBScan.new(tweets, epsilon=50, min_pts=2) #This seems to work okay...
 
 		# Run the db_scan algorithm

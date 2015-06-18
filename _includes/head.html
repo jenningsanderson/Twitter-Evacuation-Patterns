@@ -1,16 +1,30 @@
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <meta name="viewport" content="width=device-width">
-    <meta name="description" content="{{ site.description }}">
-    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="{{ site.description }}">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-    <link rel="stylesheet" href="{{ "/css/custom.css" | prepend: site.baseurl}}">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ "/css/custom.css" | prepend: site.baseurl}}">
 
-    <!-- JQUERY -->
-    <script src="{{ site.baseurl }}/assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+  <!-- JQUERY -->
+  <script src="{{ site.baseurl }}/assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+
+  <!-- Custom page.js -->
+  {% if page.js %}
+    {% for script in page.js %}
+      <script src="{{ site.baseurl }}/assets/js/{{script}}" type="text/javascript"></script>
+    {% endfor %}
+  {% endif %}
+
+  {% if page.css %}
+    {% for style in page.css %}
+      <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/{{style}}">
+      {% endfor %}
+  {% endif %}
+
 
 </head>

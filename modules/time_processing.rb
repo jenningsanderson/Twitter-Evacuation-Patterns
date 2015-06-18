@@ -2,7 +2,7 @@
 #
 #
 module TimeProcessing
-	
+
 	require 'time'
 
 	#Returns a hash with day_of_year as keys and arrays of tweet objects as values
@@ -34,7 +34,7 @@ module TimeProcessing
 
 		#Create array of time bin probabilities
 		norm_vals = groups.collect{ |k,v| v.length / tweet_count }
-		
+
 		#Sum the percentages that are above 30 percent. #Just above 12.5, which is chance
 		score = norm_vals.select{|v| v > 0.25 }.inject(:+)
 
@@ -52,7 +52,7 @@ module TimeProcessing
 
 		clusters.each do |cluster_id, tweets|
 			days = group_cluster_by_days(tweets)
-			
+
 			days.each do |day, tweets|
 				clusters_by_day[day.to_s] ||= []
 				clusters_by_day[day.to_s] << cluster_id # unless t_scores[cluster_id] > 0.1 #Only want high quality zones
@@ -94,7 +94,7 @@ module TimeProcessing
 	# 	# 		if shelter_zones.empty?
 	# 	# 			#Push the first zone value(s) onto the stack, but do not score the value
 	# 	# 			shelter_zones.unshift(zone)
-				
+
 	# 	# 		else
 	# 	# 			if shelter_zones.include? zone
 	# 	# 				weight = shelter_zones.index(zone)+1 #This will determine where it is, relatively
@@ -105,9 +105,9 @@ module TimeProcessing
 	# 	# 	else
 	# 	# 		#We have a day with multiple zones
 	# 	# 		if shelter_zones.empty?
-					
+
 	# 	# 			#Create the shelter_zones array with these datapoints
-	# 	# 			shelter_zones = clusters_by_day[day] 
+	# 	# 			shelter_zones = clusters_by_day[day]
 	# 	# 		else
 	# 	# 			#Need to find the indexes and take the lower one, then push that value.
 	# 	# 			prev_zone = clusters_by_day[day].shift #Pop the zone off the front
@@ -122,7 +122,7 @@ module TimeProcessing
 	# 	# 				zone_scores[this_zone] ||=0
 	# 	# 				if shelter_zones.include? this_zone
 	# 	# 					this_weight = shelter_zones.index(this_zone)+1
-							
+
 	# 	# 					if this_weight < prev_weight
 	# 	# 						prev_weight = this_weight
 	# 	# 						prev_zone = this_zone
@@ -157,7 +157,7 @@ module TimeProcessing
 			305 => 8,		#October 31, 2012
 			306 => 6,		#November 1, 2012
 			307 => 3,		#November 2, 2012
-			308 => 2,		#November 3, 2012	LynnCatherineX3 came back home 
+			308 => 2,		#November 3, 2012	LynnCatherineX3 came back home
 			309 => 1,		#November 4, 2012
 			310 => 1,
 			311 => 1,
@@ -176,7 +176,7 @@ module TimeProcessing
 
 			clusters_that_day.each do |indiv_cluster|
 				unless t_scores[indiv_cluster] > 0.1
-					if yday < 303 
+					if yday < 303
 					 	probable_before_locations << ([indiv_cluster] * distribution_weights[yday])
 					elsif yday > 308
 						probable_after_locations << ([indiv_cluster] * distribution_weights[yday])
@@ -227,12 +227,12 @@ end
 '''Deprecated Code'''
 
 # def find_best_before_cluster(clusters, t_scores)
-	
+
 # 	clusters_by_day = {} #This will be a hash like this: 301=>1,2 302=>4, etc.
 
 # 		clusters.each do |cluster_id, tweets|
 # 			days = group_cluster_by_days(tweets)
-			
+
 # 			days.each do |day, tweets|
 # 				clusters_by_day[day] ||= []
 # 				clusters_by_day[day] << cluster_id unless t_scores[cluster_id] > 0.1 #Only want high quality zones
@@ -246,7 +246,7 @@ end
 # 		return nil if clusters_by_day.keys.length.zero? 	#If there are no more valid keys, return 0
 
 # 		return mode(clusters_by_day.values)
-	
+
 # end
 
 
@@ -255,7 +255,7 @@ end
 
 # 		clusters.each do |cluster_id, tweets|
 # 			days = group_cluster_by_days(tweets)
-			
+
 # 			days.each do |day, tweets|
 # 				clusters_by_day[day] ||= []
 # 				clusters_by_day[day] << cluster_id unless t_scores[cluster_id] > 0.1 #Only want high quality zones
@@ -309,14 +309,14 @@ end
 	# location_scores = {}
 
 	# first_location = sorted_clusters.first[1]
-	
+
 	# first_location.each do |location|
-	# 	catch :next_location do 
+	# 	catch :next_location do
 	# 		location_scores[location] = 0
 
 	# 		#Now iterate through the sorted_clusters and see which location wins
 	# 		sorted_clusters.each do |k,v|
-				
+
 	# 			throw :next_location unless v.include? location
 	# 			location_scores[location] += 1
 	# 		end #end sorted_clusters iteration
