@@ -24,13 +24,14 @@ class Tweet
   key :handle, 			String
   key :date, 				Time
   key :coordinates, Hash
+  key :cluster,     Integer
 
   attr_accessor :coding
 
   # Given a bson_tweet as returned from Mongo (or parsed via JSON),
   # It creates a (basic) tweet object
   def initialize(bson_tweet)
-    attr_reader :id_str, :text, :user, :handle, :coordinates
+    attr_reader :id_str, :text, :user, :handle, :coordinates,
     @id_str = bson_tweet["id_str"]
     @text   = bson_tweet["text"]
     @user   = bson_tweet["user"]["id_str"]
@@ -62,6 +63,6 @@ class Tweet
 
   #Return the tweet as a hash in valid geojson for storing as a complete feature in a GeoJSON file.
   def as_geojson
-    {:type=>"Feature", :properties=>{:time=>date.iso8601, :text=>text},:geometry=>coordinates}
+    {:type=>"Feature", :properties=>{:time=>date.iso8601, :text=>text}, :geometry=>coordinates}
   end
 end

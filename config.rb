@@ -28,7 +28,7 @@ require 'modules/user_behavior'
 
 TIMES = {
 	event: 		Date.new(2012,10,29),
-	two_days:   Date.new(2012,11,1), 
+	two_days:   Date.new(2012,11,1),
 	one_week: 	Date.new(2012,11,7)
 		}
 
