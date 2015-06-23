@@ -8,7 +8,7 @@ require_relative '../movement_derivation_controller.rb'
 
 require 'modules/contextual_stream'
 
-runner = TwitterMovementDerivation.new(environment: 'local')
+runner = TwitterMovementDerivation.new(environment: 'server')
 context = ContextualStream::ContextualStreamRetriever.new({})
 
 #Make another connection to Mongo for the keyword search (This one IS on the server)
