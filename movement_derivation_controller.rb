@@ -82,16 +82,14 @@ class TwitterMovementDerivation
   	50 	=> 	"NCAR Bounding Box",
   	100 => 	"Outside NCAR Bounding Box"
   }
-
 end
 
 if __FILE__ == $0
-  puts "Initializing Twitter Movement Derivation"
+  env = ARGV[0] || 'local'
+  puts "Initializing Twitter Movement Derivation: #{env}"
 
   runtime = TwitterMovementDerivation.new(
-      environment: 'local'
-    )
-
-  # puts Twitterer.count()
+    environment: env
+  )
 
 end
