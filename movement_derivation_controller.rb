@@ -5,6 +5,13 @@
 #Enable relative loading of any file
 $:.unshift File.dirname(__FILE__)
 
+
+# Set Modules to be autoloaded, if necessary
+autoload :ContextualStream, 'modules/contextual_stream'
+autoload :CustomFunctions,  'modules/functions'
+autoload :TimeProcessing,   'modules/time_processing'
+
+
 class TwitterMovementDerivation
 
   require 'time'
@@ -17,6 +24,7 @@ class TwitterMovementDerivation
     @database    = args[:database]    || 'sandygeo2'
     @port        = args[:port]        || 27017
     @factory     = args[:factory]     || 'local'
+    puts "Initializing Twitter Movement Derivation: #{environment}"
     post_initialize(args)
   end
 
@@ -37,12 +45,6 @@ class TwitterMovementDerivation
 
     #Require our Twitterer Model, this loads super class and tweets
     require_relative 'models/twitterer'
-
-    require_relative 'modules/time_processing'
-    # Include TimeProcessing
-
-    require_relative 'modules/functions'
-    # Include CustomFunctions
 
     #Connect to the database
     MongoMapper.connection = Mongo::Connection.new(server, port)
@@ -86,10 +88,7 @@ end
 
 if __FILE__ == $0
   env = ARGV[0] || 'local'
-  puts "Initializing Twitter Movement Derivation: #{env}"
-
   runtime = TwitterMovementDerivation.new(
     environment: env
   )
-
 end

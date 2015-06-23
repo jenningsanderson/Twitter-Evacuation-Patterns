@@ -1,7 +1,5 @@
-require 'modules/user_behavior'
-require 'modules/time_processing'
-
 require 'models/TwittererBase'
+autoload :TimeProcessing, 'modules/time_processing'
 
 #=Twitterer Active During Hurricane Sandy
 #
@@ -18,9 +16,10 @@ class Twitterer < TwittererBase
 	include TimeProcessing
 
 	#These should be required separately, if required.
-	include UserBehavior
-	include UserBehavior::Evacuator
-	include UserBehavior::ShelterInPlace
+	autoload :UserBehavior, 'modules/user_behavior'
+
+	# include UserBehavior::Evacuator
+	# include UserBehavior::ShelterInPlace
 
 	#Enable access to points of interest
 	attr_reader :sip_conf, :evac_conf

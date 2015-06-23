@@ -7,10 +7,10 @@ module ContextualStream
 	#=Class to retrieve a full contextual stream
 	class ContextualStreamRetriever
 
-		attr_reader :root_path, :start_date, :end_date
+		attr_reader :root_path, :start_date, :end_date, :file_path, :in_stream
 
 		def initialize(args)
-			@root_path 	= args[:root_path]
+			@root_path 	= args[:root_path]  || "/home/kena/geo_user_collection/"
 			@start_date = args[:start_date] || Time.new(2012,07,01)
 			@end_date   = args[:end_date]   || Time.new(2012,12,31)
 
@@ -20,12 +20,8 @@ module ContextualStream
 			puts "\tEnd Date:   #{end_date}"
 		end
 
-		#Find the document on the server
-		def get_full_stream(name, geo_only=true)
+		def set_file_path(name)
 			puts "Looking for Stream: #{name}"
-
-			tweets = [] # => To be returned
-
 			#Get the subcategory
 			if name[0] =~ /[[:alpha:]]/
 				alph = name[0].downcase
@@ -35,8 +31,8 @@ module ContextualStream
 
 			user = name.downcase
 
-			file_path = nil
-			in_stream = nil
+			@file_path = nil
+			@in_stream = nil
 
 			#Iterate through the root_path directory for the user's contextual file
 			(1..6).to_a.map!{|num| "geo#{num}"}.each do |section|
@@ -47,7 +43,20 @@ module ContextualStream
 					break
 				end
 			end
+		end
 
+		def get_user_id_str(handle)
+			unless file_path.nil?
+				in_stream.first do |line|
+					tweet = JSON.parse(line.chomp)
+					return tweet['user']['id_str']
+				end
+			end
+		end
+
+		#Find the document on the server
+		def get_full_stream(geo_only=true)
+			tweets = [] # => To be returned
 			unless file_path.nil?
 				puts "Found the path, now reading from: #{file_path}"
 
