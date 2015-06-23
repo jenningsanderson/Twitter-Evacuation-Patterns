@@ -19,16 +19,16 @@ keyword_tweets = db['tweets']
 #import the list of ids
 File.readlines('datasets/ids_geo_ny_nj.txt').first(10).each do |line|
   handle = line.split(',')[0]
+  puts handle
 
   #First, get the user_id
   context.set_file_path(handle)
 
   id_str = context.get_user_id_str(handle)
 
-  context.get_full_stream(geo_only=true)
-
-  puts handle
-  keyword_tweet_ids = keyword_tweets.find({'user.id_str' => id_str})
-  puts keyword_tweet_ids.count()
-
+  unless id_str.nil?
+    context.get_full_stream(geo_only=true)
+    keyword_tweet_ids = keyword_tweets.find({'user.id_str' => id_str})
+    puts keyword_tweet_ids.count()
+  end
 end
