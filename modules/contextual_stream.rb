@@ -11,7 +11,7 @@ module ContextualStream
 
 		def initialize(args)
 			@root_path 	= args[:root_path]  || "/home/kena/geo_user_collection/"
-			@start_date = args[:start_date] || Time.new(2012,07,01)
+			@start_date = args[:start_date] || Time.new(2010,01,01)
 			@end_date   = args[:end_date]   || Time.new(2012,12,31)
 
 			puts "Contextual Stream Retriever Initialized:"

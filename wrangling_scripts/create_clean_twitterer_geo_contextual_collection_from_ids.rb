@@ -17,7 +17,7 @@ db = conn['hurricane_sandy']
 keyword_tweets = db['tweets']
 
 #import the list of ids
-File.readlines('datasets/ids_geo_ny_nj.txt').first(10).each do |line|
+File.readlines('datasets/ids_geo_ny_nj.txt').first(2).each do |line|
   handle = line.split(',')[0]
   puts handle
 
@@ -25,10 +25,36 @@ File.readlines('datasets/ids_geo_ny_nj.txt').first(10).each do |line|
   context.set_file_path(handle)
   id_str = context.get_user_id_str(handle)
 
+  user_tweets = []
+
   unless id_str.nil?
-    # all_tweets = context.get_full_stream(geo_only=true)
-    keyword_tweet_ids = keyword_tweets.find({'user.id_str' => id_str},{fields: ['id_str']}).to_a
-    puts keyword_tweet_ids
-    # puts keyword_tweet_ids.count()
+    keyword_tweet_ids = keyword_tweets.find({'user.id_str' => id_str},{fields: ['id_str']}).to_a.collect{|x| x["id_str"]}
+    all_tweets = context.get_full_stream(geo_only=true)
+
+    all_tweets.sort_by{|t| t[:Date]}.each do |t|
+      this_tweet = Tweet.new(
+          { "id_str" => t[:Id],
+            "text"   => t[:Text],
+            "user"   => {
+              "id_str" => id_str,
+              "screen_name" => t[:Handle]
+            },
+            "coordinates" => t[:Coordinates]
+            "date"   => t[:Date]
+          }
+        )
+      if keyword_tweet_ids.include? t[:Id]
+        this_tweet.contextual = false
+      else
+        this_tweet.contextual = true
+      end
+
+      user_tweets << this_tweet
+    end
+
+    puts user_tweets
+
+  else
+    puts "ERROR! user: #{handle} --"
   end
 end
