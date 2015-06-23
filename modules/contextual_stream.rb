@@ -7,7 +7,7 @@ module ContextualStream
 	#=Class to retrieve a full contextual stream
 	class ContextualStreamRetriever
 
-		attr_reader :root_path, :start_date, :end_date, :file_path, :in_stream
+		attr_reader :root_path, :start_date, :end_date, :file_path, :in_stream, :handle
 
 		def initialize(args)
 			@root_path 	= args[:root_path]  || "/home/kena/geo_user_collection/"
@@ -31,6 +31,7 @@ module ContextualStream
 
 			user = name.downcase
 
+			@handle    = user
 			@file_path = nil
 			@in_stream = nil
 
@@ -97,11 +98,11 @@ module ContextualStream
 							end
 			      end
 					end
-			    puts "--------Geo Ratio for #{user}: #{geo_count} : #{tweet_count}---------\n"
+			    puts "--------Geo Ratio for #{handle}: #{geo_count} : #{tweet_count}---------\n"
 			  rescue => e
 		    	p $!
 		    	puts e.backtrace
-		    	puts "Stream may not have existed for: #{user}"
+		    	puts "Stream may not have existed for: #{handle}"
 			  end
 
 				if tweets.length > 0
