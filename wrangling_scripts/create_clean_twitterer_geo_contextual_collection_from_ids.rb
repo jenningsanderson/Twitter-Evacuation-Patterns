@@ -24,12 +24,11 @@ File.readlines('datasets/ids_geo_ny_nj.txt').first(10).each do |line|
   #First, get the user_id
   context.set_file_path(handle)
   id_str = context.get_user_id_str(handle)
-  puts id_str
-  puts id_str.class
 
   unless id_str.nil?
     # all_tweets = context.get_full_stream(geo_only=true)
-    keyword_tweet_ids = keyword_tweets.find({'user.id_str' => id_str})
-    puts keyword_tweet_ids.count()
+    keyword_tweet_ids = keyword_tweets.find({'user.id_str' => id_str},{fields: ['id_str']}).to_a
+    puts keyword_tweet_ids
+    # puts keyword_tweet_ids.count()
   end
 end
