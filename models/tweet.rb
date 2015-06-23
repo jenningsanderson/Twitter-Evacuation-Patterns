@@ -32,7 +32,7 @@ class Tweet
   # Given a bson_tweet as returned from Mongo (or parsed via JSON),
   # It creates a (basic) tweet object
   def initialize(bson_tweet)
-    attr_reader :id_str, :text, :user, :handle, :coordinates,
+    attr_reader :id_str, :text, :user, :handle, :coordinates
     @id_str = bson_tweet["id_str"]
     @text   = bson_tweet["text"]
     @user   = bson_tweet["user"]["id_str"]
@@ -41,7 +41,7 @@ class Tweet
     @coordinates = bson_tweet["coordinates"]
   end
 
-  #Corrects for the time zone
+  #Corrects for the time zone // do we want to do this?
   def date
     @date.getlocal(-6*3600)
   end
