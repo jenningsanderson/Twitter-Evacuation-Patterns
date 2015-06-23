@@ -25,6 +25,7 @@ class Tweet
   key :date, 				Time
   key :coordinates, Hash
   key :cluster,     Integer
+  key :contextual,  Boolean
 
   attr_accessor :coding
 

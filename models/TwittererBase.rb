@@ -1,15 +1,14 @@
-require 'mongo_mapper'
 require 'models/tweet'
 
 #=Basic Twitterer Model
 #
 #This is the most basic Twitterer.  It strictly relates Users to Tweets
 class TwittererBase
-  
+
   #Define as mongoid document with many tweets
   include MongoMapper::Document
   set_collection_name "twitterers"
-  
+
   many :tweets
 
   #Define User fields
@@ -34,7 +33,7 @@ class TwittererBase
     nil
   end
 
-  #Helper function 
+  #Helper function
   def handle
     unless @handle.nil?
       process_handle
@@ -52,6 +51,17 @@ class TwittererBase
       @handle = tweets.first.handle + ", " + tweets.last.handle
     end
     @handle
+  end
+
+  #Get all of a user's contextual stream tweets
+  def contextual_stream
+    # TODO: collect all geo-tagged tweets from the user's contextual stream
+    # this is going to be all of a user's tweets
+  end
+
+  #Get all of a user's keyword tweets only
+  def keyword_tweets
+    # TODO: collect all geo-tagged tweets from just the keyword search
   end
 
   #If a user has multiple handles, return just the handle used in their first tweet

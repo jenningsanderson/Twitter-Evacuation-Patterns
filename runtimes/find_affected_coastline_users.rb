@@ -1,6 +1,6 @@
 #
 # Find all users in the affected coastline area
-# 
+#
 # Sets a hazard_level_before for just the before point
 
 require 'mongo_mapper'
@@ -26,9 +26,9 @@ puts "Successfully processed Coastline Box. area is: #{bounding_box.area/1000000
 
 #Iterate over users where we know their path was affected
 results = Twitterer.where(
-                :unclassifiable.ne => true, #We need to know if we can process them
-                :hazard_level_before.lte => 50,  #Users that are in the bounding box
-                :"cluster_locations.before_home".ne => nil
+                # :unclassifiable.ne => true, #We need to know if we can process them
+                # :hazard_level_before.lte => 50,  #Users that are in the bounding box
+                # :"cluster_locations.before_home".ne => nil
 ).limit(nil)
 
 puts "Found #{results.count} results, now processing"
@@ -44,7 +44,7 @@ results.each_with_index do |user, index|
 
 	if before_home_pnt.within? bounding_box
 		updated_users +=1
-		
+
 		user.hazard_level_before = 36 #This means they were in coastline area
 	end
 
