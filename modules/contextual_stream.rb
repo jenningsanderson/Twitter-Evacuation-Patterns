@@ -51,8 +51,7 @@ module ContextualStream
 
 		def get_user_id_str(handle)
 			unless file_path.nil?
-				in_stream.first do |line|
-					tweet = JSON.parse(line.chomp)
+				tweet = JSON.parse(in_stream.first.chomp)
 					return tweet['user']['id_str']
 				end
 			end
