@@ -39,7 +39,7 @@ File.readlines('datasets/ids_geo_ny_nj.txt').first(2).each do |line|
               "id_str" => id_str,
               "screen_name" => t[:Handle]
             },
-            "coordinates" => t[:Coordinates]
+            "coordinates" => t[:Coordinates],
             "date"   => t[:Date]
           }
         )
