@@ -21,10 +21,8 @@ class TwittererBase
   def initialize(args)
     @id_str          = args[:id_str]
     @account_created = args[:account_created]
-    @handle          = nil
-
-    #A user's tweets are embedded in Mongo, but can be passed in as an array, if already processed
-    @tweets          = args[:tweets] || []
+    @handle          = args[:handle]
+    @tweets           = args[:tweets]
 
     post_initialize(args)
   end

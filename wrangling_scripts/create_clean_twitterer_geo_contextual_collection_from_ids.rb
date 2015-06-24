@@ -6,10 +6,10 @@
 #First, create the runtime
 require_relative '../movement_derivation_controller.rb'
 
-require 'modules/contextual_stream'
-
-runner = TwitterMovementDerivation.new(environment: 'server')
-context = ContextualStream::ContextualStreamRetriever.new({})
+runner = TwitterMovementDerivation.new(environment: 'server', database: 'sandygeo')
+context = ContextualStream::ContextualStreamRetriever.new({
+  #root_path: '/data/CHIME/geo_user_collection/'
+  })
 
 #Make another connection to Mongo for the keyword search (This one IS on the server)
 conn = Mongo::MongoClient.new('epic-analytics.cs.colorado.edu')
@@ -17,13 +17,14 @@ db = conn['hurricane_sandy']
 keyword_tweets = db['tweets']
 
 #import the list of ids
-File.readlines('datasets/ids_geo_ny_nj.txt').first(2).each do |line|
+File.readlines('datasets/ids_geo_ny_nj.txt').each do |line|
   handle = line.split(',')[0]
   puts handle
 
   #First, get the user_id
   context.set_file_path(handle)
-  id_str = context.get_user_id_str(handle)
+  id_str = context.get_user_id_str
+  user_join_date = context.get_user_join_date
 
   user_tweets = []
 
@@ -32,27 +33,31 @@ File.readlines('datasets/ids_geo_ny_nj.txt').first(2).each do |line|
     all_tweets = context.get_full_stream(geo_only=true)
 
     all_tweets.sort_by{|t| t[:Date]}.each do |t|
-      this_tweet = Tweet.new(
-          { "id_str" => t[:Id],
-            "text"   => t[:Text],
-            "user"   => {
-              "id_str" => id_str,
-              "screen_name" => t[:Handle]
-            },
-            "coordinates" => t[:Coordinates],
-            "date"   => t[:Date]
-          }
-        )
+      contextual = true
       if keyword_tweet_ids.include? t[:Id]
-        this_tweet.contextual = false
-      else
-        this_tweet.contextual = true
+        contextual = false
       end
 
+      this_tweet = Tweet.new(
+            id_str: t[:Id],
+            text:   t[:Text],
+            user:   id_str,
+            handle: t[:handle],
+            coordinates: t[:Coordinates],
+            date:   t[:Date],
+            contextual: contextual
+        )
       user_tweets << this_tweet
     end
 
-    puts user_tweets
+    this_user = Twitterer.create(
+      id_str: id_str,
+      handle: handle,
+      account_created: user_join_date,
+    )
+
+    this_user.tweets = user_tweets
+    this_user.save!
 
   else
     puts "ERROR! user: #{handle} --"

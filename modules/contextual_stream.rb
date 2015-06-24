@@ -21,7 +21,7 @@ module ContextualStream
 		end
 
 		def set_file_path(name)
-			puts "Looking for Stream: #{name}"
+			print "Looking for Stream: #{name}..."
 			#Get the subcategory
 			if name[0] =~ /[[:alpha:]]/
 				alph = name[0].downcase
@@ -33,26 +33,33 @@ module ContextualStream
 
 			@handle    = user
 			@file_path = nil
-			@in_stream = nil
 
 			#Iterate through the root_path directory for the user's contextual file
 			(1..6).to_a.map!{|num| "geo#{num}"}.each do |section|
 				test_path = "#{root_path}#{section}/user_data/#{alph}/#{user}-contextual.json"
 				if File.exists? test_path
 					@file_path = test_path
-					@in_stream  = File.open(file_path,'r')
 					break
 				end
 			end
-			if file_path.nil? or in_stream.nil?
+			if file_path.nil?
 				puts "Error, no stream exists for #{name}"
+			else
+				puts "found: #{file_path}"
 			end
 		end
 
-		def get_user_id_str(handle)
+		def get_user_id_str
 			unless file_path.nil?
-				tweet = JSON.parse(in_stream.first.chomp)
+				tweet = JSON.parse(File.open(file_path,'r').first.chomp)
 				return tweet['user']['id_str']
+			end
+		end
+
+		def get_user_join_date
+			unless file_path.nil?
+				tweet = JSON.parse(File.open(file_path,'r').first.chomp)
+				return tweet['user']['created_at']
 			end
 		end
 
@@ -60,13 +67,12 @@ module ContextualStream
 		def get_full_stream(geo_only=true)
 			tweets = [] # => To be returned
 			unless file_path.nil?
-				puts "Found the path, now reading from: #{file_path}"
-
+				puts "Reading from: #{file_path}"
 				#Now read the stream and return the Array
 				begin
 					tweet_count = 0
 					geo_count = 0
-					in_stream.each do |line|
+					File.open(file_path,'r').each do |line|
 						tweet = JSON.parse(line.chomp)
 
 						tweet_data = {}
