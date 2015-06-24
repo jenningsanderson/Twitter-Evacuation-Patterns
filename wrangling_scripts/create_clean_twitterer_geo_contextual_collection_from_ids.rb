@@ -8,7 +8,7 @@ require_relative '../movement_derivation_controller.rb'
 
 runner = TwitterMovementDerivation.new(environment: 'server', database: 'sandygeo')
 context = ContextualStream::ContextualStreamRetriever.new({
-  #root_path: '/data/CHIME/geo_user_collection/'
+  # root_path: '/data/CHIME/geo_user_collection/'
   })
 
 #Make another connection to Mongo for the keyword search (This one IS on the server)
@@ -16,10 +16,13 @@ conn = Mongo::MongoClient.new('epic-analytics.cs.colorado.edu')
 db = conn['hurricane_sandy']
 keyword_tweets = db['tweets']
 
+#Log the errors
+errors = File.open('error_handles.txt','wb')
+
 #import the list of ids
-File.readlines('datasets/ids_geo_ny_nj.txt').each do |line|
+File.readlines('datasets/ids_geo_ny_nj.txt').each_with_index do |line, index|
   handle = line.split(',')[0]
-  puts handle
+  puts handle, index
 
   #First, get the user_id
   context.set_file_path(handle)
@@ -61,5 +64,8 @@ File.readlines('datasets/ids_geo_ny_nj.txt').each do |line|
 
   else
     puts "ERROR! user: #{handle} --"
+    errors.write(handle + "\n")
   end
 end
+
+errors.close()
