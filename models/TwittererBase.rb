@@ -5,7 +5,7 @@ require 'models/tweet'
 #This is the most basic Twitterer.  It strictly relates Users to Tweets
 class TwittererBase
 
-  #Define as mongoid document with many tweets
+  #Define as MongoMapper document with many tweets
   include MongoMapper::Document
   set_collection_name "twitterers"
 
@@ -22,7 +22,7 @@ class TwittererBase
     @id_str          = args[:id_str]
     @account_created = args[:account_created]
     @handle          = args[:handle]
-    @tweets           = args[:tweets]
+    @tweets          = args[:tweets]
 
     post_initialize(args)
   end
@@ -53,13 +53,12 @@ class TwittererBase
 
   #Get all of a user's contextual stream tweets
   def contextual_stream
-    # TODO: collect all geo-tagged tweets from the user's contextual stream
-    # this is going to be all of a user's tweets
+    return tweets.sort_by{ |t| t.date}.collect{|t| t["contextual"] }
   end
 
   #Get all of a user's keyword tweets only
   def keyword_tweets
-    # TODO: collect all geo-tagged tweets from just the keyword search
+    return tweets.sort_by{ |t| t.date}.collect{|t| t["contextual"]==false }
   end
 
   #If a user has multiple handles, return just the handle used in their first tweet

@@ -1,7 +1,3 @@
-#= Main Controller for Twitter Evacuation Pattern Work
-#
-#put an arugment parser here for the main runtime?
-
 #Enable relative loading of any file
 $:.unshift File.dirname(__FILE__)
 
@@ -10,8 +6,10 @@ $:.unshift File.dirname(__FILE__)
 autoload :ContextualStream, 'modules/contextual_stream'
 autoload :CustomFunctions,  'modules/functions'
 autoload :TimeProcessing,   'modules/time_processing'
+autoload :Twitterer,        'models/twitterer'
 
-
+#= Main Controller for Twitter Evacuation Pattern Work
+#
 class TwitterMovementDerivation
 
   require 'time'
@@ -21,10 +19,11 @@ class TwitterMovementDerivation
   def initialize(args)
     @environment = args[:environment] || 'local'
     @server      = args[:server]      || 'localhost'
-    @database    = args[:database]    || 'sandygeo2'
-    @port        = args[:port]        || 27017
+    @database    = args[:database]    || 'sandygeo_new'
+    @port        = args[:port]        ||  27017
     @factory     = args[:factory]     || 'local'
-    puts "Initializing Twitter Movement Derivation: #{environment}"
+    puts "Initializing Twitter Movement Derivation envrionment: #{environment}"
+    puts "To server: #{server}/#{database}"
     post_initialize(args)
   end
 
@@ -43,12 +42,12 @@ class TwitterMovementDerivation
     #Now we can call Mongo Mapper, because the Gemfile allows it
     require 'mongo_mapper'
 
-    #Require our Twitterer Model, this loads super class and tweets
-    require_relative 'models/twitterer'
-
     #Connect to the database
     MongoMapper.connection = Mongo::Connection.new(server, port)
     MongoMapper.database = database
+
+    #Require our Twitterer Model, this loads super class and tweets
+
 
     if args[:factory] == 'local'
       @factory = RGeo::Geographic.projected_factory(projection_proj4: '+proj=utm +zone=18 +datum=NAD27 +units=m +no_defs ')
@@ -65,7 +64,7 @@ class TwitterMovementDerivation
   end
 
   def force_reload
-    load 'models/twitterer'
+    load 'models/twitterer.rb'
   end
 
   #Global Variables
@@ -87,8 +86,30 @@ class TwitterMovementDerivation
 end
 
 if __FILE__ == $0
-  env = ARGV[0] || 'local'
+  env  = ARGV[0] || 'local'
+  host = ARGV[1] || 'localhost'
   runtime = TwitterMovementDerivation.new(
-    environment: env
+    environment: env,
+    server: host
   )
+
+  # puts MongoMapper.database['twitterers'].count
+
+  # Twitterer.create(
+  #   handle: 'blah'
+  # )
+
+  # puts MongoMapper.database.get_collection_name
+
+  # runtime.force_reload
+
+  # puts Twitterer.all.count
+
+  # puts user.handle
+
+  # puts user.contextual_stream.count
+
+  # puts user.keyword_tweets.count
+
+
 end
