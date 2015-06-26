@@ -13,7 +13,9 @@ module UserBehavior
 		dbscanner = EpicGeo::Clustering::DBScan.new(tweets, epsilon=50, min_pts=2) #This seems to work okay...
 
 		# Run the db_scan algorithm
+		print "Running dbscan..."
 		clusters = dbscanner.run
+		puts "done"
 
 		clusters.each do |cluster_id, tweets|
 			tweets.each do |tweet|

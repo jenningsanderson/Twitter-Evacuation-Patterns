@@ -87,7 +87,9 @@ if __FILE__ == $0
   res.each_with_index do |user, idx|
     unless user.tweets.count == 0
       puts user.handle, idx
+      puts "Calling Cluster"
       user.process_tweets_to_clusters
+      puts "Finished Cluster"
       user.save
     end
   end
