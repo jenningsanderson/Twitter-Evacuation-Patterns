@@ -1,4 +1,5 @@
 require_relative '../movement_derivation_controller'
+require 'parallel'
 
 env  = ARGV[0] || 'local'
 geo  = ARGV[1] || 'gem'
@@ -9,29 +10,26 @@ runtime = TwitterMovementDerivation.new(
 )
 
 LIMIT   = 1000
-THREADS = 16
+PROCESSES = ARGV[2]
 
-threaded = []
+split = []
 
-res = Twitterer.where(unclustered_percentage: nil).limit(100)
+res = Twitterer.where(unclustered_percentage: nil).limit(LIMIT)
 
-res.each_slice(LIMIT/THREADS) do |group|
-  threaded << group
+res.each_slice(LIMIT/PROCESSES) do |group|
+  split << group
 end
 
-threads = []
+puts split.count
 
-THREADS.times do |i|
-  threads << Thread.new do
-    threaded[i-1].each do |user|
-      unless user.tweets.count == 0
-        puts user.handle
-        puts "Calling Cluster"
-        user.process_tweets_to_clusters
-        puts "Finished Cluster"
-        user.save
-      end
+Parallel.map(split) do |group|
+  group.each do |user|
+    unless user.tweets.count == 0
+      puts user.handle
+      puts "Calling Cluster"
+      user.process_tweets_to_clusters
+      puts "Finished Cluster"
+      user.save
     end
   end
 end
-threads.map(&:join)

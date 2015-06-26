@@ -6,6 +6,7 @@ gem 'bson',           '3.1.1'
 gem 'moped',          '2.0.6'
 gem 'mongoid',        '4.0.2'
 gem 'json',           '1.8.3'
+gem 'parallel',       '1.6.0'
 
 
 group :server do
