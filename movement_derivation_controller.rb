@@ -6,7 +6,6 @@ $:.unshift File.dirname(__FILE__)
 autoload :ContextualStream, 'modules/contextual_stream'
 autoload :CustomFunctions,  'modules/functions'
 autoload :TimeProcessing,   'modules/time_processing'
-autoload :Twitterer,        'models/twitterer'
 
 #= Main Controller for Twitter Evacuation Pattern Work
 #
@@ -17,13 +16,9 @@ class TwitterMovementDerivation
   attr_reader :environment, :database, :port, :server, :factory
 
   def initialize(args)
-    @environment = args[:environment] || 'local'
-    @server      = args[:server]      || 'localhost'
-    @database    = args[:database]    || 'sandygeo_new'
-    @port        = args[:port]        ||  27017
-    @factory     = args[:factory]     || 'local'
+    @environment = args[:environment].to_sym || :local
+    @factory     = args[:factory]            || 'local'
     puts "Initializing Twitter Movement Derivation envrionment: #{environment}"
-    puts "To server: #{server}/#{database}"
     post_initialize(args)
   end
 
@@ -39,15 +34,10 @@ class TwitterMovementDerivation
       require_relative '/Users/jenningsanderson/Documents/epic-geo/lib/epic_geo.rb'
     end
 
-    #Now we can call Mongo Mapper, because the Gemfile allows it
-    require 'mongo_mapper'
+    require 'mongoid'
+    Mongoid.load!('persistence/mongoid.yml', environment)
 
-    #Connect to the database
-    MongoMapper.connection = Mongo::Connection.new(server, port)
-    MongoMapper.database = database
-
-    #Require our Twitterer Model, this loads super class and tweets
-
+    require 'models/twitterer'
 
     if args[:factory] == 'local'
       @factory = RGeo::Geographic.projected_factory(projection_proj4: '+proj=utm +zone=18 +datum=NAD27 +units=m +no_defs ')
@@ -93,8 +83,6 @@ if __FILE__ == $0
     server: host
   )
 
-  # puts MongoMapper.database['twitterers'].count
-
   # Twitterer.create(
   #   handle: 'blah'
   # )
@@ -103,7 +91,7 @@ if __FILE__ == $0
 
   # runtime.force_reload
 
-  # puts Twitterer.all.count
+  puts Twitterer.all.count
 
   # puts user.handle
 

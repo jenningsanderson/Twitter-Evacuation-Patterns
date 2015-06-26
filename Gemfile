@@ -1,10 +1,12 @@
 source 'http://rubygems.org'
 
 #These are the latest stable versions of these gems to work with MongoMapper
-gem 'mongo',          '1.8.6'
-gem 'bson_ext',       '1.8.6'
-gem 'mongo_mapper',   '0.13.1'
+# gem 'mongo',          '1.12.3'
+gem 'bson',           '3.1.1'
+gem 'moped',          '2.0.6'
+gem 'mongoid',        '4.0.2'
 gem 'json',           '1.8.3'
+
 
 group :server do
   gem 'activesupport'

@@ -1,11 +1,32 @@
-require 'models/TwittererBase'
 autoload :TimeProcessing, 'modules/time_processing'
+require_relative 'tweet'
 
 #=Twitterer Active During Hurricane Sandy
 #
 #Inheriting basic Twitter User behavior and attributes from TwittererBase, this
 #
-class Twitterer < TwittererBase
+class Twitterer
+
+	include Mongoid::Document
+	embeds_many :tweets
+
+	#Define User fields
+	field :id_str,          				type: String
+	field :handle,          				type: String
+	field :account_created, 				type: Time
+
+	field :issue, 									type: Integer #A flag for keeping track of processing -- in Mongo
+	field :flag,      							type: String
+
+	field :cluster_locations, 			type: Hash
+	field :unclustered_percentage,	type: Integer
+	field :unclassifiable,    			type: Boolean
+
+	field :base_cluster,						type: String
+	field :base_cluster_score,			type: Float
+	field :base_cluster_location,   type: Array
+
+	field :base_cluster_risk,				type: Integer
 
 	#Get Geo functions for geotwitterer
 	include EpicGeo::GeoTwitterer
@@ -27,18 +48,73 @@ class Twitterer < TwittererBase
 	#Mostly for testing, but maybe need access to these
 	attr_reader :unclassified_tweets
 
-	key :issue, 		Integer #A flag for keeping track of processing -- in Mongo
-	key :flag,      String
 
-	key :cluster_locations, 			Hash
-	key :unclustered_percentage,	Integer
-	key :unclassifiable,    			Boolean
 
-	key :base_cluster,						String
-	key :base_cluster_score,			Float
-	key :base_cluster_location,   Array
+	attr_reader :id_str
 
-	key :base_cluster_risk,				Integer
+  def initialize(args)
+    @id_str          = args[:id_str]
+    @account_created = args[:account_created]
+    @handle          = args[:handle]
+    @tweets          = args[:tweets]
+
+    post_initialize(args)
+  end
+
+  def post_initialize(args)
+    nil
+  end
+
+  #Helper function
+  def handle
+    unless @handle.nil?
+      process_handle
+    end
+    @handle
+  end
+
+  #A very basic handle processing function.  Ideally a user's first handle
+  # and last hanle are the same, so that's their handle, otherwise, we'll
+  # concatenate the two handles and call it good.
+  def process_handle
+    if tweets.first.handle == tweets.last.handle
+      @handle = tweets.first.handle
+    else
+      @handle = tweets.first.handle + ", " + tweets.last.handle
+    end
+    @handle
+  end
+
+  #Get all of a user's contextual stream tweets
+  def contextual_stream
+    return tweets.sort_by{ |t| t.date}.collect{|t| t["contextual"] }
+  end
+
+  #Get all of a user's keyword tweets only
+  def keyword_tweets
+    return tweets.sort_by{ |t| t.date}.collect{|t| t["contextual"]==false }
+  end
+
+  #If a user has multiple handles, return just the handle used in their first tweet
+  def sanitized_handle
+    return tweets.first.handle
+  end
+
+  #Returns the number of tweets
+  def tweet_count
+    tweets.count
+  end
+
+  #Add a tweet object to this Twitterer's tweets collection
+  def add_tweet(tweet)
+    tweets << tweet
+  end
+
+  #Set & return a user's tweets to be sorted by the Tweet#created_at function
+  def sort_tweets_by_date
+    tweets = @tweets.sort_by{|tweet| tweet.created_at}
+  end
+
 
 	#Helper functions
 	def clusters

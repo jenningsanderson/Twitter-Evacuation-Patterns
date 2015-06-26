@@ -6,21 +6,21 @@ class Tweet
   #Used for DBScan Clustering
   attr_accessor :cluster, :visited
 
-  #Extend the MongoMapper EmbeddedDocument
-  include MongoMapper::EmbeddedDocument
+  include Mongoid::Document
+  embedded_in :Twitterer
 
   #Make the Tweet GeoAware
   include EpicGeo::GeoTweet
 
   #Variables to be saved to Mongo
-  key :id_str, 			String
-  key :text, 				String
-  key :user, 				String
-  key :handle, 			String
-  key :date, 				Time
-  key :coordinates, Array
-  key :cluster,     Integer
-  key :contextual,  Boolean
+  field :id_str, 			type: String
+  field :text, 				type: String
+  field :user, 				type: String
+  field :handle, 			type: String
+  field :date, 				type: Time
+  field :coordinates, type: Array
+  field :cluster,     type: Integer
+  field :contextual,  type: Boolean
 
   #Can add more coding information here, if desired
 
