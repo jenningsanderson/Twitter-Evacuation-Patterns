@@ -1,5 +1,4 @@
 require_relative '../movement_derivation_controller'
-require 'parallel', '1.6.0'
 
 env  = ARGV[0] || 'local'
 geo  = ARGV[1] || 'gem'
@@ -8,6 +7,8 @@ runtime = TwitterMovementDerivation.new(
   geo: geo,
   factory: 'global'
 )
+
+require 'parallel'
 
 LIMIT   = 1000
 PROCESSES = ARGV[2].to_i
