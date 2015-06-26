@@ -10,7 +10,7 @@ runtime = TwitterMovementDerivation.new(
 )
 
 LIMIT   = 1000
-PROCESSES = ARGV[2]
+PROCESSES = ARGV[2].to_i
 
 split = []
 
