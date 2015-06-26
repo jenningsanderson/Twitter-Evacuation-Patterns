@@ -1,5 +1,5 @@
 require_relative '../movement_derivation_controller'
-require 'parallel'
+require 'parallel', '1.6.0'
 
 env  = ARGV[0] || 'local'
 geo  = ARGV[1] || 'gem'
