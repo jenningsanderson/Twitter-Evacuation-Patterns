@@ -39,10 +39,10 @@ class TwitterMovementDerivation
 
     require 'models/twitterer'
 
-    if args[:factory] == 'local'
-      @factory = RGeo::Geographic.projected_factory(projection_proj4: '+proj=utm +zone=18 +datum=NAD27 +units=m +no_defs ')
+    if factory == 'local'
+      $fatory = RGeo::Geographic.projected_factory(projection_proj4: '+proj=utm +zone=18 +datum=NAD27 +units=m +no_defs ')
     else
-      @factory = RGeo::Geographic.simple_mercator_factory #The basic factory for web mercator data; anything but 'local'
+      $factory = RGeo::Geographic.simple_mercator_factory #The basic factory for web mercator data
     end
   end
 
@@ -80,24 +80,18 @@ if __FILE__ == $0
   host = ARGV[1] || 'localhost'
   runtime = TwitterMovementDerivation.new(
     environment: env,
-    server: host
+    server: host,
+    factory: 'global'
   )
 
-  # Twitterer.create(
-  #   handle: 'blah'
-  # )
+  res = Twitterer.where(unclustered_percentage: nil).limit(1000)
 
-  # puts MongoMapper.database.get_collection_name
-
-  # runtime.force_reload
-
-  puts Twitterer.all.count
-
-  # puts user.handle
-
-  # puts user.contextual_stream.count
-
-  # puts user.keyword_tweets.count
-
+  res.each_with_index do |user, idx|
+    unless user.tweets.count == 0
+      puts user.handle, idx
+      user.process_tweets_to_clusters
+      user.save
+    end
+  end
 
 end

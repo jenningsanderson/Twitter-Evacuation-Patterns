@@ -1,4 +1,6 @@
 autoload :TimeProcessing, 'modules/time_processing'
+autoload :UserBehavior, 'modules/user_behavior'
+
 require_relative 'tweet'
 
 #=Twitterer Active During Hurricane Sandy
@@ -32,14 +34,11 @@ class Twitterer
 	include EpicGeo::GeoTwitterer
 
 	#Need geoprocessing functionality as well
-	include EpicGeo::GeoProcessing #This may not be needed?
+	include EpicGeo::GeoProcessing
 
 	include TimeProcessing
+	include UserBehavior
 
-	#These should be required separately, if required.
-	autoload :UserBehavior, 'modules/user_behavior'
-
-	# include UserBehavior::Evacuator
 	# include UserBehavior::ShelterInPlace
 
 	#Enable access to points of interest
@@ -48,9 +47,9 @@ class Twitterer
 	#Mostly for testing, but maybe need access to these
 	attr_reader :unclassified_tweets
 
-
-
-	attr_reader :id_str
+	def handle
+		self["handle"]
+	end
 
   def initialize(args)
     @id_str          = args[:id_str]
@@ -65,44 +64,14 @@ class Twitterer
     nil
   end
 
-  #Helper function
-  def handle
-    unless @handle.nil?
-      process_handle
-    end
-    @handle
-  end
-
-  #A very basic handle processing function.  Ideally a user's first handle
-  # and last hanle are the same, so that's their handle, otherwise, we'll
-  # concatenate the two handles and call it good.
-  def process_handle
-    if tweets.first.handle == tweets.last.handle
-      @handle = tweets.first.handle
-    else
-      @handle = tweets.first.handle + ", " + tweets.last.handle
-    end
-    @handle
-  end
-
   #Get all of a user's contextual stream tweets
   def contextual_stream
-    return tweets.sort_by{ |t| t.date}.collect{|t| t["contextual"] }
+    tweets.select{|t| t.contextual }
   end
 
   #Get all of a user's keyword tweets only
   def keyword_tweets
-    return tweets.sort_by{ |t| t.date}.collect{|t| t["contextual"]==false }
-  end
-
-  #If a user has multiple handles, return just the handle used in their first tweet
-  def sanitized_handle
-    return tweets.first.handle
-  end
-
-  #Returns the number of tweets
-  def tweet_count
-    tweets.count
+    tweets.select{|t| !t.contextual}
   end
 
   #Add a tweet object to this Twitterer's tweets collection
@@ -114,7 +83,6 @@ class Twitterer
   def sort_tweets_by_date
     tweets = @tweets.sort_by{|tweet| tweet.created_at}
   end
-
 
 	#Helper functions
 	def clusters
@@ -182,47 +150,6 @@ class Twitterer
 	#
 	#
 	#
-	def process_tweets_to_clusters
-
-		#Create a new instance of the DBScanner, set the parameters.
-		#Passes an array of Tweet Objects, which have their own distance function
-		dbscanner = EpicGeo::Clustering::DBScan.new(tweets, epsilon=50, min_pts=2) #This seems to work okay...
-
-		# Run the db_scan algorithm
-	    clusters = dbscanner.run
-
-	    clusters.each do |cluster_id, tweets|
-	    	tweets.each do |tweet|
-	    		tweet.cluster = cluster_id
-	    		tweet.save
-	    	end
-	    end
-
-	    #Save the cluster locations (simple lon/lat arrays)
-	    @cluster_locations = {}
-
-	    #Go through the clusters and find the median locations
-	    clusters.keys.each do |key|
-	    	key_string = key.to_s
-
-	    	#Set the cluster locations as well (for storage, we can plot tweets on these later...)!
-	    	unless key_string=="-1"
-	    		@cluster_locations[key_string] ||= find_median_point(clusters[key].collect{|tweet| tweet["coordinates"]["coordinates"]})
-	    	end
-	    end
-
-	    #Throw away the unclassifiable cluster (Save them as a variable with the Twitterer for now)
-		unclassified_tweets = clusters.delete(-1)
-		@unclustered_percentage = (unclassified_tweets.length.to_f / tweets.count*100).round
-
-		if clusters.empty?
-			@unclassifiable = true
-		else
-			@unclassifiable = false
-		end
-	end
-
-
 
 	def prev_clustering_stuff
 
@@ -239,9 +166,6 @@ class Twitterer
 		#Now save clusters_by_day for later access...
 		@clusters_per_day = sort_clusters_by_day(@clusters)
 	end
-
-
-
 
 
 	#The new movement analysis -- will make calls to the time_processing script.
