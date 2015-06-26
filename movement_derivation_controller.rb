@@ -19,7 +19,7 @@ class TwitterMovementDerivation
     @environment = args[:environment].to_sym || :local
     @geo         = args[:geo].to_sym         || :gem
     @factory     = args[:factory]            || 'local'
-    puts "Initializing Twitter Movement Derivation envrionment: #{environment}"
+    puts "Initializing Twitter Movement Derivation environment: #{environment}"
     post_initialize(args)
   end
 
@@ -27,11 +27,6 @@ class TwitterMovementDerivation
     #Use the bundler to ensure we get all the dependencies met
     require 'rubygems'
     require 'bundler/setup'
-
-    #This sets up the environments
-    if environment == :server
-      setup_server(args)
-    end
 
     if geo == :gem
       require 'epic_geo'
@@ -49,13 +44,6 @@ class TwitterMovementDerivation
     else
       $factory = RGeo::Geographic.simple_mercator_factory #The basic factory for web mercator data
     end
-  end
-
-  def setup_server(args)
-    #Require these further gems to make everything work on the server
-    require 'active_support'
-    require 'active_support/deprecation'
-
   end
 
   def force_reload

@@ -1,6 +1,6 @@
 require_relative '../movement_derivation_controller'
 
-env  = ARGV[0] || 'local'
+env  = ARGV[0] || 'server'
 geo  = ARGV[1] || 'gem'
 runtime = TwitterMovementDerivation.new(
   environment: env,
@@ -10,27 +10,19 @@ runtime = TwitterMovementDerivation.new(
 
 require 'parallel'
 
-LIMIT   = 1000
-PROCESSES = ARGV[2].to_i
+LIMIT   = 100
+PROCESSES = (ARGV[2] || '2').to_i
 
-split = []
+alpha = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
-res = Twitterer.where(unclustered_percentage: nil).limit(LIMIT)
-
-res.each_slice(LIMIT/PROCESSES) do |group|
-  split << group
-end
-
-puts split.count
-
-Parallel.map(split) do |group|
-  group.each do |user|
+res = Parallel.map(alpha.first(PROCESSES)) do |letter|
+  puts "Starting Process: #{letter}"
+  Twitterer.where(unclustered_percentage: nil, handle: /^#{letter}/).limit(LIMIT).each do |user|
     unless user.tweets.count == 0
       puts user.handle
-      puts "Calling Cluster"
       user.process_tweets_to_clusters
-      puts "Finished Cluster"
       user.save
+      puts "-------FINISHED #{user.handle}-----------"
     end
   end
 end
