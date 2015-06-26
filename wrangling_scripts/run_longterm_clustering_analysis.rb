@@ -1,0 +1,37 @@
+require_relative '../movement_derivation_controller'
+
+env  = ARGV[0] || 'local'
+geo  = ARGV[1] || 'gem'
+runtime = TwitterMovementDerivation.new(
+  environment: env,
+  geo: geo,
+  factory: 'global'
+)
+
+LIMIT   = 1000
+THREADS = 16
+
+threaded = []
+
+res = Twitterer.where(unclustered_percentage: nil).limit(100)
+
+res.each_slice(LIMIT/THREADS) do |group|
+  threaded << group
+end
+
+threads = []
+
+THREADS.times do |i|
+  threads << Thread.new do
+    threaded[i-1].each do |user|
+      unless user.tweets.count == 0
+        puts user.handle
+        puts "Calling Cluster"
+        user.process_tweets_to_clusters
+        puts "Finished Cluster"
+        user.save
+      end
+    end
+  end
+end
+threads.map(&:join)

@@ -13,10 +13,11 @@ class TwitterMovementDerivation
 
   require 'time'
 
-  attr_reader :environment, :database, :port, :server, :factory
+  attr_reader :environment, :database, :port, :server, :factory, :geo
 
   def initialize(args)
     @environment = args[:environment].to_sym || :local
+    @geo         = args[:geo].to_sym         || :gem
     @factory     = args[:factory]            || 'local'
     puts "Initializing Twitter Movement Derivation envrionment: #{environment}"
     post_initialize(args)
@@ -30,6 +31,10 @@ class TwitterMovementDerivation
     #This sets up the environments
     if environment == :server
       setup_server(args)
+    end
+
+    if geo == :gem
+      require 'epic_geo'
     else
       require_relative '/Users/jenningsanderson/Documents/epic-geo/lib/epic_geo.rb'
     end
@@ -50,7 +55,7 @@ class TwitterMovementDerivation
     #Require these further gems to make everything work on the server
     require 'active_support'
     require 'active_support/deprecation'
-    require 'epic_geo'
+
   end
 
   def force_reload
@@ -77,8 +82,10 @@ end
 
 if __FILE__ == $0
   env  = ARGV[0] || 'local'
+  geo  = ARGV[1] || 'gem'
   runtime = TwitterMovementDerivation.new(
     environment: env,
+    geo: geo,
     factory: 'global'
   )
 

@@ -23,7 +23,9 @@ class Tweet
   field :cluster_id,  type: String
   field :contextual,  type: Boolean
 
-  #Can add more coding information here, if desired
+  def id
+    return id_str
+  end
 
   #Corrects for the time zone // do we want to do this?
   # def date
