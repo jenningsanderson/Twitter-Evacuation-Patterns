@@ -28,7 +28,7 @@ class TwitterMovementDerivation
     require 'bundler/setup'
 
     #This sets up the environments
-    if environment == 'server'
+    if environment == :server
       setup_server(args)
     else
       require_relative '/Users/jenningsanderson/Documents/epic-geo/lib/epic_geo.rb'
@@ -77,10 +77,8 @@ end
 
 if __FILE__ == $0
   env  = ARGV[0] || 'local'
-  host = ARGV[1] || 'localhost'
   runtime = TwitterMovementDerivation.new(
     environment: env,
-    server: host,
     factory: 'global'
   )
 
