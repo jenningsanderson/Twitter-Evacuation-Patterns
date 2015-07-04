@@ -16,7 +16,7 @@ class TwitterMovementDerivation
   attr_reader :environment, :database, :port, :server, :factory, :geo
 
   def initialize(args)
-    @environment = args[:environment].to_sym || :local
+    @environment = args[:environment].to_sym || :serverlocal
     @geo         = args[:geo].to_sym         || :gem
     @factory     = args[:factory]            || 'local'
     puts "Initializing Twitter Movement Derivation environment: #{environment}"
