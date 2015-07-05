@@ -23,4 +23,4 @@ processing:
     default:
       database: 'sandygeo_new'
       hosts:
-        - research.yetilabs.co:27017
+        - 192.12.242.130:27017
