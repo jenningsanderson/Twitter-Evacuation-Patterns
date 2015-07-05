@@ -20,9 +20,8 @@ class Twitterer
 	field :issue, 									type: Integer #A flag for keeping track of processing -- in Mongo
 	field :flag,      							type: String
 
-	field :cluster_locations, 			type: Hash
+	field :cluster_locations, 			type: Hash, default: {}
 	field :unclustered_percentage,	type: Integer
-	field :unclassifiable,    			type: Boolean
 
 	field :base_cluster,						type: String
 	field :base_cluster_score,			type: Float
