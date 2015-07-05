@@ -65,9 +65,11 @@ File.readlines('datasets/missing_coded_ids.txt').each_with_index do |line, index
       handle: handle,
       account_created: user_join_date
     )
-
-    this_user.tweets = user_tweets
     this_user.save(validate: false)
+
+    # this_user.tweets = user_tweets
+
+
 
   else
     puts "ERROR! user: #{handle} --"
