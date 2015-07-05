@@ -12,7 +12,6 @@ context = ContextualStream::ContextualStreamRetriever.new({
   })
 
 #Make another connection to Mongo for the keyword search (This one IS on the server)
-require 'mongo'
 conn = Mongo::MongoClient.new('epic-analytics.cs.colorado.edu')
 db = conn['hurricane_sandy']
 keyword_tweets = db['tweets']
