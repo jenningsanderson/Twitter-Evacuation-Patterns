@@ -35,7 +35,6 @@ File.readlines('datasets/missing_coded_ids.txt').each_with_index do |line, index
     keyword_tweet_ids = keyword_tweets.find({'user.id_str' => id_str}).to_a.collect{|x| x["id_str"]}
     puts "Keyword Tweets: #{keyword_tweet_ids.count}"
     all_tweets = context.get_full_stream(geo_only=true)
-
     puts "All Tweets: #{all_tweets.count}"
 
 
@@ -56,6 +55,8 @@ File.readlines('datasets/missing_coded_ids.txt').each_with_index do |line, index
         )
       user_tweets << this_tweet
     end
+
+    puts id_str, handle, user_join_date
 
     this_user = Twitterer.create(
       id_str: id_str,
