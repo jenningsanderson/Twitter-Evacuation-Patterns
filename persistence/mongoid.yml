@@ -17,3 +17,10 @@ serverlocal:
       database: 'sandygeo_new'
       hosts:
         - localhost:27017
+
+processing:
+  sessions:
+    default:
+      database: 'sandygeo_new'
+      hosts:
+        - research.yetilabs.co:27017

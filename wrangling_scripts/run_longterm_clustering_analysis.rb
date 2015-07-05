@@ -24,8 +24,13 @@ res = Parallel.map(alpha.first(PROCESSES)) do |letter|
   Twitterer.where(unclustered_percentage: nil, handle: /^#{letter}/).limit(LIMIT).each do |user|
     unless user.tweets.count == 0
       puts user.handle
-      user.process_tweets_to_clusters
-      user.save
+      begin
+        user.process_tweets_to_clusters
+        user.save
+      rescue => e
+        puts "Something bad happened on #{user.handle}"
+        next
+      end
       puts "-------FINISHED #{user.handle}-----------"
     end
   end

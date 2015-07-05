@@ -77,16 +77,12 @@ if __FILE__ == $0
     factory: 'global'
   )
 
-  res = Twitterer.where(unclustered_percentage: nil).limit(1000)
-
+  # res = Twitterer.where(unclustered_percentage: {'$lt' => 50, '$gt' => 0}).limit(10)
+  res = Twitterer.where(handle: 'objorionto')
   res.each_with_index do |user, idx|
-    unless user.tweets.count == 0
-      puts user.handle, idx
-      puts "Calling Cluster"
-      user.process_tweets_to_clusters
-      puts "Finished Cluster"
-      user.save
-    end
+    puts user.handle
+    # user.cluster_locations_as_geojson
+    File.write("/tmp/#{user.handle}.geojson", user.cluster_locations_as_geojson.to_json)
   end
 
 end

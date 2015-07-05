@@ -86,8 +86,8 @@ class Twitterer
 
 	#Helper functions
 	def clusters
-		tweet_clusters = tweets.group_by{ |tweet| tweet.cluster }
-		tweet_clusters.delete(-1)
+		tweet_clusters = tweets.group_by{ |tweet| tweet.cluster_id }
+		tweet_clusters.delete('-1')
 		return tweet_clusters
 	end
 
