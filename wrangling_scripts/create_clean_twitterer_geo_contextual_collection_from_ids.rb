@@ -13,9 +13,8 @@ context = ContextualStream::ContextualStreamRetriever.new({
   })
 
 #Make another connection to Mongo for the keyword search (This one IS on the server)
-conn = Mongo::Client.new('epic-analytics.cs.colorado.edu')
-db = conn['hurricane_sandy']
-keyword_tweets = db['tweets']
+conn = Mongo::Client.new( [ 'epic-analytics.cs.colorado.edu:27017' ], :database => 'hurricane_sandy' )
+keyword_tweets = conn['tweets']
 
 #Log the errors
 errors = File.open('error_handles_2.txt','wb')
