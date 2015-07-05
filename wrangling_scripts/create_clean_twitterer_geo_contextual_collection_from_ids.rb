@@ -58,17 +58,14 @@ File.readlines('datasets/missing_coded_ids.txt').each_with_index do |line, index
 
     puts id_str, handle, user_join_date
 
-    this_user = Twitterer.new(
+    this_user = Twitterer.create(
       id_str: id_str,
       handle: handle,
-      account_created: user_join_date,
-      tweets: user_tweets
+      account_created: user_join_date
     )
 
+    this_user.tweets = user_tweets
     this_user.save!
-
-    # this_user.tweets = user_tweets
-    # this_user.save!
 
   else
     puts "ERROR! user: #{handle} --"
