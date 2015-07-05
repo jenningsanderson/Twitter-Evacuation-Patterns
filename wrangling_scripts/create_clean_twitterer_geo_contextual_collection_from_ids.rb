@@ -6,7 +6,7 @@
 #First, create the runtime
 require_relative '../movement_derivation_controller.rb'
 
-runner = TwitterMovementDerivation.new(environment: 'server', database: 'sandygeo')
+runner = TwitterMovementDerivation.new(environment: 'processing', )
 context = ContextualStream::ContextualStreamRetriever.new({
   # root_path: '/data/CHIME/geo_user_collection/'
   })
@@ -17,10 +17,10 @@ db = conn['hurricane_sandy']
 keyword_tweets = db['tweets']
 
 #Log the errors
-errors = File.open('error_handles.txt','wb')
+errors = File.open('error_handles_2.txt','wb')
 
 #import the list of ids
-File.readlines('datasets/ids_geo_ny_nj.txt').each_with_index do |line, index|
+File.readlines('datasets/missing_coded_ids.txt').each_with_index do |line, index|
   handle = line.split(',')[0]
   puts handle, index
 

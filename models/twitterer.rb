@@ -91,10 +91,25 @@ class Twitterer
 		return tweet_clusters
 	end
 
+	def during_storm_clusters
+		ds_clusters = clusters
+		clusters.each do |id, tweets|
+			no_tweets = true
+			tweets.each do |t|
+				if t.date > $times[:one_week_before] and t.date < $times[:one_week_after]
+					no_tweets = false
+					break
+				end
+			end
+			ds_clusters.delete(id) if no_tweets
+		end
+		return ds_clusters
+	end
+
 	def base_cluster_point
 		p = cluster_locations[base_cluster.to_s]
 		unless p.nil?
-			return FACTORY.point(p[0],p[1])
+			return $factory.point(p[0],p[1])
 		else
 			return nil
 		end
