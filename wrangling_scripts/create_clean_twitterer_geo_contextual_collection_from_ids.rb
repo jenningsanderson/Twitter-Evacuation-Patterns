@@ -5,16 +5,15 @@
 
 #First, create the runtime
 require_relative '../movement_derivation_controller.rb'
+require 'mongo'
 
 runner = TwitterMovementDerivation.new(environment: 'processing', geo: 'gem')
 context = ContextualStream::ContextualStreamRetriever.new({
   # root_path: '/data/CHIME/geo_user_collection/'
   })
 
-
-require 'mongo'
 #Make another connection to Mongo for the keyword search (This one IS on the server)
-conn = Mongo::MongoClient.new('epic-analytics.cs.colorado.edu')
+conn = Mongo::Client.new('epic-analytics.cs.colorado.edu')
 db = conn['hurricane_sandy']
 keyword_tweets = db['tweets']
 
