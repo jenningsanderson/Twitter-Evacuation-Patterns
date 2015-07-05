@@ -11,6 +11,8 @@ context = ContextualStream::ContextualStreamRetriever.new({
   # root_path: '/data/CHIME/geo_user_collection/'
   })
 
+
+require 'mongo'
 #Make another connection to Mongo for the keyword search (This one IS on the server)
 conn = Mongo::MongoClient.new('epic-analytics.cs.colorado.edu')
 db = conn['hurricane_sandy']
