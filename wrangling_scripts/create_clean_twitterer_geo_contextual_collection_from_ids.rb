@@ -19,6 +19,8 @@ keyword_tweets = conn['tweets']
 #Log the errors
 errors = File.open('error_handles_2.txt','wb')
 
+puts "Accessing Twitterers collection, count: #{Twitterer.count}"
+
 #import the list of ids
 File.readlines('datasets/missing_coded_ids.txt').each_with_index do |line, index|
   handle = line.split(',')[0]
