@@ -36,7 +36,7 @@ File.readlines('datasets/missing_coded_ids.txt').each_with_index do |line, index
     puts "Keyword Tweets: #{keyword_tweet_ids.count}"
     all_tweets = context.get_full_stream(geo_only=true)
 
-    puts "All Tweets: #{all_weets.count}"
+    puts "All Tweets: #{all_tweets.count}"
 
 
     all_tweets.sort_by{|t| t[:Date]}.each do |t|
