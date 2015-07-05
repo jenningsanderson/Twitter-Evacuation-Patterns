@@ -18,7 +18,7 @@ class TwitterMovementDerivation
   def initialize(args)
     @environment = args[:environment].to_sym || :serverlocal
     @geo         = args[:geo].to_sym         || :gem
-    @factory     = args[:factory]            || 'local'
+    @factory     = args[:factory]            || 'global'
     puts "Initializing Twitter Movement Derivation environment: #{environment}"
     post_initialize(args)
   end
