@@ -6,7 +6,7 @@
 #First, create the runtime
 require_relative '../movement_derivation_controller.rb'
 
-runner = TwitterMovementDerivation.new(environment: 'processing', )
+runner = TwitterMovementDerivation.new(environment: 'processing', geo: 'gem')
 context = ContextualStream::ContextualStreamRetriever.new({
   # root_path: '/data/CHIME/geo_user_collection/'
   })
