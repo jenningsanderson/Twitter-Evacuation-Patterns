@@ -17,17 +17,17 @@ class Twitterer
 	field :handle,          				type: String
 	field :account_created, 				type: Time
 
-	field :issue, 									type: Integer #A flag for keeping track of processing -- in Mongo
-	field :flag,      							type: String
+	# field :issue, 									type: Integer #A flag for keeping track of processing -- in Mongo
+	# field :flag,      							type: String
 
 	field :cluster_locations, 			type: Hash, default: {}
-	field :unclustered_percentage,	type: Integer
+	field :unclustered_percentage,	type: Integer, default: -1
 
-	field :base_cluster,						type: String
-	field :base_cluster_score,			type: Float
-	field :base_cluster_location,   type: Array
+	# field :base_cluster,						type: String
+	# field :base_cluster_score,			type: Float
+	# field :base_cluster_location,   type: Array
 
-	field :base_cluster_risk,				type: Integer
+	# field :base_cluster_risk,				type: Integer
 
 	#Get Geo functions for geotwitterer
 	include EpicGeo::GeoTwitterer
