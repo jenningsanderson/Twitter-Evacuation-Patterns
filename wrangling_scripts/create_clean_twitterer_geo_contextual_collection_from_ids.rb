@@ -33,6 +33,7 @@ File.readlines('datasets/missing_coded_ids.txt').each_with_index do |line, index
 
   unless id_str.nil?
     keyword_tweet_ids = keyword_tweets.find({'user.id_str' => id_str}).to_a.collect{|x| x["id_str"]}
+    puts keyword_tweet_ids.length
     all_tweets = context.get_full_stream(geo_only=true)
 
     all_tweets.sort_by{|t| t[:Date]}.each do |t|
