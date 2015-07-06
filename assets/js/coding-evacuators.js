@@ -52,7 +52,7 @@ $(document).ready(function(){
     })
     tweets.addTo(map)
 
-    var sliderControl = L.control.sliderControl({position: "topright", layer: tweets, range:true});
+    var sliderControl = L.control.sliderControl({position: "topright", layer: tweets, follow:5, rezoom:10});
 
     map.addControl(sliderControl);
 

@@ -17,7 +17,7 @@ if __FILE__ == $0
 
   res.each do |user|
     puts user.handle
-    File.write "assets/geojson/coded_users/#{user.handle}.geojson", user.tweets_to_geojson($times[:one_week_before], $times[:one_week_after])
+    File.write "assets/geojson/coded_users/#{user.handle}.geojson", user.tweets_to_geojson($times[:one_week_before], $times[:one_week_after], with_line=true)
   end
 
 # CSV.open('/tmp/coded_users_movement.csv','wb') do |csv|
