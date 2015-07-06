@@ -3,11 +3,12 @@ layout: post
 title:  "What contextual looks like"
 date:   2015-07-06 13:00:00
 permalink: /contextual-v-keyword
-js: ['leaflet.js', 'data-filtering.js', 'd3.min.js', 'leaflet.markercluster.js']
-css: ['leaflet.css', 'MarkerCluster.Default.css']
+js: ['leaflet.js', 'jquery-1.10.2.min.js','jquery-ui.js','coding-evacuators.js', 'd3.min.js', 'leaflet.SliderControl.min.js', 'leaflet.markercluster.js']
+css: ['leaflet.css', 'MarkerCluster.Default.css','jquery-ui.css']
 ---
 
 Note: In this particular analysis, 'contextual' is only contextual stream tweets which have a geo-tag.
+
 ##Part I: Geo Analysis without contextual information
 
 ![Keyword Tweet percentage (2 weeks)](../assets/images/keyword_tweets_percentage.png)
@@ -29,3 +30,5 @@ Adding much, much more data to the mix -- Tweets now going back 2 years, if avai
 ###Relative Distance Calculation
 Given a 'home' location, create a movement profile which looks at a user's activity each day. Which clusters do they move between? It will be sparse, but perhaps this is okay.
 
+<div id="leaflet-slider"></div>
+<div id="map" style="width:100%; height:600px;"></div>

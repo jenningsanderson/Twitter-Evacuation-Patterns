@@ -15,39 +15,44 @@ if __FILE__ == $0
 
   res = Twitterer.where(handle: {"$in" => coded_users.collect{|x| x.downcase} })
 
-CSV.open('/tmp/coded_users_movement.csv','wb') do |csv|
-    res.each do |user|
-      puts user.handle
+  res.each do |user|
+    puts user.handle
+    File.write "assets/geojson/coded_users/#{user.handle}.geojson", user.tweets_to_geojson($times[:one_week_before], $times[:one_week_after])
+  end
 
-      #This next section looks at the tweets in the relevant two weeks and builds a relative movement profile
-      user_clusters = []
-      ($times[:one_week_before]..$times[:one_week_after]).each do |day|
-        clusters = []
-        user.time_bounded_tweets(day, day+1).each do |t|
-          clusters << t.cluster_id
-        end
-        c = nil
-        c = mode(clusters) unless mode(clusters)=="-1"
-        if c.nil?
-          user_clusters << 0
-        else
-          user_clusters << $factory.point(user.cluster_locations[c][0],user.cluster_locations[c][1])
-        end
-      end
-      movement = []
-      (0..user_clusters.length-2).each do |idx|
-        if user_clusters[idx]==0 or user_clusters[idx+1]==0
-          movement << -1
-        else
-          movement << user_clusters[idx].distance(user_clusters[idx+1])/1000
-        end
-      end
+# CSV.open('/tmp/coded_users_movement.csv','wb') do |csv|
+    # res.each do |user|
+    #   puts user.handle
+    #
+    #   #This next section looks at the tweets in the relevant two weeks and builds a relative movement profile
+    #   user_clusters = []
+    #   ($times[:one_week_before]..$times[:one_week_after]).each do |day|
+    #     clusters = []
+    #     user.time_bounded_tweets(day, day+1).each do |t|
+    #       clusters << t.cluster_id
+    #     end
+    #     c = nil
+    #     c = mode(clusters) unless mode(clusters)=="-1"
+    #     if c.nil?
+    #       user_clusters << 0
+    #     else
+    #       user_clusters << $factory.point(user.cluster_locations[c][0],user.cluster_locations[c][1])
+    #     end
+    #   end
+    #   movement = []
+    #   (0..user_clusters.length-2).each do |idx|
+    #     if user_clusters[idx]==0 or user_clusters[idx+1]==0
+    #       movement << -1
+    #     else
+    #       movement << user_clusters[idx].distance(user_clusters[idx+1])/1000
+    #     end
+    #   end
 
-      csv << [user.handle] + movement
+      # csv << [user.handle] + movement
       # movement[] is a list of relative distances between clusters per day. Perhaps it should be relative to
       #  the home location?
       # user.rel_movement = movement
       # user.save
-    end
-  end
+    # end
+  # end
 end
