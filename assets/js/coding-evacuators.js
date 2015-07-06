@@ -11,16 +11,15 @@ $(document).ready(function(){
     layer.bindPopup(html);
   }
 
-  function getUrlVars(variable)
-{
-       var query = window.location.search.substring(1);
-       var vars = query.split("&");
-       for (var i=0;i<vars.length;i++) {
-               var pair = vars[i].split("=");
-               if(pair[0] == variable){return pair[1];}
-       }
-       return('just_teevo');
-}
+  function getUrlVars(variable){
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+      var pair = vars[i].split("=");
+      if(pair[0] == variable){return pair[1];}
+    }
+    return('just_teevo');
+  }
 
   //Call the map
   var map = L.map('map', {scrollWheelZoom: false}).setView([51.505, -0.09], 13);
