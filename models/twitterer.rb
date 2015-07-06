@@ -17,11 +17,13 @@ class Twitterer
 	field :handle,          				type: String
 	field :account_created, 				type: Time
 
-	# field :issue, 									type: Integer #A flag for keeping track of processing -- in Mongo
-	# field :flag,      							type: String
+	# field :issue, 								type: Integer #A flag for keeping track of processing -- in Mongo
+	# field :flag,      						type: String
 
 	field :cluster_locations, 			type: Hash, default: {}
 	field :unclustered_percentage,	type: Integer, default: -1
+
+	field :unclassifiable,          type: Boolean, default: false
 
 	# field :base_cluster,						type: String
 	# field :base_cluster_score,			type: Float
