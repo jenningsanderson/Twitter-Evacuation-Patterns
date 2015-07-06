@@ -24,6 +24,7 @@ class Twitterer
 	field :unclustered_percentage,	type: Integer, default: -1
 
 	field :unclassifiable,          type: Boolean, default: false
+	field :rel_movement,            type: Array
 
 	# field :base_cluster,						type: String
 	# field :base_cluster_score,			type: Float
@@ -123,6 +124,10 @@ class Twitterer
 		else
 			return nil
 		end
+	end
+
+	def time_bounded_tweets(time_start, time_end)
+		return tweets.select{|t| t.date > time_start and t.date < time_end}
 	end
 
 	def week_one_tweets
