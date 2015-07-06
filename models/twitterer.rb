@@ -26,6 +26,8 @@ class Twitterer
 	field :unclassifiable,          type: Boolean, default: false
 	field :rel_movement,            type: Array
 
+	field :evacuated,								type: String, default: nil
+
 	# field :base_cluster,						type: String
 	# field :base_cluster_score,			type: Float
 	# field :base_cluster_location,   type: Array
