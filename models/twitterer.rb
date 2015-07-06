@@ -1,26 +1,46 @@
-require 'modules/user_behavior'
-require 'modules/time_processing'
+autoload :TimeProcessing, 'modules/time_processing'
+autoload :UserBehavior, 'modules/user_behavior'
 
-require 'models/TwittererBase'
+require_relative 'tweet'
 
 #=Twitterer Active During Hurricane Sandy
 #
 #Inheriting basic Twitter User behavior and attributes from TwittererBase, this
 #
-class Twitterer < TwittererBase
+class Twitterer
+
+	include Mongoid::Document
+	embeds_many :tweets
+
+	#Define User fields
+	field :id_str,          				type: String
+	field :handle,          				type: String
+	field :account_created, 				type: Time
+
+	# field :issue, 								type: Integer #A flag for keeping track of processing -- in Mongo
+	# field :flag,      						type: String
+
+	field :cluster_locations, 			type: Hash, default: {}
+	field :unclustered_percentage,	type: Integer, default: -1
+
+	field :unclassifiable,          type: Boolean, default: false
+
+	# field :base_cluster,						type: String
+	# field :base_cluster_score,			type: Float
+	# field :base_cluster_location,   type: Array
+
+	# field :base_cluster_risk,				type: Integer
 
 	#Get Geo functions for geotwitterer
 	include EpicGeo::GeoTwitterer
 
 	#Need geoprocessing functionality as well
-	include EpicGeo::GeoProcessing #This may not be needed?
+	include EpicGeo::GeoProcessing
 
 	include TimeProcessing
-
-	#These should be required separately, if required.
 	include UserBehavior
-	include UserBehavior::Evacuator
-	include UserBehavior::ShelterInPlace
+
+	# include UserBehavior::ShelterInPlace
 
 	#Enable access to points of interest
 	attr_reader :sip_conf, :evac_conf
@@ -28,30 +48,69 @@ class Twitterer < TwittererBase
 	#Mostly for testing, but maybe need access to these
 	attr_reader :unclassified_tweets
 
-	key :issue, 		Integer #A flag for keeping track of processing -- in Mongo
-	key :flag,      String
+	def handle
+		self["handle"]
+	end
 
-	key :cluster_locations, 			Hash
-	key :unclustered_percentage,	Integer
-	key :unclassifiable,    			Boolean
+  def initialize(args)
+    @id_str          = args[:id_str]
+    @account_created = args[:account_created]
+    @handle          = args[:handle]
+    @tweets          = args[:tweets]
 
-	key :base_cluster,						String
-	key :base_cluster_score,			Float
-	key :base_cluster_location,   Array
+    post_initialize(args)
+  end
 
-	key :base_cluster_risk,				Integer
+  def post_initialize(args)
+    nil
+  end
+
+  #Get all of a user's contextual stream tweets
+  def contextual_stream
+    tweets.select{|t| t.contextual }
+  end
+
+  #Get all of a user's keyword tweets only
+  def keyword_tweets
+    tweets.select{|t| !t.contextual}
+  end
+
+  #Add a tweet object to this Twitterer's tweets collection
+  def add_tweet(tweet)
+    tweets << tweet
+  end
+
+  #Set & return a user's tweets to be sorted by the Tweet#created_at function
+  def sort_tweets_by_date
+    tweets = @tweets.sort_by{|tweet| tweet.created_at}
+  end
 
 	#Helper functions
 	def clusters
-		tweet_clusters = tweets.group_by{ |tweet| tweet.cluster }
-		tweet_clusters.delete(-1)
+		tweet_clusters = tweets.group_by{ |tweet| tweet.cluster_id }
+		tweet_clusters.delete('-1')
 		return tweet_clusters
+	end
+
+	def during_storm_clusters
+		ds_clusters = clusters
+		clusters.each do |id, tweets|
+			no_tweets = true
+			tweets.each do |t|
+				if t.date > $times[:one_week_before] and t.date < $times[:one_week_after]
+					no_tweets = false
+					break
+				end
+			end
+			ds_clusters.delete(id) if no_tweets
+		end
+		return ds_clusters
 	end
 
 	def base_cluster_point
 		p = cluster_locations[base_cluster.to_s]
 		unless p.nil?
-			return FACTORY.point(p[0],p[1])
+			return $factory.point(p[0],p[1])
 		else
 			return nil
 		end
@@ -107,47 +166,6 @@ class Twitterer < TwittererBase
 	#
 	#
 	#
-	def process_tweets_to_clusters
-
-		#Create a new instance of the DBScanner, set the parameters.
-		#Passes an array of Tweet Objects, which have their own distance function
-		dbscanner = EpicGeo::Clustering::DBScan.new(tweets, epsilon=50, min_pts=2) #This seems to work okay...
-
-		# Run the db_scan algorithm
-	    clusters = dbscanner.run
-
-	    clusters.each do |cluster_id, tweets|
-	    	tweets.each do |tweet|
-	    		tweet.cluster = cluster_id
-	    		tweet.save
-	    	end
-	    end
-
-	    #Save the cluster locations (simple lon/lat arrays)
-	    @cluster_locations = {}
-
-	    #Go through the clusters and find the median locations
-	    clusters.keys.each do |key|
-	    	key_string = key.to_s
-
-	    	#Set the cluster locations as well (for storage, we can plot tweets on these later...)!
-	    	unless key_string=="-1"
-	    		@cluster_locations[key_string] ||= find_median_point(clusters[key].collect{|tweet| tweet["coordinates"]["coordinates"]})
-	    	end
-	    end
-
-	    #Throw away the unclassifiable cluster (Save them as a variable with the Twitterer for now)
-		unclassified_tweets = clusters.delete(-1)
-		@unclustered_percentage = (unclassified_tweets.length.to_f / tweets.count*100).round
-
-		if clusters.empty?
-			@unclassifiable = true
-		else
-			@unclassifiable = false
-		end
-	end
-
-
 
 	def prev_clustering_stuff
 
@@ -164,9 +182,6 @@ class Twitterer < TwittererBase
 		#Now save clusters_by_day for later access...
 		@clusters_per_day = sort_clusters_by_day(@clusters)
 	end
-
-
-
 
 
 	#The new movement analysis -- will make calls to the time_processing script.

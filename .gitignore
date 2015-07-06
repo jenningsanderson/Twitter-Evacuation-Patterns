@@ -9,7 +9,7 @@ _site/*
 #Datasets for Local use
 *data/**
 *.kml
-*.txt
+.txt
 
 *_secret*
 

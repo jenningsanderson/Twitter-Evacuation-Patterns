@@ -1,0 +1,26 @@
+local:
+  sessions:
+    default:
+      database: sandygeo3
+      hosts:
+        - localhost:27017
+server:
+  sessions:
+    default:
+      database: 'sandygeo_new'
+      hosts:
+        - epic-analytics.cs.colorado.edu:27017
+
+serverlocal:
+  sessions:
+    default:
+      database: 'sandygeo_new'
+      hosts:
+        - localhost:27017
+
+processing:
+  sessions:
+    default:
+      database: 'sandygeo_new'
+      hosts:
+        - 192.12.242.130:27017
