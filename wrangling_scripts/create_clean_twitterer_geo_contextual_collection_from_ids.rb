@@ -40,32 +40,32 @@ File.readlines('datasets/missing_coded_ids.txt').each_with_index do |line, index
     puts "All Tweets: #{all_tweets.count}"
 
 
-    all_tweets.sort_by{|t| t[:Date]}.each do |t|
-      contextual = true
-      if keyword_tweet_ids.include? t[:Id]
-        contextual = false
-      end
-
-      this_tweet = Tweet.new(
-            id_str: t[:Id],
-            text:   t[:Text],
-            user:   id_str,
-            handle: t[:handle],
-            coordinates: t[:Coordinates],
-            date:   t[:Date],
-            contextual: contextual
-        )
-      user_tweets << this_tweet
-    end
-
-    puts id_str, handle, user_join_date
-
-    this_user = Twitterer.new(
-      id_str: id_str,
-      handle: handle,
-      account_created: user_join_date
-    )
-    this_user.save(validate: false)
+    # all_tweets.sort_by{|t| t[:Date]}.each do |t|
+    #   contextual = true
+    #   if keyword_tweet_ids.include? t[:Id]
+    #     contextual = false
+    #   end
+    #
+    #   this_tweet = Tweet.new(
+    #         id_str: t[:Id],
+    #         text:   t[:Text],
+    #         user:   id_str,
+    #         handle: t[:handle],
+    #         coordinates: t[:Coordinates],
+    #         date:   t[:Date],
+    #         contextual: contextual
+    #     )
+    #   user_tweets << this_tweet
+    # end
+    #
+    # puts id_str, handle, user_join_date
+    #
+    # this_user = Twitterer.new(
+    #   id_str: id_str,
+    #   handle: handle,
+    #   account_created: user_join_date
+    # )
+    # this_user.save(validate: false)
 
     # this_user.tweets = user_tweets
 
