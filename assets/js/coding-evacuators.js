@@ -12,6 +12,11 @@ $(document).ready(function(){
     })
     layer.bindPopup(html);
   }
+
+  function local_date(string){
+    return moment.tz(new Date(string),"America/New_York").format('llll')
+  }
+
   coded_users.sort()
 
   coded_users.forEach(function(userName, idx){
@@ -38,12 +43,13 @@ $(document).ready(function(){
     }
     $('#tweet_texts').empty();
     $('#tweet_texts').append($("<tr class='tweet'>")
-    .append("<td>Time</td><td>Text</td><td>Cluster ID</td>"))
+    .append("<td>Time*</td><td>Text</td><td>Cluster ID</td>"))
     $.getJSON("/Twitter-Evacuation-Patterns/assets/geojson/coded_users/"+user.toLowerCase()+".geojson", function(data, err){
       data.features.forEach(function(t){
+        // console.log(data)
         if (t.geometry.type != "LineString" ){
           $('#tweet_texts').append($("<tr class='tweet'>")
-            .append("<td>"+new Date(t.properties.time)+"</td><td>"+t.properties.text+"</td><td>"+t.properties.cluster+"</td>")
+            .append("<td>"+local_date( t.properties.time )+"</td><td>"+t.properties.text+"</td><td>"+t.properties.cluster+"</td>")
           )
         }
       })

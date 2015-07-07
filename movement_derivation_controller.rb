@@ -86,17 +86,25 @@ if __FILE__ == $0
   # Twitterer.where(evacuated: "yes").each do |user|
   #   puts user.handle
   # end
-  coded_users.each do |user|
-    # puts user
-    Twitterer.where(handle: user.downcase, unclustered_percentage: -1).each do |this_user|
-      puts this_user.handle
-      this_user.process_tweets_to_clusters
-      this_user.save
-    end
-  end
+  # coded_users.each do |user|
+  #   # puts user
+  #   Twitterer.where(handle: user.downcase, unclustered_percentage: -1).each do |this_user|
+  #     puts this_user.handle
+  #     this_user.process_tweets_to_clusters
+  #     this_user.save
+  #   end
+  # end
 
   # res = Twitterer.where(unclustered_percentage: {'$lt' => 50, '$gt' => 0}).limit(100)
   # res = Twitterer.where(handle: {"$in" => coded_users.collect{|x| x.downcase} })
+
+  Twitterer.where(handle: "acwelch").each do |user|
+    puts user.handle
+
+    user.tweets.each do |t|
+      puts "#{t.id_str} -- #{t.local_date} -- #{t.local_date.iso8601}"
+    end
+  end
 
   # puts res.count
   # require 'csv'
