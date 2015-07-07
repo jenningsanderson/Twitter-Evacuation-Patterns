@@ -41,7 +41,7 @@ $(document).ready(function(){
       data.features.forEach(function(t){
         if (t.geometry.type != "LineString" ){
           $('#tweet_texts').append($("<tr class='tweet'>")
-            .append("<td>"+new Date(t.properties.time)+"</td><td>"+t.properties.text+"</td>")
+            .append("<td>"+new Date(t.properties.time)+"</td><td>"+t.properties.text+"</td><td>"+t.properties.cluster+"</td>")
           )
         }
       })
