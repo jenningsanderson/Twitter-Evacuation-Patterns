@@ -37,6 +37,8 @@ $(document).ready(function(){
       map.removeLayer(tweets)
     }
     $('#tweet_texts').empty();
+    $('#tweet_texts').append($("<tr class='tweet'>")
+    .append("<td>Time</td><td>Text</td><td>Cluster ID</td>"))
     $.getJSON("/Twitter-Evacuation-Patterns/assets/geojson/coded_users/"+user.toLowerCase()+".geojson", function(data, err){
       data.features.forEach(function(t){
         if (t.geometry.type != "LineString" ){
