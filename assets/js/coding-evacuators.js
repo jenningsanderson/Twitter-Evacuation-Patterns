@@ -36,7 +36,7 @@ $(document).ready(function(){
       map.removeLayer(tweets)
     }
     $('#tweet_texts').empty();
-    $.getJSON("/Twitter-Evacuation-Patterns/assets/geojson/coded_users/"+user+".geojson", function(data, err){
+    $.getJSON("/Twitter-Evacuation-Patterns/assets/geojson/coded_users/"+user.toLowerCase()+".geojson", function(data, err){
       data.features.forEach(function(t){
         if (t.geometry.type != "LineString" ){
           $('#tweet_texts').append($("<tr class='tweet'>")
