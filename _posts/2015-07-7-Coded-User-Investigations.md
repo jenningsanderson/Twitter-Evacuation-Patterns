@@ -9,6 +9,8 @@ css: ['leaflet.css', 'MarkerCluster.Default.css','jquery-ui.css']
 
 #Looking at Users
 
+<h3>Current User: <span id='current_user'></span></h3>
+
 <ul id="user_list" style="float:left;width:15%;list-style-type:none; margin:0; padding:0;height:600px;overflow:scroll;margin-top:30px;"></ul>
 
 <div id="leaflet-slider"></div>

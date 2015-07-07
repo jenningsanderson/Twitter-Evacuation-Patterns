@@ -32,6 +32,7 @@ $(document).ready(function(){
   var tweets = undefined
 
   function putUserOnMap(user){
+    $("#current_user").text(user)
     if (tweets != undefined){
       map.removeLayer(tweets)
     }
