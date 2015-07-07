@@ -8,7 +8,11 @@ $(document).ready(function(){
   function prettyPrintTweetOnMap(feature, layer) {
     var html = ""
     Object.keys(feature.properties).forEach(function(label){
-      html += "<strong>"+label.charAt(0).toUpperCase() + label.slice(1)+"</strong>: "+feature.properties[label]+"<br>"
+      if (label=="time"){
+        html += "<strong>"+label.charAt(0).toUpperCase() + label.slice(1)+"*</strong>: "+local_date( feature.properties[label] ) +"<br>"
+      }else{
+        html += "<strong>"+label.charAt(0).toUpperCase() + label.slice(1)+"</strong>: "+feature.properties[label]+"<br>"
+      }
     })
     layer.bindPopup(html);
   }
