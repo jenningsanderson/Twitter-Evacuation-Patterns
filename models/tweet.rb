@@ -27,8 +27,16 @@ class Tweet
     return id_str
   end
 
-  #Corrects for the time zone // do we want to do this?
-  # def date
-  #   @date.getlocal(-6*3600)
-  # end
+  def utc_date
+    date.utc
+  end
+
+  def local_date
+    if date.dst?
+      date.getlocal(-4*3600)
+    else
+      date.getlocal(-5*3600)
+    end
+  end
+
 end
