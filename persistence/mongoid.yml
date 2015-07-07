@@ -1,9 +1,3 @@
-local:
-  sessions:
-    default:
-      database: sandygeo3
-      hosts:
-        - localhost:27017
 server:
   sessions:
     default:
