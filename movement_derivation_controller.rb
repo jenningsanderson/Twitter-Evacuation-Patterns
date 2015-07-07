@@ -87,11 +87,11 @@ if __FILE__ == $0
   #   puts user.handle
   # end
   coded_users.each do |user|
-    puts user
-    user.downcase!
-    res = Twitterer.where(handle: user)
-    if res.count < 1
-      puts "Can't find: #{user}"
+    # puts user
+    Twitterer.where(handle: user.downcase, unclustered_percentage: -1).each do |this_user|
+      puts this_user.handle
+      this_user.process_tweets_to_clusters
+      this_user.save
     end
   end
 
