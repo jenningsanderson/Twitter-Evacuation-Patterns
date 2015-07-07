@@ -30,7 +30,7 @@ class TwitterMovementDerivation
 
     if geo == :gem
       require 'epic_geo'
-    else
+    elsif
       require_relative '/Users/jenningsanderson/Documents/epic-geo/lib/epic_geo.rb'
     end
 
@@ -87,6 +87,7 @@ if __FILE__ == $0
   #   puts user.handle
   # end
   coded_users.each do |user|
+    puts user
     user.downcase!
     res = Twitterer.where(handle: user)
     if res.count < 1
