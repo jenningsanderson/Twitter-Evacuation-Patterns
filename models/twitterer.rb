@@ -51,22 +51,22 @@ class Twitterer
 	#Mostly for testing, but maybe need access to these
 	attr_reader :unclassified_tweets
 
-	def handle
-		self["handle"]
-	end
+	# def handle
+	# 	self["handle"]
+	# end
 
-  def initialize(args)
-    @id_str          = args[:id_str]
-    @account_created = args[:account_created]
-    @handle          = args[:handle]
-    @tweets          = args[:tweets]
-
-    post_initialize(args)
-  end
-
-  def post_initialize(args)
-    nil
-  end
+  # def initialize(args)
+  #   @id_str          = args[:id_str]
+  #   @account_created = args[:account_created]
+  #   @handle          = args[:handle]
+  #   # @tweets          = args[:tweets]
+	#
+  #   post_initialize(args)
+  # end
+	#
+  # def post_initialize(args)
+  #   nil
+  # end
 
   #Get all of a user's contextual stream tweets
   def contextual_stream

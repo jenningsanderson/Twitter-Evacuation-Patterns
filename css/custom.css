@@ -82,3 +82,8 @@ th, td{
 hr.separator{
   margin: 10px;
 }
+
+.username-in-list{
+  padding:0;
+  cursor: pointer;
+}
