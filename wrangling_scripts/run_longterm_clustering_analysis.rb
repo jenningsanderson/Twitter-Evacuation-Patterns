@@ -22,7 +22,7 @@ res = Parallel.map(coded_users) do |user|
     geo: geo,
     factory: 'global'
   )
-  puts "Starting Process: #{letter}"
+  puts "Starting Process: #{user}"
   Twitterer.where(unclustered_percentage: nil, handle: user).limit(LIMIT).each do |user|
     unless user.tweets.count == 0
       puts user.handle
