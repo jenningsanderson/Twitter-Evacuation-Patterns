@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "In-depth investigation of coded users"
+title:  "Movement Path Analysis for 97 Users"
 date:   2015-07-07 13:00:00
 permalink: /coded_users
 js: ['leaflet.js', 'jquery-1.10.2.min.js','jquery-ui.js','coding-evacuators.js', 'd3.min.js', 'leaflet.SliderControl.min.js', 'leaflet.markercluster.js','moment.min.js', 'moment-timezone-with-data-2010-2020.min.js']
 css: ['leaflet.css', 'MarkerCluster.Default.css','jquery-ui.css']
 ---
 
-#Looking at Users
+Click a username on the left to load their movement path into the map. Click on the map to make it interactive.  Move the slider across the top to see the path through time.  The tweets are in a table below. These are only geo-tagged tweets.
 
 <h3>Current User: <span id='current_user'></span></h3>
 
