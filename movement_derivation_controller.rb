@@ -28,10 +28,14 @@ class TwitterMovementDerivation
     require 'rubygems'
     require 'bundler/setup'
 
-    if geo == :gem
-      require 'epic_geo'
-    elsif
-      require_relative '/Users/jenningsanderson/Documents/epic-geo/lib/epic_geo.rb'
+    if environment == :processing and geo != :local
+      require_relative '/home/jennings/epic-geo/lib/epic_geo.rb'
+    else
+      if geo == :gem
+        require 'epic_geo'
+      elsif env == :local
+        require_relative '/Users/jenningsanderson/Documents/epic-geo/lib/epic_geo.rb'
+      end
     end
 
     require 'mongoid'
@@ -98,14 +102,18 @@ if __FILE__ == $0
   # res = Twitterer.where(unclustered_percentage: {'$lt' => 50, '$gt' => 0}).limit(100)
   # res = Twitterer.where(handle: {"$in" => coded_users.collect{|x| x.downcase} })
 
-  Twitterer.where(handle: "acwelch").each do |user|
-    puts user.handle
+  # Twitterer.where(handle: "acwelch").each do |user|
+  #   puts user.handle
+  #
+  #   user.tweets.each do |t|
+  #     puts "#{t.id_str} -- #{t.local_date} -- #{t.local_date.iso8601}"
+  #   end
+  # end
 
-    user.tweets.each do |t|
-      puts "#{t.id_str} -- #{t.local_date} -- #{t.local_date.iso8601}"
-    end
-  end
+  # ids = Twitterer.where({tweets: {'$size' => {'$gt' => 1000}}, unclustered_percentage: nil}).each.collect{|t| t._id}
+  # ids = Twitterer.where({tweets: {'$size' => {'$lt' => 10}}, unclustered_percentage: nil}).each.collect{|t| t._id}
 
+  # puts ids.count
   # puts res.count
   # require 'csv'
   # CSV.open('/tmp/cluster_percentage_2days.csv','wb') do |csv|
