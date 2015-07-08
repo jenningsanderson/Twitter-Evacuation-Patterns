@@ -1,7 +1,6 @@
 #Enable relative loading of any file
 $:.unshift File.dirname(__FILE__)
 
-
 # Set Modules to be autoloaded, if necessary
 autoload :ContextualStream, 'modules/contextual_stream'
 autoload :CustomFunctions,  'modules/functions'
@@ -39,7 +38,7 @@ class TwitterMovementDerivation
     end
 
     require 'mongoid'
-    Mongoid.load!('persistence/mongoid.yml', environment)
+    Mongoid.load!('./persistence/mongoid.yml', environment)
 
     require 'models/twitterer'
 
