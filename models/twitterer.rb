@@ -27,6 +27,9 @@ class Twitterer
 	field :rel_movement,            type: Array
 
 	field :evacuated,								type: String, default: nil
+	field :secondary,							  type: String, default: nil
+
+	field :tweet_count,							type: Integer, default: -1
 
 	# field :base_cluster,						type: String
 	# field :base_cluster_score,			type: Float

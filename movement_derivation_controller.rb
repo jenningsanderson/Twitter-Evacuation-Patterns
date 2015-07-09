@@ -1,7 +1,6 @@
 #Enable relative loading of any file
 $:.unshift File.dirname(__FILE__)
 
-
 # Set Modules to be autoloaded, if necessary
 autoload :ContextualStream, 'modules/contextual_stream'
 autoload :CustomFunctions,  'modules/functions'
@@ -13,12 +12,13 @@ class TwitterMovementDerivation
 
   require 'time'
 
-  attr_reader :environment, :database, :port, :server, :factory, :geo
+  attr_reader :environment, :database, :base_path, :factory, :geo
 
   def initialize(args)
     @environment = args[:environment].to_sym || :serverlocal
     @geo         = args[:geo].to_sym         || :gem
     @factory     = args[:factory]            || 'global'
+    @base_path   = args[:base_path]          || '.' #TODO: this should find whatever the current diretory is
     puts "Initializing Twitter Movement Derivation environment: #{environment}"
     post_initialize(args)
   end
@@ -28,14 +28,18 @@ class TwitterMovementDerivation
     require 'rubygems'
     require 'bundler/setup'
 
-    if geo == :gem
-      require 'epic_geo'
-    elsif
-      require_relative '/Users/jenningsanderson/Documents/epic-geo/lib/epic_geo.rb'
+    if environment == :processing and geo != :gem
+      require_relative '/home/jennings/epic-geo/lib/epic_geo.rb'
+    else
+      if geo == :gem
+        require 'epic_geo'
+      elsif env == :local
+        require_relative '/Users/jenningsanderson/Documents/epic-geo/lib/epic_geo.rb'
+      end
     end
 
     require 'mongoid'
-    Mongoid.load!('persistence/mongoid.yml', environment)
+    Mongoid.load!("#{base_path}/persistence/mongoid.yml", environment)
 
     require 'models/twitterer'
 
@@ -81,6 +85,8 @@ if __FILE__ == $0
     factory: 'global'
   )
 
+
+  puts 'yup'
   coded_users =  ["GinaBoop21", "4thFloorWalkUp", "acbrush", "1903barisdamci", "aalhaider84", "977wctyJesse", "D_AGOSTINO", "AdieMeshel", "rcrocetti", "acdm", "onacitaveoz", "ccompitiello", "3ltutuykt", "2fritters", "502BIGBLOCK", "JFranxMon", "aby_orozco", "246TiffTiff", "nikkovision", "acdcrocker94", "forero29", "txcoonz", "voudonchilde", "adiesaurus", "abestt", "aaronlugo20", "yogabeth218", "AdamBroitman", "compa_tijero", "37kyle", "12CornersNYC", "ABerneche11", "hatchedit", "aanniemal", "ryryrocketss", "AbdulazizSadeq", "JoeeSmith19", "acordingley", "a13xandraaaa", "WaitingQueen", "danielleleiner", "abr74", "92Hughes92", "brittlizarda", "33amelie", "aidenscott", "5pointbuck", "aceytoso_2", "TravissGraham", "Nikki_DeMarco", "haleyybreen", "abrackin", "DDSethi", "haleighbethhh", "Mac_DA_45", "40Visionz", "b_mazzz", "132Sunshine", "1stFITNESSMC", "CluelessMaven", "adel1196", "aaziz830", "adawood30", "DbLeonor", "bakedtofu", "ActualyAmGeorge", "AdamVanBavel", "workfreelyblog", "HarriBoiii", "brieeellee", "AndeLund", "1Vincent", "Zach_Massari10", "Roze_316", "RedJazz43", "1xr650guy", "lizeeSuX", "4everSeductive", "AmberAAlonzo", "Kessel_Erich2", "adamebnit", "PainFresh6", "according2Drew", "Tyler_Mayer", "Sara_Persiano", "adampdouglas", "ACPressLee", "AdamHedenskog", "Caitles16", "adonatelle", "DJsonatra", "Scott_Gaffney", "GrooDs", "acwelch", "just_teevo", "mynameisluissss", "kcgirl2003"]
 
   # Twitterer.where(evacuated: "yes").each do |user|
@@ -98,14 +104,18 @@ if __FILE__ == $0
   # res = Twitterer.where(unclustered_percentage: {'$lt' => 50, '$gt' => 0}).limit(100)
   # res = Twitterer.where(handle: {"$in" => coded_users.collect{|x| x.downcase} })
 
-  Twitterer.where(handle: "acwelch").each do |user|
-    puts user.handle
+  # Twitterer.where(handle: "acwelch").each do |user|
+  #   puts user.handle
+  #
+  #   user.tweets.each do |t|
+  #     puts "#{t.id_str} -- #{t.local_date} -- #{t.local_date.iso8601}"
+  #   end
+  # end
 
-    user.tweets.each do |t|
-      puts "#{t.id_str} -- #{t.local_date} -- #{t.local_date.iso8601}"
-    end
-  end
+  # ids = Twitterer.where({tweets: {'$size' => {'$gt' => 1000}}, unclustered_percentage: nil}).each.collect{|t| t._id}
+  # ids = Twitterer.where({tweets: {'$size' => {'$lt' => 10}}, unclustered_percentage: nil}).each.collect{|t| t._id}
 
+  # puts ids.count
   # puts res.count
   # require 'csv'
   # CSV.open('/tmp/cluster_percentage_2days.csv','wb') do |csv|
