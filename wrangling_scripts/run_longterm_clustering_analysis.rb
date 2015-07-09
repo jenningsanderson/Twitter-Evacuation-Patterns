@@ -32,7 +32,8 @@ res = Parallel.map(ids.first(PROCESSES)) do |id|
   )
 
   user = Twitterer.find(id)
-  puts user.handle
+  puts "#{ user.handle } -- #{ user.tweets.count }"
+
   unless user.tweets.count == 0
     puts user.handle
     begin
