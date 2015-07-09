@@ -17,7 +17,7 @@ runtime = TwitterMovementDerivation.new(
   factory: 'global'
 )
 
-ids = Twitterer.where(tweets_count: {'$gt' => QUERY}, unclustered_percentage: nil).each.collect{|t| t._id}
+ids = Twitterer.where(tweet_count: {'$gt' => QUERY}, unclustered_percentage: nil).each.collect{|t| t._id}
 puts "Found #{ids.count} ids"
 
 res = Parallel.map(ids.first(PROCESSES)) do |id|
