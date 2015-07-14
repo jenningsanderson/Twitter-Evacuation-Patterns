@@ -27,15 +27,13 @@ res.each do |user|
 
   handle = user.handle
   #First, get the user_id
-  context.set_file_path(handle)
+  context.set_file_path(handle.downcase)
 
   all_tweets = context.get_full_stream(geo_only=true)
 
   all_tweets.each_with_index do |t, idx|
     this_t = user.tweets[idx]
-    if this_t.id_str = t[:Id]
-      puts "match!"
-    else
+    unless this_t.id_str == t[:Id]
       puts "error!"
     end
   end
