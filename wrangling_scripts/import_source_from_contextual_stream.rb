@@ -6,7 +6,7 @@ Mongo::Logger.logger.level = Logger::WARN
 runner = TwitterMovementDerivation.new(
   environment: 'processing',
   geo: 'gem',
-  factory: 'global'
+  factory: 'global',
   base_path: '/home/jennings/Twitter-Evacuation-Patterns'
 )
 
