@@ -34,8 +34,8 @@ $(document).ready(function(){
   map.on('focus', function() { map.scrollWheelZoom.enable(); });
 
   // add an OpenStreetMap tile layer
-  var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+  var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
   }).addTo(map);
   //
   var tweets = undefined
@@ -63,7 +63,7 @@ $(document).ready(function(){
           return L.circleMarker(latlng, {
             radius: feature.properties.cluster>-1? 8:3,
             fillColor: p(feature.properties.cluster),
-            color: "#000",
+            color: "#FFF",
             weight: feature.properties.cluster>0? 1:0.5,
             opacity: 1,
             fillOpacity: feature.properties.cluster>-1? 0.8:0.5

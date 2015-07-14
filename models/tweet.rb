@@ -22,6 +22,7 @@ class Tweet
   field :coordinates, type: Array
   field :cluster_id,  type: String
   field :contextual,  type: Boolean
+  field :source,      type: String
 
   def id
     return id_str
