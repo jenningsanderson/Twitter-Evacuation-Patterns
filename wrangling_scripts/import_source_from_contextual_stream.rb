@@ -5,73 +5,41 @@ Mongo::Logger.logger.level = Logger::WARN
 
 runner = TwitterMovementDerivation.new(
   environment: 'processing',
-  geo: 'local',
+  geo: 'gem',
   factory: 'global'
-)
-context = ContextualStream::ContextualStreamRetriever.new(
-  root_path: '/data/CHIME/geo_user_collection/'
+  base_path: '/home/jennings/Twitter-Evacuation-Patterns'
 )
 
-#Log the errors
+context = ContextualStream::ContextualStreamRetriever.new(
+  root_path: '/home/kena/geo_user_collection/'
+)
+
+coded_users =  ["GinaBoop21", "4thFloorWalkUp", "acbrush", "1903barisdamci", "aalhaider84", "977wctyJesse", "D_AGOSTINO", "AdieMeshel", "rcrocetti", "acdm", "onacitaveoz", "ccompitiello", "3ltutuykt", "2fritters", "502BIGBLOCK", "JFranxMon", "aby_orozco", "246TiffTiff", "nikkovision", "acdcrocker94", "forero29", "txcoonz", "voudonchilde", "adiesaurus", "abestt", "aaronlugo20", "yogabeth218", "AdamBroitman", "compa_tijero", "37kyle", "12CornersNYC", "ABerneche11", "hatchedit", "aanniemal", "ryryrocketss", "AbdulazizSadeq", "JoeeSmith19", "acordingley", "a13xandraaaa", "WaitingQueen", "danielleleiner", "abr74", "92Hughes92", "brittlizarda", "33amelie", "aidenscott", "5pointbuck", "aceytoso_2", "TravissGraham", "Nikki_DeMarco", "haleyybreen", "abrackin", "DDSethi", "haleighbethhh", "Mac_DA_45", "40Visionz", "b_mazzz", "132Sunshine", "1stFITNESSMC", "CluelessMaven", "adel1196", "aaziz830", "adawood30", "DbLeonor", "bakedtofu", "ActualyAmGeorge", "AdamVanBavel", "workfreelyblog", "HarriBoiii", "brieeellee", "AndeLund", "1Vincent", "Zach_Massari10", "Roze_316", "RedJazz43", "1xr650guy", "lizeeSuX", "4everSeductive", "AmberAAlonzo", "Kessel_Erich2", "adamebnit", "PainFresh6", "according2Drew", "Tyler_Mayer", "Sara_Persiano", "adampdouglas", "ACPressLee", "AdamHedenskog", "Caitles16", "adonatelle", "DJsonatra", "Scott_Gaffney", "GrooDs", "acwelch", "just_teevo", "mynameisluissss", "kcgirl2003"]
+coded_users.map!{|x| x.downcase}
+
+
 errors = File.open('tweet_source_import_errorlog.txt','wb')
 
+
 puts "Accessing Twitterers collection, count: #{Twitterer.count}"
+res = Twitterer.where(handle: {'$in'=> coded_users}).limit(5)
+puts "Found #{ res.count() } users"
 
-#import the list of ids
-File.readlines('datasets/missing_coded_ids.txt').each_with_index do |line, index|
+res.each do |user|
 
-  handle = line.split(',')[0]
-  puts handle, index
-
+  handle = user.handle
   #First, get the user_id
   context.set_file_path(handle)
-  id_str = context.get_user_id_str
-  user_join_date = context.get_user_join_date
 
-  user_tweets = []
+  all_tweets = context.get_full_stream(geo_only=true)
 
-  unless id_str.nil?
-    keyword_tweet_ids = keyword_tweets.find({'user.id_str' => id_str}).to_a.collect{|x| x["id_str"]}
-    puts "Keyword Tweets: #{keyword_tweet_ids.count}"
-    all_tweets = context.get_full_stream(geo_only=true)
-    puts "All Tweets: #{all_tweets.count}"
-
-
-    all_tweets.sort_by{|t| t[:Date]}.each do |t|
-      contextual = true
-      if keyword_tweet_ids.include? t[:Id]
-        contextual = false
-      end
-
-      this_tweet = Tweet.new(
-            id_str: t[:Id],
-            text:   t[:Text],
-            user:   id_str,
-            handle: t[:handle],
-            coordinates: t[:Coordinates],
-            date:   t[:Date],
-            contextual: contextual
-        )
-      user_tweets << this_tweet
+  all_tweets.each_with_index do |t, idx|
+    this_t = user.tweets[idx]
+    if this_t.id_str = t[:Id]
+      puts "match!"
+    else
+      puts "error!"
     end
-
-    puts id_str, handle, user_join_date
-
-    this_user = Twitterer.create(
-      id_str: id_str,
-      handle: handle,
-      account_created: user_join_date
-    )
-
-    this_user.tweets = user_tweets
-
-    this_user.save!
-
-
-
-  else
-    puts "ERROR! user: #{handle} --"
-    errors.write(handle + "\n")
   end
 end
 
