@@ -35,7 +35,7 @@ module ContextualStream
 			@file_path = nil
 
 			#Iterate through the root_path directory for the user's contextual file
-			((1..6).map!{|num| "geo#{num}"} + 'ny_nj' ).each do |section|
+			((1..6).to_a.map!{|num| "geo#{num}"} + 'ny_nj' ).each do |section|
 				test_path = "#{root_path}#{section}/user_data/#{alph}/#{user}-contextual.json"
 				if File.exists? test_path
 					@file_path = test_path
