@@ -1,7 +1,5 @@
 #First, create the runtime
 require_relative '../movement_derivation_controller.rb'
-require 'mongo'
-Mongo::Logger.logger.level = Logger::WARN
 
 runner = TwitterMovementDerivation.new(
   environment: 'processing',
