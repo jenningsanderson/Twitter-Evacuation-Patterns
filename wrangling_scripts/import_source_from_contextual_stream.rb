@@ -5,7 +5,7 @@ runner = TwitterMovementDerivation.new(
   environment: 'processing',
   geo: 'gem',
   factory: 'global',
-  base_path: '/home/jennings/Twitter-Evacuation-Patterns'
+  base_path: '/home/anderstj/Twitter-Evacuation-Patterns'
 )
 
 context = ContextualStream::ContextualStreamRetriever.new(
