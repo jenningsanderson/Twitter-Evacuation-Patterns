@@ -40,6 +40,9 @@ module ContextualStream
 				if File.exists? test_path
 					@file_path = test_path
 					break
+				elsif File.exists? test_path+".bz2"
+					@file_path = test_path
+					break
 				end
 			end
 			if file_path.nil?
