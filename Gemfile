@@ -8,6 +8,7 @@ gem 'mongoid',        '4.0.2'
 gem 'json',           '1.8.3'
 gem 'parallel',       '1.6.0'
 
+gem 'bzip2-ruby', :git => 'https://github.com/chewi/bzip2-ruby.git'
 
 group :server do
   gem 'activesupport'

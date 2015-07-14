@@ -6,6 +6,7 @@ module ContextualStream
 
 	#=Class to retrieve a full contextual stream
 	class ContextualStreamRetriever
+		require 'bzip2'
 
 		attr_reader :root_path, :start_date, :end_date, :file_path, :in_stream, :handle
 
@@ -41,7 +42,7 @@ module ContextualStream
 					@file_path = test_path
 					break
 				elsif File.exists? test_path+".bz2"
-					@file_path = test_path
+					@file_path = test_path+".bz2"
 					break
 				end
 			end
@@ -52,16 +53,25 @@ module ContextualStream
 			end
 		end
 
+		#Writing a wrapper to use bzip2 reader, if needed
+		def open_file
+			if file_path[-4..-1] == ".bz2"
+				return Bzip2::Reader.open(file_path)
+			else
+				return File.open(file_path,'r')
+			end
+		end
+
 		def get_user_id_str
 			unless file_path.nil?
-				tweet = JSON.parse(File.open(file_path,'r').first.chomp)
+				tweet = JSON.parse(open_file.first.chomp)
 				return tweet['user']['id_str']
 			end
 		end
 
 		def get_user_join_date
 			unless file_path.nil?
-				tweet = JSON.parse(File.open(file_path,'r').first.chomp)
+				tweet = JSON.parse(open_file.first.chomp)
 				return tweet['user']['created_at']
 			end
 		end
@@ -75,7 +85,7 @@ module ContextualStream
 				begin
 					tweet_count = 0
 					geo_count = 0
-					File.open(file_path,'r').each do |line|
+					open_file.each do |line|
 						tweet = JSON.parse(line.chomp)
 
 						tweet_data = {}
