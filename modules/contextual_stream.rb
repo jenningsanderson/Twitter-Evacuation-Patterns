@@ -6,8 +6,7 @@ module ContextualStream
 
 	#=Class to retrieve a full contextual stream
 	class ContextualStreamRetriever
-		require 'bzip2'
-
+		
 		attr_reader :root_path, :start_date, :end_date, :file_path, :in_stream, :handle
 
 		def initialize(args)
