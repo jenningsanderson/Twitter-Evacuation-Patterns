@@ -31,17 +31,12 @@ res.each do |user|
 
   all_tweets = context.get_full_stream(geo_only=true)
 
-  puts all_tweets.count
-  puts user.tweets.count
-
-  # all_tweets.each_with_index do |t, idx|
-  #   this_t = user.tweets[idx]
-  #   puts this_t.id_str
-  #   puts t[:Id]
-  #   unless this_t.id_str == t[:Id]
-  #     puts "error!"
-  #   end
-  # end
+  all_tweets.sort_by{|t| t[:Date]}.each_with_index do  |t, idx|
+    this_t = user.tweets[idx]
+    unless this_t.id_str == t[:Id]
+      puts "error!"
+    end
+  end
 end
 
 errors.close()
