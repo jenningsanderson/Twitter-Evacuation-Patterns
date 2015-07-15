@@ -41,11 +41,11 @@ module ContextualStream
 					@file_path = test_path
 					break
 				elsif File.exists? test_path+".bz2"
-					unless File.exists? "/home/anderstj/tmp/#{user}.json"
-						`cp #{test_path}.bz2 /home/anderstj/tmp/user.json.bz2`
-						`bunzip2 /home/anderstj/tmp/#{user}.json.bz2`
+					unless File.exists? "/home/anderstj/tmp/#{user}-contextual.json"
+						`cp #{test_path}.bz2 /home/anderstj/tmp/#{user}-contextual.json.bz2`
+						`bunzip2 /home/anderstj/tmp/#{user}-contextual.json.bz2`
 					end
-					@file_path = "/home/anderstj/tmp/#{user}.json"
+					@file_path = "/home/anderstj/tmp/#{user}-contextual.json"
 					break
 				end
 			end
