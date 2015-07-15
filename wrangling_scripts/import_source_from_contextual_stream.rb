@@ -33,6 +33,8 @@ res.each do |user|
 
   all_tweets.each_with_index do |t, idx|
     this_t = user.tweets[idx]
+    puts this_t.id_str
+    puts t[:Id]
     unless this_t.id_str == t[:Id]
       puts "error!"
     end
