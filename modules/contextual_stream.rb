@@ -6,7 +6,7 @@ module ContextualStream
 
 	#=Class to retrieve a full contextual stream
 	class ContextualStreamRetriever
-		
+
 		attr_reader :root_path, :start_date, :end_date, :file_path, :in_stream, :handle
 
 		def initialize(args)
@@ -40,7 +40,7 @@ module ContextualStream
 				if File.exists? test_path
 					@file_path = test_path
 					break
-				elsif File.exists? tes
+				elsif File.exists? test_path+".bz2"
 					unless File.exists? "/home/anderstj/tmp/#{user}.json"
 						`cp #{test_path}.bz2 /home/anderstj/tmp/user.json.bz2`
 						`bunzip2 /home/anderstj/tmp/#{user}.json.bz2`
