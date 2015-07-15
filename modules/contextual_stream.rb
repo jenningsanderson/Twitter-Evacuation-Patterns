@@ -103,6 +103,7 @@ module ContextualStream
 							tweet_data[:Text]   = tweet["text"]
 							tweet_data[:Id]     = tweet["id_str"]
 							tweet_data[:Handle] = tweet["user"]["screen_name"]
+							tweet_data[:Source] = tweet["source"]
 
 							if tweet['coordinates']
 								tweet_data[:Coordinates] = tweet['coordinates']['coordinates']

@@ -33,8 +33,11 @@ res.each do |user|
 
   all_tweets.sort_by{|t| t[:Date]}.each_with_index do  |t, idx|
     this_t = user.tweets[idx]
-    unless this_t.id_str == t[:Id]
-      puts "error!"
+    unless this_t.id_str != t[:Id]
+      this_t.source = t[:Source]
+      this_t.save
+    else
+      errors.write "#{user.handle}, #{t[:Id]}, #{this_t.id_str}"
     end
   end
 end
