@@ -20,7 +20,7 @@ errors = File.open('tweet_source_import_errorlog.txt','wb')
 
 
 puts "Accessing Twitterers collection, count: #{Twitterer.count}"
-res = Twitterer.where(handle: {'$in'=> coded_users}).limit(5)
+res = Twitterer.where(tweet_count: {'$lt'=> 200, '$gt'=> 10})
 puts "Found #{ res.count() } users"
 
 res.each do |user|
