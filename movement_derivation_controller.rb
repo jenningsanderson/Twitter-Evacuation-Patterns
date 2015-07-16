@@ -16,7 +16,7 @@ class TwitterMovementDerivation
 
   def initialize(args)
     @db_env      = args[:db_env].to_sym      || :local
-    @epic_geo    = args[:epic_geo]           || :gem
+    @epic_geo    = args[:epic_geo]           || 'gem'
     @geo_factory = args[:geo_factory].to_sym || :global
     @base_path   = args[:base_path]          || '.' #TODO: this should find whatever the current diretory is
     puts "Initializing Twitter Movement Derivation with database: #{db_env}"
@@ -25,7 +25,7 @@ class TwitterMovementDerivation
 
   def post_initialize(args)
 
-    if epic_geo == :gem
+    if epic_geo == 'gem'
       require 'epic_geo'
     else
       require_relative epic_geo
