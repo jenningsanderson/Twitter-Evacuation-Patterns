@@ -73,10 +73,10 @@ end
 
 if __FILE__ == $0
 
-  db_env       = ARGV[1]      || :processing
-  epic_geo     = ARGV[2]      || :gem
-  geo_factory  = ARGV[3]      || :global
-  base_path    = ARGV[4]      || '/Users/jenningsanderson/Documents/Twitter-Evacuation-Patterns'
+  db_env       = ARGV[2]      || :processing
+  epic_geo     = ARGV[3]      || :gem
+  geo_factory  = ARGV[4]      || :global
+  base_path    = ARGV[5]      || '/Users/jenningsanderson/Documents/Twitter-Evacuation-Patterns'
 
   runtime = TwitterMovementDerivation.new(
     db_env:   db_env,
