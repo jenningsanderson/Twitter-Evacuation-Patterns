@@ -15,7 +15,6 @@ end
 
 group :notebook do
   gem 'nyaplot'
-  gem 'mapnya'
 end
 
 group :geo do
