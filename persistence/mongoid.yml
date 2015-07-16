@@ -1,11 +1,11 @@
-server:
+ea:
   sessions:
     default:
       database: 'sandygeo_new'
       hosts:
         - epic-analytics.cs.colorado.edu:27017
 
-serverlocal:
+local:
   sessions:
     default:
       database: 'sandygeo_new'
