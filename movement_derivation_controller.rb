@@ -24,8 +24,6 @@ class TwitterMovementDerivation
   end
 
   def post_initialize(args)
-    #Use the bundler to ensure we get all the dependencies met
-    require 'bundler/setup'
 
     if environment == :processing and geo != :gem
       require_relative '/home/jennings/epic-geo/lib/epic_geo.rb'
