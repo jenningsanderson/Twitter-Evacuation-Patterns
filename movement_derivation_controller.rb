@@ -25,7 +25,6 @@ class TwitterMovementDerivation
 
   def post_initialize(args)
     #Use the bundler to ensure we get all the dependencies met
-    require 'rubygems'
     require 'bundler/setup'
 
     if environment == :processing and geo != :gem

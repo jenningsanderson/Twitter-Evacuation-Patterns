@@ -13,6 +13,11 @@ group :server do
   # gem 'rails'
 end
 
+group :notebook do
+  gem 'nyaplot'
+  gem 'mapnya'
+end
+
 group :geo do
   gem 'georuby',       '2.5.2'
   gem 'rgeo',          '0.3.20'
