@@ -1,0 +1,20 @@
+ea:
+  epic_geo:
+    type: 'gem'
+  db: 'research.yetilabs.co'
+  base_path: '/home/anderstj/Twitter-Evacuation-Patterns'
+
+processing:
+  epic_geo:
+    type: local
+      path: '/home/jennings/epic_geo/epic_geo.rb'
+    type: gem
+  db: 'localhost'
+  base_path: '/home/jennings/Twitter-Evacuation-Patterns'
+
+local:
+  epic_geo:
+    type: local
+      path: '/Users/jenningsanderson/Documents/epic-geo/epic-geo.rb'
+  db: 'processing'
+  base_path: '/Users/jenningsanderson/Documents/Twitter-Evacuation-Patterns'

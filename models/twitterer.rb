@@ -18,7 +18,7 @@ class Twitterer
 	field :account_created, 				type: Time
 
 	# field :issue, 								type: Integer #A flag for keeping track of processing -- in Mongo
-	# field :flag,      						type: String
+	field :flag,      							type: Integer, default: -1
 
 	field :cluster_locations, 			type: Hash, default: {}
 	field :unclustered_percentage,	type: Integer, default: -1

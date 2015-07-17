@@ -33,10 +33,10 @@ class TwitterMovementDerivation
 
     #Load Mongoid
     require 'mongoid'
-    Mongoid.load!("#{base_path}/persistence/mongoid.yml", db_env)
+    # Mongoid.load!("#{base_path}/persistence/mongoid.yml", db_env)
 
     #Load our Models
-    require 'models/twitterer'
+    # require 'models/twitterer'
 
     if geo_factory == :local
       $fatory = RGeo::Geographic.projected_factory(projection_proj4: '+proj=utm +zone=18 +datum=NAD27 +units=m +no_defs ')

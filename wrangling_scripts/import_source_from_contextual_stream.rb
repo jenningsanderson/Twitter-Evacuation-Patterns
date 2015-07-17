@@ -19,7 +19,7 @@ coded_users.map!{|x| x.downcase}
 errors = File.open('tweet_source_import_errorlog.txt','wb')
 
 puts "Accessing Twitterers collection, count: #{Twitterer.count}"
-res = Twitterer.where(tweet_count: {'$lt'=> 200, '$gt'=> 10})
+res = Twitterer.where(tweet_count: {'$lt'=> 200, '$gt'=> 10}, flag: nil)
 puts "Found #{ res.count() } users"
 
 res.each do |user|
@@ -39,6 +39,8 @@ res.each do |user|
       errors.write "#{user.handle}, #{t[:Id]}, #{this_t.id_str}"
     end
   end
+  user.flag = 10
+  user.save
 end
 
 errors.close()
