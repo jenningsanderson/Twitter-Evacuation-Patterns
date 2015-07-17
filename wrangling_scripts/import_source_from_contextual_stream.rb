@@ -2,9 +2,9 @@
 require_relative '../movement_derivation_controller.rb'
 
 runner = TwitterMovementDerivation.new(
-  environment: 'processing',
-  geo: 'gem',
-  factory: 'global',
+  db_env: :processing,
+  epic_geo: 'gem',
+  factory: :global,
   base_path: '/home/anderstj/Twitter-Evacuation-Patterns'
 )
 
