@@ -134,7 +134,7 @@ class Twitterer
 	  if base_cluster.nil?
 	    return nil
 	  else
-	    return base_cluster.to_s
+	    return base_cluster[:id].to_s
 	  end
 	end
 
