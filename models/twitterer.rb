@@ -134,7 +134,7 @@ class Twitterer
 	  if base_cluster.nil?
 	    return nil
 	  else
-	    return base_cluster
+	    return base_cluster.to_s
 	  end
 	end
 
