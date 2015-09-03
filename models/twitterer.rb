@@ -131,10 +131,10 @@ class Twitterer
 
 	  base_cluster = cluster_scores.sort_by{|c| c[:score]}.last
 
-	  if base_cluster.nil?
+	  if base_cluster.nil? or base_cluster[:id].nil?
 	    return nil
 	  else
-	    return base_cluster[:id].to_s
+	    return base_cluster[:id]
 	  end
 	end
 
