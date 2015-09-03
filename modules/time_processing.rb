@@ -10,19 +10,6 @@ module TimeProcessing
 		days = tweets.group_by{|tweet| tweet["date"].yday}.sort_by{|k,v| k}
 	end
 
-
-	#Deprecated
-	def score_temporal_patterns(tweets)
-		times = tweets.collect{|tweet| tweet["date"]}
-		blocks = []
-		times.each do |time|
-			blocks << time.hour/3
-		end
-
-		blocks.group_by{|value| value}.keys.length / times.length**2.to_f # => Essentially a measure of deviation
-	end
-
-
 	#Given a list of tweets, return the number of tweets that exist in time bins with > 25% activity
 	def tweet_regularity(tweets)
 		times = tweets.collect{ |tweet| tweet.date }

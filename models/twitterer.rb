@@ -54,23 +54,6 @@ class Twitterer
 	#Mostly for testing, but maybe need access to these
 	attr_reader :unclassified_tweets
 
-	# def handle
-	# 	self["handle"]
-	# end
-
-  # def initialize(args)
-  #   @id_str          = args[:id_str]
-  #   @account_created = args[:account_created]
-  #   @handle          = args[:handle]
-  #   # @tweets          = args[:tweets]
-	#
-  #   post_initialize(args)
-  # end
-	#
-  # def post_initialize(args)
-  #   nil
-  # end
-
   #Get all of a user's contextual stream tweets
   def contextual_stream
     tweets.select{|t| t.contextual }
@@ -133,6 +116,26 @@ class Twitterer
 
 	def time_bounded_tweets(time_start, time_end)
 		return tweets.select{|t| t.date > time_start and t.date < time_end}
+	end
+
+	def get_highest_scoring_cluster_between_two_dates(user, start_date, end_date)
+	  cluster_scores = []
+	  relevant_tweets = time_bounded_tweets(start_date, end_date)
+
+	  relevant_clusters = relevant_tweets.group_by{|t| t.cluster_id}
+	  relevant_clusters.delete("-1")
+
+	  relevant_clusters.each do |k,v|
+	    cluster_scores << {id: k, score: user.tweet_regularity(v)}
+	  end
+
+	  base_cluster = cluster_scores.sort_by{|c| c[:score]}.last
+
+	  if base_cluster.nil?
+	    return nil
+	  else
+	    return base_cluster
+	  end
 	end
 
 	def week_one_tweets
