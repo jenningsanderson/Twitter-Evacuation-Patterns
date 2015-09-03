@@ -118,7 +118,7 @@ class Twitterer
 		return tweets.select{|t| t.date > time_start and t.date < time_end}
 	end
 
-	def get_highest_scoring_cluster_between_two_dates(user, start_date, end_date)
+	def get_highest_scoring_cluster_between_two_dates(start_date, end_date)
 	  cluster_scores = []
 	  relevant_tweets = time_bounded_tweets(start_date, end_date)
 
@@ -126,7 +126,7 @@ class Twitterer
 	  relevant_clusters.delete("-1")
 
 	  relevant_clusters.each do |k,v|
-	    cluster_scores << {id: k, score: user.tweet_regularity(v)}
+	    cluster_scores << {id: k, score: tweet_regularity(v)}
 	  end
 
 	  base_cluster = cluster_scores.sort_by{|c| c[:score]}.last
