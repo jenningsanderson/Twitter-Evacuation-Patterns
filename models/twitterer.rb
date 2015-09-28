@@ -108,7 +108,7 @@ class Twitterer
 	def cluster_as_point(cluster)
 		p = cluster_locations[cluster.to_s]
 		unless p.nil?
-			return FACTORY.point(p[0],p[1])
+			return $factory.point(p[0],p[1])
 		else
 			return nil
 		end
@@ -118,12 +118,25 @@ class Twitterer
 		return tweets.select{|t| t.date > time_start and t.date < time_end}
 	end
 
-	def get_highest_scoring_cluster_between_two_dates(start_date, end_date)
+	#
+	#
+	# Returns:
+	# => nil if there is no activity between those times.
+	def get_highest_scoring_location_between_two_dates(start_date, end_date)
 	  cluster_scores = []
 	  relevant_tweets = time_bounded_tweets(start_date, end_date)
 
 	  relevant_clusters = relevant_tweets.group_by{|t| t.cluster_id}
-	  relevant_clusters.delete("-1")
+
+		unclustered = relevant_clusters.delete("-1")
+
+		#If there are no clusters during this time, then we need to look at the unclustered
+		if relevant_clusters.count.zero?
+			if unclustered.count.zero?
+				return nil
+			else
+				unclustered
+		end
 
 	  relevant_clusters.each do |k,v|
 	    cluster_scores << {id: k, score: tweet_regularity(v)}
