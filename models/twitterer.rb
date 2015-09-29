@@ -31,6 +31,8 @@ class Twitterer
 
 	field :tweet_count,							type: Integer, default: -1
 
+	field :two_week_prior_clusters, type: Array
+
 	# field :base_cluster,						type: String
 	# field :base_cluster_score,			type: Float
 	# field :base_cluster_location,   type: Array
