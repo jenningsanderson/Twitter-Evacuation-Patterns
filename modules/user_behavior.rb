@@ -10,12 +10,11 @@ module UserBehavior
 
 		#Create a new instance of the DBScanner, set the parameters.
 		#Passes an array of Tweet Objects, which have their own distance function
-		dbscanner = EpicGeo::Clustering::DBScan.new(tweets, epsilon=50, min_pts=2) #This seems to work okay...
+		#Using new parameters (October 1, 2015): Min. 5 tweets per cluster and 100 meter epsilon.
+		dbscanner = EpicGeo::Clustering::DBScan.new(tweets, epsilon=100, min_pts=5) #This seems to work okay...
 
 		# Run the db_scan algorithm
-		print "Running dbscan..."
 		clusters = dbscanner.run
-		puts "done"
 
 		clusters.each do |cluster_id, tweets|
 			tweets.each do |tweet|

@@ -23,7 +23,7 @@ class Twitterer
 	field :cluster_locations, 			type: Hash, default: {}
 	field :unclustered_percentage,	type: Integer, default: -1
 
-	field :unclassifiable,          type: Boolean, default: false
+	field :unclassifiable,          type: Boolean, default: true
 	field :rel_movement,            type: Array
 
 	field :evacuated,								type: String, default: nil
