@@ -43,11 +43,12 @@ module UserBehavior
 			self.unclustered_percentage = ( unclassified_tweets.length.to_f / tweets.count*100 ).round
 
 		rescue => e
-			log("<<< Error! calculating the unclustered_percentage")
+			log("<<< Error! calculating the unclustered_percentage: Unclassified: #{unclassified_tweets.length}, Tweets: #{tweets.count}")
 		end
 
 		if clusters.empty?
 			self.unclassifiable = true
+			log("<<< Setting unclassifiable")
 		else
 			self.unclassifiable = false
 		end
