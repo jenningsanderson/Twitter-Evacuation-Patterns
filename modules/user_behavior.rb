@@ -38,7 +38,13 @@ module UserBehavior
 
 		#Throw away the unclassifiable cluster (Save them as a variable with the Twitterer for now)
 		unclassified_tweets = clusters.delete(-1)
-		self.unclustered_percentage = (unclassified_tweets.length.to_f / tweets.count*100).round
+		begin
+
+			self.unclustered_percentage = ( unclassified_tweets.length.to_f / tweets.count*100 ).round
+
+		rescue => e
+			log("<<< Error! calculating the unclustered_percentage")
+		end
 
 		if clusters.empty?
 			self.unclassifiable = true
