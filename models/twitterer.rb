@@ -31,7 +31,7 @@ class Twitterer
 
 	field :tweet_count,							type: Integer, default: -1
 
-	field :one_month_prior_clusters, type: Array
+	field :one_month_prior_clusters, type: Array, default []
 
 	# field :base_cluster,						type: String
 	# field :base_cluster_score,			type: Float
