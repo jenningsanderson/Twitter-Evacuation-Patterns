@@ -31,7 +31,7 @@ class Twitterer
 
 	field :tweet_count,							type: Integer, default: -1
 
-	field :two_week_prior_clusters, type: Array
+	field :one_month_prior_clusters, type: Array
 
 	# field :base_cluster,						type: String
 	# field :base_cluster_score,			type: Float
@@ -154,41 +154,41 @@ class Twitterer
 		end
 	end
 
-		def week_one_tweets
-			return tweets.select{|t| t.date > TIMES[:event] and t.date < TIMES[:one_week]}
-		end
+	def week_one_tweets
+		return tweets.select{|t| t.date > TIMES[:event] and t.date < TIMES[:one_week]}
+	end
 
-		def two_days_tweets
-			return tweets.select{|t| t.date > TIMES[:event] and t.date < TIMES[:two_days]}
-		end
+	def two_days_tweets
+		return tweets.select{|t| t.date > TIMES[:event] and t.date < TIMES[:two_days]}
+	end
 
-		def tweets_in_time_range(start_time, end_time)
-			return tweets.select{|t| t.date > start_time and t.date < end_time}
-		end
+	def tweets_in_time_range(start_time, end_time)
+		return tweets.select{|t| t.date > start_time and t.date < end_time}
+	end
 
-		def week_one_linestring
-			points = []
-			week_one_tweets.each do |t|
-				unless t.cluster < 0
-					points << cluster_as_point(t.cluster)
-				end
+	def week_one_linestring
+		points = []
+		week_one_tweets.each do |t|
+			unless t.cluster < 0
+				points << cluster_as_point(t.cluster)
 			end
-			$factory.line_string(points)
 		end
+		$factory.line_string(points)
+	end
 
-		def get_base_cluster
-			prev_val = 0
-			c = nil
-			clusters.each do |cluster_id, tweets|
-				new_val = tweet_regularity(tweets.reject{ |t| t["date"] > TIMES[:event] })
-				# puts "#{cluster_id}: #{new_val}"
-				if new_val > prev_val
-					prev_val = new_val
-					c = cluster_id
-				end
+	def get_base_cluster
+		prev_val = 0
+		c = nil
+		clusters.each do |cluster_id, tweets|
+			new_val = tweet_regularity(tweets.reject{ |t| t["date"] > TIMES[:event] })
+			# puts "#{cluster_id}: #{new_val}"
+			if new_val > prev_val
+				prev_val = new_val
+				c = cluster_id
 			end
-			return c
 		end
+		return c
+	end
 
 
 		# =Get Clusters from the User's Tweet Loctions

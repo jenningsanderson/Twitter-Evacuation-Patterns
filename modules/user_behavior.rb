@@ -1,7 +1,6 @@
 #= The main Module for movmenet derivation
 #
 #
-#
 module UserBehavior
 
 	#= Using DBScan, put all their tweets into clusters!
