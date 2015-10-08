@@ -111,9 +111,7 @@ module ContextualStream
 							if tweet['coordinates']
 								tweet_data[:Coordinates] = tweet['coordinates']['coordinates']
 								geo_count += 1
-								if geo_only
-									tweets << tweet_data
-								end
+								tweets << tweet_data
 							else
 								tweet_data[:Coordinates] = "------"
 								unless geo_only
