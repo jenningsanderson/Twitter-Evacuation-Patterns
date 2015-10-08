@@ -3,6 +3,7 @@
 #
 #
 require 'json'
+require 'time'
 module ContextualStream
 
 
