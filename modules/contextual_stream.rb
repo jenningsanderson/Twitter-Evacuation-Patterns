@@ -2,7 +2,9 @@
 #
 #
 #
+require 'json'
 module ContextualStream
+
 
 	#=Class to retrieve a full contextual stream
 	class ContextualStreamRetriever
