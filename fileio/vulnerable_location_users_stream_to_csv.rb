@@ -4,7 +4,7 @@ _end   =  Time.new(2012,11,07)
 require 'csv'
 require_relative '../modules/contextual_stream'
 
-contextual_stream = ContxtualStream::FullContextualStreamRetriever.new(
+contextual_stream = ContextualStream::FullContextualStreamRetriever.new(
 	start_date:  _start,
 	end_date:    _end,
 	root_path:   "/home/kena/geo_user_collection/" )
