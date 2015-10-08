@@ -14,7 +14,7 @@ brighton = ["bencashfarouq", "chuckbegettinit", "aniceberg", "masterjao", "liatz
 rockaway = ["qtwiddaboot", "readyrock7", "tigerthedj", "ryanbaesian", "thecgcclan", "playhutttplay", "nueraent2", "chinkeyeyez3", "dj2020", "aladesnr", "missmochalatte2", "julioknales", "marotin507"]
 
 [red_hook, brighton, rockaway].each do |location|
-	puts "found #{results.count} users"
+
 	CSV.open(location+'_users.csv', "w") do |csv|
 		location.each do |handle|
 
