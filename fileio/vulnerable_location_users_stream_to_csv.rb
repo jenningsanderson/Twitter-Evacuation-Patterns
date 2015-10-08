@@ -4,7 +4,7 @@ _end   =  Time.new(2012,11,07)
 require 'csv'
 require_relative '../modules/contextual_stream'
 
-contextual_stream = ContextualStream::FullContextualStreamRetriever.new(
+contextual_stream = ContextualStream::ContextualStreamRetriever.new(
 	start_date:  _start,
 	end_date:    _end,
 	root_path:   "/home/kena/geo_user_collection/" )
@@ -17,7 +17,10 @@ rockaway = ["qtwiddaboot", "readyrock7", "tigerthedj", "ryanbaesian", "thecgccla
 	puts "found #{results.count} users"
 	CSV.open(location+'_users.csv', "w") do |csv|
 		location.each do |handle|
-			tweets = contextual_stream.get_full_stream(handle)
+
+			contextual_stream.set_file_path(handle)
+			tweets = contextual_stream.get_full_stream(geo_only=false)
+
 			puts "Total tweets: #{tweets.length}"
 			tweets.each do |tweet|
 				csv << [ handle, tweet[:Id], tweet[:Date], tweet[:Text], tweet[:Coordinates] ]
