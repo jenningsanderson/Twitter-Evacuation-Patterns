@@ -6,7 +6,6 @@ require 'json'
 require 'time'
 module ContextualStream
 
-
 	#=Class to retrieve a full contextual stream
 	class ContextualStreamRetriever
 
@@ -54,8 +53,10 @@ module ContextualStream
 			end
 			if file_path.nil?
 				puts "Error, no stream exists for #{name}"
+				return false
 			else
 				puts "found: #{file_path}"
+				return true
 			end
 		end
 
@@ -83,7 +84,7 @@ module ContextualStream
 		end
 
 		#Find the document on the server
-		def get_full_stream(geo_only=true)
+		def get_full_stream(geo_only=false)
 			tweets = [] # => To be returned
 			unless file_path.nil?
 				puts "Reading from: #{file_path}"
@@ -135,8 +136,8 @@ module ContextualStream
 				end
 
 			else
-				puts "Error, unable to find the stream"
-				return []
+				puts "Error, unable to access the stream"
+				return false
 			end
 		end
 	end
